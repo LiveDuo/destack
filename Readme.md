@@ -25,7 +25,7 @@ body,
 import { loadData } from 'next-grapejs-plugin'
 export default loadData 
 ```
-```
+```js
 import { saveData } from 'next-grapejs-plugin'
 export default saveData 
 ```
