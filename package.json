@@ -1,0 +1,35 @@
+{
+  "name": "next-grapejs-plugin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "webpack --watch",
+    "build": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": ">=17.0.2",
+    "react-dom": ">=17.0.2"
+  },
+  "dependencies": {
+    "draft-js": "^0.11.7",
+    "grapesjs": "^0.16.45",
+    "grapesjs-preset-webpage": "^0.1.11",
+    "react-draft-wysiwyg": "^1.14.6",
+    "webpack": "^5.35.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.16",
+    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-react": "^7.13.13",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.2",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^5.2.4",
+    "style-loader": "^2.0.0",
+    "webpack-cli": "^4.6.0"
+  }
+}
