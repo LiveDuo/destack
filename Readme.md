@@ -1,8 +1,8 @@
 # Get started
 
-### install the plugin
+### Install the plugin (ALPHA)
 1. next.config.js (NOTE: npm i next-transpile-modules)
-```
+```js
 const withTM = require('next-transpile-modules')(['next-grapejs-plugin'], {resolveSymlinks: false})
 module.exports = withTM({
   env: {
@@ -12,7 +12,7 @@ module.exports = withTM({
 ```
 
 2. styles/globals.css
-```
+```css
 html,
 body,
 #__next {
@@ -21,7 +21,7 @@ body,
 ```
 
 3. pages/api/load.js & pages/api/save.js
-```
+```js
 import { loadData } from 'next-grapejs-plugin'
 export default loadData 
 ```
@@ -31,7 +31,7 @@ export default saveData
 ```
 
 4. pages/[component].js (Note: '..grapes.min.css' and '...grape-fix.module.css')
-```
+```js
 import { MarkdownProvider, getStaticDataProps } from 'next-grapejs-plugin'
 
 import '../node_modules/next-grapejs-plugin/node_modules/grapesjs/dist/css/grapes.min.css'
@@ -43,7 +43,7 @@ export default function Home({data}) { return <MarkdownProvider data={data}/> }
 ```
 
 5. next-grapejs-plugin/src/api/index.js (Hardcoded URL)
-```
+```js
 const serverUrl = 'http://localhost:3000'
 ```
 
