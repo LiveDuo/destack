@@ -2,6 +2,8 @@ if (typeof window !== 'undefined') {
   require('grapesjs-preset-webpage')
 }
 
+import sources from '../data'
+
 const grapesjs = (typeof window !== 'undefined') ? require('grapesjs') : null
 
 const fetchJSON = (method, url, data) => fetch(url, {method, headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)})
@@ -9,6 +11,9 @@ const fetchJSON = (method, url, data) => fetch(url, {method, headers: {'Content-
 const initEditor = () => {
 
   const newEditor = grapesjs.init({
+    canvas: {
+      styles: ['https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css'] 
+    },
     container : '#gjs',
     height: '100%',
     components: '',
@@ -26,11 +31,19 @@ const initEditor = () => {
     }
   })
 
-  const blockManager = newEditor.BlockManager;
+  const blockManager = newEditor.BlockManager
   blockManager.add('my-map-block', {
     label: 'Simple map block',
     attributes: { class:'fa fa-map-o' },
     content: { type: 'map', style: { height: '350px'}, removable: true }
+  })
+
+  sources.forEach(s => {
+    blockManager.add(s.id, {
+      label: s.label,
+      attributes: { class: s.class },
+      content: s.content
+    })
   })
 
 
@@ -57,6 +70,20 @@ const initEditor = () => {
   newEditor.Panels.removeButton('options','fullscreen')
   newEditor.Panels.removeButton('options','export-template')
   // newEditor.Panels.render() // problem with traits panel
+
+  const iframe = newEditor.Canvas.getFrameEl()
+  const cssLink = document.createElement('link')
+  cssLink.href = 'https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css'
+  cssLink.rel = 'stylesheet'
+  iframe.contentDocument.head.appendChild(cssLink)
+  
+  const cssStyle = document.createElement('style')
+  cssStyle.type = 'text/css'
+  cssStyle.innerHTML = `img { filter: sepia(1) hue-rotate(190deg) opacity(.46) grayscale(.7) !important; } 
+  @media (min-width: 768px)
+  .md\:w-1\/3 { width: 33.333333%; }
+  `
+  iframe.contentDocument.head.appendChild(cssStyle)
 
   document.querySelector("html").style.height = '100%'
   document.querySelector("body").style.height = '100%'
