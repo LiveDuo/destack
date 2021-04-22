@@ -107,8 +107,6 @@ import r5s from './hero-5.svg'
 import {source as r6} from './hero-6'
 import r6s from './hero-6.svg'
 
-
-//footer, gallery, header, hero
 import {source as p1} from './pricing-1'
 import p1s from './pricing-1.svg'
 import {source as p2} from './pricing-2'
@@ -374,6 +372,230 @@ const sources = [{
     label: getSvgHtml(f8s),
     content: f8,
     category: 'Features',
+    // order: 1
+}, {
+    id: 'footer-block-1',
+    class: '',
+    label: getSvgHtml(z1s),
+    content: z1,
+    category: 'Footer',
+    // order: 1
+}, {
+    id: 'footer-block-2',
+    class: '',
+    label: getSvgHtml(z2s),
+    content: z2,
+    category: 'Footer',
+    // order: 1
+}, {
+    id: 'footer-block-3',
+    class: '',
+    label: getSvgHtml(z3s),
+    content: z3,
+    category: 'Footer',
+    // order: 1
+}, {
+    id: 'footer-block-4',
+    class: '',
+    label: getSvgHtml(z4s),
+    content: z4,
+    category: 'Footer',
+    // order: 1
+}, {
+    id: 'footer-block-5',
+    class: '',
+    label: getSvgHtml(z5s),
+    content: z5,
+    category: 'Footer',
+    // order: 1
+}, {
+    id: 'gallery-block-1',
+    class: '',
+    label: getSvgHtml(g1s),
+    content: g1,
+    category: 'Gallery',
+    // order: 1
+}, {
+    id: 'gallery-block-2',
+    class: '',
+    label: getSvgHtml(g2s),
+    content: g2,
+    category: 'Gallery',
+    // order: 1
+}, {
+    id: 'gallery-block-3',
+    class: '',
+    label: getSvgHtml(g3s),
+    content: g3,
+    category: 'Gallery',
+    // order: 1
+}, {
+    id: 'header-block-1',
+    class: '',
+    label: getSvgHtml(h1s),
+    content: h1,
+    category: 'Header',
+    // order: 1
+}, {
+    id: 'header-block-2',
+    class: '',
+    label: getSvgHtml(h2s),
+    content: h2,
+    category: 'Header',
+    // order: 1
+}, {
+    id: 'header-block-3',
+    class: '',
+    label: getSvgHtml(h3s),
+    content: h3,
+    category: 'Header',
+    // order: 1
+}, {
+    id: 'header-block-4',
+    class: '',
+    label: getSvgHtml(h4s),
+    content: h4,
+    category: 'Header',
+    // order: 1
+}, {
+    id: 'hero-block-1',
+    class: '',
+    label: getSvgHtml(r1s),
+    content: r1,
+    category: 'Hero',
+    // order: 1
+}, {
+    id: 'hero-block-2',
+    class: '',
+    label: getSvgHtml(r2s),
+    content: r2,
+    category: 'Hero',
+    // order: 1
+}, {
+    id: 'hero-block-3',
+    class: '',
+    label: getSvgHtml(r3s),
+    content: r3,
+    category: 'Hero',
+    // order: 1
+}, {
+    id: 'hero-block-4',
+    class: '',
+    label: getSvgHtml(r4s),
+    content: r4,
+    category: 'Hero',
+    // order: 1
+}, {
+    id: 'hero-block-5',
+    class: '',
+    label: getSvgHtml(r5s),
+    content: r5,
+    category: 'Hero',
+    // order: 1
+}, {
+    id: 'hero-block-6',
+    class: '',
+    label: getSvgHtml(r6s),
+    content: r6,
+    category: 'Hero',
+    // order: 1
+}, {
+    id: 'pricing-block-1',
+    class: '',
+    label: getSvgHtml(p1s),
+    content: p1,
+    category: 'Pricing',
+    // order: 1
+}, {
+    id: 'pricing-block-2',
+    class: '',
+    label: getSvgHtml(p2s),
+    content: p2,
+    category: 'Pricing',
+    // order: 1
+}, {
+    id: 'statistic-block-1',
+    class: '',
+    label: getSvgHtml(s1s),
+    content: s1,
+    category: 'Statistics',
+    // order: 1
+}, {
+    id: 'statistic-block-2',
+    class: '',
+    label: getSvgHtml(s2s),
+    content: s2,
+    category: 'Statistics',
+    // order: 1
+}, {
+    id: 'statistic-block-3',
+    class: '',
+    label: getSvgHtml(s3s),
+    content: s3,
+    category: 'Statistics',
+    // order: 1
+}, {
+    id: 'step-block-1',
+    class: '',
+    label: getSvgHtml(q1s),
+    content: q1,
+    category: 'Steps',
+    // order: 1
+}, {
+    id: 'step-block-2',
+    class: '',
+    label: getSvgHtml(q2s),
+    content: q2,
+    category: 'Steps',
+    // order: 1
+}, {
+    id: 'step-block-3',
+    class: '',
+    label: getSvgHtml(q3s),
+    content: q3,
+    category: 'Steps',
+    // order: 1
+}, {
+    id: 'team-block-1',
+    class: '',
+    label: getSvgHtml(t1s),
+    content: t1,
+    category: 'Team',
+    // order: 1
+}, {
+    id: 'team-block-2',
+    class: '',
+    label: getSvgHtml(t2s),
+    content: t2,
+    category: 'Team',
+    // order: 1
+}, {
+    id: 'team-block-3',
+    class: '',
+    label: getSvgHtml(t3s),
+    content: t3,
+    category: 'Team',
+    // order: 1
+}, {
+    id: 'testimonial-block-1',
+    class: '',
+    label: getSvgHtml(m1s),
+    content: m1,
+    category: 'Testimonials',
+    // order: 1
+}, {
+    id: 'testimonial-block-2',
+    class: '',
+    label: getSvgHtml(m2s),
+    content: m2,
+    category: 'Testimonials',
+    // order: 1
+}, {
+    id: 'testimonial-block-3',
+    class: '',
+    label: getSvgHtml(m3s),
+    content: m3,
+    category: 'Testimonials',
     // order: 1
 }]
 
