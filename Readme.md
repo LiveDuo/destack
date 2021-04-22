@@ -27,6 +27,7 @@ export default function Home() { return <MarkdownProvider/> }
 # TODO (later)
 1. Max width settings (+colors)
 2. Move builder API route to next.config.js
+3. Fix missing tailwind responsive classes
 
 # Developemnt
 1. npm link

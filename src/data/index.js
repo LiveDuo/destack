@@ -149,7 +149,7 @@ const getSvgHtml = (svg) => {
     // console.log(typeof window === 'undefined')
     const svgEl = svg()
     svgEl.setAttribute('width',  '100%')
-    svgEl.setAttribute('height',  'auto')
+    svgEl.setAttribute('height',  '100%')
     return svgEl.outerHTML
     // return 'fa fa-map-o'
 }
