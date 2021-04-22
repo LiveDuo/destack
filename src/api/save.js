@@ -4,7 +4,7 @@ import path from 'path'
 const fs = typeof window === 'undefined' ? require('fs') : null
 
 const development = process.env.NODE_ENV !== 'production'
-const rootPath = process.env.ROOT
+const rootPath = process.cwd()
 
 const folderPath = 'data'
 

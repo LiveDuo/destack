@@ -4,8 +4,7 @@ import path from 'path'
 const fs = typeof window === 'undefined' ? require('fs') : null
 
 const development = process.env.NODE_ENV !== 'production'
-const rootPath = process.env.ROOT
-
+const rootPath = process.cwd()
 const folderPath = 'data'
 
 const zip = (rows) => rows[0].map((_,c)=>rows.map(row=>row[c]))

@@ -1,12 +1,21 @@
 var path = require('path');
 
 module.exports = {
-  entry: './index.js',
+  entry: './src/index.js',
   mode: 'development',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'index.js',
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs2',
+    library: '[name]',
+    umdNamedDefine: false,
+    chunkFilename: '[id].chunk.[chunkhash].js'
+  },
+  resolve: {
+    fallback: {
+      fs: require.resolve("grapesjs"),
+      path: require.resolve("grapesjs")
+    }
   },
   module: {
     rules: [
@@ -16,9 +25,6 @@ module.exports = {
         exclude: /(node_modules|bower_components|build)/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['env', 'react']
-          }
         }
       },
       {

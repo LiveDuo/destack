@@ -6,15 +6,6 @@ const grapesjs = (typeof window !== 'undefined') ? require('grapesjs') : null
 
 const fetchJSON = (method, url, data) => fetch(url, {method, headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)})
 
-const getServerSideDataProps = async ({req}) => {
-  const serverUrl = req ? req.headers['x-forwarded-host'] || req.headers['host'] : window.location.host
-  const protocol = (serverUrl.indexOf('localhost') > -1) ? 'http' : 'https'
-  const response = await fetchJSON('GET', protocol+'://'+serverUrl+'/api/load')
-  const data = await response.json()
-  return { props: {data} }
-}
-export { getServerSideDataProps }
-
 const initEditor = () => {
 
   const newEditor = grapesjs.init({
