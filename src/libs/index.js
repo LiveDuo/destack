@@ -40,10 +40,10 @@ const initEditor = () => {
   })
 
 
-  const saveLocally = (data) => fetchJSON('post', '/api/save', {path: 'hero.json', data})
+  const saveLocally = (data) => fetchJSON('post', '/api/builder/handle', {path: 'hero.json', data})
   newEditor.on('storage:store', (e) => saveLocally(e))
 
-  fetchJSON('get', '/api/load')
+  fetchJSON('get', '/api/builder/handle')
     .then(data => data.json())
     .then(data => {
       const component = data.find(c => c.filename === 'hero.json')
