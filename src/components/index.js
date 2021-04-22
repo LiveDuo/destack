@@ -14,6 +14,5 @@ const MarkdownProvider = () => {
       <div id="gjs"></div>
     </div>
   )
-  // return <div>empty</div>
 }
 export { MarkdownProvider }

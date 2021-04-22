@@ -6,20 +6,14 @@
 2. pages/api/load.js & pages/api/save.js - **MERGE INTO ONE** TO FIX
 ```js
 import { loadData } from 'next-grapejs-plugin'
-export default loadData 
+export default (_, res) => loadData(_, res, {fs: require('fs'), path: require('path')}) 
 ```
 ```js
 import { saveData } from 'next-grapejs-plugin'
-export default saveData 
+export default (req, res) => saveData(req, res, {fs: require('fs'), path: require('path')}) 
 ```
 
-3. next.config.js (NOTE: npm i next-transpile-modules) - **REMOVE withTM**
-```js
-const withTM = require('next-transpile-modules')(['next-grapejs-plugin'])
-module.exports = withTM()
-```
-
-4. pages/[component].js (Note: '..grapes.min.css') - **REMOVE CSS**
+3. pages/[component].js (Note: '..grapes.min.css') - **REMOVE CSS**
 ```js
 import { MarkdownProvider } from 'next-grapejs-plugin'
 
@@ -33,3 +27,9 @@ export default function Home() { return <MarkdownProvider/> }
 2. Publish to NPM
 3. Implement static building
 4. Add components from [https://tailblocks.cc/]
+
+
+# Developemnt
+1. npm link
+2. npm link ../next-plugin-wysiwyg/node_modules/react
+3. npm link next-grapejs-plugin (in linked project)
