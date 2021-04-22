@@ -10,6 +10,7 @@
   "dependencies": {
     "grapesjs": "^0.16.45",
     "grapesjs-preset-webpage": "^0.1.11",
+    "rollup-plugin-import-css": "^2.0.1",
     "rollup-plugin-node-polyfills": "^0.2.1"
   },
   "devDependencies": {

@@ -2,6 +2,8 @@
 // node-resolve will resolve all the node dependencies
 import resolve from '@rollup/plugin-node-resolve';
 import babel from '@rollup/plugin-babel';
+import css from "rollup-plugin-import-css";
+
 // import nodePolyfills from 'rollup-plugin-node-polyfills';
 
 export default {
@@ -16,6 +18,7 @@ export default {
   ],
   plugins: [
     // nodePolyfills(),
+    css(),
     resolve({ preferBuiltins: true }),
     babel({
       exclude: 'node_modules/**'
