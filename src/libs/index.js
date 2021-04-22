@@ -11,9 +11,6 @@ const fetchJSON = (method, url, data) => fetch(url, {method, headers: {'Content-
 const initEditor = () => {
 
   const newEditor = grapesjs.init({
-    canvas: {
-      styles: ['https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css'] 
-    },
     container : '#gjs',
     height: '100%',
     components: '',
@@ -32,17 +29,13 @@ const initEditor = () => {
   })
 
   const blockManager = newEditor.BlockManager
-  blockManager.add('my-map-block', {
-    label: 'Simple map block',
-    attributes: { class:'fa fa-map-o' },
-    content: { type: 'map', style: { height: '350px'}, removable: true }
-  })
 
-  sources.forEach(s => {
+  sources.forEach((s, i) => {
     blockManager.add(s.id, {
       label: s.label,
       attributes: { class: s.class },
-      content: s.content
+      content: s.content,
+      category:{ label: s.category, order: s.order, open: true },
     })
   })
 

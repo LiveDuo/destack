@@ -27,7 +27,7 @@ export default function Home() { return <MarkdownProvider/> }
 2. Publish to NPM
 3. Implement static building
 4. Add components from [https://tailblocks.cc/]
-
+5. Max width settings
 
 # Developemnt
 1. npm link

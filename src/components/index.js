@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {initEditor} from '../libs'
+import '../css/index.module.css'
 
 if (typeof window !== 'undefined') {
   require('grapesjs-preset-webpage')

@@ -3,11 +3,13 @@
 import resolve from '@rollup/plugin-node-resolve';
 import babel from '@rollup/plugin-babel';
 import css from "rollup-plugin-import-css";
+import svg from 'rollup-plugin-svg-import';
 
 // import nodePolyfills from 'rollup-plugin-node-polyfills';
 
 export default {
   input: 'src/index.js',
+  // entrypoints: 'build/index.js',
   output: [{
     file: 'build/index.js',
     format: 'cjs'
@@ -18,6 +20,7 @@ export default {
   ],
   plugins: [
     // nodePolyfills(),
+    svg({ stringify: false }),
     css(),
     resolve({ preferBuiltins: true }),
     babel({
