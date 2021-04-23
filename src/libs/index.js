@@ -114,11 +114,9 @@ const getStaticDataProps = async ([fs, path]) => {
   if (development) {
       return { props: {html: null} }
   } else {
-      const rootPath = process.cwd()
-      const folderPath = 'data'
-      const data = await loadData(path, fs, rootPath, folderPath)
+      const data = await loadData(path, fs)
       const content = JSON.parse(data[1].content)
-      return { props: { html: content.html}}
+      return { props: { html: content.html, css: content.css}}
   }
 }
 export { getStaticDataProps }

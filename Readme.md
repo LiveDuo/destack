@@ -21,7 +21,7 @@ import '../node_modules/grapesjs/dist/css/grapes.min.css'
 
 export const getStaticProps = () => getStaticDataProps([require('fs'), require('path')]) 
 
-export default function Home({html}) { return (<MarkdownProvider html={html}/>) }
+export default function Home({html, css}) { return (<MarkdownProvider html={html} css={css}/>) }
 ```
 
 ### Installing the plugin (Development)
@@ -48,11 +48,11 @@ export default function Home({html}) { return (<MarkdownProvider html={html}/>) 
 
 # TODO (launch)
 1. Issue with data folder and json files not existing
-2. Fixed missing grape.js saved styling (eg. changing a font)
-3. Move grape.js styles into the plugin
-4. Fix missing tailwind responsive classes
+2. Move grape.js styles into the plugin
+3. Fix missing tailwind responsive classes
 
 # TODO (later)
 1. Fix "Basic", "Extra" and "Forms" blocks (default to closed)
 2. Max width settings (+colors)
 3. Move builder API route to next.config.js
+4. Write tests
