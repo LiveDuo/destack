@@ -45,11 +45,10 @@ export default function Home({html, css}) { return (<MarkdownProvider html={html
 **Note:** If you are installing npm packages into the plugin remember to install with `--legacy-peer-deps`. If you missed that remember to delete `node_modules/react` and `node_modules/react-dom` folders and run step 5 again. If you know a better way to do this please let me know.
 
 
-# TODO (launch)
-1. Fix missing tailwind responsive classes
-
-# TODO (later)
+# TODO
 1. Fix "Basic", "Extra" and "Forms" blocks (default to closed)
-2. Max width settings (+colors)
-3. Move builder API route to next.config.js
+2. Check images upload 
+3. Fix flash break when loading tailwind in editor
 4. Write tests
+5. Max width settings (+colors)
+6. Move builder API route to next.config.js

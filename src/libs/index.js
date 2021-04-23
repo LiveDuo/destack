@@ -12,6 +12,10 @@ const fetchJSON = (method, url, data) => fetch(url, {method, headers: {'Content-
 
 const initEditor = () => {
   const newEditor = grapesjs.init({
+    selectorManager: {
+      // fixes problem with tailwind (use of slashes in css class names)
+      escapeName: name => `${name}`.trim().replace(/([^a-z0-9\w-\:\/]+)/gi, '-'),
+    },
     container : '#gjs',
     height: '100%',
     components: '',
@@ -81,7 +85,6 @@ const initEditor = () => {
   cssStyle.type = 'text/css'
   cssStyle.innerHTML = `img { filter: sepia(1) hue-rotate(190deg) opacity(.46) grayscale(.7) !important; } 
   @media (min-width: 768px)
-  .md\:w-1\/3 { width: 33.333333%; }
   `
   iframe.contentDocument.head.appendChild(cssStyle)
 
