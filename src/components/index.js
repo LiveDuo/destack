@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {initEditor} from '../libs'
-import '../css/index.module.css'
+import styles from '../css/index.module.css'
 
 if (typeof window !== 'undefined') {
   require('grapesjs-preset-webpage')
@@ -20,6 +20,7 @@ const MarkdownProvider = ({html, css}) => {
 
   return (
     <div style={{height: '100%', margin: '0 auto'}}>
+      <style>{styles}</style>
       <div id="gjs"></div>
     </div>)
 }
