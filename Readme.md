@@ -11,23 +11,25 @@ export default (req, res) => handleData(req, res, {fs: require('fs'), path: requ
 
 3. `pages/[component].js` (Note: '..grapes.min.css') - **REMOVE CSS**
 ```js
-import { MarkdownProvider } from 'next-grapejs-plugin'
+import { MarkdownProvider, getServerSideDataProps } from 'next-grapejs-plugin'
 
 import '../node_modules/next-grapejs-plugin/node_modules/grapesjs/dist/css/grapes.min.css'
 
-export default function Home() { return <MarkdownProvider/> }
+export { getServerSideDataProps as getServerSideProps }
+
+export default function Home({html}) { return (<MarkdownProvider html={html}/>) }
 ```
 
 # TODO (launch)
-1. Implement static building
-2. Publish to NPM
-3. Try cleaning up the CSS
-4. Move grape.js styles into the package
+1. Publish to NPM
+2. Check behavour for "prod" and "dev" env vars
+3. Move grape.js styles into the plugin
+4. Fix missing tailwind responsive classes
 
 # TODO (later)
-1. Max width settings (+colors)
-2. Move builder API route to next.config.js
-3. Fix missing tailwind responsive classes
+1. Fix "Basic", "Extra" and "Forms" blocks (default to closed)
+2. Max width settings (+colors)
+3. Move builder API route to next.config.js
 
 # Developemnt
 1. npm link

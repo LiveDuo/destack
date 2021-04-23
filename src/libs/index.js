@@ -9,7 +9,6 @@ const grapesjs = (typeof window !== 'undefined') ? require('grapesjs') : null
 const fetchJSON = (method, url, data) => fetch(url, {method, headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)})
 
 const initEditor = () => {
-
   const newEditor = grapesjs.init({
     container : '#gjs',
     height: '100%',
@@ -64,7 +63,12 @@ const initEditor = () => {
   newEditor.Panels.removeButton('options','export-template')
   // newEditor.Panels.render() // problem with traits panel
 
+  
   const iframe = newEditor.Canvas.getFrameEl()
+
+  if (!iframe) return
+  console.log(11, iframe)
+
   const cssLink = document.createElement('link')
   cssLink.href = 'https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css'
   cssLink.rel = 'stylesheet'
@@ -84,3 +88,14 @@ const initEditor = () => {
 
 }
 export { initEditor }
+
+const getServerSideDataProps = async ({req}) => {
+  const development = process.env.NODE_ENV !== 'production' && false
+  const serverUrl = req ? req.headers['x-forwarded-host'] || req.headers['host'] : window.location.host
+  const protocol = (serverUrl.indexOf('localhost') > -1) ? 'http' : 'https'
+  const response = await fetchJSON('GET', protocol+'://'+serverUrl+'/api/builder/handle')
+  const data = await response.json()
+  const content = JSON.parse(data[1].content)
+  return { props: {html: !development ? content.html : null} }
+}
+export { getServerSideDataProps }
