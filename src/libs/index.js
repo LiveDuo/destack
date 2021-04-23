@@ -90,7 +90,7 @@ const initEditor = () => {
 export { initEditor }
 
 const getServerSideDataProps = async ({req}) => {
-  const development = process.env.NODE_ENV !== 'production' && false
+  const development = process.env.NODE_ENV !== 'production'
   const serverUrl = req ? req.headers['x-forwarded-host'] || req.headers['host'] : window.location.host
   const protocol = (serverUrl.indexOf('localhost') > -1) ? 'http' : 'https'
   const response = await fetchJSON('GET', protocol+'://'+serverUrl+'/api/builder/handle')
