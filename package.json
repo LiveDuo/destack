@@ -1,6 +1,6 @@
 {
   "name": "next-grapejs-plugin",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "main": "./build/index.js",
   "scripts": {
     "start": "rollup -w",

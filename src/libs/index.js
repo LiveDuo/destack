@@ -48,9 +48,11 @@ const initEditor = () => {
     .then(data => data.json())
     .then(data => {
       const component = data.find(c => c.filename === 'hero.json')
-      const content = JSON.parse(component.content)
-      newEditor.setComponents(JSON.parse(content.components))
-      newEditor.setStyle(JSON.parse(content.styles))
+      if (component) {
+        const content = JSON.parse(component.content)
+        newEditor.setComponents(JSON.parse(content.components))
+        newEditor.setStyle(JSON.parse(content.styles))
+      }
     })
   
   newEditor.getConfig().showDevices = 0
@@ -100,10 +102,10 @@ const getServerSideDataProps = async ({req}) => {
     const response = await fetchJSON('GET', protocol+'://'+serverUrl+'/api/builder/handle')
     const data = await response.json()
     const content = JSON.parse(data[1].content)
-    return { props: {html: !development ? content.html : null} }
+    return { props: {html: !development ? content.html : undefined} }
   } catch (error) {
     console.log(error.message)
-    return { props: {html: null} }
+    return { props: {} }
   }
 }
 export { getServerSideDataProps }
@@ -112,11 +114,16 @@ const getStaticDataProps = async ([fs, path]) => {
 
   const development = process.env.NODE_ENV !== 'production'
   if (development) {
-      return { props: {html: null} }
+    return { props: {} }
   } else {
-      const data = await loadData(path, fs)
-      const content = JSON.parse(data[1].content)
+    const data = await loadData(path, fs)
+    const template = data.find(c => c.filename === 'hero.json')
+    if (template) {
+      const content = JSON.parse(template.content)
       return { props: { html: content.html, css: content.css}}
+    } else {
+      return { props: {} }
+    }
   }
 }
 export { getStaticDataProps }

@@ -6,16 +6,6 @@ if (typeof window !== 'undefined') {
   require('grapesjs-preset-webpage')
 }
 
-export default function Home({html}) {
-  return (
-  html ? 
-  <div>
-      <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"/>
-      <div dangerouslySetInnerHTML={{ __html: html }}></div>
-  </div> : <MarkdownProvider html={html}/>) 
-}
-
-
 const MarkdownProvider = ({html, css}) => {
   const [cssLoaded, setCssLoaded] = useState(false)
   useEffect(() => { if (!html) initEditor() }, [])

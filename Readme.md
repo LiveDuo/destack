@@ -9,7 +9,6 @@
 ```js
 import { handleData } from 'next-grapejs-plugin'
 export default (req, res) => handleData(req, res, [require('fs'), require('path')])
-) 
 ```
 
 3. Then create a Next.js page with:
@@ -47,9 +46,8 @@ export default function Home({html, css}) { return (<MarkdownProvider html={html
 
 
 # TODO (launch)
-1. Issue with data folder and json files not existing
-2. Move grape.js styles into the plugin
-3. Fix missing tailwind responsive classes
+1. Move grape.js styles into the plugin
+2. Fix missing tailwind responsive classes
 
 # TODO (later)
 1. Fix "Basic", "Extra" and "Forms" blocks (default to closed)
