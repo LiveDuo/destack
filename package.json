@@ -1,6 +1,6 @@
 {
   "name": "next-grapejs-plugin",
-  "version": "1.0.0",
+  "version": "0.7.0",
   "main": "./build/index.js",
   "scripts": {
     "start": "rollup -w",
@@ -9,9 +9,7 @@
   "license": "ISC",
   "dependencies": {
     "grapesjs": "^0.16.45",
-    "grapesjs-preset-webpage": "^0.1.11",
-    "rollup-plugin-import-css": "^2.0.1",
-    "rollup-plugin-node-polyfills": "^0.2.1"
+    "grapesjs-preset-webpage": "^0.1.11"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.16",
@@ -24,6 +22,8 @@
     "@rollup/plugin-commonjs": "^18.0.0",
     "@rollup/plugin-node-resolve": "^11.2.1",
     "rollup": "^2.45.2",
+    "rollup-plugin-import-css": "^2.0.1",
+    "rollup-plugin-node-polyfills": "^0.2.1",
     "rollup-plugin-svg-import": "^1.5.1"
   },
   "peerDependencies": {

@@ -1,4 +1,3 @@
 src
-demo
-.babelrc
-webpack.config.js
+rollup.config.js
+babel.config.json
