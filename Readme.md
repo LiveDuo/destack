@@ -8,17 +8,18 @@
 2. Create `pages/api/builder/handle.js` with the following:
 ```js
 import { handleData } from 'next-grapejs-plugin'
-export default (req, res) => handleData(req, res, {fs: require('fs'), path: require('path')}) 
+export default (req, res) => handleData(req, res, [require('fs'), require('path')])
+) 
 ```
 
 3. Then create a Next.js page with:
 
 ```js
-import { MarkdownProvider, getServerSideDataProps } from 'next-grapejs-plugin'
+import { MarkdownProvider, getStaticProps } from 'next-grapejs-plugin'
 
 import '../node_modules/grapesjs/dist/css/grapes.min.css'
 
-export { getServerSideDataProps as getServerSideProps }
+export const getStaticProps = () => getStaticDataProps([require('fs'), require('path')]) 
 
 export default function Home({html}) { return (<MarkdownProvider html={html}/>) }
 ```
