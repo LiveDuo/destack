@@ -4,4 +4,7 @@ export { MarkdownProvider } from './components/index'
 
 export { handleData } from './api/handle'
 
-export { getServerSideDataProps } from './libs'
+export { updateData } from './api/handle'
+export { loadData } from './api/handle'
+
+export { getStaticDataProps } from './libs'

@@ -48,10 +48,9 @@ export default function Home({html}) { return (<MarkdownProvider html={html}/>) 
 # TODO (launch)
 -. Issue with data folder and json files not existing
 
-1. Test out the NPM package
-2. Check behavour for "prod" and "dev" env vars
-3. Move grape.js styles into the plugin
-4. Fix missing tailwind responsive classes
+1. Verify NPM package ("prod" and "dev" env vars)
+2. Move grape.js styles into the plugin
+3. Fix missing tailwind responsive classes
 
 # TODO (later)
 1. Fix "Basic", "Extra" and "Forms" blocks (default to closed)

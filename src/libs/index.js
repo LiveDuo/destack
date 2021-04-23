@@ -4,6 +4,8 @@ if (typeof window !== 'undefined') {
 
 import sources from '../data'
 
+import {loadData} from '../api/handle'
+
 const grapesjs = (typeof window !== 'undefined') ? require('grapesjs') : null
 
 const fetchJSON = (method, url, data) => fetch(url, {method, headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)})
@@ -67,7 +69,6 @@ const initEditor = () => {
   const iframe = newEditor.Canvas.getFrameEl()
 
   if (!iframe) return
-  console.log(11, iframe)
 
   const cssLink = document.createElement('link')
   cssLink.href = 'https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css'
@@ -91,11 +92,33 @@ export { initEditor }
 
 const getServerSideDataProps = async ({req}) => {
   const development = process.env.NODE_ENV !== 'production'
+  if (development) return { props: {html: null} }
+
   const serverUrl = req ? req.headers['x-forwarded-host'] || req.headers['host'] : window.location.host
   const protocol = (serverUrl.indexOf('localhost') > -1) ? 'http' : 'https'
-  const response = await fetchJSON('GET', protocol+'://'+serverUrl+'/api/builder/handle')
-  const data = await response.json()
-  const content = JSON.parse(data[1].content)
-  return { props: {html: !development ? content.html : null} }
+  try {
+    const response = await fetchJSON('GET', protocol+'://'+serverUrl+'/api/builder/handle')
+    const data = await response.json()
+    const content = JSON.parse(data[1].content)
+    return { props: {html: !development ? content.html : null} }
+  } catch (error) {
+    console.log(error.message)
+    return { props: {html: null} }
+  }
 }
 export { getServerSideDataProps }
+
+const getStaticDataProps = async ([fs, path]) => {
+
+  const development = process.env.NODE_ENV !== 'production'
+  if (development) {
+      return { props: {html: null} }
+  } else {
+      const rootPath = process.cwd()
+      const folderPath = 'data'
+      const data = await loadData(path, fs, rootPath, folderPath)
+      const content = JSON.parse(data[1].content)
+      return { props: { html: content.html}}
+  }
+}
+export { getStaticDataProps }
