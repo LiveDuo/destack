@@ -46,8 +46,7 @@ export default function Home({html, css}) { return (<MarkdownProvider html={html
 
 
 # TODO (launch)
-1. Move grape.js styles into the plugin
-2. Fix missing tailwind responsive classes
+1. Fix missing tailwind responsive classes
 
 # TODO (later)
 1. Fix "Basic", "Extra" and "Forms" blocks (default to closed)
