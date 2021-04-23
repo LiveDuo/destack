@@ -27,21 +27,21 @@ export default function Home({html}) { return (<MarkdownProvider html={html}/>) 
 ### Installing the plugin (Development)
 1. `git clone https://github.com/LiveDuo/next-grapejs-plugin` and cd in there
 
-3. `npm i --legacy-peer-deps` (see note below)
+2. `npm i --legacy-peer-deps` (see note below)
 
-4. `npm link`
+3. `npm link`
 
-5. create a Next.js project and cd into it
+4. create a Next.js project and cd into it
 
-6. `npm link next-grapejs-plugin`
+5. `npm link next-grapejs-plugin`
 
-7. `npm link ../next-grapejs-plugin/node_modules/grapejs`
+6. `npm link ../next-grapejs-plugin/node_modules/grapejs`
 
-8. add `pages/api/builder/handle.js` and `pages/[component].js` as shown above.
+7. add `pages/api/builder/handle.js` and `pages/[component].js` as shown above.
 
-9. move back into `next-grapejs-plugin` folder
+8. move back into `next-grapejs-plugin` folder
 
-10. `npm link ../\*\*the-next-project-folder\*\*/node_modules/react`
+9. `npm link ../\*\*the-next-project-folder\*\*/node_modules/react`
 
 **Note:** If you are installing npm packages into the plugin remember to install with `--legacy-peer-deps`. If you missed that remember to delete `node_modules/react` and `node_modules/react-dom` folders and run step 5 again. If you know a better way to do this please let me know.
 
