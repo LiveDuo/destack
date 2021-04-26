@@ -14,7 +14,7 @@ export default (req, res) => handleData(req, res, [require('fs'), require('path'
 3. Then create a Next.js page with:
 
 ```js
-import { MarkdownProvider, getStaticProps } from 'next-grapejs-plugin'
+import { MarkdownProvider, getStaticDataProps } from 'next-grapejs-plugin'
 
 import '../node_modules/grapesjs/dist/css/grapes.min.css'
 
@@ -23,7 +23,13 @@ export const getStaticProps = () => getStaticDataProps([require('fs'), require('
 export default function Home({html, css}) { return (<MarkdownProvider html={html} css={css}/>) }
 ```
 
-### Installing the plugin (Development)
+Deploy a new Next.js app on Vercel:
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/progressive-web-app&project-name=progressive-web-app&repository-name=progressive-web-app)
+
+<details>
+<summary>Development</summary>
+<br>
+
 1. `git clone https://github.com/LiveDuo/next-grapejs-plugin` and cd in there
 
 2. `npm i --legacy-peer-deps` (see note below)
@@ -43,12 +49,21 @@ export default function Home({html, css}) { return (<MarkdownProvider html={html
 9. `npm link ../\*\*the-next-project-folder\*\*/node_modules/react`
 
 **Note:** If you are installing npm packages into the plugin remember to install with `--legacy-peer-deps`. If you missed that remember to delete `node_modules/react` and `node_modules/react-dom` folders and run step 5 again. If you know a better way to do this please let me know.
-
+</details>
 
 # TODO
+### Launch
 1. Fix "Basic", "Extra" and "Forms" blocks (default to closed)
+    - Fix Device selector icons
+    
+    - Change "Basic" and "Forms" blocks to tailwind HTML blocks
+    - Need tailwind-like icons for "Basic" and "Forms" blocks
+
+    - Trim down new code
+    - (OK) Look into default to close
 2. Check images upload 
-3. Fix flash break when loading tailwind in editor
+
+### Later
 4. Write tests
 5. Max width settings (+colors)
 6. Move builder API route to next.config.js

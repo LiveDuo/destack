@@ -43,3 +43,12 @@
   width: 100% !important;
   min-height: auto !important;
 }
+
+.gjs-color-warn {
+  color: #ffa100 !important;
+}
+
+/* hides component settings panel */
+span.gjs-pn-btn.fa.fa-cog {
+  display: none;
+}

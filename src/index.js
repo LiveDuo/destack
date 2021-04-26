@@ -7,4 +7,4 @@ export { handleData } from './api/handle'
 export { updateData } from './api/handle'
 export { loadData } from './api/handle'
 
-export { getStaticDataProps } from './libs'
+export { getStaticDataProps } from './props'
