@@ -29,7 +29,8 @@ const editorOptions = {
   selectorManager: { escapeName },
   container : '#gjs',
   height: '100%',
-  storageManager: { autoload: false }
+  storageManager: { autoload: false },
+  showDevices: false,
 }
 
 const MarkdownProvider = ({html, css}) => {
@@ -38,7 +39,7 @@ const MarkdownProvider = ({html, css}) => {
     const grapesjs = require('grapesjs')
 
     const newEditor = grapesjs.init(editorOptions)
-
+    
     loadTraits(newEditor)
     loadPanels(newEditor)
     loadComponents(newEditor)

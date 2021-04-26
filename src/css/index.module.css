@@ -63,3 +63,14 @@ span.gjs-pn-btn.fa.fa-cog {
 .gjs-pn-buttons {
   justify-content: space-around !important;
 }
+
+/* hacky way to align the device icons  */
+span.gjs-pn-btn.fa.fa-desktop {
+  margin-right: 4px;
+}
+span.gjs-pn-btn.fa.fa-tablet {
+  margin-right: 4px;
+}
+span.gjs-pn-btn.fa.fa-mobile {
+  margin-right: auto;
+}
