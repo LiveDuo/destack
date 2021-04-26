@@ -35,4 +35,18 @@ export const loadPanels = (editor) => {
         { id: cmdDeviceMobile, command: (e) => { return e.setDevice('Mobile portrait') }, className: 'fa fa-mobile' },
     ])
     // editor.Panels.render() // problem with traits panel
+
+    const osm = 'open-sm'
+    const ola = 'open-layers'
+
+    // On component change show the Style Manager
+    editor.on('component:selected', () => {
+        const openSmBtn = pn.getButton('views', osm)
+        const openLayersBtn = pn.getButton('views', ola)
+
+        // Don't switch when the Layer Manager is on or there is no selected component
+        if ((!openLayersBtn || !openLayersBtn.get('active')) && editor.getSelected()) {
+            openSmBtn && openSmBtn.set('active', 1)
+        }
+    })
 }

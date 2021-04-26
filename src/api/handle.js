@@ -42,7 +42,7 @@ const handleData = async (req, res, [fs, path]) => {
     return res.status(200).json(data)
   } else if (req.method === 'POST') {
     await updateData(path, fs, req.body)
-    return res.status(200).end()
+    return res.status(200).json({})
   } else {
     return res.status(401).json({ error: 'Not allowed' })
   }

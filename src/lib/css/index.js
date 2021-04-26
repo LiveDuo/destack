@@ -8,7 +8,7 @@ const appendTailwindCss = (newEditor, setCssLoaded) => {
     const cssLink = document.createElement('link')
     cssLink.href = config.tailwindCssUrl
     cssLink.rel = 'stylesheet'
-    cssLink.onload = () => { setCssLoaded(true); console.log('appendTailwindCss') }
+    cssLink.onload = () => setCssLoaded(true)
     iframe.contentDocument.head.appendChild(cssLink)
 
     const cssStyle = document.createElement('style')
@@ -17,11 +17,15 @@ const appendTailwindCss = (newEditor, setCssLoaded) => {
     @media (min-width: 768px)`
     iframe.contentDocument.head.appendChild(cssStyle)
 }
-export { appendTailwindCss }
 
 const appendCustomCss = () => {
     document.querySelector("html").style.height = '100%'
     document.querySelector("body").style.height = '100%'
     document.querySelector("#__next").style.height = '100%'
 }
-export { appendCustomCss }
+
+const appendCss = (newEditor, setCssLoaded) => {
+    appendCustomCss()
+    appendTailwindCss(newEditor, setCssLoaded)
+}
+export { appendCss }

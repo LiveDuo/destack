@@ -48,7 +48,18 @@
   color: #ffa100 !important;
 }
 
+.gjs-block-label {
+  color: transparent !important;
+}
+
+#gjs-clm-new {
+  color: #6365f1 !important;
+}
+
 /* hides component settings panel */
 span.gjs-pn-btn.fa.fa-cog {
-  display: none;
+  display: none !important;
+}
+.gjs-pn-buttons {
+  justify-content: space-around !important;
 }

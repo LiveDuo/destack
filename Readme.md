@@ -54,17 +54,12 @@ Deploy a new Next.js app on Vercel:\
 
 # TODO
 ### Launch
-1. Fix "Basic", "Extra" and "Forms" blocks (default to closed)
-    - Fix Device selector icons
-    
-    - Change "Basic" and "Forms" blocks to tailwind HTML blocks
-    - Need tailwind-like icons for "Basic" and "Forms" blocks
-
-    - Trim down new code
-    - (OK) Look into default to close
+1. Fix Device selector icons
 2. Check images upload 
+3. Rename hero.json, MarkdownProvider, npm package/repo name
 
 ### Later
-4. Write tests
-5. Max width settings (+colors)
-6. Move builder API route to next.config.js
+1. Fix "Forms" (8) blocks (tailwind HTML + icons)
+2. Write tests
+3. Max width settings (+colors)
+4. Move builder API route to next.config.js

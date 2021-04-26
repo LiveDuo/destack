@@ -1,20 +1,17 @@
 import React, {useState, useEffect} from 'react'
 
-import {loadPanels} from '../libs/panels'
-import {loadTraits} from '../libs/traits'
-import {loadFormComponents} from '../libs/components/form'
-import {loadTailwindBlocks} from '../libs/blocks/tailwind'
-import {loadBasicBlocks} from '../libs/blocks/basic'
-import {loadFormBlocks} from '../libs/blocks/form'
-import {appendTailwindCss, appendCustomCss} from '../libs/css'
-import {handleEditorEvents} from '../libs/events'
+import {loadPanels} from '../lib/panels'
+import {loadTraits} from '../lib/traits'
+import {loadComponents} from '../lib/components'
+import {loadBlocks} from '../lib/blocks'
+
+import {appendCss} from '../lib/css'
+import {handleEvents} from '../lib/events'
 
 import {fetchJSON, escapeName} from '../utils'
 
 import styles from '../css/index.module.css'
 import config from '../config'
-
-const grapesjs = (typeof window !== 'undefined') ? require('grapesjs') : null
 
 const loadTemplate = (newEditor) => {
   fetchJSON('get', '/api/builder/handle')
@@ -38,38 +35,24 @@ const editorOptions = {
 const MarkdownProvider = ({html, css}) => {
   const [cssLoaded, setCssLoaded] = useState(false)
   useEffect(() => { if (!html) {
+    const grapesjs = require('grapesjs')
+
     const newEditor = grapesjs.init(editorOptions)
 
     loadTraits(newEditor)
     loadPanels(newEditor)
+    loadComponents(newEditor)
+    loadBlocks(newEditor)
 
-    loadFormComponents(newEditor)
-
-    loadBasicBlocks(newEditor)
-    loadFormBlocks(newEditor)
-    loadTailwindBlocks(newEditor)
-
-    handleEditorEvents(newEditor)
-
-    const categories = newEditor.BlockManager.getCategories()
-    categories.each(category => {
-      category.set('open', false).on('change:open', opened => {
-        opened.get('open') && categories.each(category => {
-          category !== opened && category.set('open', false)
-        })
-      })
-    })
-
-    appendTailwindCss(newEditor, setCssLoaded)
-    appendCustomCss()
+    handleEvents(newEditor)
+    appendCss(newEditor, setCssLoaded)
 
     loadTemplate(newEditor)
   } }, [])
 
-  if (typeof window === 'undefined') return null
   if (html) return (
     <div>
-        <link href={config.tailwindCssUrl} rel="stylesheet" onLoad={() => setCssLoaded(true)}/>
+        <style><link href={config.tailwindCssUrl} rel="stylesheet" onLoad={() => setCssLoaded(true)}/></style>
         <style>{css}</style>
         {cssLoaded && <div dangerouslySetInnerHTML={{ __html: html }}></div>}
     </div>)
