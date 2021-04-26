@@ -23,7 +23,7 @@ export const getStaticProps = () => getStaticDataProps([require('fs'), require('
 export default function Home({html, css}) { return (<MarkdownProvider html={html} css={css}/>) }
 ```
 
-Deploy a new Next.js app on Vercel:
+Deploy a new Next.js app on Vercel:\
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/progressive-web-app&project-name=progressive-web-app&repository-name=progressive-web-app)
 
 <details>
