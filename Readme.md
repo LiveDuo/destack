@@ -73,6 +73,7 @@ export { ContentProvider as default } from 'destack'
 import '../node_modules/grapesjs/dist/css/grapes.min.css'
 
 export { getStaticProps } from 'destack/build/server'
+export { ContentProvider as default } from 'destack'
 
 export default function Page(props) { 
     return (
