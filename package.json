@@ -1,7 +1,10 @@
 {
   "name": "destack",
-  "version": "0.7.10",
+  "description": "Page builder based on Next.js, Grapes.js & Tailwind CSS with zero-config deployment to Vercel",
+  "version": "0.7.18",
   "main": "./build/index.js",
+  "homepage" : "https://github.com/LiveDuo/destack.git",
+  "keywords" : ["grapesjs", "nextjs", "builder", "nocode", "landing page", "tailwind"],
   "scripts": {
     "start": "rollup -w",
     "build": "rollup -c"
