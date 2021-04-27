@@ -54,23 +54,35 @@ npm i destack
 
 Create `pages/api/builder/handle.js` and add the following:
 ```js
-import { handleData } from 'destack'
-export const config = {api: {bodyParser: false}}
-export default (req, res) => handleData(req, res, [require('fs'), require('path')])
+export { handleData as default, config } from 'destack/build/server'
 ```
 
 ### 3. Then create a new page
 On any Next.js page you want to setup Destack:
 ```js
-import { ContentProvider, getStaticDataProps } from 'destack'
-
 import '../node_modules/grapesjs/dist/css/grapes.min.css'
-
-export const getStaticProps = () => getStaticDataProps([require('fs'), require('path')]) 
-
-export default function Home({html, css}) { return (<ContentProvider html={html} css={css}/>) }
+export { getStaticProps } from 'destack/build/server'
+export { ContentProvider as default } from 'destack'
 ```
 
+<details>
+<summary>How to use along other components</summary>
+<br>
+
+```js
+import '../node_modules/grapesjs/dist/css/grapes.min.css'
+
+export { getStaticProps } from 'destack/build/server'
+
+export default function Page(props) { 
+    return (
+        <div>
+            <ContentProvider {...props}/>
+            <span>Hello world</span>
+        </div>)
+}
+```
+</details>
 
 ## Contributing to the project
 
@@ -88,7 +100,7 @@ export default function Home({html, css}) { return (<ContentProvider html={html}
 
 5. `npm link destack`
 
-6. `npm link ../destack/node_modules/grapejs`
+6. `npm link ../destack/node_modules/grapesjs`
 
 7. Add `pages/api/builder/handle.js` and `pages/[component].js` as shown above.
 

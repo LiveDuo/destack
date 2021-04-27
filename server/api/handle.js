@@ -1,4 +1,8 @@
 import {formParse, getJson, zip, exists} from '../utils'
+// es6 import is not working
+const fs = require('fs')
+const path = require('path')
+const formidable = require('formidable')
 
 const development = process.env.NODE_ENV !== 'production'
 
@@ -8,12 +12,7 @@ const folderPath = 'data'
 const publicPath = 'public'
 const uploadPath = 'uploaded'
 
-const uploadFiles = async (req, path) => {
-  // Does not work when statically extracted. Should be
-  // a problem with rollup. Also throws a warning:
-  // "Critical dependency: require function is used in a way
-  // in which dependencies cannot be statically extracted"
-  const formidable = require('formidable')
+const uploadFiles = async (req) => {
 	const form = new formidable.IncomingForm()
 	form.uploadDir = uploadPath
 	form.keepExtensions = true
@@ -24,7 +23,7 @@ const uploadFiles = async (req, path) => {
 }
 export { uploadFiles }
 
-const loadData = async (path, fs) => {
+const loadData = async () => {
   const basePath = path.join(rootPath, '/', folderPath)
   const folderExists = await exists(fs, basePath)
   if (!folderExists) return []
@@ -36,7 +35,7 @@ const loadData = async (path, fs) => {
 }
 export { loadData }
 
-const updateData = async (path, fs, body) => {
+const updateData = async (body) => {
   const basePath = path.join(rootPath, '/', folderPath)
   const fileExists = await exists(fs, path.join(basePath, '/', body.path))
   
@@ -52,21 +51,21 @@ const updateData = async (path, fs, body) => {
 }
 export { updateData }
 
-const handleData = async (req, res, [fs, path, formidable]) => {
+const handleData = async (req, res) => {
   if (!development) return res.status(401).json({ error: 'Not allowed' })
   
   if (req.method === 'GET') {
-    const data = await loadData(path, fs)
+    const data = await loadData()
     return res.status(200).json(data)
   } else if (req.method === 'POST') {
     const contentType = req.headers['content-type']
     const isMultiPart = contentType.startsWith('multipart/form-data')
     if (!isMultiPart) {
       const body = await getJson(req)
-      await updateData(path, fs, body)
+      await updateData(body)
       return res.status(200).json({})
     } else {
-      const urls = await uploadFiles(req, path, formidable)
+      const urls = await uploadFiles(req)
       return res.status(200).json(urls)
     }
   } else {
@@ -74,3 +73,6 @@ const handleData = async (req, res, [fs, path, formidable]) => {
   }
 }
 export { handleData }
+
+const config = { api: { bodyParser: false } }
+export { config }
