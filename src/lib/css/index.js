@@ -13,8 +13,7 @@ const appendTailwindCss = (newEditor, setCssLoaded) => {
 
     const cssStyle = document.createElement('style')
     cssStyle.type = 'text/css'
-    cssStyle.innerHTML = `img { filter: sepia(1) hue-rotate(190deg) opacity(.46) grayscale(.7) !important; } 
-    @media (min-width: 768px)`
+    cssStyle.innerHTML = `img.object-cover { filter: sepia(1) hue-rotate(190deg) opacity(.46) grayscale(.7) !important; }`
     iframe.contentDocument.head.appendChild(cssStyle)
 }
 

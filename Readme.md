@@ -1,5 +1,3 @@
-(ALPHA)
-
 # Get started
 
 ### Installing the plugin
@@ -8,19 +6,20 @@
 2. Create `pages/api/builder/handle.js` with the following:
 ```js
 import { handleData } from 'next-grapejs-plugin'
+export const config = {api: {bodyParser: false}}
 export default (req, res) => handleData(req, res, [require('fs'), require('path')])
 ```
 
 3. Then create a Next.js page with:
 
 ```js
-import { MarkdownProvider, getStaticDataProps } from 'next-grapejs-plugin'
+import { ContentProvider, getStaticDataProps } from 'next-grapejs-plugin'
 
 import '../node_modules/grapesjs/dist/css/grapes.min.css'
 
 export const getStaticProps = () => getStaticDataProps([require('fs'), require('path')]) 
 
-export default function Home({html, css}) { return (<MarkdownProvider html={html} css={css}/>) }
+export default function Home({html, css}) { return (<ContentProvider html={html} css={css}/>) }
 ```
 
 Deploy a new Next.js app on Vercel:\
@@ -54,12 +53,11 @@ Deploy a new Next.js app on Vercel:\
 
 # TODO
 ### Launch
-1. Fix Device selector icons
-2. Check images upload 
-3. Rename hero.json, MarkdownProvider, npm package/repo name
+1. Rename npm package/repo name
 
 ### Later
 1. Fix "Forms" (8) blocks (tailwind HTML + icons)
 2. Write tests
 3. Max width settings (+colors)
 4. Move builder API route to next.config.js
+5. Add support for form submission

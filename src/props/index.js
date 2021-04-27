@@ -24,7 +24,7 @@ const getStaticDataProps = async ([fs, path]) => {
     return { props: {} }
   } else {
     const data = await loadData(path, fs)
-    const template = data.find(c => c.filename === 'hero.json')
+    const template = data.find(c => c.filename === 'default.json')
     if (template) {
       const content = JSON.parse(template.content)
       return { props: { html: content.html, css: content.css } }
