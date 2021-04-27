@@ -1,11 +1,11 @@
 # Get started
 
 ### Installing the plugin
-1. Run `npm i next-grapejs-plugin`
+1. Run `npm i destack`
 
 2. Create `pages/api/builder/handle.js` with the following:
 ```js
-import { handleData } from 'next-grapejs-plugin'
+import { handleData } from 'destack'
 export const config = {api: {bodyParser: false}}
 export default (req, res) => handleData(req, res, [require('fs'), require('path')])
 ```
@@ -13,7 +13,7 @@ export default (req, res) => handleData(req, res, [require('fs'), require('path'
 3. Then create a Next.js page with:
 
 ```js
-import { ContentProvider, getStaticDataProps } from 'next-grapejs-plugin'
+import { ContentProvider, getStaticDataProps } from 'destack'
 
 import '../node_modules/grapesjs/dist/css/grapes.min.css'
 
@@ -30,7 +30,7 @@ Deploy a new Next.js app on Vercel:\
 <summary>Development</summary>
 <br>
 
-1. `git clone https://github.com/LiveDuo/next-grapejs-plugin` and cd in there
+1. `git clone https://github.com/LiveDuo/destack` and cd in there
 
 2. `npm i --legacy-peer-deps` (see note below)
 
@@ -38,13 +38,13 @@ Deploy a new Next.js app on Vercel:\
 
 4. create a Next.js project and cd into it
 
-5. `npm link next-grapejs-plugin`
+5. `npm link destack`
 
-6. `npm link ../next-grapejs-plugin/node_modules/grapejs`
+6. `npm link ../destack/node_modules/grapejs`
 
 7. add `pages/api/builder/handle.js` and `pages/[component].js` as shown above.
 
-8. move back into `next-grapejs-plugin` folder
+8. move back into `destack` folder
 
 9. `npm link ../\*\*the-next-project-folder\*\*/node_modules/react`
 
@@ -52,12 +52,8 @@ Deploy a new Next.js app on Vercel:\
 </details>
 
 # TODO
-### Launch
-1. Rename npm package/repo name
-
-### Later
-1. Fix "Forms" (8) blocks (tailwind HTML + icons)
-2. Write tests
-3. Max width settings (+colors)
-4. Move builder API route to next.config.js
-5. Add support for form submission
+- [ ] Fix forms blocks (tailwind HTML & icons)
+- [ ] Write tests for ContentProvider
+- [ ] Max width & colors settings
+- [ ] Move builder API route to next.config.js
+- [ ] Add support for form submission

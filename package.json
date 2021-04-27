@@ -1,6 +1,6 @@
 {
-  "name": "next-grapejs-plugin",
-  "version": "0.7.7",
+  "name": "destack",
+  "version": "0.7.8",
   "main": "./build/index.js",
   "scripts": {
     "start": "rollup -w",
@@ -9,8 +9,7 @@
   "license": "ISC",
   "dependencies": {
     "formidable": "^1.2.2",
-    "grapesjs": "^0.16.45",
-    "grapesjs-preset-webpage": "^0.1.11"
+    "grapesjs": "^0.16.45"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.16",
