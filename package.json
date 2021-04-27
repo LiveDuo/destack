@@ -1,6 +1,6 @@
 {
   "name": "destack",
-  "version": "0.7.9",
+  "version": "0.7.10",
   "main": "./build/index.js",
   "scripts": {
     "start": "rollup -w",
@@ -29,5 +29,9 @@
   "peerDependencies": {
     "react": ">=17.0.2",
     "react-dom": ">=17.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LiveDuo/destack.git"
   }
 }
