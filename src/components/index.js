@@ -71,7 +71,7 @@ const ContentProvider = ({ html, css, server = true }) => {
       var editor = grapesjs.init(editorOptions)
 
       loadTraits(editor)
-      loadPanels(editor)
+      loadPanels(editor, server)
       loadComponents(editor)
       loadBlocks(editor)
 
