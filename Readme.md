@@ -29,8 +29,10 @@ It's a tool to build landing pages within your [Next.js](https://nextjs.org/) pr
 
 Deploy a new Next.js app on Vercel with Destack configured:\
 \
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/progressive-web-app&project-name=progressive-web-app&repository-name=progressive-web-app)\
-\
+[<img src="https://github.com/LiveDuo/destack/raw/main/assets/vercel_big.png" width="92">](https://vercel.com/new/git/external?repository-url=https://github.com/LiveDuo/destack-starter&project-name=destack-starter&repository-name=destack-starter)
+&nbsp;&nbsp;&nbsp;
+[<img src="https://github.com/LiveDuo/destack/raw/main/assets/gitpod_big.png" width="92">](https://gitpod.io/#https://github.com/LiveDuo/destack-starter)
+
 👨‍💻 When you run the project locally you will see the editor and a large number of Tailwind blocks to play with. 
 
 💡 Notice the changes you are making are saved into a `default.json` file. That file contains the HTML for the and is used when your Next.js project is built. Also, images are saved in the `public/uploaded` folder. After testing Destack locally, remember to head back to Vercel and checkout deployed version!
