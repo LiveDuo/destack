@@ -2,6 +2,8 @@
 
 Visually build landing pages on Next.js and easily host them on Vercel or Netlify. 
 
+<img src="https://github.com/LiveDuo/destack/raw/main/assets/logo_wide.png" width="100%">
+
 ## What's Destack?
 
 It's a tool to build landing pages within your [Next.js](https://nextjs.org/) project. It's powered by [Grapes.js](https://grapesjs.com/) and supports the complete set of blocks from [Tailblocks.cc](https://tailblocks.cc/). It also handles asset uploading for you and soon form submission. 
