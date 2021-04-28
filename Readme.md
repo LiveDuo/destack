@@ -8,29 +8,21 @@ It's a tool to build landing pages within your [Next.js](https://nextjs.org/) pr
 
 *Destack is a tool to help you stop worrying about the marketing sites and focus on your project.*
 
-## How is this possible?
-
-This project was none's bright idea. It was not something that was planned and design in depth in advance. Instead it was evolved out of the need and enjoyment of using some amazing tools and prototype quickly. These projects heavily improved my developer life and a few of my friends'.
-
-> Next.js 🅧 ➕ Tailwind CSS 🍃 ➕ Grapes.js 🍇 = 💣💣
-
-Please go and show these projects some love (⭐️). Don't forget to check out [Tailblocks.cc](https://tailblocks.cc/), without Mert's amazing designs none of this would have been possible.
-
 ## Features
 
-🧱 **Powerful blocks:** There are 92 well designed and heavily functional blocks from the [Tailblocks](https://tailblocks.cc/) project.
+🧱 **Powerful Blocks:** There are 92 well designed and heavily functional blocks from the [Tailblocks](https://tailblocks.cc/) project.
 
-🏞 **Image uploading:** Stores images uploaded in the editor in your repo and displays when needed on production.
+🏞 **Assets Uploading:** Stores the images uploaded in the editor in your repo. Displays them when needed on production.
 
-🃏 **Delightful Builder:** Powered by [Grapes.js](https://grapesjs.com/), Destack is both flexible and feature-full.
+🃏 **Delightful Builder:** Powered by [Grapes.js](https://grapesjs.com/), a flexible and feature-full editor with CSS like options similar to Webflow.
 
-🕹 **Stack Control:** Destack stores all your assets on Github, Bitbucket etc through the editor so you don't have to worry about them.
+🕹 **Data Ownership:** Destack stores all your assets on Github, Bitbucket etc through the editor. There are no external dependencies to manage or worry about.
 
-👩🏻‍💻 **Developer Ready:** Works out of the box with any [Next.js](https://nextjs.org/) project. It common to have one landing page with Destack a few more pages with the usuall Next.js toolkit.
+👩🏻‍💻 **Developer Ready:** Works out of the box with any [Next.js](https://nextjs.org/) project. Build a few landing pages with Destack and the rest of your app with the usuall Next.js toolkit.
 
-🏃🏽 **Instant Deployment:** Uses environment detection so the visual editor popus up only in development and the compiled version in production.
+🏃🏽 **Instant Deployment:** Destack supports environment detection. The visual editor comes up only in development and the compiled version on production.
 
-📸 **Template Projects:** Click on the Deploy button below to create a new Destack project.
+📸 **Easy Setup:** Click the **Deploy** button below to create a new Destack project on Vercel or head to **Installing the plugin** for instructions for your existing Next.js projects.
 
 
 ## One-minute demo
@@ -111,6 +103,14 @@ export default function Page(props) {
 
 **Note:** If you are installing npm packages into the plugin remember to install with `--legacy-peer-deps`. If you missed that remember to delete `node_modules/react` and `node_modules/react-dom` folders and run step 5 again. If you know a better way to do this please let me know.
 </details>
+
+## How is this possible?
+
+This project was none's bright idea. It was not something that was planned and design in depth in advance. Instead it was evolved out of the need and enjoyment of using some amazing tools and prototype quickly. These projects heavily improved my developer life and a few of my friends'.
+
+> Next.js 🅧 ➕ Tailwind CSS 🍃 ➕ Grapes.js 🍇 = 💣💣
+
+Please go and show these projects some love (⭐️). Don't forget to check out [Tailblocks.cc](https://tailblocks.cc/), without Mert's amazing designs none of this would have been possible.
 
 ## Upcoming Tasks
 - [ ] Fix forms blocks (tailwind HTML & icons)
