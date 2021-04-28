@@ -27,7 +27,7 @@ It's a tool to build landing pages within your [Next.js](https://nextjs.org/) pr
 
 ## One-minute demo
 
-Deploy a new Next.js app on Vercel with Destack configured:\
+Deploy a new Next.js app on Vercel with Destack configured or preview in Gitpod:\
 \
 [<img src="https://github.com/LiveDuo/destack/raw/main/assets/vercel_big.png" width="92">](https://vercel.com/new/git/external?repository-url=https://github.com/LiveDuo/destack-starter&project-name=destack-starter&repository-name=destack-starter)
 &nbsp;&nbsp;&nbsp;
