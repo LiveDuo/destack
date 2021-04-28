@@ -42,7 +42,7 @@ const editorOptions = {
   // assetManager: assetManagerOptions
 }
 
-const ContentProvider = ({ html, css }) => {
+const ContentProvider = ({ html, css, server = true }) => {
   const [cssLoaded, setCssLoaded] = useState(false)
 
   useEffect(() => {
@@ -63,7 +63,7 @@ const ContentProvider = ({ html, css }) => {
           })
       }
 
-      assetManagerOptions.uploadFile = (e) => uploadFile(e)
+      if (server) assetManagerOptions.uploadFile = (e) => uploadFile(e)
       editorOptions.assetManager = assetManagerOptions
 
       // need var intead of const so it's global
@@ -75,10 +75,10 @@ const ContentProvider = ({ html, css }) => {
       loadComponents(editor)
       loadBlocks(editor)
 
-      handleEvents(editor)
       appendCss(editor, setCssLoaded)
-
-      loadTemplate(editor)
+      
+      if (server) handleEvents(editor)
+      if (server) loadTemplate(editor)
     }
   }, [])
 

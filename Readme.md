@@ -56,7 +56,7 @@ export { handleData as default, config } from 'destack/build/server'
 ### 3. Then create a new page
 On any Next.js page you want to setup Destack:
 ```js
-import '../node_modules/grapesjs/dist/css/grapes.min.css'
+import 'grapesjs/dist/css/grapes.min.css'
 export { getStaticProps } from 'destack/build/server'
 export { ContentProvider as default } from 'destack'
 ```
@@ -66,10 +66,10 @@ export { ContentProvider as default } from 'destack'
 <br>
 
 ```js
-import '../node_modules/grapesjs/dist/css/grapes.min.css'
+import { ContentProvider } from 'destack'
+import 'grapesjs/dist/css/grapes.min.css'
 
 export { getStaticProps } from 'destack/build/server'
-export { ContentProvider as default } from 'destack'
 
 export default function Page(props) { 
     return (
