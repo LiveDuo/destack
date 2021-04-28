@@ -2,7 +2,7 @@
 
 Visually build landing pages on Next.js and easily host them on Vercel or Netlify. 
 
-<img src="https://github.com/LiveDuo/destack/raw/main/assets/logo_icons.png" width="100%">
+<!-- <img src="https://github.com/LiveDuo/destack/raw/main/assets/logo_icons.png" width="100%"> -->
 
 ## What's Destack?
 
