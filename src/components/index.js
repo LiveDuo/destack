@@ -84,9 +84,11 @@ const ContentProvider = ({ html, css, server = true }) => {
 
   if (html) return (
     <div>
-      <style><link href={config.tailwindCssUrl} rel="stylesheet" onLoad={() => setCssLoaded(true)} /></style>
+      {/* onload={() => setCssLoaded(true)} */}
+      <link href={config.tailwindCssUrl} rel="stylesheet" />
       <style>{css}</style>
-      {cssLoaded && <div dangerouslySetInnerHTML={{ __html: html }}></div>}
+      {/* {cssLoaded} */}
+      {<div dangerouslySetInnerHTML={{ __html: html }}></div>}
     </div>)
 
   return (

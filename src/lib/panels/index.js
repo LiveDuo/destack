@@ -14,6 +14,12 @@ export const loadPanels = (editor, server) => {
         }
     })
 
+    // Activate Blocks Manager
+    editor.on('load', () => {
+        const blockBtn = editor.Panels.getButton('views', 'open-blocks');
+        blockBtn.set('active', 1);
+    })
+
     // Connfig Commands
     editor.Commands.add('set-device-desktop', e => e.setDevice('Desktop'))
     editor.Commands.add('set-device-tablet', e => e.setDevice('Tablet'))

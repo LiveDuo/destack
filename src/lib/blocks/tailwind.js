@@ -594,7 +594,7 @@ const loadTailwindBlocks = (newEditor) => {
             label: s.label,
             attributes: { class: s.class },
             content: s.content,
-            category: { label: s.category, order: s.order, open: true },
+            category: { label: s.category, order: s.order, open: s.category === 'Blog' },
         })
     })
 }

@@ -13,7 +13,7 @@ import {getSvgHtml} from '../../utils'
 export function loadBasicBlocks (editor, opt = {}) {
     const c = opt;
     let bm = editor.BlockManager;
-    const category = 'Basic';
+    const category = { label: 'Basic', order: 0, open: false };
     
     const toAdd = () => true // blocks.indexOf(name) >= 0;
   
