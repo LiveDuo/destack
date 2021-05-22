@@ -75,7 +75,7 @@ export { getStaticProps } from 'destack/build/server'
 
 export default function Page(props) { 
     return (
-        <div>
+        <div style={{height: '100%'}}>
             <ContentProvider {...props}/>
             <span>Hello world</span>
         </div>)
@@ -97,15 +97,15 @@ export default function Page(props) {
 
 4. Create a Next.js project and cd into it
 
-5. `npm link destack`
+5. Add `pages/api/builder/handle.js` and `pages/[component].js` as shown above.
 
-6. `npm link ../destack/node_modules/grapesjs`
+6. Rename `import 'grapesjs/dist/css/grapes.min.css'` to `import 'destack/node_modules/grapesjs/dist/css/grapes.min.css'`.
 
-7. Add `pages/api/builder/handle.js` and `pages/[component].js` as shown above.
+7. `npm link destack`
 
 8. Move back into `destack` folder
 
-9. `npm link ../\*\*the-next-project-folder\*\*/node_modules/react`
+9. `npm link ../\*\*your-next-project\*\*/node_modules/react`
 
 **Note:** If you are installing npm packages into the plugin remember to install with `--legacy-peer-deps`. If you missed that remember to delete `node_modules/react` and `node_modules/react-dom` folders and run step 5 again. If you know a better way to do this please let me know.
 </details>
