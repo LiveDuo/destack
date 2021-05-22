@@ -6,6 +6,8 @@ Check out the editor: [Destack Builder](https://destack-page.vercel.app/)
 
 <!-- <img src="https://github.com/LiveDuo/destack/raw/main/assets/logo_icons.png" width="100%"> -->
 
+[![Tutorial](https://github.com/LiveDuo/destack/raw/main/assets/youtube_preview.jpg)](https://www.youtube.com/watch?v=broken_link "Tutorial")
+
 ## What's Destack?
 
 It's a tool to build landing pages within your [Next.js](https://nextjs.org/) project. It's powered by [Grapes.js](https://grapesjs.com/) and supports the complete set of blocks from [Tailblocks.cc](https://tailblocks.cc/). It also handles asset uploading for you and soon form submission. 
