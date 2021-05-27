@@ -86,7 +86,7 @@ export default function Page(props) {
 </details>
 
 ## Contributing to the project
-  See [CONTRIBUTING.md](CONTIRBUTING.md)
+  See [CONTRIBUTING.md](CONTRIBUTING.md)
 <br>
 
 ## How is this possible?
