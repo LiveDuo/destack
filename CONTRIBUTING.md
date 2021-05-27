@@ -11,7 +11,7 @@
 
 4. Create a Next.js project and cd into it
 
-5. Add `pages/api/builder/handle.js` and `pages/[component].js` as shown above.
+5. Add `pages/api/builder/handle.js` and `pages/[component].js` as shown in the instructions.
 
 6. Rename `import 'grapesjs/dist/css/grapes.min.css'` to `import 'destack/node_modules/grapesjs/dist/css/grapes.min.css'`.
 
