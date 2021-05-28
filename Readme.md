@@ -8,13 +8,13 @@ Check out the editor: [Destack Builder](https://destack-page.vercel.app/)
 
 [![Tutorial](https://github.com/LiveDuo/destack/raw/main/assets/youtube_preview.jpg)](https://www.youtube.com/watch?v=zJoaxMX7AKM "Tutorial")
 
-## What's Destack?
+# What's Destack?
 
 It's a tool to build landing pages within your [Next.js](https://nextjs.org/) project. It's powered by [Grapes.js](https://grapesjs.com/) and supports the complete set of blocks from [Tailblocks.cc](https://tailblocks.cc/). It also handles asset uploading for you and soon form submission. 
 
 *Destack is a tool to help you stop worrying about the marketing sites and focus on your project.*
 
-## Features
+# Features
 
 🧱 **Powerful Blocks:** There are 92 well designed and heavily functional blocks from the [Tailblocks](https://tailblocks.cc/) project.
 
@@ -31,7 +31,7 @@ It's a tool to build landing pages within your [Next.js](https://nextjs.org/) pr
 📸 **Easy Setup:** Click the **Deploy** button below to create a new Destack project on Vercel or head to **Installing the plugin** for instructions for your existing Next.js projects.
 
 
-## One-minute demo
+# One-minute demo
 
 Deploy a new Next.js app on Vercel with Destack configured or preview in Gitpod:\
 \
@@ -43,7 +43,7 @@ Deploy a new Next.js app on Vercel with Destack configured or preview in Gitpod:
 
 💡 Notice the changes you are making are saved into a `default.json` file. That file contains the HTML for the and is used when your Next.js project is built. Also, images are saved in the `public/uploaded` folder. After testing Destack locally, remember to head back to Vercel and checkout deployed version!
 
-## Installing the plugin
+# Installing the plugin
 
 ### 1. Install Destack on your Next.js project
 ```sh
@@ -85,19 +85,27 @@ export default function Page(props) {
 ```
 </details>
 
-## Contributing to the project
+# Contributing to the project
   See [CONTRIBUTING.md](CONTRIBUTING.md)
 <br>
 
-## How is this possible?
+# How is this possible?
 
 This project was none's bright idea. It was not something that was planned and design in depth in advance. Instead it was evolved out of the need and enjoyment of using some amazing tools and prototype quickly. These projects heavily improved my developer life and a few of my friends'.
 
 > Next.js 🅧 ➕ Tailwind CSS 🍃 ➕ Grapes.js 🍇 = 💣💣
 
-Please go and show these projects some love (⭐️). Don't forget to check out [Tailblocks.cc](https://tailblocks.cc/), without Mert's amazing designs none of this would have been possible.
+Please go and show these projects some love (⭐️). Don't forget to check out [Tailblocks.cc](https://tailblocks.cc/), without Mert's amazing designs none of this would have been possible.  
 
-## Upcoming Tasks
+# Contributors
+<a href="https://github.com/liveduo/destack/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=liveduo/destack" />
+</a>  
+
+
+Made with [contributors-img](https://contrib.rocks).  
+
+# Upcoming Tasks
 - [ ] Fix forms blocks (tailwind HTML & icons)
 - [ ] Write tests for ContentProvider
 - [ ] Max width & colors settings
