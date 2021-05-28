@@ -1,49 +1,14 @@
 {
-  "name": "destack",
-  "description": "Page builder based on Next.js, Grapes.js & Tailwind CSS with zero-config deployment to Vercel",
-  "version": "0.8.1",
-  "main": "./build/browser/index.js",
-  "homepage": "https://destack-page.vercel.app",
-  "keywords": [
-    "grapesjs",
-    "nextjs",
-    "builder",
-    "nocode",
-    "landing page",
-    "tailwind"
-  ],
-  "scripts": {
-    "start": "rollup -c -w",
-    "build": "rollup -c"
-  },
-  "license": "ISC",
-  "dependencies": {
-    "formidable": "^1.2.2",
-    "grapesjs": "^0.16.45"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.13.16",
-    "@babel/core": "^7.13.16",
-    "@babel/plugin-proposal-class-properties": "^7.13.0",
-    "@babel/plugin-transform-runtime": "^7.13.15",
-    "@babel/preset-env": "^7.13.15",
-    "@babel/preset-react": "^7.13.13",
-    "@rollup/plugin-babel": "^5.3.0",
-    "@rollup/plugin-commonjs": "^18.0.0",
-    "@rollup/plugin-node-resolve": "^11.2.1",
-    "npm-install-peers": "^1.2.2",
-    "rollup": "^2.45.2",
-    "rollup-plugin-import-css": "^2.0.1",
-    "rollup-plugin-node-polyfills": "^0.2.1",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-svg-import": "^1.5.1"
-  },
-  "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/LiveDuo/destack.git"
-  }
+    "name": "destack-workspace",
+    "version": "1.0.0",
+    "workspaces": [
+        "./lib/*",
+        "./dev/*"
+    ],
+    "scripts": {
+        "start": "concurrently --kill-others \"cd lib/destack && npm run dev\" \"cd dev/nextjs-project && npm run dev\""
+    },
+    "devDependencies": {
+        "concurrently": "^6.2.0"
+    }
 }
