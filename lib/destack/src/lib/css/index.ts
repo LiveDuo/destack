@@ -17,14 +17,14 @@ const appendTailwindCss = (newEditor): void => {
   iframe.contentDocument.head.appendChild(cssStyle)
 }
 
-const appendCustomCss = () => {
+const appendCustomCss = (): void => {
   document.querySelector('html')!.style.height = '100%'
   document.querySelector('body')!.style.height = '100%'
   const next: HTMLElement = document.querySelector('#__next')!
   next.style.height = '100%'
 }
 
-const appendCss = (newEditor) => {
+const appendCss = (newEditor): void => {
   appendCustomCss()
   appendTailwindCss(newEditor)
 }
