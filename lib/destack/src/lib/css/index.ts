@@ -19,8 +19,8 @@ const appendTailwindCss = (newEditor, setCssLoaded) => {
 
 const appendCustomCss = () => {
     document.querySelector("html")!.style.height = '100%'
-    document.querySelector("body")!
-    const next: HTMLElement = document.querySelector("#__next")!
+    document.querySelector("body")!.style.height= '100%'
+    let next: HTMLElement = document.querySelector("#__next")!
     next.style.height = '100%'
 }
 
