@@ -3,8 +3,11 @@ import 'regenerator-runtime/runtime'
 import { loadData } from '../api/handle'
 
 const development = process.env.NODE_ENV !== 'production'
+type StaticPropsReturn = {
+  props: { html?: string; css?: string }
+}
 
-const getStaticProps = async () => {
+const getStaticProps = async (): Promise<StaticPropsReturn> => {
   if (development) {
     return { props: {} }
   } else {

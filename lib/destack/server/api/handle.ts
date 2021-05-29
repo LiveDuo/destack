@@ -1,9 +1,10 @@
-import {formParse, getJson, zip, exists} from '../utils'
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { dataType } from '../../types'
+import { formParse, getJson, zip, exists } from '../utils'
 import fs from 'fs'
 import path from 'path'
-import {IncomingForm} from 'formidable'
+import { IncomingForm } from 'formidable'
 import { NextApiResponse, NextApiRequest } from 'next'
-
 
 const development = process.env.NODE_ENV !== 'production'
 
@@ -13,31 +14,36 @@ const folderPath = 'data'
 const publicPath = 'public'
 const uploadPath = 'uploaded'
 
-const uploadFiles = async (req:NextApiRequest) => {
-	const form = new IncomingForm({uploadDir:uploadPath, keepExtensions:true})
-	form.on('fileBegin', (_, file) => file.path = path.join(publicPath, uploadPath, file.name!))
-	const files = await formParse(form, req)
-	const urls = Object.values(files).map(f => path.join('/', uploadPath, f.name))
-	return urls
+const uploadFiles = async (req: NextApiRequest): Promise<string[]> => {
+  const form = new IncomingForm({ uploadDir: uploadPath, keepExtensions: true })
+  form.on('fileBegin', (_, file) => (file.path = path.join(publicPath, uploadPath, file.name!)))
+  const files = await formParse(form, req)
+  const urls = Object.keys(files).map((f) => path.join('/', uploadPath, f))
+  return urls
 }
 export { uploadFiles }
 
-const loadData = async () => {
+const loadData = async (): Promise<dataType[]> => {
   const basePath = path.join(rootPath, '/', folderPath)
   const folderExists = await exists(basePath)
   if (!folderExists) return []
 
   const files = await fs.promises.readdir(basePath)
-  const filesData = await Promise.all(files.map(f => fs.promises.readFile(path.join(basePath, f))))
-  const data = zip([files, filesData]).map(([filename, content]) => ({filename, content: content.toString()}))
+  const filesData = await Promise.all(
+    files.map((f) => fs.promises.readFile(path.join(basePath, f))),
+  )
+  const data = zip([files, filesData]).map(([filename, content]) => ({
+    filename,
+    content: content.toString(),
+  }))
   return data
 }
 export { loadData }
 
-const updateData = async (body) => {
+const updateData = async (body: Record<string, string>): Promise<void> => {
   const basePath = path.join(rootPath, '/', folderPath)
-  const fileExists = await exists( path.join(basePath, '/', body.path))
-  
+  const fileExists = await exists(path.join(basePath, '/', body.path))
+
   if (!fileExists) {
     const folderExists = await exists(basePath)
     if (!folderExists) {
@@ -50,9 +56,9 @@ const updateData = async (body) => {
 }
 export { updateData }
 
-const handleData = async (req:NextApiRequest, res:NextApiResponse) => {
+const handleData = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   if (!development) return res.status(401).json({ error: 'Not allowed' })
-  
+
   if (req.method === 'GET') {
     const data = await loadData()
     return res.status(200).json(data)
