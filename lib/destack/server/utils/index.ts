@@ -1,4 +1,6 @@
-const formParse = (form, req) => new Promise((resolve, reject) => {
+import fs from 'fs'
+import {NextApiRequest} from 'next'
+const formParse = (form: import("formidable/Formidable"), req:NextApiRequest) => new Promise<Object>((resolve, reject) => {
 	form.parse(req, (err, _, files) => {
 		if (err) return reject(err)
 		resolve(files)
@@ -19,7 +21,14 @@ const getJson = (req) => new Promise((resolve) => {
 export {getJson}
 
 const zip = (rows) => rows[0].map((_,c)=>rows.map(row=>row[c]))
-export {zip}
 
-const exists = (fs, s) => new Promise(r => fs.access(s, fs.F_OK, e => r(!e)))
-export {exists}
+const exists = (s:fs.PathLike) => new Promise<boolean>(async r =>{
+  try {
+    await fs.promises.access(s);
+    r(true)
+} catch (error) {
+  r(false)
+}
+})
+
+export {exists,zip}

@@ -15,7 +15,7 @@ export function loadBasicBlocks (editor, opt = {}) {
     let bm = editor.BlockManager;
     const category = { label: 'Basic', order: 0, open: false };
     
-    const toAdd = () => true // blocks.indexOf(name) >= 0;
+    const toAdd = (t:string) => true // blocks.indexOf(name) >= 0;
   
     toAdd('text') &&
       bm.add('text', {

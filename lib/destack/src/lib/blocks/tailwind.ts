@@ -586,7 +586,7 @@ const sources = [{
     // order: 1
 }]
 
-const loadTailwindBlocks = (newEditor) => {
+const loadTailwindBlocks = (newEditor: { BlockManager: any }) => {
     const blockManager = newEditor.BlockManager
 
     sources.forEach((s) => {
@@ -594,7 +594,7 @@ const loadTailwindBlocks = (newEditor) => {
             label: s.label,
             attributes: { class: s.class },
             content: s.content,
-            category: { label: s.category, order: s.order, open: s.category === 'Blog' },
+            category: { label: s.category, open: s.category === 'Blog' },
         })
     })
 }
