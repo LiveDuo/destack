@@ -1,8 +1,11 @@
 import formidable from 'formidable'
 import fs from 'fs'
 import { NextApiRequest } from 'next'
-import IncomingForm from 'formidable/Formidable'
-const formParse = (form: IncomingForm, req: NextApiRequest): Promise<formidable.Files> =>
+
+const formParse = (
+  form: import('formidable/Formidable'),
+  req: NextApiRequest,
+): Promise<formidable.Files> =>
   new Promise<formidable.Files>((resolve, reject) => {
     form.parse(req, (err, _, files) => {
       if (err) return reject(err)
