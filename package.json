@@ -6,9 +6,12 @@
         "./dev/*"
     ],
     "scripts": {
-        "start": "concurrently --kill-others \"cd lib/destack && npm run dev\" \"cd dev/nextjs-project && npm run dev\""
+        "start": "concurrently --kill-others \"cd lib/destack && npm run dev\" \"cd dev/nextjs-project && npm run dev\"",
+        "test": "jest"
     },
     "devDependencies": {
-        "concurrently": "^6.2.0"
+        "concurrently": "^6.2.0",
+        "jest": "^27.0.3",
+        "jest-puppeteer": "^5.0.4"
     }
 }
