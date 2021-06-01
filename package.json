@@ -6,9 +6,28 @@
         "./dev/*"
     ],
     "scripts": {
-        "start": "concurrently --kill-others \"cd lib/destack && npm run dev\" \"cd dev/nextjs-project && npm run dev\""
+        "start": "concurrently --kill-others \"cd lib/destack && npm run dev\" \"cd dev/nextjs-project && npm run dev\"",
+        "prepare": "husky install"
     },
+    "prepare": "husky install",
     "devDependencies": {
-        "concurrently": "^6.2.0"
+        "@typescript-eslint/eslint-plugin": "^4.25.0",
+        "@typescript-eslint/parser": "^4.25.0",
+        "concurrently": "^6.2.0",
+        "eslint": "^7.27.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-prettier": "^3.4.0",
+        "eslint-plugin-react": "^7.23.2",
+        "eslint-plugin-react-hooks": "^4.2.0",
+        "husky": "^6.0.0",
+        "lint-staged": "^11.0.0",
+        "prettier": "^2.3.0",
+        "pretty-quick": "^3.1.0",
+        "typescript": "^4.3.2"
+    },
+    "lint-staged": {
+      "*.{js,ts,tsx,jsx}": [
+        "pretty-quick --staged"
+      ]
     }
 }
