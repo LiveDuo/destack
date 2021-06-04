@@ -37,15 +37,15 @@ const execAsyncUntil = (cmd, opts = {}, regexStr) =>
   new Promise((resolve, reject) => {
     const serverProcess = exec(cmd, { cwd: projectPath, ...opts })
 
-    serverProcess.on('exit', (code) => {
-      reject(new Error(`Exited with code ${code}`))
-    })
+    let stderrLog = '',
+      stdoutLog = ''
+    serverProcess.on('exit', () => reject(new Error(stderrLog)))
 
     const regex = new RegExp(regexStr)
 
     const checkListeningTransform = new Transform({ decodeStrings: false })
-    checkListeningTransform._transform = (chunk, _, done) => {
-      const s = chunk.toString()
+    checkListeningTransform._transform = (c, _, done) => {
+      const s = c.toString()
       if (regex.test(s)) resolve(serverProcess)
       done(null, s)
     }
@@ -53,6 +53,9 @@ const execAsyncUntil = (cmd, opts = {}, regexStr) =>
     if (debug) {
       serverProcessChecked.pipe(process.stdout)
       serverProcess.stderr.pipe(process.stderr)
+    } else {
+      serverProcess.stderr.on('data', (c) => (stderrLog += c.toString()))
+      serverProcess.stdout.on('data', (c) => (stdoutLog += c.toString()))
     }
   })
 exports.execAsyncUntil = execAsyncUntil
