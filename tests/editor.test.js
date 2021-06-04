@@ -4,8 +4,7 @@ require('./config')
 
 describe('Load editor', () => {
   beforeAll(async () => {
-    const regexStr = 'compiled successfully'
-    await execAsyncUntil('cd dev/nextjs-project && npm run dev', {}, regexStr)
+    await execAsyncUntil('npm run dev', {}, 'compiled successfully')
     await page.goto('http://localhost:3000', { waitUntil: 'load' })
   })
   it('should contain a "gjs" element', async () => {

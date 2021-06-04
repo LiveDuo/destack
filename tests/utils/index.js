@@ -6,7 +6,9 @@ const { Transform } = require('stream')
 
 const debug = false
 
-const filepath = path.join(__dirname, '..', 'dev/nextjs-project/', 'data/default.json')
+const projectPath = 'dev/nextjs-project'
+
+const filepath = path.join(__dirname, '..', projectPath, 'data', 'default.json')
 
 const deleteData = async () => {
   const hasData = await fs.promises
@@ -21,7 +23,7 @@ exports.deleteData = deleteData
 
 const execAsync = (cmd, opts = {}) =>
   new Promise((resolve, reject) => {
-    const execProcess = exec(cmd, opts, (error, stdout, stderr) => {
+    const execProcess = exec(cmd, { cwd: projectPath, ...opts }, (error, stdout, stderr) => {
       if (error !== null) return reject(new Error(stderr))
       return resolve(stdout)
     })
@@ -33,7 +35,11 @@ exports.execAsync = execAsync
 
 const execAsyncUntil = (cmd, opts = {}, regexStr) =>
   new Promise((resolve, reject) => {
-    const serverProcess = exec(cmd, opts)
+    const serverProcess = exec(cmd, { cwd: projectPath, ...opts })
+
+    serverProcess.on('exit', (code) => {
+      reject(new Error(`Exited with code ${code}`))
+    })
 
     const regex = new RegExp(regexStr)
 

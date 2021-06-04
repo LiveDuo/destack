@@ -4,9 +4,8 @@ require('./config')
 
 describe('Run build', () => {
   beforeAll(async () => {
-    const regexStr = 'started server'
-    await execAsync('cd dev/nextjs-project && npm run build')
-    await execAsyncUntil('cd dev/nextjs-project && npm start', {}, regexStr)
+    await execAsync('npm run build')
+    await execAsyncUntil('npm start', {}, 'started server')
 
     await page.goto('http://localhost:3000', { waitUntil: 'load' })
   })
