@@ -1,13 +1,11 @@
-const { setup, teardown } = require('jest-dev-server')
-
-// const {killServer} = require('./utils')
+const { killServer, execAsyncUntil } = require('./utils')
 
 require('./config')
 
 describe('Load editor', () => {
   beforeAll(async () => {
-    const serverOptions = { command: 'npm start', launchTimeout: 20000, port: 3000 }
-    await setup(serverOptions)
+    const regexStr = 'compiled successfully'
+    await execAsyncUntil('cd dev/nextjs-project && npm run dev', {}, regexStr)
     await page.goto('http://localhost:3000', { waitUntil: 'load' })
   })
   it('should contain a "gjs" element', async () => {
@@ -50,7 +48,6 @@ describe('Load editor', () => {
   // TODO should save inital data to tmp
   // })
   afterAll(async () => {
-    await teardown() // throws error
-    // await killServer(3000)
+    await killServer(3000)
   })
 })
