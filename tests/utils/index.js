@@ -47,10 +47,10 @@ const execAsyncUntil = (cmd, opts = {}, checks = []) =>
     })
 exports.execAsyncUntil = execAsyncUntil
 
-const killServer = async () => {
+const killServer = async (port) => {
     try {
-        await execAsync('lsof -t -i tcp:3001')
-        await execAsync('kill $(lsof -t -i tcp:3001)')
+        await execAsync(`lsof -t -i tcp:${port}`)
+        await execAsync(`kill $(lsof -t -i tcp:${port})`)
         // if (debug) console.log('Port 3001 killed')
     } catch (error) {
         // if (debug) console.log('Port 3001 is not used')

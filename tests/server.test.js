@@ -18,6 +18,6 @@ describe('Run build', () => {
         expect(title).toMatch('Welcome to Destack')
     })
     afterAll(async () => {
-        await killServer()
+        await killServer(3001)
     })
 })
