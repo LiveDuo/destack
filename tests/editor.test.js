@@ -1,11 +1,17 @@
+const {setup, teardown} = require('jest-dev-server')
+
+// const {killServer} = require('./utils')
+
 require('./config')
 
 describe('Load editor', () => {
-    // beforeAll(async () => {
-        // await page.goto('http://localhost:3000', { waitUntil: 'load' })
-    // })
+    beforeAll(async () => {
+        const serverOptions = { command: 'npm start', launchTimeout: 20000, port: 3000 }
+        await setup(serverOptions)
+        await page.goto('http://localhost:3000', { waitUntil: 'load' })
+    })
     it('should contain a "gjs" element', async () => {
-        // await expect(page.$('#gjs')).resolves.not.toBeNull()
+        await expect(page.$('#gjs')).resolves.not.toBeNull()
     })
     // it('should add block to canvas', async () => {
         // await page.waitForSelector('#gjs')
@@ -43,4 +49,8 @@ describe('Load editor', () => {
         // await deleteData()
         // TODO should save inital data to tmp
     // })
+    afterAll(async () => {
+        await teardown() // throws error
+        // await killServer(3000)
+    })
 })
