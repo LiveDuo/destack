@@ -40,8 +40,6 @@ const execAsyncUntil = (cmd, opts = {}, regexStr) =>
     const checkListeningTransform = new Transform({ decodeStrings: false })
     checkListeningTransform._transform = (chunk, _, done) => {
       const s = chunk.toString()
-      if (regex.test(s)) console.log('found')
-      if (s.includes('started server on')) resolve(serverProcess)
       if (regex.test(s)) resolve(serverProcess)
       done(null, s)
     }
