@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "start": "concurrently --kill-others \"cd lib/destack && npm run dev\" \"cd dev/nextjs-project && npm run dev\"",
-    "test": "jest --runInBand -t \"Init test\"",
+    "test": "jest --runInBand -t \"Run build\"",
     "prepare": "husky install"
   },
   "devDependencies": {

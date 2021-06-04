@@ -22,6 +22,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - run: cd dev/nextjs-project && npm ci
-    - run: cd lib/destack && npm ci && npm run build
+    - run: cd lib/destack && npm run build
     - run: npm test
