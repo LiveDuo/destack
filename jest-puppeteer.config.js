@@ -1,6 +1,6 @@
 module.exports = {
   launch: {
-    dumpio: true,
+    dumpio: false,
     headless: true,
     product: 'chrome',
   },
