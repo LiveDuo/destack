@@ -113,4 +113,4 @@ Made with [contributors-img](https://contrib.rocks).
 - [ ] Add support for form submission
 - [ ] Add support for custom Tailwindcss configuration
 
-..
+...
