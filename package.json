@@ -30,7 +30,8 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx,jsx}": [
-      "pretty-quick --staged"
+      "pretty-quick --staged",
+      "tsc --noEmit"
     ]
   }
 }
