@@ -14,7 +14,6 @@
 
 # production
 /build
-dev/nextjs-project/data/default.json
 
 # misc
 .DS_Store
