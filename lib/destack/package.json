@@ -19,8 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "formidable": "^1.2.2",
-    "grapesjs": "^0.16.45",
-    "next": "^10.2.2"
+    "grapesjs": "^0.16.45"
   },
   "devDependencies": {
     "@rollup/plugin-babel": "^5.3.0",

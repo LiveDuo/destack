@@ -1,5 +1,5 @@
-import {loadFormComponents} from './form'
+import { loadFormComponents } from './form'
 
-export function loadComponents(editor) {
-    loadFormComponents(editor)
+export function loadComponents(editor): void {
+  loadFormComponents(editor)
 }

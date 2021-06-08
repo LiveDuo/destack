@@ -2,9 +2,6 @@ import React, { FC, useEffect } from 'react'
 import { ContentProviderProps } from '../../types'
 
 import styles from '../css/index.module.css'
-import Head from 'next/head'
-import config from '../config'
-
 const ContentProvider: FC<ContentProviderProps> = ({ html, css, server = true }) => {
   useEffect(() => {
     if (process.env.NODE_ENV !== 'production') {
@@ -16,13 +13,11 @@ const ContentProvider: FC<ContentProviderProps> = ({ html, css, server = true })
     return (
       <>
         {/* onload={() => setCssLoaded(true)} */}
-        <Head>
-          <link href={config.tailwindCssUrl} rel="preload" as="style" />
-        </Head>
-
+        <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.1.4/dist/tailwind.min.css" />
         <style> {css}</style>
+
         {/* {cssLoaded} */}
-        {<div dangerouslySetInnerHTML={{ __html: html }}></div>}
+        <div dangerouslySetInnerHTML={{ __html: html }}></div>
       </>
     )
 
