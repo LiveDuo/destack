@@ -2,6 +2,8 @@ import React, { FC, useEffect } from 'react'
 import { ContentProviderProps } from '../../types'
 
 import styles from '../css/index.module.css'
+import Head from 'next/head'
+import config from '../config'
 
 const ContentProvider: FC<ContentProviderProps> = ({ html, css, server = true }) => {
   useEffect(() => {
@@ -14,8 +16,11 @@ const ContentProvider: FC<ContentProviderProps> = ({ html, css, server = true })
     return (
       <>
         {/* onload={() => setCssLoaded(true)} */}
-        {/* <link href={config.tailwindCssUrl} rel="stylesheet" /> */}
-        <style>{css}</style>
+        <Head>
+          <link href={config.tailwindCssUrl} rel="preload" as="style" />
+        </Head>
+
+        <style> {css}</style>
         {/* {cssLoaded} */}
         {<div dangerouslySetInnerHTML={{ __html: html }}></div>}
       </>
