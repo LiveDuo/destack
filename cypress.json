@@ -1,0 +1,7 @@
+{
+  "video": false,
+  "integrationFolder": "tests/e2e",
+  "supportFile": false,
+  "fixturesFolder": false,
+  "pluginsFile": false
+}
