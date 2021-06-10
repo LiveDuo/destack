@@ -16,7 +16,6 @@
 .gjs-four-color-h:hover {
   color: #6366f1 !important;
   background-color: #f1f1f1 !important;
-  
 }
 
 .gjs-field {
@@ -24,11 +23,26 @@
   background-color: #f1f1f1 !important;
 }
 
-.gjs-category-title, .gjs-layer-title, .gjs-block-category .gjs-title, .gjs-sm-sector .gjs-sm-title, .gjs-clm-tags .gjs-sm-title {
+.gjs-category-title,
+.gjs-layer-title,
+.gjs-block-category .gjs-title,
+.gjs-sm-sector .gjs-sm-title,
+.gjs-clm-tags .gjs-sm-title {
   background-color: #f1f1f1 !important;
 }
 
-.gjs-sm-sector .gjs-sm-field input, .gjs-clm-tags .gjs-sm-field input, .gjs-sm-sector .gjs-clm-select input, .gjs-clm-tags .gjs-clm-select input, .gjs-sm-sector .gjs-clm-field input, .gjs-clm-tags .gjs-clm-field input, .gjs-sm-sector .gjs-sm-field select, .gjs-clm-tags .gjs-sm-field select, .gjs-sm-sector .gjs-clm-select select, .gjs-clm-tags .gjs-clm-select select, .gjs-sm-sector .gjs-clm-field select, .gjs-clm-tags .gjs-clm-field select {
+.gjs-sm-sector .gjs-sm-field input,
+.gjs-clm-tags .gjs-sm-field input,
+.gjs-sm-sector .gjs-clm-select input,
+.gjs-clm-tags .gjs-clm-select input,
+.gjs-sm-sector .gjs-clm-field input,
+.gjs-clm-tags .gjs-clm-field input,
+.gjs-sm-sector .gjs-sm-field select,
+.gjs-clm-tags .gjs-sm-field select,
+.gjs-sm-sector .gjs-clm-select select,
+.gjs-clm-tags .gjs-clm-select select,
+.gjs-sm-sector .gjs-clm-field select,
+.gjs-clm-tags .gjs-clm-field select {
   color: #6366f1 !important;
   background-color: #f1f1f1 !important;
 }
