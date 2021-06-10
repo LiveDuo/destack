@@ -18,25 +18,15 @@ describe('Load editor', () => {
 
     cy.wait(10000)
 
-    // const button = await page.$('#gjs .gjs-pn-panel.gjs-pn-options .gjs-pn-btn.fa-trash')
-    // await button.click()
-    // await accept dialog
+    // const dataTransfer = new DataTransfer()
+    // dataTransfer.setData('text', 'test')
+    // cy.log(dataTransfer.getData('text'))
 
-    // const blockCategory = await page.$('#gjs .gjs-block-category.gjs-open')
-    // const block = await blockCategory.$('.gjs-blocks-c > div:nth-child(2)')
+    // cy.get('#gjs .gjs-block-category.gjs-open .gjs-blocks-c > div:nth-child(5)')
+    //     .trigger('dragstart', { dataTransfer})
 
-    // const { x, y, width, height } = await block.boundingBox()
-    // await page.mouse.move(x + width / 2, y + height / 2)
-    // await page.mouse.down()
-    // await page.mouse.move(300, 300)
-    // await page.mouse.up()
-
-    // const iframeElement = await page.$('#gjs .gjs-frame')
-    // const iframe = await iframeElement.contentFrame()
-
-    // await iframe.waitForSelector('#wrapper section > div > div')
-    // const section = await iframe.$('#wrapper section > div > div')
-    // await expect(section).not.toBeNull()
+    // cy.get('#gjs .gjs-frame').its('0.contentDocument.body')
+    //     .trigger('drop', { dataTransfer })
 
     // const heading = await section.$eval('div:nth-child(2) h1', (el) => el.textContent)
     // expect(heading).toMatch('The Catalyzer')

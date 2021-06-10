@@ -10,8 +10,9 @@
     "dev": "concurrently -k \"cd lib/destack && npm run dev\" \"cd dev/nextjs-project && npm run dev\"",
     "build": "cd lib/destack && npm run build && cd ../../dev/nextjs-project && npm run build",
     "e2e:build": "npm run build && start-server-and-test 'npm start' 3000 'cypress run -s tests/e2e/build.spec.js'",
+    "e2e:build:open": "npm run build && start-server-and-test 'npm start' 3000 'cypress open'",
     "e2e:editor": "start-server-and-test 'npm run dev' 3000 'cypress run -s tests/e2e/editor.spec.js'",
-    "e2e:open": "cypress open",
+    "e2e:editor:open": "start-server-and-test 'npm run dev' 3000 'cypress open'",
     "test": "npm run e2e:editor && npm run e2e:build",
     "prepare": "husky install"
   },
