@@ -2,10 +2,9 @@ import formidable from 'formidable'
 import fs from 'fs'
 import { NextApiRequest } from 'next'
 
-const formParse = (
-  form: import('formidable/Formidable'),
-  req: NextApiRequest,
-): Promise<formidable.Files> =>
+import FormidableForm from 'formidable/Formidable'
+
+const formParse = (form: FormidableForm, req: NextApiRequest): Promise<formidable.Files> =>
   new Promise<formidable.Files>((resolve, reject) => {
     form.parse(req, (err, _, files) => {
       if (err) return reject(err)
@@ -29,17 +28,13 @@ const getJson = (req: NextApiRequest): Promise<Record<string, string>> =>
   })
 export { getJson }
 
-const zip = (rows: unknown[][]): Array<unknown> =>
-  rows[0].map((_: unknown, c: string | number) => rows.map((row) => row[c]))
+const zip = (rows: any[][]): Array<any> =>
+  rows[0].map((_: any, c: string | number) => rows.map((row) => row[c]))
 
 const exists = (s: fs.PathLike): Promise<boolean> =>
-  new Promise<boolean>((r) => {
-    try {
-      fs.promises.access(s)
-      r(true)
-    } catch (error) {
-      r(false)
-    }
-  })
+  fs.promises
+    .access(s)
+    .then(() => true)
+    .catch(() => false)
 
 export { exists, zip }

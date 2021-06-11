@@ -14,11 +14,23 @@ const folderPath = 'data'
 const publicPath = 'public'
 const uploadPath = 'uploaded'
 
+import formidable from 'formidable'
+
 const uploadFiles = async (req: NextApiRequest): Promise<string[]> => {
   const form = new IncomingForm({ uploadDir: uploadPath, keepExtensions: true })
+
+  const uploadFolder = path.join(publicPath, uploadPath)
+  const uploadFolderExists = await exists(uploadFolder)
+  if (!uploadFolderExists) {
+    await fs.promises.mkdir(uploadFolder)
+  }
+
   form.on('fileBegin', (_, file) => (file.path = path.join(publicPath, uploadPath, file.name!)))
   const files = await formParse(form, req)
-  const urls = Object.keys(files).map((f) => path.join('/', uploadPath, f))
+
+  const urls = Object.values(files).map((f) =>
+    path.join('/', uploadPath, (<formidable.File>f).name),
+  )
   return urls
 }
 export { uploadFiles }
@@ -33,9 +45,10 @@ const loadData = async (): Promise<dataType[]> => {
     files.map((f) => fs.promises.readFile(path.join(basePath, f))),
   )
   const data = zip([files, filesData]).map(([filename, content]) => ({
-    filename,
+    filename: filename,
     content: content.toString(),
   }))
+
   return data
 }
 export { loadData }

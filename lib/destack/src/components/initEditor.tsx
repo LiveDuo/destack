@@ -6,9 +6,7 @@ import { fetchJSON, escapeName } from '../utils'
 import { appendCss } from '../lib/css'
 import { handleEvents } from '../lib/events'
 
-const initEditor = async ({ server = true }): Promise<void> => {
-  const grapesjs = await import('grapesjs')
-  /*       const uploadFile = (e): void => {
+const uploadFile = (e, editor): void => {
   const files = e.dataTransfer ? e.dataTransfer.files : e.target.files
   const formData = new FormData()
   for (const i in files) {
@@ -22,13 +20,18 @@ const initEditor = async ({ server = true }): Promise<void> => {
     })
 }
 
-if (server)
-  assetManagerOptions.uploadFile = (e: ChangeEvent<HTMLInputElement>) => uploadFile(e) */
-  //editorOptions.assetManager = assetManagerOptions
+const initEditor = async ({ server = true }): Promise<void> => {
+  const grapesjs = await import('grapesjs')
+
+  if (server) {
+    assetManagerOptions.uploadFile = (e: React.ChangeEvent<HTMLInputElement>) =>
+      uploadFile(e, editor)
+    editorOptions.assetManager = assetManagerOptions
+  }
 
   // need var intead of const so it's global
   // and its accessible in uploadFile function
-  const editor = grapesjs.init(editorOptions)
+  var editor = grapesjs.init(editorOptions)
 
   loadTraits(editor)
   loadPanels(editor, server)
@@ -52,13 +55,13 @@ const loadTemplate = (editor): void => {
   })
 }
 
-/* const assetManagerOptions = {
+const assetManagerOptions = {
   storageType: '',
   storeOnChange: true,
   storeAfterUpload: true,
   assets: [],
-  // uploadFile
-} */
+  uploadFile,
+}
 
 const editorOptions = {
   selectorManager: { escapeName },
@@ -67,6 +70,6 @@ const editorOptions = {
   storageManager: { autoload: false },
   showDevices: false,
   traitsEditor: true,
-  // assetManager: assetManagerOptions
+  assetManager: assetManagerOptions,
 }
 export { initEditor }
