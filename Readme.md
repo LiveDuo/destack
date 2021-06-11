@@ -102,13 +102,14 @@ Please go and show these projects some love (⭐️). Don't forget to check out 
   <img src="https://contrib.rocks/image?repo=liveduo/destack" />
 </a>  
 
-
 Made with [contributors-img](https://contrib.rocks).  
 
 # Upcoming Tasks
-- [ ] Fix forms blocks (tailwind HTML & icons)
-- [ ] Write tests for ContentProvider
+### Features
+- [ ] Forms blocks & handle form submission
 - [ ] Max width & colors settings
+- [ ] Custom Tailwindcss configuration
+
+### Config
+- [ ] Tests for local editor & editor in prod
 - [ ] Move builder API route to next.config.js
-- [ ] Add support for form submission
-- [ ] Add support for custom Tailwindcss configuration

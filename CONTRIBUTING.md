@@ -1,7 +1,6 @@
 # Contributing to the project
 
-
-* ## Instructions for development
+- ## Instructions for development
 
 1. `git clone https://github.com/LiveDuo/destack` and cd in there
 
