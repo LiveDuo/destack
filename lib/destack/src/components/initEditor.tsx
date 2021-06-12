@@ -6,6 +6,8 @@ import { fetchJSON, escapeName } from '../utils'
 import { appendCss } from '../lib/css'
 import { handleEvents } from '../lib/events'
 
+import { ChangeEvent } from 'react'
+
 const uploadFile = (e, editor): void => {
   const files = e.dataTransfer ? e.dataTransfer.files : e.target.files
   const formData = new FormData()
@@ -24,8 +26,7 @@ const initEditor = async ({ server = true }): Promise<void> => {
   const grapesjs = await import('grapesjs')
 
   if (server) {
-    assetManagerOptions.uploadFile = (e: React.ChangeEvent<HTMLInputElement>) =>
-      uploadFile(e, editor)
+    assetManagerOptions.uploadFile = (e: ChangeEvent<HTMLInputElement>) => uploadFile(e, editor)
     editorOptions.assetManager = assetManagerOptions
   }
 
