@@ -9,18 +9,30 @@ const debug = false
 
 const projectPath = 'dev/nextjs-project'
 
-const filepath = path.join(__dirname, '..', '..', projectPath, 'data', 'default.json')
+const templateFilepath = path.join(__dirname, '..', '..', projectPath, 'data', 'default.json')
 
-const deleteData = async () => {
+const deleteFile = async (file) => {
   const hasData = await fs.promises
-    .stat(filepath)
+    .stat(file)
     .then(() => true)
     .catch(() => false)
   if (hasData) {
-    fs.promises.unlink(filepath)
+    await fs.promises.unlink(templateFilepath)
   }
 }
-exports.deleteData = deleteData
+exports.deleteFile = deleteFile
+
+const deleteFolder = async (folder) => {
+  const hasData = await fs.promises
+    .stat(folder)
+    .then(() => true)
+    .catch(() => false)
+  if (hasData) {
+    fs.promises.unlink(templateFilepath)
+    await fs.promises.rmdir(folder, { recursive: true })
+  }
+}
+exports.deleteFolder = deleteFolder
 
 const execAsync = (cmd, opts = {}) =>
   new Promise((resolve, reject) => {
@@ -75,13 +87,20 @@ const killServer = async (port) => {
 exports.killServer = killServer
 
 const copyTemplateToTemp = async () => {
-  await fs.promises.copyFile(filepath, path.join(os.tmpdir(), 'default.json'))
+  await fs.promises.copyFile(templateFilepath, path.join(os.tmpdir(), 'default.json'))
 }
 exports.copyTemplateToTemp = copyTemplateToTemp
 
 const copyTemplateFromTemp = async () => {
   const tempPath = path.join(os.tmpdir(), 'default.json')
-  await fs.promises.copyFile(tempPath, filepath)
+  await fs.promises.copyFile(tempPath, templateFilepath)
   await fs.promises.unlink(tempPath)
 }
 exports.copyTemplateFromTemp = copyTemplateFromTemp
+
+const exists = (s) =>
+  fs.promises
+    .access(s)
+    .then(() => true)
+    .catch(() => false)
+exports.exists = exists

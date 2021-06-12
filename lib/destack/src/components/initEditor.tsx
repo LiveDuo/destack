@@ -25,6 +25,9 @@ const uploadFile = (e, editor): void => {
 const initEditor = async ({ server = true }): Promise<void> => {
   const grapesjs = await import('grapesjs')
 
+  // for 'npm run test' only
+  globalThis.grapesjs = grapesjs
+
   if (server) {
     assetManagerOptions.uploadFile = (e: ChangeEvent<HTMLInputElement>) => uploadFile(e, editor)
     editorOptions.assetManager = assetManagerOptions
