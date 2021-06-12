@@ -71,9 +71,9 @@
 }
 
 /* hides component settings panel */
-span.gjs-pn-btn.fa.fa-cog {
+/* span.gjs-pn-btn.fa.fa-cog {
   display: none !important;
-}
+} */
 .gjs-pn-buttons {
   justify-content: space-around !important;
 }
