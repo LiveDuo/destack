@@ -106,10 +106,10 @@ Made with [contributors-img](https://contrib.rocks).
 
 # Upcoming Tasks
 ### Features
-- [ ] Forms blocks & handle form submission
-- [ ] Max width & colors settings
-- [ ] Custom Tailwindcss configuration
+- [ ] Forms blocks & form submission settings
+- [ ] Option to change tailwind theme color
 
 ### Config
+- [ ] Custom tailwind.config.js file
 - [ ] Tests for local editor & editor in prod
 - [ ] Move builder API route to next.config.js
