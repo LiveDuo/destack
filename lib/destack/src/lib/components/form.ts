@@ -1,3 +1,5 @@
+const isPath = require('is-svg-path')
+
 export const typeForm = 'form'
 export const typeInput = 'input'
 export const typeTextarea = 'textarea'
@@ -7,8 +9,18 @@ export const typeRadio = 'radio'
 export const typeButton = 'button'
 export const typeLabel = 'label'
 export const typeOption = 'option'
+export const svgImage = 'svg'
 
-export function loadFormComponents(editor: { DomComponents: any }): void {
+// const pathLogo = 'M8.63867 8.97461H2.91602V15H0.445312V0.78125H9.47852V2.77344H2.91602V7.00195H8.63867V8.97461Z'
+// const pathTailblocks = 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'
+
+const fixAppearanceStyle = '-webkit-appearance: auto; -moz-appearance: none; appearance: auto;'
+
+export function loadFormComponents(editor: {
+  DomComponents: any
+  TraitManager: any
+  Commands: any
+}): void {
   const domc = editor.DomComponents
 
   const idTrait = {
@@ -229,9 +241,9 @@ export function loadFormComponents(editor: { DomComponents: any }): void {
             changeProp: true,
           },
           {
-            type: 'select',
-            name: 'type',
-            options: [{ value: 'button' }, { value: 'submit' }, { value: 'reset' }],
+            type: 'button-next',
+            name: 'button',
+            label: 'New button',
           },
         ],
       },
@@ -269,6 +281,303 @@ export function loadFormComponents(editor: { DomComponents: any }): void {
         components: 'Label',
         traits: [forTrait],
       },
+    },
+  })
+
+  // SVG
+  domc.addType(svgImage, {
+    model: {
+      defaults: {
+        tagName: 'svg',
+        components: 'Svg',
+        traits: [
+          {
+            name: 'viewBox',
+          },
+          {
+            name: 'stroke',
+          },
+          {
+            type: 'svg-next',
+            name: 'svg',
+            label: 'Path',
+          },
+        ],
+      },
+    },
+  })
+
+  domc.addType('link', {
+    model: {
+      defaults: {
+        traits: [
+          {
+            type: 'href-next',
+            name: 'href',
+            label: 'New href',
+          },
+        ],
+      },
+    },
+  })
+
+  const trtm = editor.TraitManager
+
+  trtm.addType('href-next', {
+    noLabel: true,
+
+    createInput({ trait }) {
+      const traitOpts = trait.get('options') || []
+      const options = traitOpts.lenght
+        ? traitOpts
+        : [
+            { id: 'url', name: 'URL' },
+            { id: 'email', name: 'Email' },
+          ]
+
+      const el = document.createElement('div')
+      el.style.backgroundColor = 'white'
+
+      el.innerHTML = `
+        <select class="href-next__type" style="background-color: #f1f1f1; margin-bottom: 10px; ${fixAppearanceStyle}">
+          ${options.map((opt) => `<option value="${opt.id}">${opt.name}</option>`).join('')}
+        </select>
+        <div class="href-next__url-inputs" style="background-color: #f1f1f1; margin-bottom: 10px;">
+          <input class="href-next__url" placeholder="Insert URL"/>
+        </div>
+        <div class="href-next__email-inputs" style="background-color: #f1f1f1;">
+          <input class="href-next__email" placeholder="Insert email"/>
+        </div>
+        <div class="href-next__newtab-inputs">
+          <input style="width: auto; ${fixAppearanceStyle}" class="href-next__newtab" type="checkbox">
+          <label> Open in "New Tab"</label>
+        </div>
+      `
+
+      const inputsUrl = <HTMLElement>el.querySelector('.href-next__url-inputs')
+      const inputsEmail = <HTMLElement>el.querySelector('.href-next__email-inputs')
+      const inputType = <HTMLElement>el.querySelector('.href-next__type')
+      const inputNewTab = <HTMLElement>el.querySelector('.href-next__newtab-inputs')
+      inputType.addEventListener('change', (ev) => {
+        switch ((<HTMLInputElement>ev.target).value) {
+          case 'url':
+            inputsUrl.style.display = ''
+            inputsEmail.style.display = 'none'
+
+            inputNewTab.style.display = ''
+            break
+          case 'email':
+            inputsUrl.style.display = 'none'
+            inputsEmail.style.display = ''
+
+            inputNewTab.style.display = 'none'
+            break
+        }
+      })
+      return el
+    },
+
+    onEvent({ elInput, component }) {
+      const inputType = elInput.querySelector('.href-next__type')
+      let href = ''
+
+      switch (inputType.value) {
+        case 'url':
+          const valUrl = elInput.querySelector('.href-next__url').value
+          href = valUrl
+
+          const valIsNewTab = elInput.querySelector('.button-next__newtab').checked
+          if (valIsNewTab) {
+            component.addAttributes({ target: '_blank' })
+          } else {
+            component.removeAttributes('target')
+          }
+          break
+        case 'email':
+          const valEmail = elInput.querySelector('.href-next__email').value
+          href = `mailto:${valEmail}`
+          break
+      }
+
+      component.addAttributes({ href })
+    },
+
+    onUpdate({ elInput, component }) {
+      const href = component.getAttributes().href || ''
+      const inputType = elInput.querySelector('.href-next__type')
+      let type = 'url'
+
+      if (href.indexOf('mailto:') === 0) {
+        const inputEmail = elInput.querySelector('.href-next__email')
+        const mailTo = href.replace('mailto:', '').split('?')
+        const email = mailTo[0]
+        type = 'email'
+
+        inputEmail.value = email || ''
+      } else {
+        elInput.querySelector('.href-next__url').value = href
+      }
+
+      inputType.value = type
+      inputType.dispatchEvent(new CustomEvent('change'))
+    },
+  })
+
+  const onClickButtonClear = (src) => `function run(e) {
+      if (e.target.getAttribute('data-gjs-type') !== 'button') {
+        ${src}
+      }
+    };
+    run(arguments[0])
+  `
+
+  trtm.addType('button-next', {
+    noLabel: true,
+
+    createInput({ trait }) {
+      const el = document.createElement('div')
+      el.style.backgroundColor = 'white'
+
+      el.innerHTML = `
+        <select class="button-next__type" style="background-color: #f1f1f1; margin-bottom: 10px; ${fixAppearanceStyle}">
+          <option value="url">URL</option>
+          <option value="email">Email</option>
+        </select>
+        <div class="button-next__url-inputs" style="background-color: #f1f1f1; margin-bottom: 10px;">
+          <input class="button-next__url" placeholder="Insert URL"/>
+        </div>
+        <div class="button-next__email-inputs" style="background-color: #f1f1f1;">
+          <input class="button-next__email" placeholder="Insert email"/>
+        </div>
+        <div class="button-next__newtab-inputs">
+          <input style="width: auto; ${fixAppearanceStyle}" class="button-next__newtab" type="checkbox">
+          <label> Open in "New Tab"</label>
+        </div>
+      `
+
+      const inputType = <HTMLElement>el.querySelector('.button-next__type')
+
+      const inputsUrl = <HTMLElement>el.querySelector('.button-next__url-inputs')
+      inputsUrl.style.display = ''
+      const inputsEmail = <HTMLElement>el.querySelector('.button-next__email-inputs')
+      inputsEmail.style.display = 'none'
+      const inputNewTab = <HTMLElement>el.querySelector('.button-next__newtab-inputs')
+      inputNewTab.style.display = ''
+
+      inputType.addEventListener('change', (ev) => {
+        const type = (<HTMLInputElement>ev.target).value
+        switch (type) {
+          case 'url':
+            inputsUrl.style.display = ''
+            inputsEmail.style.display = 'none'
+
+            inputNewTab.style.display = ''
+            break
+          case 'email':
+            inputsUrl.style.display = 'none'
+            inputsEmail.style.display = ''
+
+            inputNewTab.style.display = 'none'
+            break
+        }
+      })
+      return el
+    },
+
+    onEvent({ elInput, component }) {
+      const inputType = elInput.querySelector('.button-next__type')
+      let onClickSrc = ''
+
+      switch (inputType.value) {
+        case 'url':
+          const valUrl = elInput.querySelector('.button-next__url').value
+          const valIsNewTab = elInput.querySelector('.button-next__newtab').checked
+
+          onClickSrc = valIsNewTab
+            ? `window.open('${valUrl}', '_blank')?.focus()`
+            : `location.href = "${valUrl}"`
+
+          component.addAttributes({ 'data-gjs-sub-type': 'url' })
+          component.addAttributes({ 'data-gjs-url': valUrl })
+          component.addAttributes({ 'data-gjs-new-tab': valIsNewTab })
+          component.removeAttributes('data-gjs-email')
+          break
+        case 'email':
+          const valEmail = elInput.querySelector('.button-next__email').value
+          onClickSrc = `location.href = "mailto:${valEmail}"`
+
+          component.addAttributes({ 'data-gjs-sub-type': 'email' })
+          component.addAttributes({ 'data-gjs-email': valEmail })
+          component.removeAttributes('data-gjs-url')
+          component.removeAttributes('data-gjs-new-tab')
+          break
+        // case 'action':
+        //   const valAction = elInput.querySelector('.button-next__action').value
+        //   href = `mailto:${valAction}`
+        //   break
+      }
+
+      component.addAttributes({ onclick: onClickButtonClear(onClickSrc) })
+    },
+
+    onUpdate({ elInput, component }) {
+      const attrs = component.getAttributes()
+      const type = attrs['data-gjs-sub-type']
+
+      const inputType = elInput.querySelector('.button-next__type')
+
+      if (type === 'url') {
+        const inputUrl = elInput.querySelector('.button-next__url')
+        const url = attrs['data-gjs-url']
+        inputUrl.value = url || ''
+
+        const inputNewTab = elInput.querySelector('.button-next__newtab')
+        const newTab = attrs['data-gjs-new-tab']
+        inputNewTab.checked = newTab || false
+      } else if (type === 'email') {
+        const inputEmail = elInput.querySelector('.button-next__email')
+        const email = attrs['data-gjs-email']
+        inputEmail.value = email || ''
+      }
+
+      inputType.value = type || 'url'
+      inputType.dispatchEvent(new CustomEvent('change'))
+    },
+  })
+
+  trtm.addType('svg-next', {
+    noLabel: true,
+
+    createInput() {
+      const el = document.createElement('div')
+      el.style.backgroundColor = 'white'
+
+      el.innerHTML = `
+        <div class="svg-next__svg-inputs" style="background-color: #f1f1f1;">
+          <input class="svg-next__svg" placeholder="Path"/>
+        </div>
+      `
+      return el
+    },
+
+    onEvent({ elInput, component }) {
+      const newPath = elInput.querySelector('.svg-next__svg').value
+      if (newPath === '' || !isPath(newPath)) return
+
+      const parser = new DOMParser()
+      const htmlDoc = parser.parseFromString(component.toHTML(), 'text/html')
+      const pathEl = htmlDoc.querySelector('path')
+      pathEl?.setAttribute('d', newPath)
+      pathEl?.setAttribute('data-gjs-type', 'svg-in')
+      pathEl?.setAttribute('draggable', 'true')
+      component.replaceWith(htmlDoc.body.innerHTML)
+    },
+
+    onUpdate({ elInput, component }) {
+      const parser = new DOMParser()
+      const htmlDoc = parser.parseFromString(component.toHTML(), 'text/html')
+      const path = htmlDoc.querySelector('path')?.getAttribute('d')
+      elInput.querySelector('.svg-next__svg').value = path
     },
   })
 }

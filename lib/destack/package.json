@@ -29,6 +29,7 @@
     "@types/react": "^17.0.8",
     "autoprefixer": "^10.2.6",
     "esbuild": "^0.12.5",
+    "is-svg-path": "^1.0.2",
     "rollup": "^2.45.2",
     "rollup-plugin-esbuild": "^4.2.3",
     "rollup-plugin-import-css": "^2.0.1",
