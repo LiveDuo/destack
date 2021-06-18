@@ -73,6 +73,12 @@ export function loadFormComponents(editor: {
           },
           {
             name: 'action',
+            placeholder: 'Insert URL',
+          },
+          {
+            type: 'form-next',
+            name: 'form',
+            label: 'New form',
           },
         ],
       },
@@ -234,7 +240,6 @@ export function loadFormComponents(editor: {
       defaults: {
         tagName: 'button',
         attributes: { type: 'button' },
-        text: 'Send',
         traits: [
           {
             name: 'text',
@@ -326,21 +331,14 @@ export function loadFormComponents(editor: {
   trtm.addType('href-next', {
     noLabel: true,
 
-    createInput({ trait }) {
-      const traitOpts = trait.get('options') || []
-      const options = traitOpts.lenght
-        ? traitOpts
-        : [
-            { id: 'url', name: 'URL' },
-            { id: 'email', name: 'Email' },
-          ]
-
+    createInput() {
       const el = document.createElement('div')
       el.style.backgroundColor = 'white'
 
       el.innerHTML = `
         <select class="href-next__type" style="background-color: #f1f1f1; margin-bottom: 10px; ${fixAppearanceStyle}">
-          ${options.map((opt) => `<option value="${opt.id}">${opt.name}</option>`).join('')}
+          <option value="url">URL</option>
+          <option value="email">Email</option>
         </select>
         <div class="href-next__url-inputs" style="background-color: #f1f1f1; margin-bottom: 10px;">
           <input class="href-next__url" placeholder="Insert URL"/>
@@ -423,7 +421,7 @@ export function loadFormComponents(editor: {
     },
   })
 
-  const onClickButtonClear = (src) => `function run(e) {
+  const onClickButtonClear = (src) => `const run = (e) => {
       if (e.target.getAttribute('data-gjs-type') !== 'button') {
         ${src}
       }
@@ -442,6 +440,7 @@ export function loadFormComponents(editor: {
         <select class="button-next__type" style="background-color: #f1f1f1; margin-bottom: 10px; ${fixAppearanceStyle}">
           <option value="url">URL</option>
           <option value="email">Email</option>
+          <option value="submit">Submit</option>
         </select>
         <div class="button-next__url-inputs" style="background-color: #f1f1f1; margin-bottom: 10px;">
           <input class="button-next__url" placeholder="Insert URL"/>
@@ -449,10 +448,22 @@ export function loadFormComponents(editor: {
         <div class="button-next__email-inputs" style="background-color: #f1f1f1;">
           <input class="button-next__email" placeholder="Insert email"/>
         </div>
-        <div class="button-next__newtab-inputs">
+        
+        <div class="button-next__newtab-inputs" style="margin-bottom: 10px;">
           <input style="width: auto; ${fixAppearanceStyle}" class="button-next__newtab" type="checkbox">
           <label> Open in "New Tab"</label>
         </div>
+
+        <!--
+          <div class="button-next__action-inputs" style="background-color: #f1f1f1; margin-bottom: 10px;">
+            <input class="button-next__action" placeholder="Insert action URL"/>
+          </div>
+
+          <div class="button-next__async-inputs">
+            <input style="width: auto; ${fixAppearanceStyle}" class="button-next__async" type="checkbox">
+            <label> Async</label>
+          </div>
+        -->
       `
 
       const inputType = <HTMLElement>el.querySelector('.button-next__type')
@@ -479,6 +490,12 @@ export function loadFormComponents(editor: {
 
             inputNewTab.style.display = 'none'
             break
+          case 'submit':
+            inputsUrl.style.display = 'none'
+            inputsEmail.style.display = 'none'
+
+            inputNewTab.style.display = 'none'
+            break
         }
       })
       return el
@@ -497,27 +514,42 @@ export function loadFormComponents(editor: {
             ? `window.open('${valUrl}', '_blank')?.focus()`
             : `location.href = "${valUrl}"`
 
+          component.addAttributes({ type: 'button' })
+
           component.addAttributes({ 'data-gjs-sub-type': 'url' })
           component.addAttributes({ 'data-gjs-url': valUrl })
           component.addAttributes({ 'data-gjs-new-tab': valIsNewTab })
+
           component.removeAttributes('data-gjs-email')
+
+          component.addAttributes({ onclick: onClickButtonClear(onClickSrc) })
           break
         case 'email':
           const valEmail = elInput.querySelector('.button-next__email').value
           onClickSrc = `location.href = "mailto:${valEmail}"`
 
+          component.addAttributes({ type: 'button' })
+
           component.addAttributes({ 'data-gjs-sub-type': 'email' })
           component.addAttributes({ 'data-gjs-email': valEmail })
+
           component.removeAttributes('data-gjs-url')
           component.removeAttributes('data-gjs-new-tab')
-          break
-        // case 'action':
-        //   const valAction = elInput.querySelector('.button-next__action').value
-        //   href = `mailto:${valAction}`
-        //   break
-      }
 
-      component.addAttributes({ onclick: onClickButtonClear(onClickSrc) })
+          component.addAttributes({ onclick: onClickButtonClear(onClickSrc) })
+          break
+        case 'submit':
+          component.addAttributes({ type: 'submit' })
+
+          component.addAttributes({ 'data-gjs-sub-type': 'submit' })
+
+          component.removeAttributes('data-gjs-email')
+          component.removeAttributes('data-gjs-url')
+          component.removeAttributes('data-gjs-new-tab')
+
+          component.removeAttributes('onclick')
+          break
+      }
     },
 
     onUpdate({ elInput, component }) {
@@ -578,6 +610,85 @@ export function loadFormComponents(editor: {
       const htmlDoc = parser.parseFromString(component.toHTML(), 'text/html')
       const path = htmlDoc.querySelector('path')?.getAttribute('d')
       elInput.querySelector('.svg-next__svg').value = path
+    },
+  })
+
+  trtm.addType('form-next', {
+    noLabel: true,
+
+    createInput() {
+      const el = document.createElement('div')
+      el.style.backgroundColor = 'white'
+      el.innerHTML = `
+        <div>
+          <input style="width: auto; ${fixAppearanceStyle}" class="form-next__async" type="checkbox">
+          <label> Async</label>
+        </div>
+      `
+      return el
+    },
+
+    onEvent({ elInput, component }) {
+      const valIsAsync = elInput.querySelector('.form-next__async').checked
+
+      component.addAttributes({ 'data-gjs-async': valIsAsync })
+
+      // const onClickSrc = `
+      //   const run = (e) => {
+      //     if (e.target.getAttribute('data-gjs-type') !== 'button') {
+      //       e.preventDefault()
+      //       this.form.submit()
+      //     }
+      //   };
+      //   run(arguments[0])
+      // `
+      const content = valIsAsync
+        ? `
+          e.preventDefault()
+
+          const params = new URLSearchParams()
+          const body = new FormData(e.target)
+          body.forEach(([f, v]) => params.append(f, v))
+
+          const action = e.target.getAttribute('action')
+          const method = e.target.getAttribute('method')
+
+          fetch(action, { method, ...(method.toUpperCase() !== 'GET' ? {body} : {}) })            
+            .then((e) =>  e.text().then(d => ({ok: e.ok, text: d})))
+            .then(({ok, text}) => {
+              let message = 'All good'
+              let type = ok ? 'info' : 'error'
+              try {
+                const data = JSON.parse(text)
+                if (data.message) message = data.message
+              } catch(err) {}
+              document.dispatchEvent(new CustomEvent('toast', {detail: {message, type}}))
+            })
+
+            for (let el of e.target.elements) el.value = null
+
+        `
+        : `
+          for (let el of e.target.elements) el.value = null
+
+          e.preventDefault()
+          e.target.submit()
+        `
+
+      const onClickSrc = `
+        const run = (e) => {
+          ${content}
+        };
+        run(arguments[0])
+      `
+      component.addAttributes({ onsubmit: onClickSrc })
+    },
+
+    onUpdate({ elInput, component }) {
+      const attrs = component.getAttributes()
+      const inputAsync = elInput.querySelector('.form-next__async')
+      const isAsync = attrs['data-gjs-async']
+      inputAsync.checked = isAsync || ''
     },
   })
 }

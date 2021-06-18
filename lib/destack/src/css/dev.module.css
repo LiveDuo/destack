@@ -89,31 +89,6 @@ span.gjs-pn-btn.fa.fa-mobile {
   margin-right: auto;
 }
 
-.show-toast {
-  animation: showToastAnimation 0.2s ease-out forwards;
-}
-.hide-toast {
-  animation: hideToastAnimation 0.2s ease-out forwards;
-}
-
-@keyframes showToastAnimation {
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-@keyframes hideToastAnimation {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(100%);
-  }
-}
-
 .gjs-mdl-dialog {
   max-width: 600px !important;
 }
