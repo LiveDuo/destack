@@ -96,6 +96,8 @@ describe('Load editor', () => {
     const imageNew = await iframe.$('#wrapper #custom-image')
     const imageSrc = await iframe.evaluate((el) => el.getAttribute('src'), imageNew)
 
+    await page.waitForTimeout(1000) // should possibly be improved
+
     const imageIsUploaded = await exists(
       __dirname + '/../' + 'dev/nextjs-project' + '/' + 'public' + imageSrc,
     )
