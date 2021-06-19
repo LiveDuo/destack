@@ -656,7 +656,7 @@ export function loadFormComponents(editor: {
           fetch(action, { method, ...(method.toUpperCase() !== 'GET' ? {body} : {}) })            
             .then((e) =>  e.text().then(d => ({ok: e.ok, text: d})))
             .then(({ok, text}) => {
-              let message = 'All good'
+              let message = ok ? 'All good' : 'Something went wrong'
               let type = ok ? 'info' : 'error'
               try {
                 const data = JSON.parse(text)
