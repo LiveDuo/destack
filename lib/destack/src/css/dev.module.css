@@ -88,3 +88,20 @@ span.gjs-pn-btn.fa.fa-tablet {
 span.gjs-pn-btn.fa.fa-mobile {
   margin-right: auto;
 }
+
+.gjs-mdl-dialog {
+  max-width: 600px !important;
+}
+
+.change-theme-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+.change-theme-button:focus {
+  /* background-color: yellow; */
+  outline: none;
+  box-shadow: 0 0 0 2pt #c5c5c575;
+}

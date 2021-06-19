@@ -120,8 +120,8 @@ import s3s from './data/statistic-3.svg'
 
 import { source as q1 } from './data/step-1'
 import q1s from './data/step-1.svg'
-import { source as q2 } from './data/step-2'
-import q2s from './data/step-2.svg'
+// import { source as q2 } from './data/step-2'
+// import q2s from './data/step-2.svg'
 import { source as q3 } from './data/step-3'
 import q3s from './data/step-3.svg'
 
@@ -584,14 +584,14 @@ const sources = [
     category: 'Steps',
     // order: 1
   },
-  {
-    id: 'step-block-2',
-    class: '',
-    label: getSvgHtml(q2s),
-    content: q2,
-    category: 'Steps',
-    // order: 1
-  },
+  // {
+  //   id: 'step-block-2',
+  //   class: '',
+  //   label: getSvgHtml(q2s),
+  //   content: q2,
+  //   category: 'Steps',
+  //   // order: 1
+  // },
   {
     id: 'step-block-3',
     class: '',

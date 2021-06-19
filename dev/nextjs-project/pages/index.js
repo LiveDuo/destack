@@ -1,4 +1,6 @@
-import '../../../node_modules/grapesjs/dist/css/grapes.min.css'
+if (process.env.NODE_ENV !== 'production') {
+  require('../../../node_modules/grapesjs/dist/css/grapes.min.css')
+}
 
 export { getStaticProps } from 'destack/build/server'
 import { ContentProvider } from 'destack'
