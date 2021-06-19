@@ -85,7 +85,7 @@ const updateThemeColor = (editor, color) => {
   })
 }
 
-export const loadPanels = (editor, server) => {
+export const loadPanels = (editor, isDev) => {
   // Show Style Manager
   editor.on('component:selected', () => {
     const openSmBtn = editor.Panels.getButton('views', 'open-sm')
@@ -123,7 +123,7 @@ export const loadPanels = (editor, server) => {
   // Config Buttons
   editor.Panels.removeButton('options', 'export-template')
   editor.Panels.getButton('options', 'sw-visibility').set('active', false)
-  if (server)
+  if (!isDev)
     editor.Panels.addButton('options', {
       id: 'export-template',
       className: 'fa fa-code',
@@ -143,14 +143,6 @@ export const loadPanels = (editor, server) => {
     attributes: { title: 'Redo' },
   })
   editor.Panels.addButton('options', {
-    id: 'canvas-clear',
-    className: 'fa fa-trash',
-    command: (e) => e.runCommand('canvas-clear'),
-  })
-
-  editor.Panels.removeButton('options', 'fullscreen')
-
-  editor.Panels.addButton('options', {
     id: 'update-theme',
     className: 'fa fa-wrench',
     command: 'open-update-theme',
@@ -159,6 +151,13 @@ export const loadPanels = (editor, server) => {
       'data-tooltip-pos': 'bottom',
     },
   })
+  editor.Panels.addButton('options', {
+    id: 'canvas-clear',
+    className: 'fa fa-trash',
+    command: (e) => e.runCommand('canvas-clear'),
+  })
+
+  editor.Panels.removeButton('options', 'fullscreen')
 
   // Add info command
   editor.Commands.add('open-update-theme', {

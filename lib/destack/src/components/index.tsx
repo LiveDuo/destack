@@ -5,14 +5,24 @@ import { ToastContainer } from './toast'
 import devStyles from '../css/dev.module.css'
 import prodStyles from '../css/prod.module.css'
 
-const ContentProvider: FC<ContentProviderProps> = ({ html, css, server = true }) => {
+const isDev = process.env.NODE_ENV !== 'production'
+
+const ContentProvider: FC<ContentProviderProps> = ({ html, css, showEditorInProd = false }) => {
+  const showEditor = isDev || showEditorInProd
   useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') {
-      import('./initEditor').then((initEditor) => initEditor.initEditor({ server }))
+    if (showEditor) {
+      import('./initEditor').then((c) => c.initEditor(isDev))
     }
   }, [])
 
-  if (process.env.NODE_ENV === 'production')
+  if (showEditor)
+    return (
+      <div style={{ height: '100%', margin: '0 auto' }}>
+        <style>{devStyles}</style>
+        <div id="gjs"></div>
+      </div>
+    )
+  else
     return (
       <>
         {/* onload={() => setCssLoaded(true)} */}
@@ -25,12 +35,5 @@ const ContentProvider: FC<ContentProviderProps> = ({ html, css, server = true })
         <ToastContainer />
       </>
     )
-
-  return (
-    <div style={{ height: '100%', margin: '0 auto' }}>
-      <style>{devStyles}</style>
-      <div id="gjs"></div>
-    </div>
-  )
 }
 export { ContentProvider }

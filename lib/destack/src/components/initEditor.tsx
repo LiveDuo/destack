@@ -22,13 +22,13 @@ const uploadFile = (e, editor): void => {
     })
 }
 
-const initEditor = async ({ server = true }): Promise<void> => {
+const initEditor = async (isDev = true): Promise<void> => {
   const grapesjs = await import('grapesjs')
 
   // for 'npm run test' only
   globalThis.grapesjs = grapesjs
 
-  if (server) {
+  if (isDev) {
     assetManagerOptions.uploadFile = (e: ChangeEvent<HTMLInputElement>) => uploadFile(e, editor)
     editorOptions.assetManager = assetManagerOptions
   }
@@ -38,14 +38,14 @@ const initEditor = async ({ server = true }): Promise<void> => {
   var editor = grapesjs.init(editorOptions)
 
   loadTraits(editor)
-  loadPanels(editor, server)
+  loadPanels(editor, isDev)
   loadComponents(editor)
   loadBlocks(editor)
 
   appendCss(editor)
 
-  if (server) handleEvents(editor)
-  if (server) loadTemplate(editor)
+  if (isDev) handleEvents(editor)
+  if (isDev) loadTemplate(editor)
 }
 
 const loadTemplate = (editor): void => {

@@ -6,5 +6,5 @@ export interface dataType {
 export interface ContentProviderProps {
   html: string
   css: string
-  server: boolean
+  showEditorInProd: boolean
 }
