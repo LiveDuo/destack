@@ -163,11 +163,6 @@ Please go and show these projects some love (⭐️). Don't forget to check out 
 Made with [contributors-img](https://contrib.rocks).  
 
 # Upcoming Tasks
-### Features
-- [ ] Forms blocks & form submission settings
-- [ ] Option to change tailwind theme color
-
-### Config
 - [ ] Custom tailwind.config.js file
 - [ ] Tests for local editor & editor in prod
 - [ ] Move builder API route to next.config.js
