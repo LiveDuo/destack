@@ -4,7 +4,7 @@ const form = new formidable.IncomingForm()
 
 const formParse = (req) => new Promise((r, j) => form.parse(req, (e, f) => (!e ? r(f) : j(e))))
 
-export default (req, res) => {
+export default async (req, res) => {
   try {
     const fields = await formParse(req)
     console.log(fields)
