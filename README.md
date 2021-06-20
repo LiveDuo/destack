@@ -118,7 +118,30 @@ export default function Page(props) {
 - Select the image you want to update and click on it to add it to the page
 - Notes: Images are uploaded to `public/uploaded` with their original filenames
 
+### Show editor in production
 
+- Install Destack to a new or existing project
+- Set `showEditorInProd={true}` in the `ContentProvider` component
+- The result should be similar to [Destack Online Builder](https://destack-page.vercel.app/)
+
+<details>
+<summary>Code snippet</summary>
+<br>
+
+```js
+import { ContentProvider } from 'destack'
+import 'grapesjs/dist/css/grapes.min.css'
+
+export { getStaticProps } from 'destack/build/server'
+
+export default function Page(props) { 
+  return (
+    <div style={{height: '100%'}}>
+      <ContentProvider {...props} showEditorInProd={true}/>
+    </div>)
+}
+```
+</details>
 
 # Contributing to the project
   See [CONTRIBUTING.md](CONTRIBUTING.md)
