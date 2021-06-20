@@ -9,3 +9,5 @@
 3. `npm run dev` and head to `localhost:3000`
 
 4. Make changes in lib/destack and create a PR 🚀
+
+Note: Requires NPM version 7 or later (which supports NPM workspaces)
