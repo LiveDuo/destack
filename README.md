@@ -2,7 +2,9 @@
 
 Build landing pages visually right in your Next.js project. Deploy them zero further configuration!
 
-Editor Preview: [Destack Online Builder](https://destack-page.vercel.app/)
+Editor preview: [Destack Online Builder](https://destack-page.vercel.app/)
+
+Example in production: [prettyfunnels.com](https://www.prettyfunnels.com/landing)
 
 <!-- <img src="https://github.com/LiveDuo/destack/raw/main/assets/logo_icons.png" width="100%"> -->
 
