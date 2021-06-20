@@ -384,7 +384,7 @@ export function loadFormComponents(editor: {
           const valUrl = elInput.querySelector('.href-next__url').value
           href = valUrl
 
-          const valIsNewTab = elInput.querySelector('.button-next__newtab').checked
+          const valIsNewTab = elInput.querySelector('.href-next__newtab').checked
           if (valIsNewTab) {
             component.addAttributes({ target: '_blank' })
           } else {
@@ -405,6 +405,7 @@ export function loadFormComponents(editor: {
       const inputType = elInput.querySelector('.href-next__type')
       let type = 'url'
 
+      const valIsNewTab = elInput.querySelector('.href-next__newtab')
       if (href.indexOf('mailto:') === 0) {
         const inputEmail = elInput.querySelector('.href-next__email')
         const mailTo = href.replace('mailto:', '').split('?')
@@ -415,6 +416,8 @@ export function loadFormComponents(editor: {
       } else {
         elInput.querySelector('.href-next__url').value = href
       }
+
+      valIsNewTab.checked = component.getAttributes().target === '_blank'
 
       inputType.value = type
       inputType.dispatchEvent(new CustomEvent('change'))
