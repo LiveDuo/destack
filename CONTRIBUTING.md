@@ -10,4 +10,4 @@
 
 4. Make changes in lib/destack and create a PR 🚀
 
-Note: Requires NPM version 7 or later (which supports NPM workspaces)
+Note: Requires NPM version 7 or later (which supports NPM workspaces). To update NPM to the latest version run the following, `sudo npm install -g npm`.
