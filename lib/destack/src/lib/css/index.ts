@@ -9,12 +9,19 @@ const appendTailwindCss = (newEditor): void => {
   const cssLink = document.createElement('link')
   cssLink.href = config.tailwindCssUrl
   cssLink.rel = 'stylesheet'
-  iframe.contentDocument.head.appendChild(cssLink)
 
   const cssStyle = document.createElement('style')
-  cssStyle.type = 'text/css'
   cssStyle.innerHTML = `img.object-cover { filter: sepia(1) hue-rotate(190deg) opacity(.46) grayscale(.7) !important; }`
-  iframe.contentDocument.head.appendChild(cssStyle)
+
+  // checks iframe is ready before loading Tailwind CSS - issue with firefox
+  const f = setInterval(() => {
+    const doc = iframe.contentDocument
+    if (doc.readyState === 'complete') {
+      doc.head.appendChild(cssLink)
+      doc.head.appendChild(cssStyle)
+      clearInterval(f)
+    }
+  }, 100)
 }
 
 const appendCustomCss = () => {
