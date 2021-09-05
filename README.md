@@ -40,7 +40,7 @@ Works existing & new [Next.js](https://nextjs.org/) projects. Requires minimal s
 
 # Getting Started
 
-### With a new project:
+### With a 
 
 - Fork the [destack-starter](https://github.com/LiveDuo/destack-starter) project
 
