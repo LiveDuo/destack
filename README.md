@@ -26,7 +26,7 @@ There are 92 well designed and heavily functional blocks from the [Tailblocks](h
 
 Powered by [Grapes.js](https://grapesjs.com/), a flexible and feature-full editor similar to Webflow that supports margins, paddings, borders and a lot of others CSS-like options that are familiar to developers.
 
-#### 🕹 Data Ownership
+#### 🕹 Data Ownership asdasdd
 
 Destack stores all your assets on Github, Bitbucket etc through the editor. There are no external dependencies to manage or worry about.
 
