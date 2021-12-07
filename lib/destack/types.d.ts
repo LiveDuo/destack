@@ -4,7 +4,6 @@ export interface dataType {
 }
 
 export interface ContentProviderProps {
-  html: string
-  css: string
+  data: dataType[]
   showEditorInProd: boolean
 }

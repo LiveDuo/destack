@@ -49,11 +49,12 @@ const initEditor = async (isDev = true): Promise<void> => {
 }
 
 const loadTemplate = (editor): void => {
-  const pathName = window.location.pathname === '/' ? '/default' : window.location.pathname
-  fetchJSON({ method: 'get', url: `/api/builder/handle?pathname=${pathName}` }).then((data) => {
-    const component = data[0]
+  const pathName =
+    window.location.pathname === '/' ? '/default.json' : `${window.location.pathname}.json`
+  fetchJSON({ method: 'get', url: `/api/builder/handle` }).then((data) => {
+    const component = Object.keys(data).find((c) => data[c].filename === pathName)
     if (component) {
-      const content = JSON.parse(component.content)
+      const content = JSON.parse(data[component].content)
       editor.setComponents(JSON.parse(content.components))
       editor.setStyle(JSON.parse(content.styles))
     }

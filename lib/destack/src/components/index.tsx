@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { ContentProviderProps } from '../../types'
 import { ToastContainer } from './toast'
 
@@ -7,11 +7,22 @@ import prodStyles from '../css/prod.module.css'
 
 const isDev = process.env.NODE_ENV !== 'production'
 
-const ContentProvider: FC<ContentProviderProps> = ({ html, css, showEditorInProd = false }) => {
+const ContentProvider: FC<ContentProviderProps> = ({ data, showEditorInProd = false }) => {
   const showEditor = isDev || showEditorInProd
+  const [css, setCss] = useState<string | undefined>()
+  const [html, setHtml] = useState<string>('')
   useEffect(() => {
     if (showEditor) {
       import('./initEditor').then((c) => c.initEditor(isDev))
+    } else {
+      const pathName =
+        window.location.pathname === '/' ? '/default.json' : `${window.location.pathname}.json`
+      const template = data.find((d) => d.filename === pathName)
+      if (template) {
+        const content = JSON.parse(template.content)
+        setCss(content.css)
+        setHtml(content.html)
+      }
     }
   }, [])
 
