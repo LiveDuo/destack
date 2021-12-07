@@ -1,5 +1,6 @@
 import formidable from 'formidable'
 import fs from 'fs'
+import path from 'path'
 import { NextApiRequest } from 'next'
 
 import FormidableForm from 'formidable/Formidable'
@@ -38,3 +39,16 @@ const exists = (s: fs.PathLike): Promise<boolean> =>
     .catch(() => false)
 
 export { exists, zip }
+
+const readdirRecursive = (folder: string, files: string[] = []): string[] | void => {
+  fs.readdirSync(folder).forEach((file) => {
+    const pathAbsolute = path.join(folder, file)
+    if (fs.statSync(pathAbsolute).isDirectory()) {
+      readdirRecursive(pathAbsolute, files)
+    } else {
+      files.push(pathAbsolute)
+    }
+  })
+  return files
+}
+export { readdirRecursive }

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { dataType } from '../../types'
-import { formParse, getJson, zip, exists } from '../utils'
+import { formParse, getJson, zip, exists, readdirRecursive } from '../utils'
 import fs from 'fs'
 import path from 'path'
 import { IncomingForm } from 'formidable'
@@ -35,17 +35,18 @@ const uploadFiles = async (req: NextApiRequest): Promise<string[]> => {
 }
 export { uploadFiles }
 
-const loadData = async (): Promise<dataType[]> => {
+const loadData = async (pathName: string): Promise<dataType[]> => {
   const basePath = path.join(rootPath, '/', folderPath)
   const folderExists = await exists(basePath)
   if (!folderExists) return []
+  const files = readdirRecursive(basePath) as string[]
 
-  const files = await fs.promises.readdir(basePath)
-  const filesData = await Promise.all(
-    files.map((f) => fs.promises.readFile(path.join(basePath, f))),
-  )
-  const data = zip([files, filesData]).map(([filename, content]) => ({
-    filename: filename,
+  const filesFilter = files.filter((f) => f.replace(basePath, '') === `${pathName}.json`)
+
+  const filesData = await Promise.all(filesFilter.map((f) => fs.promises.readFile(f)))
+
+  const data = zip([filesFilter, filesData]).map(([filename, content]) => ({
+    filename: filename.replace(basePath, ''),
     content: content.toString(),
   }))
 
@@ -73,7 +74,8 @@ const handleData = async (req: NextApiRequest, res: NextApiResponse): Promise<vo
   if (!development) return res.status(401).json({ error: 'Not allowed' })
 
   if (req.method === 'GET') {
-    const data = await loadData()
+    const pathName = req.query.pathname as string
+    const data = await loadData(pathName)
     return res.status(200).json(data)
   } else if (req.method === 'POST') {
     const contentType = req.headers['content-type']!
