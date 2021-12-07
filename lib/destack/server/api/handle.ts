@@ -57,15 +57,15 @@ export { loadData }
 const updateData = async (body: Record<string, string>): Promise<void> => {
   const basePath = path.join(rootPath, '/', folderPath)
   const fileExists = await exists(path.join(basePath, '/', body.path))
-
   if (!fileExists) {
-    const folderExists = await exists(basePath)
+    const splitedPath = body.path.split('/')
+    const folderPathExists = splitedPath.slice(0, splitedPath.length - 1).join('/')
+    const folderExists = await exists(path.join(basePath, '/', folderPathExists))
     if (!folderExists) {
-      await fs.promises.mkdir(basePath, { recursive: true })
+      await fs.promises.mkdir(path.join(basePath, '/', folderPathExists), { recursive: true })
     }
     await fs.promises.writeFile(path.join(basePath, '/', body.path), '{}')
   }
-
   await fs.promises.writeFile(path.join(basePath, body.path), JSON.stringify(body.data))
 }
 export { updateData }

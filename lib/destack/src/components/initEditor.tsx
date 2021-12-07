@@ -49,7 +49,7 @@ const initEditor = async (isDev = true): Promise<void> => {
 }
 
 const loadTemplate = (editor): void => {
-  const pathName = window.location.pathname
+  const pathName = window.location.pathname === '/' ? '/default' : window.location.pathname
   fetchJSON({ method: 'get', url: `/api/builder/handle?pathname=${pathName}` }).then((data) => {
     const component = data[0]
     if (component) {
