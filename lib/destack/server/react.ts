@@ -12,7 +12,7 @@ app.get('/ping', (_, res) => {
   res.send('pong!')
 })
 
-app.get('/api/builder/handle', cors(), (req, res) => {
+app.all('/api/builder/handle', cors(), (req, res) => {
   return handleData(req, res)
 })
 
