@@ -3,6 +3,10 @@ type fetchJSONArgs = {
   data?: Record<string, unknown>
   url: string
 }
+
+const elementExists = (el) => typeof el !== 'undefined' && el !== null
+export { elementExists }
+
 const fetchJSON = async ({ method, url, data }: fetchJSONArgs): Promise<JSON> => {
   const res = await fetch(url, {
     method,

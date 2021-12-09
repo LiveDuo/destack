@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import config from '../../config'
+import { elementExists } from '../../utils'
 
 const appendTailwindCss = (newEditor): void => {
   const iframe = newEditor.Canvas.getFrameEl()
@@ -27,9 +28,12 @@ const appendTailwindCss = (newEditor): void => {
 const appendCustomCss = () => {
   document.querySelector('html')!.style.height = '100%'
   document.querySelector('body')!.style.height = '100%'
-  // FIX for react: document.querySelector('#root')
-  const next: HTMLElement = document.querySelector('#__next')!
-  next.style.height = '100%'
+
+  const nextRoot = document.querySelector('#__next')
+  const element: HTMLElement = document.querySelector(
+    elementExists(nextRoot) ? '#__next' : '#root',
+  )!
+  element.style.height = '100%'
 }
 
 const appendCss = (newEditor) => {
