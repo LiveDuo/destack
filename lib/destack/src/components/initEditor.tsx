@@ -49,6 +49,7 @@ const initEditor = async (isDev = true): Promise<void> => {
 }
 
 const loadTemplate = (editor): void => {
+  // FIX for react: url = http://localhost:3000/api/builder/handle
   fetchJSON({ method: 'get', url: '/api/builder/handle' }).then((data) => {
     const component = Object.keys(data).find((c) => data[c].filename === 'default.json')
     if (component) {

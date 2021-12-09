@@ -6,9 +6,13 @@
     "./dev/*"
   ],
   "scripts": {
-    "start": "cd dev/nextjs-project && npm start",
-    "dev": "concurrently -k \"cd lib/destack && npm run dev\" \"cd dev/nextjs-project && npm run dev\"",
-    "build": "cd lib/destack && npm run build && cd ../../dev/nextjs-project && npm run build",
+    "start": "npm run start-next",
+    "start-next": "cd dev/nextjs-project && npm start",
+    "dev": "npm run dev-next",
+    "dev-next": "concurrently -k \"cd lib/destack && npm run dev\" \"cd dev/nextjs-project && npm run dev\"",
+    "dev-react": "concurrently -k \"cd lib/destack && npm run dev\" \"cd lib/destack && npm run react-server-dev\" \"cd dev/react-project && npm run dev\"",
+    "build": "npm run build-next",
+    "build-next": "cd lib/destack && npm run build && cd ../../dev/nextjs-project && npm run build",
     "test": "jest --runInBand",
     "prepare": "husky install"
   },
