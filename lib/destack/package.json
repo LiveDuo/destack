@@ -15,14 +15,20 @@
   "scripts": {
     "dev": "rollup -c -w",
     "build": "rollup -c",
+    "react-server-dev": "nodemon  --watch server ./node_modules/.bin/ts-node  -O '{\"module\":\"commonjs\"}' ./server/react.ts",
+    "react-server-build": "./node_modules/typescript/bin/tsc ./server/react.ts --outDir ./build/custom --module commonjs --esModuleInterop true --skipLibCheck",
+    "react-server-start": "node ./build/custom/react.js",
     "prepublishOnly": "cp ../../README.md README.md && npm run build",
     "postpublish": "rm -rf README.md"
   },
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "formidable": "^1.2.2",
     "grapesjs": "^0.16.45",
-    "is-svg-path": "^1.0.2"
+    "is-svg-path": "^1.0.2",
+    "ts-node": "^10.4.0"
   },
   "devDependencies": {
     "@rollup/plugin-babel": "^5.3.0",
@@ -32,6 +38,7 @@
     "@types/react": "^17.0.8",
     "autoprefixer": "^10.2.6",
     "esbuild": "^0.12.5",
+    "nodemon": "^2.0.15",
     "rollup": "^2.45.2",
     "rollup-plugin-esbuild": "^4.2.3",
     "rollup-plugin-import-css": "^2.0.1",
