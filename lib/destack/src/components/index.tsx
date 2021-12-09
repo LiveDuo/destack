@@ -5,9 +5,8 @@ import { ToastContainer } from './toast'
 import devStyles from '../css/dev.module.css'
 import prodStyles from '../css/prod.module.css'
 
-const isDev = process.env.NODE_ENV !== 'production'
-
 const ContentProvider: FC<ContentProviderProps> = ({ html, css, showEditorInProd = false }) => {
+  const isDev = !html && !css
   const showEditor = isDev || showEditorInProd
   useEffect(() => {
     if (showEditor) {

@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "react-scripts start",
+    "start": "http-server ./build",
+    "dev": "concurrently \"nodemon --watch destack.ts ../../node_modules/.bin/ts-node -O '{\\\"module\\\":\\\"commonjs\\\"}' destack.ts\" \"react-scripts start\"",
     "build": "react-scripts build"
   },
   "dependencies": {
@@ -22,5 +23,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^6.4.0",
+    "http-server": "^14.0.0"
   }
 }
