@@ -9,14 +9,15 @@ import { handleEvents } from '../lib/events'
 import { ChangeEvent } from 'react'
 import { standaloneBuilderPort as port } from '../../config'
 
-const uploadFile = (e, editor): void => {
+const uploadFile = (e, editor, standaloneBuilder): void => {
   const files = e.dataTransfer ? e.dataTransfer.files : e.target.files
   const formData = new FormData()
   for (const i in files) {
     formData.append('file-' + i, files[i])
   }
 
-  fetch('/api/builder/handle', { method: 'POST', body: formData })
+  const baseUrl = standaloneBuilder ? `http://localhost:${port}` : ''
+  fetch(`${baseUrl}/api/builder/handle`, { method: 'POST', body: formData })
     .then((res) => res.json())
     .then((images) => {
       editor.AssetManager.add(images)
@@ -30,7 +31,8 @@ const initEditor = async (isDev = true, standaloneBuilder): Promise<void> => {
   globalThis.grapesjs = grapesjs
 
   if (isDev) {
-    assetManagerOptions.uploadFile = (e: ChangeEvent<HTMLInputElement>) => uploadFile(e, editor)
+    assetManagerOptions.uploadFile = (e: ChangeEvent<HTMLInputElement>) =>
+      uploadFile(e, editor, standaloneBuilder)
     editorOptions.assetManager = assetManagerOptions
   }
 
