@@ -1,9 +1,15 @@
 import { fetchJSON } from '../../utils'
 
-const handleEvents = (newEditor): void => {
-  // FIX for react: url = http://localhost:3000/api/builder/handle
+import { standaloneBuilderPort as port } from '../../../config'
+
+const handleEvents = (newEditor, standaloneBuilder): void => {
+  const baseUrl = standaloneBuilder ? `http://localhost:${port}` : ''
   const saveLocally = (data): Promise<JSON> =>
-    fetchJSON({ method: 'post', url: '/api/builder/handle', data: { path: 'default.json', data } })
+    fetchJSON({
+      method: 'post',
+      url: `${baseUrl}/api/builder/handle`,
+      data: { path: 'default.json', data },
+    })
   newEditor.on('storage:store', (e) => saveLocally(e))
 }
 export { handleEvents }

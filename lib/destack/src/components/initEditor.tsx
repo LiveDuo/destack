@@ -7,6 +7,7 @@ import { appendCss } from '../lib/css'
 import { handleEvents } from '../lib/events'
 
 import { ChangeEvent } from 'react'
+import { standaloneBuilderPort as port } from '../../config'
 
 const uploadFile = (e, editor): void => {
   const files = e.dataTransfer ? e.dataTransfer.files : e.target.files
@@ -22,7 +23,7 @@ const uploadFile = (e, editor): void => {
     })
 }
 
-const initEditor = async (isDev = true): Promise<void> => {
+const initEditor = async (isDev = true, standaloneBuilder): Promise<void> => {
   const grapesjs = await import('grapesjs')
 
   // for 'npm run test' only
@@ -44,13 +45,13 @@ const initEditor = async (isDev = true): Promise<void> => {
 
   appendCss(editor)
 
-  if (isDev) handleEvents(editor)
-  if (isDev) loadTemplate(editor)
+  if (isDev) handleEvents(editor, standaloneBuilder)
+  if (isDev) loadTemplate(editor, standaloneBuilder)
 }
 
-const loadTemplate = (editor): void => {
-  // FIX for react: url = http://localhost:3000/api/builder/handle
-  fetchJSON({ method: 'get', url: '/api/builder/handle' }).then((data) => {
+const loadTemplate = (editor, standaloneBuilder): void => {
+  const baseUrl = standaloneBuilder ? `http://localhost:${port}` : ''
+  fetchJSON({ method: 'get', url: `${baseUrl}/api/builder/handle` }).then((data) => {
     const component = Object.keys(data).find((c) => data[c].filename === 'default.json')
     if (component) {
       const content = JSON.parse(data[component].content)

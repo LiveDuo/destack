@@ -5,12 +5,17 @@ import { ToastContainer } from './toast'
 import devStyles from '../css/dev.module.css'
 import prodStyles from '../css/prod.module.css'
 
-const ContentProvider: FC<ContentProviderProps> = ({ html, css, showEditorInProd = false }) => {
+const ContentProvider: FC<ContentProviderProps> = ({
+  html,
+  css,
+  showEditorInProd = false,
+  standaloneBuilder = false,
+}) => {
   const isDev = !html && !css
   const showEditor = isDev || showEditorInProd
   useEffect(() => {
     if (showEditor) {
-      import('./initEditor').then((c) => c.initEditor(isDev))
+      import('./initEditor').then((c) => c.initEditor(isDev, standaloneBuilder))
     }
   }, [])
 

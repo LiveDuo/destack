@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import config from '../../config'
+import { tailwindCssUrl } from '../../../config'
 import { elementExists } from '../../utils'
 
 const appendTailwindCss = (newEditor): void => {
@@ -8,7 +8,7 @@ const appendTailwindCss = (newEditor): void => {
   if (!iframe) return
 
   const cssLink = document.createElement('link')
-  cssLink.href = config.tailwindCssUrl
+  cssLink.href = tailwindCssUrl
   cssLink.rel = 'stylesheet'
 
   const cssStyle = document.createElement('style')

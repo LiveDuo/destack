@@ -2,9 +2,9 @@ import express from 'express'
 import cors from 'cors'
 
 import { handleData } from './api/handle'
+import { standaloneBuilderPort as port } from '../config'
 
 const app = express()
-const port = 3000
 
 app.use(cors({ credentials: true, origin: true }))
 

@@ -24,7 +24,7 @@ const ContentProviderReact = () => {
 
   return (
     <div style={{ height: '100%' }}>
-      {loaded && <ContentProvider html={data.html} css={data.css} />}
+      {loaded && <ContentProvider html={data.html} css={data.css} standaloneBuilder={true} />}
     </div>
   )
 }
