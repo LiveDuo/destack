@@ -16,7 +16,6 @@
   "scripts": {
     "dev": "rollup -c -w",
     "build": "rollup -c",
-    "react-server-dev": "nodemon --watch server/react.ts ../../node_modules/.bin/ts-node -O '{\"module\":\"commonjs\"}' ./server/react.ts",
     "react-server-build": "./node_modules/typescript/bin/tsc ./server/react.ts --outDir ./build/custom --module commonjs --esModuleInterop true --skipLibCheck",
     "react-server-start": "node ./build/custom/react.js",
     "prepublishOnly": "cp ../../README.md README.md && npm run build",

@@ -10,9 +10,7 @@ const development = process.env.NODE_ENV !== 'production'
 
 const rootPath = process.cwd()
 
-const isNextJs = path.parse(process.argv[1]).base === 'next'
-
-const folderPath = isNextJs ? 'data' : 'public/data'
+const folderPath = 'data'
 const publicPath = 'public'
 const uploadPath = 'uploaded'
 

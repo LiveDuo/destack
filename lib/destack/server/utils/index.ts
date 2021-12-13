@@ -4,6 +4,8 @@ import { NextApiRequest } from 'next'
 
 import FormidableForm from 'formidable/Formidable'
 
+import path from 'path'
+
 const formParse = (form: FormidableForm, req: NextApiRequest): Promise<formidable.Files> =>
   new Promise<formidable.Files>((resolve, reject) => {
     form.parse(req, (err, _, files) => {
@@ -38,3 +40,6 @@ const exists = (s: fs.PathLike): Promise<boolean> =>
     .catch(() => false)
 
 export { exists, zip }
+
+const isNextJs = path.parse(process.argv[1]).base === 'next'
+export { isNextJs }
