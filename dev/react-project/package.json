@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "http-server ./build",
-    "dev": "concurrently \"nodemon --watch destack.ts ../../node_modules/.bin/ts-node -O '{\\\"module\\\":\\\"commonjs\\\"}' destack.ts\" \"react-scripts start\"",
+    "dev": "destack -d \"react-scripts start\"",
     "build": "react-scripts build"
   },
   "dependencies": {
