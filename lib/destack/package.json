@@ -19,6 +19,8 @@
     "react-server-build": "./node_modules/typescript/bin/tsc ./server/react.ts --outDir ./build/custom --module commonjs --esModuleInterop true --skipLibCheck",
     "react-server-start": "node ./build/custom/react.js",
     "export": "npm run prepublishOnly && zip -r export.zip . && npm run postpublish",
+    "publish:alpha": "node scripts/patch-version.js patch alpha && npm publish --tag alpha && node scripts/patch-version.js undo",
+    "publish:beta": "node scripts/patch-version.js patch beta && npm publish --tag beta && node scripts/patch-version.js undo",
     "prepublishOnly": "cp ../../README.md README.md && npm run build",
     "postpublish": "rm -rf README.md"
   },
