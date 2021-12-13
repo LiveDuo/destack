@@ -16,6 +16,8 @@
     "build-next": "cd lib/destack && npm run build && cd ../../dev/nextjs-project && npm run build",
     "build-react": "cd lib/destack && npm run build && cd ../../dev/react-project && npm run build",
     "test": "jest --runInBand",
+    "export": "cd lib/destack && npm run export",
+    "publish": "cd lib/destack && npm run publish",
     "prepare": "husky install"
   },
   "devDependencies": {

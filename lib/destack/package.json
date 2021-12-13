@@ -18,6 +18,7 @@
     "build": "rollup -c",
     "react-server-build": "./node_modules/typescript/bin/tsc ./server/react.ts --outDir ./build/custom --module commonjs --esModuleInterop true --skipLibCheck",
     "react-server-start": "node ./build/custom/react.js",
+    "export": "npm run prepublishOnly && zip -r export.zip . && npm run postpublish",
     "prepublishOnly": "cp ../../README.md README.md && npm run build",
     "postpublish": "rm -rf README.md"
   },
