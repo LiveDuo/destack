@@ -1,9 +1,9 @@
 import { fetchJSON } from '../../utils'
 
-import { standaloneBuilderPort as port } from '../../../server/config'
+import { standaloneServerPort as port } from '../../../server/config'
 
-const handleEvents = (newEditor, standaloneBuilder): void => {
-  const baseUrl = standaloneBuilder ? `http://localhost:${port}` : ''
+const handleEvents = (newEditor, standaloneServer): void => {
+  const baseUrl = standaloneServer ? `http://localhost:${port}` : ''
   const saveLocally = (data): Promise<JSON> =>
     fetchJSON({
       method: 'post',

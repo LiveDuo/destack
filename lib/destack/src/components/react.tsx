@@ -29,7 +29,7 @@ const ContentProviderReact = () => {
         <ContentProvider
           html={data.html}
           css={data.css}
-          standaloneBuilder={true}
+          standaloneServer={true}
           showEditorInProd={false}
         />
       )}

@@ -10,5 +10,5 @@ export interface StaticBuildProps {
 
 export interface ContentProviderProps extends StaticBuildProps {
   showEditorInProd: boolean
-  standaloneBuilder: boolean
+  standaloneServer: boolean
 }
