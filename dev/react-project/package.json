@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "http-server ./build",
+    "start": "http-server ./build -p 3000",
     "dev": "destack -d \"react-scripts start\"",
     "build": "destack -b \"react-scripts build\""
   },
