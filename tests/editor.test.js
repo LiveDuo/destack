@@ -1,4 +1,4 @@
-const { killServer, execAsyncUntil, exists, deleteFolder } = require('./utils')
+const { killServer, execAsyncUntil, exists, waitFile, deleteFolder } = require('./utils')
 const { copyTemplateFromTemp, copyTemplateToTemp } = require('./utils')
 
 require('./config')
@@ -91,12 +91,18 @@ describe('Load editor', () => {
     const closeButton = await page.waitForSelector('.gjs-mdl-container .gjs-mdl-btn-close')
     closeButton.click()
 
-    await page.waitForTimeout(1000) // should possibly be improved
     await iframe.waitForSelector('#wrapper #custom-image')
+    await iframe.waitForFunction(
+      (text) => document.querySelector(text)?.getAttribute('src').startsWith('/uploaded'),
+      {},
+      '#wrapper #custom-image',
+    )
+
     const imageNew = await iframe.$('#wrapper #custom-image')
     const imageSrc = await iframe.evaluate((el) => el.getAttribute('src'), imageNew)
 
-    await page.waitForTimeout(1000) // should possibly be improved
+    const filePath = __dirname + '/../' + 'dev/nextjs-project' + '/' + 'public' + imageSrc
+    await waitFile(filePath)
 
     const imageIsUploaded = await exists(
       __dirname + '/../' + 'dev/nextjs-project' + '/' + 'public' + imageSrc,
