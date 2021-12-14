@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 
 import { handleData } from './api/handle'
-import { standaloneBuilderPort as port } from '../config'
+import { standaloneBuilderPort as port } from './config'
 
 const app = express()
 

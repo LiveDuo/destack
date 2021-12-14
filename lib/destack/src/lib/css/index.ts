@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { tailwindCssUrl } from '../../../config'
+import { tailwindCssUrl } from '../../../server/config'
 import { elementExists } from '../../utils'
 
 const appendTailwindCss = (newEditor): void => {

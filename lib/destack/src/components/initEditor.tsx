@@ -7,7 +7,7 @@ import { appendCss } from '../lib/css'
 import { handleEvents } from '../lib/events'
 
 import { ChangeEvent } from 'react'
-import { standaloneBuilderPort as port } from '../../config'
+import { standaloneBuilderPort as port } from '../../server/config'
 
 const uploadFile = (e, editor, standaloneBuilder): void => {
   const files = e.dataTransfer ? e.dataTransfer.files : e.target.files

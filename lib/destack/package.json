@@ -16,16 +16,17 @@
   "scripts": {
     "dev": "rollup -c -w",
     "build": "rollup -c",
-    "react-server-build": "./node_modules/typescript/bin/tsc ./server/react.ts --outDir ./build/custom --module commonjs --esModuleInterop true --skipLibCheck",
-    "react-server-start": "node ./build/custom/react.js",
+    "build:react": "../../node_modules/typescript/bin/tsc ./server/react.ts --outDir ./build/custom --module commonjs --esModuleInterop true --skipLibCheck",
+    "start:react": "node ./build/custom/react.js",
     "export": "npm run prepublishOnly && zip -r export.zip . && npm run postpublish",
     "publish:alpha": "node scripts/patch-version.js patch alpha && npm publish --tag alpha && node scripts/patch-version.js undo",
     "publish:beta": "node scripts/patch-version.js patch beta && npm publish --tag beta && node scripts/patch-version.js undo",
-    "prepublishOnly": "cp ../../README.md README.md && npm run build",
+    "prepublishOnly": "cp ../../README.md README.md && npm run build && npm run build:react",
     "postpublish": "rm -rf README.md"
   },
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^6.4.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "formidable": "^1.2.2",
