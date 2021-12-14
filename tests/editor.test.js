@@ -93,7 +93,9 @@ describe('Load editor', () => {
 
     await iframe.waitForSelector('#wrapper #custom-image')
     await iframe.waitForFunction(
-      (text) => document.querySelector(text)?.getAttribute('src').startsWith('/uploaded'),
+      (text) =>
+        document.querySelector(text) &&
+        document.querySelector(text).getAttribute('src').startsWith('/uploaded'),
       {},
       '#wrapper #custom-image',
     )
