@@ -3,8 +3,12 @@ export interface dataType {
   content: string
 }
 
-export interface ContentProviderProps {
-  html: string
-  css: string
+export interface StaticBuildProps {
+  html: string | undefined
+  css: string | undefined
+}
+
+export interface ContentProviderProps extends StaticBuildProps {
   showEditorInProd: boolean
+  standaloneBuilder: boolean
 }

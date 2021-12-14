@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 
 import { ContentProvider } from './index'
+import { StaticBuildProps } from '../../types'
 
 const isDev = process.env.NODE_ENV !== 'production'
 
 const ContentProviderReact = () => {
-  const [loaded, setLoaded] = useState(false)
-  const [data, setData] = useState(false)
+  const [loaded, setLoaded] = useState<Boolean>(false)
+  const [data, setData] = useState<StaticBuildProps>({ html: undefined, css: undefined })
 
   useEffect(() => {
     if (!isDev) {
@@ -17,14 +18,21 @@ const ContentProviderReact = () => {
           setLoaded(true)
         })
     } else {
-      setData({})
+      setData({ html: undefined, css: undefined })
       setLoaded(true)
     }
   }, [])
 
   return (
     <div style={{ height: '100%' }}>
-      {loaded && <ContentProvider html={data.html} css={data.css} standaloneBuilder={true} />}
+      {loaded && (
+        <ContentProvider
+          html={data.html}
+          css={data.css}
+          standaloneBuilder={true}
+          showEditorInProd={false}
+        />
+      )}
     </div>
   )
 }

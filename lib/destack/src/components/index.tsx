@@ -35,7 +35,7 @@ const ContentProvider: FC<ContentProviderProps> = ({
         <style> {css}</style>
 
         {/* {cssLoaded} */}
-        <div dangerouslySetInnerHTML={{ __html: html }}></div>
+        <div dangerouslySetInnerHTML={{ __html: html ?? '' }}></div>
         <ToastContainer />
       </>
     )
