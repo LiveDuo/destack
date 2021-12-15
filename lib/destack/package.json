@@ -49,6 +49,7 @@
     "rollup-plugin-import-css": "^2.0.1",
     "rollup-plugin-node-polyfills": "^0.2.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-re": "^1.0.7",
     "rollup-plugin-svg-import": "^1.5.1",
     "tailwindcss": "^2.1.2",
     "tsc": "^2.0.3",
