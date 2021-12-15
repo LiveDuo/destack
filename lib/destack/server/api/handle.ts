@@ -11,7 +11,6 @@ const development = process.env.NODE_ENV !== 'production'
 const rootPath = process.cwd()
 
 const folderPath = 'data'
-const publicPath = 'public'
 const uploadPath = 'uploaded'
 
 import formidable from 'formidable'
@@ -19,13 +18,13 @@ import formidable from 'formidable'
 const uploadFiles = async (req: NextApiRequest): Promise<string[]> => {
   const form = new IncomingForm({ uploadDir: uploadPath, keepExtensions: true })
 
-  const uploadFolder = path.join(publicPath, uploadPath)
+  const uploadFolder = path.join('public', uploadPath)
   const uploadFolderExists = await exists(uploadFolder)
   if (!uploadFolderExists) {
     await fs.promises.mkdir(uploadFolder)
   }
 
-  form.on('fileBegin', (_, file) => (file.path = path.join(publicPath, uploadPath, file.name!)))
+  form.on('fileBegin', (_, file) => (file.path = path.join('public', uploadPath, file.name!)))
   const files = await formParse(form, req)
 
   const urls = Object.values(files).map((f) =>
