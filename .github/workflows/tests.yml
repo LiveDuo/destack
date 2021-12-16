@@ -31,5 +31,5 @@ jobs:
       - run: cd lib/destack && npm run build
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
-        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.mode === 'interactive' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'interactive' }}
       - run: npm test
