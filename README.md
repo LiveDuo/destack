@@ -112,7 +112,7 @@ npm i destack
 
 In `package.json`:
 - Replace the "start" script with `destack -d \"react-scripts start\"`
-- Then, replace the "build" script with `destack -d \"react-scripts build\"`
+- Then, replace the "build" script with `destack -b \"react-scripts build\"`
 
 ##### 3. Then create a new page
 
