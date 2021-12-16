@@ -154,7 +154,7 @@ export default App
 
 🚀 When is time to go in `production` (ie. do `npm run build`  or deploy to Vercel) the React component reads `NODE_ENV` again and statically generates the HTML version of the page you build in the editor from the `default.json` file Destack created for you earlier.
 
-Note: The above description is for Next.js. In React.js, the `destack -b` script creates an API route similar to the one described above that handles template changes and file uploads in development. In production the `destack -d` script copies `default.json` to the `public` folder and builds a static version of the page.
+> Note: The above description is for Next.js. In React.js, the `destack -b` script creates an API route similar to the one described above that handles template changes and file uploads in development. In production the `destack -d` script copies `default.json` to the `public` folder and builds a static version of the page.
 
 # How to's & guides
 
@@ -172,7 +172,7 @@ Note: The above description is for Next.js. In React.js, the `destack -b` script
 - Drop a block that contains an image or use image block
 - Click on an image to open the upload modal
 - Select the image you want to update and click on it to add it to the page
-- Notes: Images are uploaded to `public/uploaded` with their original filenames
+- Note: Images are uploaded to `public/uploaded` with their original filenames
 
 ### Show editor in production
 
