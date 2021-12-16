@@ -23,4 +23,7 @@ jobs:
       - run: npm i -g npm@7.5
       - run: npm ci
       - run: cd lib/destack && npm run build
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled }}
       - run: npm test
