@@ -1,6 +1,6 @@
 # Destack 🔌 Own your stack. Embrace your design.
 
-Build landing pages visually right in your Next.js project. Deploy them zero further configuration!
+Build landing pages visually right in your React or Next.js projects. Deploy them zero further configuration!
 
 Editor preview: [Destack Online Builder](https://destack-page.vercel.app/)
 
@@ -12,7 +12,7 @@ Example in production: [prettyfunnels.com](https://www.prettyfunnels.com/landing
 
 # What's Destack?
 
-It's a tool to build landing pages within your [Next.js](https://nextjs.org/) project. It's powered by [Grapes.js](https://grapesjs.com/) and includes the complete set of blocks from [Tailblocks.cc](https://tailblocks.cc/). Supports asset uploading, form submission and a variaty of Tailwind colors. 
+It's a tool to build landing pages within your [React](https://reactjs.org/) or [Next.js](https://nextjs.org/) projects. It's powered by [Grapes.js](https://grapesjs.com/) and includes the complete set of blocks from [Tailblocks.cc](https://tailblocks.cc/). Supports asset uploading, form submission and a variaty of Tailwind colors. 
 
 *Destack is a tool to help you stop worrying about the marketing pages and focus on your project.*
 
@@ -36,11 +36,11 @@ Stores the images uploaded in the editor in your repository & displays them when
 
 #### 👩🏻‍💻 Easy Setup & Deployment
 
-Works existing & new [Next.js](https://nextjs.org/) projects. Requires minimal setup and no extra configuration to deploy your landing pages to production.
+Works existing & new [React](https://reactjs.org/) and [Next.js](https://nextjs.org/) projects. Requires minimal setup and no extra configuration to deploy your landing pages to production.
 
 # Getting Started
 
-### With a new project:
+### With a new Next.js project:
 
 - Fork the [destack-starter](https://github.com/LiveDuo/destack-starter) project
 
@@ -48,7 +48,7 @@ Works existing & new [Next.js](https://nextjs.org/) projects. Requires minimal s
 
 - OR preview it online with Gitpod: [<img src="https://github.com/LiveDuo/destack/raw/main/assets/gitpod_big.png" width="92">](https://gitpod.io/#https://github.com/LiveDuo/destack-starter)
 
-### With an existing project:
+### With an existing Next.js project:
 
 ##### 1. Install Destack on your Next.js project
 
@@ -109,7 +109,9 @@ export default function Page(props) {
 - Drop a block that contains a form
 - Click on the form & head to components settings
 - Add form URL & check `async` if don't want a redirection
-- To handle a `async` forms you can create an API route (eg. [api/submit.js](https://github.com/LiveDuo/destack/blob/main/dev/nextjs-project/pages/api/submit.js))
+- To handle a `async` forms you can create an API route
+  - Next.js: Create a file in [api/submit.js](https://github.com/LiveDuo/destack/blob/main/dev/nextjs-project/pages/api/submit.js)
+  - React.js: You will need a seperate Node.js server listening on `/api/submit`
 
 ### Uploading images
 
@@ -147,9 +149,9 @@ export default function Page(props) {
   See [CONTRIBUTING.md](CONTRIBUTING.md)
 <br>
 
-# How is this possible?
+# How is this came to existence?
 
-This project was none's bright idea. It was not something that was planned and design in depth in advance. Instead it was evolved out of the need and enjoyment of using some amazing tools and prototype quickly. These projects heavily improved my developer life and a few of my friends'.
+This project was nothing that was planned and design in depth in advance. Instead it was evolved out of the need and enjoyment of using some amazing tools and prototype quickly. These projects heavily improved my developer life and a few of my friends'.
 
 > Next.js 🅧 ➕ Tailwind CSS 🍃 ➕ Grapes.js 🍇 = 💣💣
 
@@ -163,6 +165,5 @@ Please go and show these projects some love (⭐️). Don't forget to check out 
 Made with [contributors-img](https://contrib.rocks).  
 
 # Upcoming Tasks
-- [ ] Custom tailwind.config.js file
-- [ ] Tests for local editor & editor in prod
-- [ ] Move builder API route to next.config.js
+- [ ] Intoduce Destack templates
+- [ ] - [ ] Custom tailwind.config.js file
