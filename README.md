@@ -92,6 +92,58 @@ export default function Page(props) {
 ```
 </details>
 
+### With a new React.js project:
+
+- Fork the [destack-react-starter](https://github.com/LiveDuo/destack-react-starter) project
+
+- OR deploy a project to Vercel: [<img src="https://github.com/LiveDuo/destack/raw/main/assets/vercel_big.png" width="92">](https://vercel.com/new/git/external?repository-url=https://github.com/LiveDuo/destack-react-starter&project-name=destack-react-starter&repository-name=destack-react-starter)
+
+- OR preview it online with Gitpod: [<img src="https://github.com/LiveDuo/destack/raw/main/assets/gitpod_big.png" width="92">](https://gitpod.io/#https://github.com/LiveDuo/destack-react-starter)
+
+### With an existing React.js project:
+
+##### 1. Install Destack on your React.js project
+
+```sh
+npm i destack
+```
+
+##### 2. Setup the builder endpoint
+
+In `package.json`:
+- Replace the "start" script with `destack -d \"react-scripts start\"`
+- Then, replace the "build" script with `destack -d \"react-scripts build\"`
+
+##### 3. Then create a new page
+
+In any React.js component you want to setup Destack:
+```js
+import 'grapesjs/dist/css/grapes.min.css'
+export { ContentProviderReact as default } from 'destack'
+
+```
+
+<details>
+<summary>How to use along other components</summary>
+<br>
+
+```js
+import 'grapesjs/dist/css/grapes.min.css'
+
+import { ContentProviderReact } from 'destack'
+
+const App = () => {
+  return (
+    <div style={{ height: '100%' }}>
+      <span>Hello world</span>
+      <ContentProviderReact />
+    </div>
+  )
+}
+export default App
+```
+</details>
+
 # How it works
 
 🛠 Destack is composed of two main components, the first is a React component that shows the editor or the generated page and the second is a Next.js API route that saves your progress to your repository.
@@ -101,6 +153,8 @@ export default function Page(props) {
 💡 Every change you make goes to the API route which updates a `default.json` file. That file contains the HTML for your landing page and it remembers how you structure your page so you can come back later to update it. 
 
 🚀 When is time to go in `production` (ie. do `npm run build`  or deploy to Vercel) the React component reads `NODE_ENV` again and statically generates the HTML version of the page you build in the editor from the `default.json` file Destack created for you earlier.
+
+Note: The above description is for Next.js. In React.js, the `destack -b` script creates an API route similar to the one described above that handles template changes and file uploads in development. In production the `destack -d` script copies `default.json` to the `public` folder and builds a static version of the page.
 
 # How to's & guides
 
@@ -126,6 +180,8 @@ export default function Page(props) {
 - Set `showEditorInProd={true}` in the `ContentProvider` component
 - The result should be similar to [Destack Online Builder](https://destack-page.vercel.app/)
 
+Note: this is only available for Next.js.
+
 <details>
 <summary>Code snippet</summary>
 <br>
@@ -149,7 +205,7 @@ export default function Page(props) {
   See [CONTRIBUTING.md](CONTRIBUTING.md)
 <br>
 
-# How is this came to existence?
+# How this project came to existence
 
 This project was nothing that was planned and design in depth in advance. Instead it was evolved out of the need and enjoyment of using some amazing tools and prototype quickly. These projects heavily improved my developer life and a few of my friends'.
 
@@ -166,4 +222,4 @@ Made with [contributors-img](https://contrib.rocks).
 
 # Upcoming Tasks
 - [ ] Intoduce Destack templates
-- [ ] - [ ] Custom tailwind.config.js file
+- [ ] Custom tailwind.config.js file
