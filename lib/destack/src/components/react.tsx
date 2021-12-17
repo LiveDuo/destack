@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { ContentProvider } from './index'
 import { dataType } from '../../types'
 
-const isDev = process.env.NODE_ENV !== 'production'
+const isDev = '_self' in React.createElement('div')
 
 const ContentProviderReact = () => {
   const [loaded, setLoaded] = useState<Boolean>(false)
@@ -18,7 +18,7 @@ const ContentProviderReact = () => {
       fetch(`/data/${pathName}`)
         .then((response) => response.text())
         .then((_data) => {
-          setData([{ filename: `/${pathName}`, content: JSON.stringify(_data) }])
+          setData([{ filename: `/${pathName}`, content: _data }])
           setLoaded(true)
         })
     } else {
