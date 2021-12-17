@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { ContentProvider } from './index'
 import { StaticBuildProps } from '../../types'
 
-const isDev = process.env.NODE_ENV !== 'production'
+const isDev = '_self' in React.createElement('div')
 
 const ContentProviderReact = () => {
   const [loaded, setLoaded] = useState<Boolean>(false)
