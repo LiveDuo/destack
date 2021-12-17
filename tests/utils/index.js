@@ -104,3 +104,15 @@ const exists = (s) =>
     .then(() => true)
     .catch(() => false)
 exports.exists = exists
+
+const waitFile = (filePath) =>
+  new Promise((resolve) => {
+    const timer = setInterval(async () => {
+      const imageIsUploaded = await exists(filePath)
+      if (imageIsUploaded) {
+        resolve()
+        clearInterval(timer)
+      }
+    }, 100)
+  })
+exports.waitFile = waitFile

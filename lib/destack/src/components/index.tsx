@@ -5,15 +5,25 @@ import { ToastContainer } from './toast'
 import devStyles from '../css/dev.module.css'
 import prodStyles from '../css/prod.module.css'
 
-const isDev = process.env.NODE_ENV !== 'production'
+import { tailwindCssUrl } from '../../server/config'
 
-const ContentProvider: FC<ContentProviderProps> = ({ data, showEditorInProd = false }) => {
-  const showEditor = isDev || showEditorInProd
+const ContentProvider: FC<ContentProviderProps> = ({
+    data,
+    showEditorInProd = false,
+    standaloneServer = false, 
+  }) => {
+  
   const [css, setCss] = useState<string | undefined>()
   const [html, setHtml] = useState<string>('')
+  
+  const isDev = !html && !css
+  const showEditor = isDev || showEditorInProd
+  
+  const [tailwindLoaded, setTailwindLoaded] = useState<Boolean>(false)
+  
   useEffect(() => {
     if (showEditor) {
-      import('./initEditor').then((c) => c.initEditor(isDev))
+      import('./initEditor').then((c) => c.initEditor(isDev, standaloneServer))
     } else {
       const pathName =
         window.location.pathname === '/' ? '/default.json' : `${window.location.pathname}.json`
@@ -25,7 +35,7 @@ const ContentProvider: FC<ContentProviderProps> = ({ data, showEditorInProd = fa
       }
     }
   }, [])
-
+  
   if (showEditor)
     return (
       <div style={{ height: '100%', margin: '0 auto' }}>
@@ -36,13 +46,12 @@ const ContentProvider: FC<ContentProviderProps> = ({ data, showEditorInProd = fa
   else
     return (
       <>
-        {/* onload={() => setCssLoaded(true)} */}
-        <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.1.4/dist/tailwind.min.css" />
+        <link rel="stylesheet" onLoad={() => setTailwindLoaded(true)} href={tailwindCssUrl} />
         <style>{prodStyles}</style>
         <style> {css}</style>
-
-        {/* {cssLoaded} */}
-        <div dangerouslySetInnerHTML={{ __html: html }}></div>
+        {(!standaloneServer || tailwindLoaded) && (
+          <div dangerouslySetInnerHTML={{ __html: html ?? '' }}></div>
+        )}
         <ToastContainer />
       </>
     )
