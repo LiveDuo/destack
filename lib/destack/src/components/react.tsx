@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { ContentProvider } from './index'
 import { dataType } from '../../types'
 
-const isDev = '_self' in React.createElement('div')
+const isDev = process.env.NODE_ENV !== 'production'
 
 const ContentProviderReact = () => {
   const [loaded, setLoaded] = useState<Boolean>(false)
