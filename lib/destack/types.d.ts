@@ -4,7 +4,7 @@ export interface dataType {
 }
 
 export interface StaticBuildProps {
-  data: dataType[]
+  data?: dataType[]
 }
 
 export interface ContentProviderProps extends StaticBuildProps {

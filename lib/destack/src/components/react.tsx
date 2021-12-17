@@ -1,38 +1,35 @@
 import React, { useEffect, useState } from 'react'
 
 import { ContentProvider } from './index'
-import { StaticBuildProps } from '../../types'
+import { dataType } from '../../types'
 
 const isDev = process.env.NODE_ENV !== 'production'
 
 const ContentProviderReact = () => {
   const [loaded, setLoaded] = useState<Boolean>(false)
-  const [data, setData] = useState<StaticBuildProps>({ html: undefined, css: undefined })
+  const [data, setData] = useState<dataType[] | undefined>()
 
   useEffect(() => {
+    const pathName =
+      window.location.pathname === '/'
+        ? 'default.json'
+        : `${window.location.pathname.substring(1)}.json`
     if (!isDev) {
-      fetch('/data/default.json')
-        .then((response) => response.json())
+      fetch(`/data/${pathName}`)
+        .then((response) => response.text())
         .then((_data) => {
-          setData(_data)
+          setData([{ filename: `/${pathName}`, content: JSON.stringify(_data) }])
           setLoaded(true)
         })
     } else {
-      setData({ html: undefined, css: undefined })
+      setData(undefined)
       setLoaded(true)
     }
   }, [])
 
   return (
     <div style={{ height: '100%' }}>
-      {loaded && (
-        <ContentProvider
-          html={data.html}
-          css={data.css}
-          standaloneServer={true}
-          showEditorInProd={false}
-        />
-      )}
+      {loaded && <ContentProvider data={data} standaloneServer={true} showEditorInProd={false} />}
     </div>
   )
 }

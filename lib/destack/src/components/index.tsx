@@ -8,19 +8,18 @@ import prodStyles from '../css/prod.module.css'
 import { tailwindCssUrl } from '../../server/config'
 
 const ContentProvider: FC<ContentProviderProps> = ({
-    data,
-    showEditorInProd = false,
-    standaloneServer = false, 
-  }) => {
-  
+  data,
+  showEditorInProd = false,
+  standaloneServer = false,
+}) => {
   const [css, setCss] = useState<string | undefined>()
-  const [html, setHtml] = useState<string>('')
-  
-  const isDev = !html && !css
+  const [html, setHtml] = useState<string | undefined>()
+
+  const isDev = !data
   const showEditor = isDev || showEditorInProd
-  
-  const [tailwindLoaded, setTailwindLoaded] = useState<Boolean>(false)
-  
+
+  const [tailwindLoaded, setTailwindLoaded] = useState<boolean>(false)
+
   useEffect(() => {
     if (showEditor) {
       import('./initEditor').then((c) => c.initEditor(isDev, standaloneServer))
@@ -35,7 +34,7 @@ const ContentProvider: FC<ContentProviderProps> = ({
       }
     }
   }, [])
-  
+
   if (showEditor)
     return (
       <div style={{ height: '100%', margin: '0 auto' }}>

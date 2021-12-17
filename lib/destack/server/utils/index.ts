@@ -5,8 +5,6 @@ import { NextApiRequest } from 'next'
 
 import FormidableForm from 'formidable/Formidable'
 
-import path from 'path'
-
 const formParse = (form: FormidableForm, req: NextApiRequest): Promise<formidable.Files> =>
   new Promise<formidable.Files>((resolve, reject) => {
     form.parse(req, (err, _, files) => {
