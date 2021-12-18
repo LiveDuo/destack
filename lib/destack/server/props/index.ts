@@ -1,13 +1,10 @@
 import 'regenerator-runtime/runtime'
 
+import { dataType } from '../../types'
 import { loadData } from '../api/handle'
 
 const development = process.env.NODE_ENV !== 'production'
 
-interface dataType {
-  filename: string
-  content: string
-}
 type StaticPropsReturn = {
   props: { data?: dataType[] }
 }
