@@ -1,25 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 
 import { ContentProvider } from './index'
 import { dataType } from '../../types'
 
+import { isJsonValid } from '../utils'
+
 const isDev = '_self' in React.createElement('div')
 
-const ContentProviderReact = () => {
-  const [loaded, setLoaded] = useState<Boolean>(false)
+const ContentProviderReact: FC = () => {
+  const [loaded, setLoaded] = useState<boolean>(false)
   const [data, setData] = useState<dataType[] | undefined>()
 
   useEffect(() => {
     const pathName =
-      window.location.pathname === '/'
+      window.location.pathname === '/' || window.location.pathname === ''
         ? 'default.json'
         : `${window.location.pathname.substring(1)}.json`
     if (!isDev) {
       fetch(`/data/${pathName}`)
         .then((response) => response.text())
         .then((_data) => {
-          setData([{ filename: `/${pathName}`, content: _data }])
-          setLoaded(true)
+          if (isJsonValid(_data)) {
+            setData([{ filename: `/${pathName}`, content: _data }])
+            setLoaded(true)
+          }
         })
     } else {
       setData(undefined)
