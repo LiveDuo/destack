@@ -3,6 +3,10 @@ type fetchJSONArgs = {
   data?: Record<string, unknown>
   url: string
 }
+
+const elementExists = (el) => typeof el !== 'undefined' && el !== null
+export { elementExists }
+
 const fetchJSON = async ({ method, url, data }: fetchJSONArgs): Promise<JSON> => {
   const res = await fetch(url, {
     method,
@@ -26,3 +30,13 @@ const getSvgHtml = (svg: () => Element): string => {
   return svgEl.outerHTML
 }
 export { getSvgHtml }
+
+const isJsonValid = (str: string): boolean => {
+  try {
+    JSON.parse(str)
+    return true
+  } catch (e) {
+    return false
+  }
+}
+export { isJsonValid }

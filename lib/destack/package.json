@@ -4,6 +4,7 @@
   "version": "0.10.4",
   "main": "./build/browser/index.js",
   "homepage": "https://destack-page.vercel.app",
+  "bin": "./server/react.bin.js",
   "keywords": [
     "grapesjs",
     "nextjs",
@@ -15,14 +16,24 @@
   "scripts": {
     "dev": "rollup -c -w",
     "build": "rollup -c",
-    "prepublishOnly": "cp ../../README.md README.md && npm run build",
+    "build:react": "../../node_modules/typescript/bin/tsc ./server/react.ts --outDir ./build/custom --module commonjs --esModuleInterop true --skipLibCheck",
+    "start:react": "node ./build/custom/react.js",
+    "export": "npm run prepublishOnly && zip -r export.zip . && npm run postpublish",
+    "publish:alpha": "node scripts/patch-version.js patch alpha && npm publish --tag alpha && node scripts/patch-version.js undo",
+    "publish:beta": "node scripts/patch-version.js patch beta && npm publish --tag beta && node scripts/patch-version.js undo",
+    "prepublishOnly": "cp ../../README.md README.md && npm run build && npm run build:react",
     "postpublish": "rm -rf README.md"
   },
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^6.4.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "formidable": "^1.2.2",
     "grapesjs": "^0.16.45",
-    "is-svg-path": "^1.0.2"
+    "is-svg-path": "^1.0.2",
+    "ts-node": "^10.4.0",
+    "yargs": "^17.3.0"
   },
   "devDependencies": {
     "@rollup/plugin-babel": "^5.3.0",
@@ -32,11 +43,13 @@
     "@types/react": "^17.0.8",
     "autoprefixer": "^10.2.6",
     "esbuild": "^0.12.5",
+    "nodemon": "^2.0.15",
     "rollup": "^2.45.2",
     "rollup-plugin-esbuild": "^4.2.3",
     "rollup-plugin-import-css": "^2.0.1",
     "rollup-plugin-node-polyfills": "^0.2.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-re": "^1.0.7",
     "rollup-plugin-svg-import": "^1.5.1",
     "tailwindcss": "^2.1.2",
     "tsc": "^2.0.3",

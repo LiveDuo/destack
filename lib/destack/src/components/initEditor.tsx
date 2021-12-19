@@ -7,29 +7,32 @@ import { appendCss } from '../lib/css'
 import { handleEvents } from '../lib/events'
 
 import { ChangeEvent } from 'react'
+import { standaloneServerPort as port } from '../../server/config'
 
-const uploadFile = (e, editor): void => {
+const uploadFile = (e, editor, standaloneServer): void => {
   const files = e.dataTransfer ? e.dataTransfer.files : e.target.files
   const formData = new FormData()
   for (const i in files) {
     formData.append('file-' + i, files[i])
   }
 
-  fetch('/api/builder/handle', { method: 'POST', body: formData })
+  const baseUrl = standaloneServer ? `http://localhost:${port}` : ''
+  fetch(`${baseUrl}/api/builder/handle`, { method: 'POST', body: formData })
     .then((res) => res.json())
     .then((images) => {
       editor.AssetManager.add(images)
     })
 }
 
-const initEditor = async (isDev = true): Promise<void> => {
+const initEditor = async (isDev = true, standaloneServer): Promise<void> => {
   const grapesjs = await import('grapesjs')
 
   // for 'npm run test' only
   globalThis.grapesjs = grapesjs
 
   if (isDev) {
-    assetManagerOptions.uploadFile = (e: ChangeEvent<HTMLInputElement>) => uploadFile(e, editor)
+    assetManagerOptions.uploadFile = (e: ChangeEvent<HTMLInputElement>) =>
+      uploadFile(e, editor, standaloneServer)
     editorOptions.assetManager = assetManagerOptions
   }
 
@@ -44,13 +47,16 @@ const initEditor = async (isDev = true): Promise<void> => {
 
   appendCss(editor)
 
-  if (isDev) handleEvents(editor)
-  if (isDev) loadTemplate(editor)
+  if (isDev) handleEvents(editor, standaloneServer)
+  if (isDev) loadTemplate(editor, standaloneServer)
 }
 
-const loadTemplate = (editor): void => {
-  fetchJSON({ method: 'get', url: '/api/builder/handle' }).then((data) => {
-    const component = Object.keys(data).find((c) => data[c].filename === 'default.json')
+const loadTemplate = (editor, standaloneServer): void => {
+  const pathName =
+    window.location.pathname === '/' ? '/default.json' : `${window.location.pathname}.json`
+  const baseUrl = standaloneServer ? `http://localhost:${port}` : ''
+  fetchJSON({ method: 'get', url: `${baseUrl}/api/builder/handle` }).then((data) => {
+    const component = Object.keys(data).find((c) => data[c].filename === pathName)
     if (component) {
       const content = JSON.parse(data[component].content)
       editor.setComponents(JSON.parse(content.components))

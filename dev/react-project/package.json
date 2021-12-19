@@ -1,0 +1,31 @@
+{
+  "name": "react-project",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "http-server ./build -p 3000 --proxy http://localhost:3000/?",
+    "dev": "destack -d \"react-scripts start\"",
+    "build": "destack -b \"react-scripts build\""
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^6.4.0",
+    "http-server": "^14.0.0"
+  }
+}
