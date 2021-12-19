@@ -201,6 +201,16 @@ export default function Page(props) {
 ```
 </details>
 
+# Multi-page Support
+
+### Next.js
+
+Create a new page file in `pages` folder of the Next.js project and import `destack` as described in [#with-an-existing-nextjs-project](#with-an-existing-nextjs-project) to various pages.
+
+### React.js
+
+Install a routing library such as `react-router-dom` or `router-tutorial` in the React.js project and import `destack` as described in [#with-a-new-reactjs-project](#with-a-new-reactjs-project) to various routes. For more info check out [destack-react-starter](https://github.com/LiveDuo/destack-react-starter).
+
 # Contributing to the project
   See [CONTRIBUTING.md](CONTRIBUTING.md)
 <br>
