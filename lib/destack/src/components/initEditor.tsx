@@ -52,9 +52,11 @@ const initEditor = async (isDev = true, standaloneServer): Promise<void> => {
 }
 
 const loadTemplate = (editor, standaloneServer): void => {
+  const pathName =
+    window.location.pathname === '/' ? '/default.json' : `${window.location.pathname}.json`
   const baseUrl = standaloneServer ? `http://localhost:${port}` : ''
   fetchJSON({ method: 'get', url: `${baseUrl}/api/builder/handle` }).then((data) => {
-    const component = Object.keys(data).find((c) => data[c].filename === 'default.json')
+    const component = Object.keys(data).find((c) => data[c].filename === pathName)
     if (component) {
       const content = JSON.parse(data[component].content)
       editor.setComponents(JSON.parse(content.components))

@@ -4,8 +4,7 @@ export interface dataType {
 }
 
 export interface StaticBuildProps {
-  html: string | undefined
-  css: string | undefined
+  data?: dataType[]
 }
 
 export interface ContentProviderProps extends StaticBuildProps {

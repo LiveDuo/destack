@@ -30,3 +30,13 @@ const getSvgHtml = (svg: () => Element): string => {
   return svgEl.outerHTML
 }
 export { getSvgHtml }
+
+const isJsonValid = (str: string): boolean => {
+  try {
+    JSON.parse(str)
+    return true
+  } catch (e) {
+    return false
+  }
+}
+export { isJsonValid }
