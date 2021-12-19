@@ -18,4 +18,4 @@ Note: Requires NPM version 7 or later (which supports NPM workspaces). To update
 
 - Beta: `npm run publish:beta`
 
-- Stable: `npm publish`
+- Stable: `npm publish` (bump version manually)
