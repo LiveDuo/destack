@@ -225,7 +225,7 @@ Please go and show these projects some love (⭐️). Don't forget to check out 
 
 # Contributors
 <a href="https://github.com/liveduo/destack/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=liveduo/destack" />
+  <img src="https://contrib.rocks/image?repo=LiveDuo/destack" />
 </a>  
 
 Made with [contributors-img](https://contrib.rocks).  
