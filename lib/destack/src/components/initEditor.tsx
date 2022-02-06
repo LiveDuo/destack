@@ -24,13 +24,13 @@ const uploadFile = (e, editor, standaloneServer): void => {
     })
 }
 
-const initEditor = async (isDev = true, standaloneServer): Promise<void> => {
+const initEditor = async (startServer = true, standaloneServer): Promise<void> => {
   const grapesjs = await import('grapesjs')
 
   // for 'npm run test' only
   globalThis.grapesjs = grapesjs
 
-  if (isDev) {
+  if (startServer) {
     assetManagerOptions.uploadFile = (e: ChangeEvent<HTMLInputElement>) =>
       uploadFile(e, editor, standaloneServer)
     editorOptions.assetManager = assetManagerOptions
@@ -41,20 +41,21 @@ const initEditor = async (isDev = true, standaloneServer): Promise<void> => {
   var editor = grapesjs.init(editorOptions)
 
   loadTraits(editor)
-  loadPanels(editor, isDev)
+  loadPanels(editor, startServer)
   loadComponents(editor)
   loadBlocks(editor)
 
   appendCss(editor)
 
-  if (isDev) handleEvents(editor, standaloneServer)
-  if (isDev) loadTemplate(editor, standaloneServer)
+  if (startServer) handleEvents(editor, standaloneServer)
+  if (startServer) loadTemplate(editor, standaloneServer)
 }
 
 const loadTemplate = (editor, standaloneServer): void => {
   const pathName =
     window.location.pathname === '/' ? '/default.json' : `${window.location.pathname}.json`
   const baseUrl = standaloneServer ? `http://localhost:${port}` : ''
+  console.log('loadTemplate')
   fetchJSON({ method: 'get', url: `${baseUrl}/api/builder/handle` }).then((data) => {
     const component = Object.keys(data).find((c) => data[c].filename === pathName)
     if (component) {

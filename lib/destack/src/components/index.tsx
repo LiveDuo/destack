@@ -17,12 +17,13 @@ const ContentProvider: FC<ContentProviderProps> = ({
 
   const isDev = !data
   const showEditor = isDev || showEditorInProd
+  const startServer = isDev && !showEditorInProd
 
   const [tailwindLoaded, setTailwindLoaded] = useState<boolean>(false)
 
   useEffect(() => {
     if (showEditor) {
-      import('./initEditor').then((c) => c.initEditor(isDev, standaloneServer))
+      import('./initEditor').then((c) => c.initEditor(startServer, standaloneServer))
     } else {
       const pathName =
         window.location.pathname === '/' ? '/default.json' : `${window.location.pathname}.json`
