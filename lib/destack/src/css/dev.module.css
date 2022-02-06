@@ -23,6 +23,10 @@
   background-color: #f1f1f1 !important;
 }
 
+.gjs-field-checkbox input:checked+.gjs-chk-icon {
+  border-color: rgba(99, 102, 241, 0.5); /* #6366f1 */
+}
+
 .gjs-category-title,
 .gjs-layer-title,
 .gjs-block-category .gjs-title,
