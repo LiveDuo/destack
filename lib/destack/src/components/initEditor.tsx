@@ -51,19 +51,18 @@ const initEditor = async (startServer = true, standaloneServer): Promise<void> =
   if (startServer) loadTemplate(editor, standaloneServer)
 }
 
-const loadTemplate = (editor, standaloneServer): void => {
-  const pathName =
-    window.location.pathname === '/' ? '/default.json' : `${window.location.pathname}.json`
+const loadTemplate = async (editor, standaloneServer): Promise<void> => {
   const baseUrl = standaloneServer ? `http://localhost:${port}` : ''
-  console.log('loadTemplate')
-  fetchJSON({ method: 'get', url: `${baseUrl}/api/builder/handle` }).then((data) => {
-    const component = Object.keys(data).find((c) => data[c].filename === pathName)
-    if (component) {
-      const content = JSON.parse(data[component].content)
-      editor.setComponents(JSON.parse(content.components))
-      editor.setStyle(JSON.parse(content.styles))
-    }
-  })
+  const data = await fetchJSON({ method: 'get', url: `${baseUrl}/api/builder/handle` })
+  const pathNameWindows = location.pathname === '/' ? '\\default.json' : `${location.pathname}.json`
+  const pathNameUnix = location.pathname === '/' ? '/default.json' : `${location.pathname}.json`
+  const component = Object.keys(data).find((c) =>
+    data[c].filename.includes(pathNameWindows, pathNameUnix),
+  )
+  if (!component) return
+  const content = JSON.parse(data[component].content)
+  editor.setComponents(JSON.parse(content.components))
+  editor.setStyle(JSON.parse(content.styles))
 }
 
 const assetManagerOptions = {
