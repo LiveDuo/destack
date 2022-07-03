@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 
 const duration = 3000
 
 const ToastContainer = () => {
+  const mounted = useRef<boolean>(false)
   const [show, setShow] = useState<Boolean>(false)
   const [aboutToHide, setAboutToHide] = useState<Boolean>(false)
 
@@ -11,6 +12,8 @@ const ToastContainer = () => {
   const [icon, setIcon] = useState<String | null>(null)
 
   useEffect(() => {
+    if (mounted.current) return
+
     const fn = (e) => {
       if (show) return
 
@@ -39,6 +42,9 @@ const ToastContainer = () => {
       setTimeout(() => setAboutToHide(true), duration)
     }
     document.addEventListener('toast', fn, false)
+
+    mounted.current = true
+
     return () => document.removeEventListener('toast', fn, false)
   }, [])
   const onAnimationEnd = (e) => {

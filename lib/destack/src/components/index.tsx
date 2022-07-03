@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState, useRef } from 'react'
 import { ContentProviderProps } from '../../types'
 import { ToastContainer } from './toast'
 
@@ -12,6 +12,7 @@ const ContentProvider: FC<ContentProviderProps> = ({
   showEditorInProd = false,
   standaloneServer = false,
 }) => {
+  const mounted = useRef<boolean>(false)
   const [css, setCss] = useState<string | undefined>()
   const [html, setHtml] = useState<string | undefined>()
 
@@ -22,6 +23,8 @@ const ContentProvider: FC<ContentProviderProps> = ({
   const [tailwindLoaded, setTailwindLoaded] = useState<boolean>(false)
 
   useEffect(() => {
+    if (mounted.current) return
+
     if (showEditor) {
       import('./initEditor').then((c) => c.initEditor(startServer, standaloneServer))
     } else {
@@ -35,6 +38,8 @@ const ContentProvider: FC<ContentProviderProps> = ({
         setHtml(content.html)
       }
     }
+
+    mounted.current = true
   }, [])
 
   if (showEditor)

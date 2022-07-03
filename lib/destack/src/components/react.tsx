@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState, useRef } from 'react'
 
 import { ContentProvider } from './index'
 import { dataType } from '../../types'
@@ -8,12 +8,15 @@ import { isJsonValid } from '../utils'
 const isDev = '_self' in React.createElement('div')
 
 const ContentProviderReact: FC = () => {
+  const mounted = useRef<boolean>(false)
   const [loaded, setLoaded] = useState<boolean>(false)
   const [data, setData] = useState<dataType[] | undefined>()
 
   useEffect(() => {
+    if (mounted.current) return
+
     const pathName =
-      window.location.pathname === '/' || window.location.pathname === ''
+      location.pathname === '/' || location.pathname === ''
         ? 'default.json'
         : `${window.location.pathname.substring(1)}.json`
     if (!isDev) {
@@ -29,6 +32,8 @@ const ContentProviderReact: FC = () => {
       setData(undefined)
       setLoaded(true)
     }
+
+    mounted.current = true
   }, [])
 
   return (
