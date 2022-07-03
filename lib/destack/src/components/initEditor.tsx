@@ -57,7 +57,7 @@ const loadTemplate = async (editor, standaloneServer): Promise<void> => {
   const pathNameWindows = location.pathname === '/' ? '\\default.json' : `${location.pathname}.json`
   const pathNameUnix = location.pathname === '/' ? '/default.json' : `${location.pathname}.json`
   const component = Object.keys(data).find((c) =>
-    data[c].filename.includes(pathNameWindows, pathNameUnix),
+    [pathNameWindows, pathNameUnix].includes(data[c].filename),
   )
   if (!component) return
   const content = JSON.parse(data[component].content)

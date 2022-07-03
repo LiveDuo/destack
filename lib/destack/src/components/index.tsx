@@ -25,9 +25,10 @@ const ContentProvider: FC<ContentProviderProps> = ({
     if (showEditor) {
       import('./initEditor').then((c) => c.initEditor(startServer, standaloneServer))
     } else {
-      const pathName =
-        window.location.pathname === '/' ? '/default.json' : `${window.location.pathname}.json`
-      const template = data.find((d) => d.filename === pathName)
+      const pathNameWindows =
+        location.pathname === '/' ? '\\default.json' : `${location.pathname}.json`
+      const pathNameUnix = location.pathname === '/' ? '/default.json' : `${location.pathname}.json`
+      const template = data.find((d) => [pathNameWindows, pathNameUnix].includes(d.filename))
       if (template) {
         const content = JSON.parse(template.content)
         setCss(content.css)
