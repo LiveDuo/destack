@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState, useRef } from 'react'
 import { ContentProviderProps } from '../../types'
 import { ToastContainer } from './toast'
 
@@ -12,6 +12,7 @@ const ContentProvider: FC<ContentProviderProps> = ({
   showEditorInProd = false,
   standaloneServer = false,
 }) => {
+  const mounted = useRef<boolean>(false)
   const [css, setCss] = useState<string | undefined>()
   const [html, setHtml] = useState<string | undefined>()
 
@@ -22,18 +23,23 @@ const ContentProvider: FC<ContentProviderProps> = ({
   const [tailwindLoaded, setTailwindLoaded] = useState<boolean>(false)
 
   useEffect(() => {
+    if (mounted.current) return
+
     if (showEditor) {
       import('./initEditor').then((c) => c.initEditor(startServer, standaloneServer))
     } else {
-      const pathName =
-        window.location.pathname === '/' ? '/default.json' : `${window.location.pathname}.json`
-      const template = data.find((d) => d.filename === pathName)
+      const pathNameWindows =
+        location.pathname === '/' ? '\\default.json' : `${location.pathname}.json`
+      const pathNameUnix = location.pathname === '/' ? '/default.json' : `${location.pathname}.json`
+      const template = data.find((d) => [pathNameWindows, pathNameUnix].includes(d.filename))
       if (template) {
         const content = JSON.parse(template.content)
         setCss(content.css)
         setHtml(content.html)
       }
     }
+
+    mounted.current = true
   }, [])
 
   if (showEditor)

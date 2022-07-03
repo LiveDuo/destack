@@ -28,14 +28,14 @@ const uploadFiles = async (req: NextApiRequest): Promise<string[]> => {
   const files = await formParse(form, req)
 
   const urls = Object.values(files).map((f) =>
-    path.join('/', uploadPath, (<formidable.File>f).name ?? ''),
+    path.join(path.sep, uploadPath, (<formidable.File>f).name ?? ''),
   )
   return urls
 }
 export { uploadFiles }
 
 const loadData = async (): Promise<dataType[]> => {
-  const basePath = path.join(rootPath, '/', folderPath)
+  const basePath = path.join(rootPath, folderPath)
   const folderExists = await exists(basePath)
   if (!folderExists) return []
   const files = readdirRecursive(basePath) as string[]
@@ -52,15 +52,15 @@ const loadData = async (): Promise<dataType[]> => {
 export { loadData }
 
 const updateData = async (body: Record<string, string>): Promise<void> => {
-  const basePath = path.join(rootPath, '/', folderPath)
-  const fileExists = await exists(path.join(basePath, '/', body.path))
+  const basePath = path.join(rootPath, folderPath)
+  const fileExists = await exists(path.join(basePath, body.path))
   if (!fileExists) {
-    const folderPathExists = body.path.split('/').slice(0, -1).join('/')
-    const folderExists = await exists(path.join(basePath, '/', folderPathExists))
+    const folderPathExists = body.path.split(path.sep).slice(0, -1).join(path.sep)
+    const folderExists = await exists(path.join(basePath, folderPathExists))
     if (!folderExists) {
-      await fs.promises.mkdir(path.join(basePath, '/', folderPathExists), { recursive: true })
+      await fs.promises.mkdir(path.join(basePath, folderPathExists), { recursive: true })
     }
-    await fs.promises.writeFile(path.join(basePath, '/', body.path), '{}')
+    await fs.promises.writeFile(path.join(basePath, body.path), '{}')
   }
   await fs.promises.writeFile(path.join(basePath, body.path), JSON.stringify(body.data))
 }
