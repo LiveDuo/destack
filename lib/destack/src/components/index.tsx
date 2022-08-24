@@ -44,7 +44,7 @@ const ContentProvider: FC<ContentProviderProps> = ({
 
   if (showEditor)
     return (
-      <div style={{ height: '100%', margin: '0 auto' }}>
+      <div style={{ height: '100%', margin: '0 auto', width: '100%' }}>
         <style>{devStyles}</style>
         <div id="gjs"></div>
       </div>
