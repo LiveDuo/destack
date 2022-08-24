@@ -77,6 +77,7 @@ const editorOptions = {
   selectorManager: { escapeName },
   container: '#gjs',
   height: '100%',
+  width: '100%',
   storageManager: { autoload: false },
   showDevices: false,
   traitsEditor: true,
