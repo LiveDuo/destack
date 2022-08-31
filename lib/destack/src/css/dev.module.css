@@ -109,3 +109,31 @@ span.gjs-pn-btn.fa.fa-mobile {
   outline: none;
   box-shadow: 0 0 0 2pt #c5c5c575;
 }
+
+.gjs-editor-cont {
+  display: flex;
+}
+
+.gjs-editor {
+  display: flex;
+  width: 100%;
+}
+
+.gjs-cv-canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.gjs-pn-panels {
+  display: flex;
+  width: 20%;
+}
+
+.gjs-frame {
+  width: 100%
+}
+
+.sp-container.sp-hidden.sp-light.sp-input-disabled.sp-alpha-enabled.sp-palette-buttons-disabled.sp-initial-disabled.gjs-one-bg.gjs-two-color {
+  display: none;
+}
