@@ -14,10 +14,14 @@ import hyperuiLogo from '../../images/hyperui.png'
 import merakiLogo from '../../images/meraki.png'
 import tailblocksLogo from '../../images/tailblocks.png'
 
+import { loadMerakiUiLightBlocks } from '../../lib/blocks/merakiui-light'
+import { loadTailwindBlocks } from '../../lib/blocks/tailblocks'
+import { loadHyperUiBlocks } from '../../lib/blocks/hyperui'
+
 const themeList = [
-  { name: 'Tailblocks', url: tailblocksLogo },
-  { name: 'Hyper UI', url: hyperuiLogo },
-  { name: 'Meraki UI', url: merakiLogo },
+  { name: 'Tailblocks', url: tailblocksLogo, load: loadTailwindBlocks },
+  { name: 'Hyper UI', url: hyperuiLogo, load: loadHyperUiBlocks },
+  { name: 'Meraki UI', url: merakiLogo, load: loadMerakiUiLightBlocks },
 ]
 
 const colorRegex = new RegExp(
@@ -83,7 +87,7 @@ const getUpdateThemeModal = (editor) => {
   btnEdit.className = pfx + 'btn-prim ' + pfx + 'btn-import'
   btnEdit.style.float = 'right'
   btnEdit.onclick = () => {
-    updateTheme(editor, selectedTheme.name)
+    updateTheme(editor, selectedTheme?.load)
     md.close()
   }
 
@@ -198,8 +202,18 @@ const updateColor = (editor, color) => {
   })
 }
 
-const updateTheme = (editor, color) => {
-  alert('Updating theme...') // TODO
+const updateTheme = (editor, loadTheme) => {
+  if (!loadTheme) return
+
+  // NOTE: just calling getAll once do not work
+  let models = editor.BlockManager.getAll().models
+  while (models.length > 0) {
+    models = editor.BlockManager.getAll().models
+    models.forEach((element) => editor.BlockManager.remove(element.id))
+  }
+  editor.BlockManager.render()
+
+  loadTheme(editor)
 }
 
 export const loadPanels = (editor, isDev) => {

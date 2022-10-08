@@ -898,7 +898,7 @@ const sources = [
   },
 ]
 
-const loadMerakiUiLigthBlocks = (newEditor: { BlockManager: any }): void => {
+const loadMerakiUiLightBlocks = (newEditor: { BlockManager: any }): void => {
   const blockManager = newEditor.BlockManager
 
   sources.forEach((s) => {
@@ -910,4 +910,4 @@ const loadMerakiUiLigthBlocks = (newEditor: { BlockManager: any }): void => {
     })
   })
 }
-export { loadMerakiUiLigthBlocks }
+export { loadMerakiUiLightBlocks }
