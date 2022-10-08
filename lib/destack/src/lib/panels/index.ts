@@ -14,6 +14,7 @@ import hyperuiLogo from '../../images/hyperui.png'
 import merakiLogo from '../../images/meraki.png'
 import tailblocksLogo from '../../images/tailblocks.png'
 
+import { loadBasicBlocks } from '../../lib/blocks/basic'
 import { loadMerakiUiLightBlocks } from '../../lib/blocks/merakiui-light'
 import { loadTailwindBlocks } from '../../lib/blocks/tailblocks'
 import { loadHyperUiBlocks } from '../../lib/blocks/hyperui'
@@ -213,6 +214,7 @@ const updateTheme = (editor, loadTheme) => {
   }
   editor.BlockManager.render()
 
+  loadBasicBlocks(editor)
   loadTheme(editor)
 }
 

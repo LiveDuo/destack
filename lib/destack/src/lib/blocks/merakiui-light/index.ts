@@ -843,7 +843,7 @@ const sources = [
     label: getSvgHtml(b1s),
     // label: 'b2s().outerHTML',
     content: tsm1,
-    category: 'Testimonial',
+    category: 'Testimonials',
     // order: 1
   },
   {
@@ -853,7 +853,7 @@ const sources = [
     label: getSvgHtml(b1s),
     // label: 'b2s().outerHTML',
     content: tsm2,
-    category: 'Testimonial',
+    category: 'Testimonials',
     // order: 1
   },
   {
@@ -863,7 +863,7 @@ const sources = [
     label: getSvgHtml(b1s),
     // label: 'b2s().outerHTML',
     content: tsm3,
-    category: 'Testimonial',
+    category: 'Testimonials',
     // order: 1
   },
   {
@@ -873,7 +873,7 @@ const sources = [
     label: getSvgHtml(b1s),
     // label: 'b2s().outerHTML',
     content: tsm4,
-    category: 'Testimonial',
+    category: 'Testimonials',
     // order: 1
   },
   {
@@ -883,7 +883,7 @@ const sources = [
     label: getSvgHtml(b1s),
     // label: 'b2s().outerHTML',
     content: tsm5,
-    category: 'Testimonial',
+    category: 'Testimonials',
     // order: 1
   },
   {
@@ -893,7 +893,7 @@ const sources = [
     label: getSvgHtml(b1s),
     // label: 'b2s().outerHTML',
     content: tsm6,
-    category: 'Testimonial',
+    category: 'Testimonials',
     // order: 1
   },
 ]
