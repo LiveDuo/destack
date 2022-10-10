@@ -12,7 +12,7 @@ Example in production: [prettyfunnels.com](https://www.prettyfunnels.com/landing
 
 # What's Destack?
 
-It's a tool to build landing pages within your [React](https://reactjs.org/) or [Next.js](https://nextjs.org/) projects. It's powered by [Grapes.js](https://grapesjs.com/) and includes the complete set of blocks from [Tailblocks.cc](https://tailblocks.cc/). Supports asset uploading, form submission and a variaty of Tailwind colors. 
+It's a tool to build landing pages within your [React](https://reactjs.org/) or [Next.js](https://nextjs.org/) projects. It's powered by [Grapes.js](https://grapesjs.com/) and includes the complete set of blocks from [Tailblocks](https://tailblocks.cc/), [Meraki UI](https://merakiui.com/) and [Hyper UI](https://www.hyperui.dev/). Supports asset uploading, form submission and a variaty of Tailwind colors. 
 
 *Destack is a tool to help you stop worrying about the marketing pages and focus on your project.*
 
@@ -20,7 +20,7 @@ It's a tool to build landing pages within your [React](https://reactjs.org/) or 
 
 #### 🧱 Powerful Blocks
 
-There are 92 well designed and heavily functional blocks from the [Tailblocks](https://tailblocks.cc/) project. Supports Tailwind's theme colors ie. Red, Yellow, Green, Blue, Indigo, Purple & Pink.
+There are hundreds of well designed and heavily functional blocks from [Tailblocks](https://tailblocks.cc/), [Meraki UI](https://merakiui.com/) and [Hyper UI](https://www.hyperui.dev/). Supports Tailwind's theme colors ie. Red, Yellow, Green, Blue, Indigo, Purple & Pink.
 
 #### 🃏 Delightful Builder
 
@@ -221,7 +221,9 @@ This project was nothing that was planned and design in depth in advance. Instea
 
 > Next.js 🅧 ➕ Tailwind CSS 🍃 ➕ Grapes.js 🍇 = 💣💣
 
-Please go and show these projects some love (⭐️). Don't forget to check out [Tailblocks.cc](https://tailblocks.cc/), without Mert's amazing designs none of this would have been possible.  
+Please go and show these projects some love (⭐️). 
+
+Don't forget to check out [Tailblocks](https://tailblocks.cc/), [Meraki UI](https://merakiui.com/) and [Hyper UI](https://www.hyperui.dev/), without their amazing open sourced components none of this would have been possible.  
 
 # Contributors
 <a href="https://github.com/liveduo/destack/graphs/contributors">
@@ -231,5 +233,7 @@ Please go and show these projects some love (⭐️). Don't forget to check out 
 Made with [contributors-img](https://contrib.rocks).  
 
 # Upcoming Tasks
-- [ ] Intoduce Destack templates
 - [ ] Custom tailwind.config.js file
+- [ ] Add admin UI as a Next.js route
+- [ ] Migrate to Craft.js (or similar)
+
