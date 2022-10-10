@@ -29,7 +29,7 @@ const deleteFolder = async (folder) => {
     .catch(() => false)
   if (hasData) {
     fs.promises.unlink(templateFilepath)
-    await fs.promises.rmdir(folder, { recursive: true })
+    await fs.promises.rm(folder, { recursive: true })
   }
 }
 exports.deleteFolder = deleteFolder

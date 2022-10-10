@@ -38,6 +38,7 @@
   "devDependencies": {
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^18.0.0",
+    "@rollup/plugin-image": "^2.1.1",
     "@rollup/plugin-node-resolve": "^11.2.1",
     "@types/formidable": "^1.2.2",
     "@types/react": "^17.0.8",
