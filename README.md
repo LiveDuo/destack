@@ -2,6 +2,8 @@
 
 Build landing pages visually right in your React or Next.js projects. Deploy them zero further configuration!
 
+`Update:` Now supports 3 different themes, Tailblocks, Meraki UI and Hyper UI.
+
 Editor preview: [Destack Online Builder](https://destack-page.vercel.app/)
 
 Example in production: [prettyfunnels.com](https://www.prettyfunnels.com/landing)
@@ -15,6 +17,26 @@ Example in production: [prettyfunnels.com](https://www.prettyfunnels.com/landing
 It's a tool to build landing pages within your [React](https://reactjs.org/) or [Next.js](https://nextjs.org/) projects. It's powered by [Grapes.js](https://grapesjs.com/) and includes the complete set of blocks from [Tailblocks](https://tailblocks.cc/), [Meraki UI](https://merakiui.com/) and [Hyper UI](https://www.hyperui.dev/). Supports asset uploading, form submission and a variaty of Tailwind colors. 
 
 *Destack is a tool to help you stop worrying about the marketing pages and focus on your project.*
+
+# Themes
+
+Destack now supports theme selection.
+
+<table border="0">
+
+ <tr>
+    <td width="48%"><img src="https://github.com/LiveDuo/destack/raw/main/assets/theme-modal.png"/>Theme selection</td>
+    <td width="48%"><img src="https://github.com/LiveDuo/destack/raw/main/assets/theme-meraki-ui.png"/>Meraki UI</td>
+ </tr>
+  <tr>
+    <td width="48%"><img src="https://github.com/LiveDuo/destack/raw/main/assets/theme-hyper-ui.png"/>Hyper UI</td>
+    <td width="48%"><img src="https://github.com/LiveDuo/destack/raw/main/assets/theme-tailblocks.png"/>Tailblocks</td>
+ </tr>
+</table>
+
+<p style="margin-top: 40px; margin-bottom: 40px">
+<b>Tip:</b> Change theme by clicking the theme icon. <img align="center" style="margin-left: 8px;" width="80px" src="https://github.com/LiveDuo/destack/raw/main/assets/theme-icon.png"/>
+</p>
 
 # Features
 
