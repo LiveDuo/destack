@@ -29,11 +29,11 @@ Destack now supports theme selection.
     <img src="https://github.com/LiveDuo/destack/raw/main/assets/theme-modal.png"/>    
     Theme selection
 </td>
-    <td width="48%"><img src="https://github.com/LiveDuo/destack/raw/main/assets/theme-meraki-ui.png"/><a href="https://merakiui.com/components">Meraki UI</a></td>
+    <td width="48%"><img src="https://github.com/LiveDuo/destack/raw/main/assets/theme-meraki-ui.png"/>Meraki UI (<a href="https://merakiui.com/components">Components</a>)</td>
  </tr>
   <tr>
-    <td width="48%"><img src="https://github.com/LiveDuo/destack/raw/main/assets/theme-hyper-ui.png"/><a href="https://www.hyperui.dev/components/marketing">Hyper UI</a></td>
-    <td width="48%"><img src="https://github.com/LiveDuo/destack/raw/main/assets/theme-tailblocks.png"/><a href="https://tailblocks.cc/">Tailblocks</a></td>
+    <td width="48%"><img src="https://github.com/LiveDuo/destack/raw/main/assets/theme-hyper-ui.png"/>Hyper UI (<a href="https://www.hyperui.dev/components/marketing">Components</a>)</td>
+    <td width="48%"><img src="https://github.com/LiveDuo/destack/raw/main/assets/theme-tailblocks.png"/>Tailblocks (<a href="https://tailblocks.cc/">Components</a>)</td>
  </tr>
 </table>
 
