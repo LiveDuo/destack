@@ -2,11 +2,11 @@
 
 Build landing pages visually right in your React or Next.js projects. Deploy them zero further configuration!
 
-| `📣 Update` Now supports 3 different themes: [Tailblocks](https://tailblocks.cc/), [Meraki UI](https://merakiui.com/) and [Hyper UI](https://www.hyperui.dev/).
+`📣 Update` Now supports 3 different themes: [Tailblocks](https://tailblocks.cc/), [Meraki UI](https://merakiui.com/) and [Hyper UI](https://www.hyperui.dev/).
 
-Editor preview: [Destack Online Builder](https://destack-page.vercel.app/)
+`👩‍🎨 Editor preview` [Destack Online Builder](https://destack-page.vercel.app/)
 
-Example in production: [prettyfunnels.com](https://www.prettyfunnels.com/landing)
+`🏭 Example in production` [prettyfunnels.com](https://www.prettyfunnels.com/landing)
 
 <!-- <img src="https://github.com/LiveDuo/destack/raw/main/assets/logo_icons.png" width="100%"> -->
 
