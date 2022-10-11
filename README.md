@@ -2,7 +2,7 @@
 
 Build landing pages visually right in your React or Next.js projects. Deploy them zero further configuration!
 
-`Update:` Now supports 3 different themes, Tailblocks, Meraki UI and Hyper UI.
+| `📣 Update` Now supports 3 different themes: [Tailblocks](https://tailblocks.cc/), [Meraki UI](https://merakiui.com/) and [Hyper UI](https://www.hyperui.dev/).
 
 Editor preview: [Destack Online Builder](https://destack-page.vercel.app/)
 
@@ -34,8 +34,8 @@ Destack now supports theme selection.
  </tr>
 </table>
 
-<p style="margin-top: 40px; margin-bottom: 40px">
-<b>Tip:</b> Change theme by clicking the theme icon. <img align="center" style="margin-left: 8px;" width="80px" src="https://github.com/LiveDuo/destack/raw/main/assets/theme-icon.png"/>
+<p>
+<b>Tip:</b> Change theme by clicking the theme icon. <img align="center" width="80px" src="https://github.com/LiveDuo/destack/raw/main/assets/theme-icon.png"/>
 </p>
 
 # Features
