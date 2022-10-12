@@ -67,7 +67,7 @@ const updateData = async (body: Record<string, string>): Promise<void> => {
 export { updateData }
 
 const handleData = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
-  if (!development) return res.status(401).json({ error: 'Not allowed' })
+  // if (!development) return res.status(401).json({ error: 'Not allowed' })
 
   if (req.method === 'GET') {
     const data = await loadData()

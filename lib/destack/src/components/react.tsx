@@ -16,9 +16,10 @@ const ContentProviderReact: FC = () => {
     if (mounted.current) return
 
     const pathName =
-      location.pathname === '/' || location.pathname === ''
+      location.pathname.replace('/edit', '') === '' ||
+      location.pathname.replace('/edit', '') === '/'
         ? 'default.json'
-        : `${window.location.pathname.substring(1)}.json`
+        : `${window.location.pathname.replace('/edit', '').replace('/', '')}.json`
     if (!isDev) {
       fetch(`/data/${pathName}`)
         .then((response) => response.text())
