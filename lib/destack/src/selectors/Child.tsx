@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Element } from '@craftjs/core'
-import { useNode, useEditor } from '@craftjs/core'
+import { useNode } from '@craftjs/core'
 
 import { HTMLElement, TextNode } from 'node-html-parser'
 
@@ -109,20 +109,15 @@ const Child: React.FC<ChildProps> = ({ root, d = 0 }) => {
 export default Child
 
 const Component = ({ children }) => {
-  const { enabled } = useEditor((state) => ({ enabled: state.options.enabled }))
   const { connectors } = useNode((node) => ({ selected: node.events.selected }))
-  return (
-    <div ref={connectors.connect} enabled={enabled}>
-      {children}
-    </div>
-  )
+  return <div ref={(ref) => connectors.connect(ref as HTMLDivElement)}>{children}</div>
 }
 export { Component }
 
 const ToolbarComponent = ({ title }) => {
   return (
     <ToolbarSection title={title}>
-      <ToolbarItem full={true} type="text" />
+      <ToolbarItem full={true} type="text" propKey="width" index={0} />
     </ToolbarSection>
   )
 }

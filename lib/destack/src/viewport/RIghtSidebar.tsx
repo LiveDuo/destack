@@ -6,9 +6,6 @@ import { Layers } from '@craftjs/layers'
 import { SidebarItem } from './SidebarItem'
 import { Toolbar } from '../toolbar/index'
 
-import LayerIcon from '@material-ui/icons/Layers'
-import CustomizeIcon from '@material-ui/icons/Edit'
-
 export const Sidebar = () => {
   const [layersVisible, setLayerVisible] = useState(true)
   const [toolbarVisible, setToolbarVisible] = useState(true)
@@ -20,7 +17,6 @@ export const Sidebar = () => {
     <div className="sidebar transition bg-white w-64">
       <div className="flex flex-col h-full">
         <SidebarItem
-          icon={CustomizeIcon}
           title="Customize"
           height={!layersVisible ? 'full' : '55%'}
           visible={toolbarVisible}
@@ -29,7 +25,6 @@ export const Sidebar = () => {
           <Toolbar />
         </SidebarItem>
         <SidebarItem
-          icon={LayerIcon}
           title="Layers"
           height={!toolbarVisible ? 'full' : '45%'}
           visible={layersVisible}

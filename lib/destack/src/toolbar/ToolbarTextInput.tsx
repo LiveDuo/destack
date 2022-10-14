@@ -1,48 +1,6 @@
-import { TextField, makeStyles, InputAdornment } from '@material-ui/core'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { ChromePicker } from 'react-color'
-
-const useStyles = makeStyles({
-  root: {
-    padding: 0,
-    width: '100%',
-    // background:"#efeff1",
-    borderRadius: '100px',
-    border: 'none',
-    margin: 0,
-    marginTop: 7,
-    position: 'relative',
-  },
-  input: {
-    background: '#efeff1',
-    borderRadius: '100px',
-    fontSize: '12px',
-    paddingLeft: '28px',
-    paddingBottom: '8px',
-    paddingTop: '8px',
-    margin: 0,
-  }, // a style rule
-  // notchedOutline: {
-  //   borderColor:'transparent',
-  //   borderRadius: "100px"
-  // }
-})
-
-const useLabelStyles = makeStyles({
-  root: {
-    color: 'rgb(128,128,128)',
-  },
-  formControl: {
-    fontSize: '18px',
-    borderRadius: '100px',
-    paddingLeft: '0px',
-    paddingTop: '3px',
-    marginBottom: '3px',
-    position: 'relative',
-    left: '-12px',
-  }, // a style rule
-})
 
 export type ToolbarTextInputProps = {
   prefix?: string
@@ -61,8 +19,6 @@ export const ToolbarTextInput = ({
 }: ToolbarTextInputProps) => {
   const [internalValue, setInternalValue] = useState(value)
   const [active, setActive] = useState(false)
-  const classes = useStyles({})
-  const labelClasses = useLabelStyles({})
   useEffect(() => {
     let val = value
     setInternalValue(val)
@@ -100,8 +56,7 @@ export const ToolbarTextInput = ({
           />
         </div>
       ) : null}
-      <TextField
-        label={label}
+      <input
         style={{ margin: 0, width: '100%' }}
         value={internalValue || ''}
         onKeyDown={(e) => {
@@ -111,36 +66,6 @@ export const ToolbarTextInput = ({
         }}
         onChange={(e) => {
           setInternalValue(e.target.value)
-        }}
-        margin="dense"
-        variant="filled"
-        InputProps={{
-          classes,
-          disableUnderline: true,
-          startAdornment: ['color', 'bg'].includes(type) ? (
-            <InputAdornment
-              position="start"
-              style={{
-                position: 'absolute',
-                marginTop: '2px',
-                marginRight: '8px',
-              }}
-            >
-              <div
-                className="w-2 h-2 inline-block rounded-full relative"
-                style={{
-                  left: '15px',
-                  background: internalValue,
-                }}
-              />
-            </InputAdornment>
-          ) : null,
-        }}
-        InputLabelProps={{
-          classes: {
-            ...labelClasses,
-          },
-          shrink: true,
         }}
         {...props}
       />

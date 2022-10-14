@@ -5,9 +5,9 @@ import { ROOT_NODE } from '@craftjs/utils'
 
 import ReactDOM from 'react-dom'
 
-import ArrowUp from '@material-ui/icons/ArrowUpward'
-import Delete from '@material-ui/icons/Delete'
-import Move from '@material-ui/icons/MoveToInbox'
+import { ArrowSmallUpIcon } from '@heroicons/react/24/outline'
+import { TrashIcon } from '@heroicons/react/24/outline'
+import { ArrowsPointingOutIcon } from '@heroicons/react/24/outline'
 
 export const RenderNode = ({ render }) => {
   const { id } = useNode()
@@ -76,7 +76,7 @@ export const RenderNode = ({ render }) => {
       {isHover || isActive
         ? ReactDOM.createPortal(
             <div
-              ref={currentRef}
+              ref={() => currentRef}
               className="px-2 py-2 text-white bg-primary fixed flex items-center leading-3 text-xs"
               style={{
                 height: '30px',
@@ -88,8 +88,8 @@ export const RenderNode = ({ render }) => {
             >
               <h2 className="flex-1 mr-4">{name}</h2>
               {moveable ? (
-                <a className="mr-2 cursor-move" ref={drag}>
-                  <Move style={{ width: '15px', height: '15px' }} />
+                <a className="mr-2 cursor-move" ref={() => drag}>
+                  <ArrowsPointingOutIcon className="h-4 w-4" />
                 </a>
               ) : null}
               {id !== ROOT_NODE && (
@@ -99,7 +99,7 @@ export const RenderNode = ({ render }) => {
                     actions.selectNode(parent)
                   }}
                 >
-                  <ArrowUp style={{ width: '15px', height: '15px' }} />
+                  <ArrowSmallUpIcon className="h-4 w-4" />
                 </a>
               )}
               {deletable ? (
@@ -110,7 +110,7 @@ export const RenderNode = ({ render }) => {
                     actions.delete(id)
                   }}
                 >
-                  <Delete style={{ width: '15px', height: '15px' }} />
+                  <TrashIcon className="h-4 w-4" />
                 </a>
               ) : null}
             </div>,
