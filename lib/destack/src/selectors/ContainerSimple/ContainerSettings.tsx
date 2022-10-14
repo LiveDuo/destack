@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { ToolbarSection, ToolbarItem } from '../../editor'
-import { ToolbarRadio } from '../../editor/Toolbar/ToolbarRadio'
+import { ToolbarRadio } from '../../toolbar/ToolbarRadio'
 
 export const ContainerSettings = () => {
   return (

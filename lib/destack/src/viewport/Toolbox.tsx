@@ -11,15 +11,15 @@ import styled from 'styled-components'
 // import { Container } from '../../selectors/Container';
 // import { Text } from '../../selectors/Text';
 // import { Video } from '../../selectors/Video';
-import Banner1 from '../../selectors/Banner1'
-import Banner2 from '../../selectors/Banner2'
+import Banner1 from '../selectors/Banner1'
+import Banner2 from '../selectors/Banner2'
 
 // import video from '../../selectors/Video/video.png';
-import bannerImage1 from '../../selectors/Banner1/preview.png'
-import bannerImage2 from '../../selectors/Banner2/preview.png'
+import bannerImage1 from '../selectors/Banner1/preview.png'
+import bannerImage2 from '../selectors/Banner2/preview.png'
 
 // import SquareIcon from '../../../public/icons/square.svg';
-import { SidebarItem } from '../Viewport/Sidebar/SidebarItem'
+import { SidebarItem } from './Sidebar/SidebarItem'
 
 import SquareIcon from '@material-ui/icons/CropSquare'
 

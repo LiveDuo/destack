@@ -5,12 +5,7 @@ import { Resizable } from 're-resizable'
 import React, { useRef, useEffect, useState, useCallback } from 'react'
 import styled from 'styled-components'
 
-import {
-  isPercentage,
-  pxToPercent,
-  percentToPx,
-  getElementDimensions,
-} from '../../utils/dimensions'
+import { isPercentage, pxToPercent, percentToPx, getElementDimensions } from '../utils/dimensions'
 
 const Indicators = styled.div<{ bound?: 'row' | 'column' }>`
   position: absolute;
