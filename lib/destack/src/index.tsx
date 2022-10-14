@@ -1,22 +1,16 @@
-// Grapesjs implementation
-// import 'regenerator-runtime/runtime'
-
-// export { ContentProvider } from './components/index'
-// export { ContentProviderReact } from './components/react'
-
 import { Editor, Frame, Element } from '@craftjs/core'
 import { createTheme } from '@material-ui/core'
 import { ThemeProvider } from '@material-ui/core/styles'
 import React from 'react'
 
-import { Viewport, RenderNode } from '../components/editor'
-import { Container } from '../components/selectors'
-import { ContainerSimple } from '../components/selectors'
-import Child from '../components/selectors/Child'
-import { Video } from '../components/selectors/Video'
-import Banner1 from '../components/selectors/Banner1'
-import Banner2 from '../components/selectors/Banner2'
-import { Text } from '../components/selectors/Text'
+import { Viewport, RenderNode } from './components/editor'
+import { Container } from './components/selectors'
+import { ContainerSimple } from './components/selectors'
+import Child from './components/selectors/Child'
+import { Video } from './components/selectors/Video'
+import Banner1 from './components/selectors/Banner1'
+import Banner2 from './components/selectors/Banner2'
+import { Text } from './components/selectors/Text'
 
 const theme = createTheme({
   typography: {

@@ -128,11 +128,11 @@ export const Resizer = ({ propKey, children, ...props }: any) => {
 
     const width = percentToPx(
       nodeWidth,
-      resizable.current && getElementDimensions(resizable.current.resizable.parentElement).width,
+      resizable.current && getElementDimensions(resizable.current.resizable?.parentElement).width,
     )
     const height = percentToPx(
       nodeHeight,
-      resizable.current && getElementDimensions(resizable.current.resizable.parentElement).height,
+      resizable.current && getElementDimensions(resizable.current.resizable?.parentElement).height,
     )
 
     setInternalDimensions({
@@ -207,7 +207,7 @@ export const Resizer = ({ propKey, children, ...props }: any) => {
         updateInternalDimensionsInPx()
         e.preventDefault()
         e.stopPropagation()
-        const dom = resizable.current.resizable
+        const dom = resizable.current?.resizable
         if (!dom) return
         editingDimensions.current = {
           width: dom.getBoundingClientRect().width,
@@ -216,21 +216,21 @@ export const Resizer = ({ propKey, children, ...props }: any) => {
         isResizing.current = true
       }}
       onResize={(_, __, ___, d) => {
-        const dom = resizable.current.resizable
+        const dom = resizable.current?.resizable
         let { width, height }: any = getUpdatedDimensions(d.width, d.height)
         if (isPercentage(nodeWidth))
-          width = pxToPercent(width, getElementDimensions(dom.parentElement).width) + '%'
+          width = pxToPercent(width, getElementDimensions(dom?.parentElement).width) + '%'
         else width = `${width}px`
 
         if (isPercentage(nodeHeight))
-          height = pxToPercent(height, getElementDimensions(dom.parentElement).height) + '%'
+          height = pxToPercent(height, getElementDimensions(dom?.parentElement).height) + '%'
         else height = `${height}px`
 
-        if (isPercentage(width) && dom.parentElement.style.width === 'auto') {
+        if (isPercentage(width) && dom?.parentElement.style.width === 'auto') {
           width = editingDimensions.current.width + d.width + 'px'
         }
 
-        if (isPercentage(height) && dom.parentElement.style.height === 'auto') {
+        if (isPercentage(height) && dom?.parentElement.style.height === 'auto') {
           height = editingDimensions.current.height + d.height + 'px'
         }
 
