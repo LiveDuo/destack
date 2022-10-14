@@ -12,6 +12,8 @@ import Banner1 from './components/selectors/Banner1'
 import Banner2 from './components/selectors/Banner2'
 import { Text } from './components/selectors/Text'
 
+import './styles/app.css'
+
 const theme = createTheme({
   typography: {
     fontFamily: ['acumin-pro', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'].join(','),
