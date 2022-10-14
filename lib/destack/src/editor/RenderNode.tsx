@@ -68,7 +68,7 @@ export const RenderNode = ({ render }) => {
     }
   }, [dom, isActive, isHover])
 
-  const getPos = useCallback((dom: HTMLElement) => {
+  const getPos = useCallback((dom: HTMLElement | null) => {
     const { top, left, bottom } = dom ? dom.getBoundingClientRect() : { top: 0, left: 0, bottom: 0 }
     return {
       top: `${top > 0 ? top : bottom}px`,
@@ -86,10 +86,12 @@ export const RenderNode = ({ render }) => {
   }, [dom, getPos])
 
   useEffect(() => {
-    document.querySelector('.craftjs-renderer').addEventListener('scroll', scroll)
+    const el = document.querySelector('.craftjs-renderer')
+
+    el?.addEventListener('scroll', scroll)
 
     return () => {
-      document.querySelector('.craftjs-renderer').removeEventListener('scroll', scroll)
+      el?.removeEventListener('scroll', scroll)
     }
   }, [scroll])
 

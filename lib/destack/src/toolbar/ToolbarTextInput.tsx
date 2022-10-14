@@ -48,7 +48,7 @@ export type ToolbarTextInputProps = {
   prefix?: string
   label?: string
   type: string
-  onChange?: (value: any) => void
+  onChange: (value: any) => void
   value?: any
 }
 export const ToolbarTextInput = ({

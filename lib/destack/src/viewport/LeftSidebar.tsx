@@ -74,14 +74,14 @@ export const Toolbox = () => {
           visible={toolbarVisible}
           onChange={(val) => setToolbarVisible(val)}
         >
-          <div ref={(ref) => create(ref, <Banner1 />)}>
+          <div ref={(ref) => create(ref as HTMLElement, <Banner1 />)}>
             <Tooltip title="Banner 1" placement="right">
               <Item className="m-2 pb-2 cursor-pointer block" move>
                 <img src={bannerImage1} width="600px" height="300px" />
               </Item>
             </Tooltip>
           </div>
-          <div ref={(ref) => create(ref, <Banner2 />)}>
+          <div ref={(ref) => create(ref as HTMLElement, <Banner2 />)}>
             <Tooltip title="Banner 2" placement="right">
               <Item className="m-2 pb-2 cursor-pointer block" move>
                 <img src={bannerImage2} width="600px" height="300px" />
@@ -97,14 +97,14 @@ export const Toolbox = () => {
           visible={toolbar2Visible}
           onChange={(val) => setToolbar2Visible(val)}
         >
-          <div ref={(ref) => create(ref, <Banner1 />)}>
+          <div ref={(ref) => create(ref as HTMLElement, <Banner1 />)}>
             <Tooltip title="CTA 1" placement="right">
               <Item className="m-2 pb-2 cursor-pointer block" move>
                 <img src={bannerImage1} width="600px" height="300px" />
               </Item>
             </Tooltip>
           </div>
-          <div ref={(ref) => create(ref, <Banner2 />)}>
+          <div ref={(ref) => create(ref as HTMLElement, <Banner2 />)}>
             <Tooltip title="CTA 2" placement="right">
               <Item className="m-2 pb-2 cursor-pointer block" move>
                 <img src={bannerImage2} width="600px" height="300px" />
