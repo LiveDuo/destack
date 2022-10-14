@@ -10,7 +10,7 @@ import {
   pxToPercent,
   percentToPx,
   getElementDimensions,
-} from '../../utils/numToMeasurement'
+} from '../../utils/dimensions'
 
 const Indicators = styled.div<{ bound?: 'row' | 'column' }>`
   position: absolute;

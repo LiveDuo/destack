@@ -13,14 +13,11 @@ export const pxToPercent = (value: any, comparativeValue: number) => {
 export const getElementDimensions = (element: HTMLElement) => {
   const computedStyle = getComputedStyle(element)
 
-  let height = element.clientHeight,
-    width = element.clientWidth // width with padding
-
+  let height = element.clientHeight
   height -= parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom)
+
+  let width = element.clientWidth // width with padding
   width -= parseFloat(computedStyle.paddingLeft) + parseFloat(computedStyle.paddingRight)
 
-  return {
-    width,
-    height,
-  }
+  return { width, height }
 }
