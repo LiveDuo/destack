@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 import { SidebarItem } from './SidebarItem'
 
-import { Toolbar } from '../toolbar'
+import { Toolbar } from '../toolbar/index'
 
 import LayerIcon from '@material-ui/icons/Layers'
 import CustomizeIcon from '@material-ui/icons/Edit'

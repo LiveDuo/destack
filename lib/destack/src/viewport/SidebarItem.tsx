@@ -22,7 +22,7 @@ const Chevron = styled.a<{ visible: boolean }>`
 export type SidebarItemProps = {
   title: string
   height?: string
-  icon: string
+  icon: React.FC
   visible?: boolean
   onChange?: (bool: boolean) => void
 }
@@ -37,7 +37,7 @@ const HeaderDiv = styled.div`
 
 export const SidebarItem: React.FC<SidebarItemProps> = ({
   visible,
-  icon,
+  icon: Icon,
   title,
   children,
   height,
@@ -54,7 +54,7 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
         }`}
       >
         <div className="flex-1 flex items-center">
-          {React.createElement(icon, { className: 'w-4 h-4 mr-2' })}
+          <Icon />
           <h2 className="text-xs uppercase">{title}</h2>
         </div>
         <Chevron visible={visible}>

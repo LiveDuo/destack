@@ -76,7 +76,7 @@ export const Header = () => {
               <Item
                 disabled={!query}
                 onClick={() => {
-                  console.log(query.serialize())
+                  console.log(JSON.parse(query.serialize()))
                   alert('Export done!')
                 }}
               >
