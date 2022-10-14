@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 import { HTMLElement, TextNode } from 'node-html-parser'
 
-import { ToolbarSection, ToolbarItem } from '../editor'
+import { ToolbarSection, ToolbarItem } from '../toolbar'
 
 import { ContainerSimple } from './ContainerSimple'
 import { Container } from './Container'
