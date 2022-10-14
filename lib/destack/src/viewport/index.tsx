@@ -3,8 +3,8 @@ import cx from 'classnames'
 import React, { useEffect } from 'react'
 
 import { Header } from './Header'
-import { Sidebar } from './Sidebar'
-import { Toolbox } from './Toolbox'
+// import { Sidebar as RightSidebar } from './RightSidebar'
+import { Toolbox as LeftSidebar } from './LeftSidebar'
 
 export const Viewport: React.FC = ({ children }) => {
   const {
@@ -40,7 +40,7 @@ export const Viewport: React.FC = ({ children }) => {
   return (
     <div className="viewport">
       <div className={cx(['flex h-full overflow-hidden flex-row w-full fixed'])}>
-        <Toolbox />
+        <LeftSidebar />
         <div className="page-container flex flex-1 h-full flex-col">
           <Header />
           <div
@@ -56,7 +56,7 @@ export const Viewport: React.FC = ({ children }) => {
             </div>
           </div>
         </div>
-        {/* <Sidebar /> */}
+        {/* <RightSidebar /> */}
       </div>
     </div>
   )

@@ -19,7 +19,7 @@ import bannerImage1 from '../selectors/Banner1/preview.png'
 import bannerImage2 from '../selectors/Banner2/preview.png'
 
 // import SquareIcon from '../../../public/icons/square.svg';
-import { SidebarItem } from './Sidebar/SidebarItem'
+import { SidebarItem } from './SidebarItem'
 
 import SquareIcon from '@material-ui/icons/CropSquare'
 
