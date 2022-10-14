@@ -4,9 +4,9 @@ import React, { useEffect, useRef, useCallback } from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 
-import ArrowUp from '../../public/icons/arrow-up.svg'
-import Delete from '../../public/icons/delete.svg'
-import Move from '../../public/icons/move.svg'
+import ArrowUp from '@material-ui/icons/ArrowUpward'
+import Delete from '@material-ui/icons/Delete'
+import Move from '@material-ui/icons/MoveToInbox'
 
 const IndicatorDiv = styled.div`
   height: 30px;
