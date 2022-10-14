@@ -5,36 +5,9 @@ import { ROOT_NODE } from '@craftjs/utils'
 
 import ReactDOM from 'react-dom'
 
-import styled from 'styled-components'
-
 import ArrowUp from '@material-ui/icons/ArrowUpward'
 import Delete from '@material-ui/icons/Delete'
 import Move from '@material-ui/icons/MoveToInbox'
-
-const IndicatorDiv = styled.div`
-  height: 30px;
-  margin-top: -29px;
-  font-size: 12px;
-  line-height: 12px;
-
-  svg {
-    fill: #fff;
-    width: 15px;
-    height: 15px;
-  }
-`
-
-const Btn = styled.a`
-  padding: 0 0px;
-  opacity: 0.9;
-  display: flex;
-  align-items: center;
-  > div {
-    position: relative;
-    top: -50%;
-    left: -50%;
-  }
-`
 
 export const RenderNode = ({ render }) => {
   const { id } = useNode()
@@ -102,10 +75,12 @@ export const RenderNode = ({ render }) => {
     <>
       {isHover || isActive
         ? ReactDOM.createPortal(
-            <IndicatorDiv
+            <div
               ref={currentRef}
-              className="px-2 py-2 text-white bg-primary fixed flex items-center"
+              className="px-2 py-2 text-white bg-primary fixed flex items-center leading-3 text-xs"
               style={{
+                height: '30px',
+                marginTop: '-29px',
                 left: getPos(dom).left,
                 top: getPos(dom).top,
                 zIndex: 9999,
@@ -113,32 +88,32 @@ export const RenderNode = ({ render }) => {
             >
               <h2 className="flex-1 mr-4">{name}</h2>
               {moveable ? (
-                <Btn className="mr-2 cursor-move" ref={drag}>
-                  <Move />
-                </Btn>
+                <a className="mr-2 cursor-move" ref={drag}>
+                  <Move style={{ width: '15px', height: '15px' }} />
+                </a>
               ) : null}
               {id !== ROOT_NODE && (
-                <Btn
+                <a
                   className="mr-2 cursor-pointer"
                   onClick={() => {
                     actions.selectNode(parent)
                   }}
                 >
-                  <ArrowUp />
-                </Btn>
+                  <ArrowUp style={{ width: '15px', height: '15px' }} />
+                </a>
               )}
               {deletable ? (
-                <Btn
+                <a
                   className="cursor-pointer"
                   onMouseDown={(e: React.MouseEvent) => {
                     e.stopPropagation()
                     actions.delete(id)
                   }}
                 >
-                  <Delete />
-                </Btn>
+                  <Delete style={{ width: '15px', height: '15px' }} />
+                </a>
               ) : null}
-            </IndicatorDiv>,
+            </div>,
             document.querySelector('.page-container'),
           )
         : null}
