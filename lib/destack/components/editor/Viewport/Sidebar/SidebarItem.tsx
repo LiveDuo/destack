@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-// import Arrow from '../../../../public/icons/arrow.svg';
-const Arrow = () => null
+import Arrow from '@material-ui/icons/KeyboardArrowUp'
 
 const SidebarItemDiv = styled.div<{ visible?: boolean; height?: string }>`
   height: ${(props) =>
@@ -15,8 +14,8 @@ const SidebarItemDiv = styled.div<{ visible?: boolean; height?: string }>`
 const Chevron = styled.a<{ visible: boolean }>`
   transform: rotate(${(props) => (props.visible ? 180 : 0)}deg);
   svg {
-    width: 8px;
-    height: 8px;
+    width: 18px;
+    height: 18px;
   }
 `
 

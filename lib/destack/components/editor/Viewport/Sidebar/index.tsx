@@ -5,12 +5,10 @@ import styled from 'styled-components'
 
 import { SidebarItem } from './SidebarItem'
 
-// import CustomizeIcon from '../../../../public/icons/customize.svg';
-// import LayerIcon from '../../../../public/icons/layers.svg';
 import { Toolbar } from '../../Toolbar'
 
-const LayerIcon = () => null
-const CustomizeIcon = () => null
+import LayerIcon from '@material-ui/icons/Layers'
+import CustomizeIcon from '@material-ui/icons/Edit'
 
 export const SidebarDiv = styled.div<{ enabled: boolean }>`
   width: 280px;

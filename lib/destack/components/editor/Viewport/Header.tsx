@@ -4,14 +4,10 @@ import cx from 'classnames'
 import React from 'react'
 import styled from 'styled-components'
 
-// import Checkmark from '../../../public/icons/check.svg';
-// import Customize from '../../../public/icons/customize.svg';
-// import RedoSvg from '../../../public/icons/toolbox/redo.svg';
-// import UndoSvg from '../../../public/icons/toolbox/undo.svg';
-const Checkmark = () => null
-const Customize = () => null
-const RedoSvg = () => null
-const UndoSvg = () => null
+import Checkmark from '@material-ui/icons/Check'
+import Customize from '@material-ui/icons/Edit'
+import RedoSvg from '@material-ui/icons/Redo'
+import UndoSvg from '@material-ui/icons/Undo'
 
 const HeaderDiv = styled.div`
   width: 100%;

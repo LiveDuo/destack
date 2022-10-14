@@ -20,7 +20,8 @@ import bannerImage2 from '../../selectors/Banner2/preview.png'
 
 // import SquareIcon from '../../../public/icons/square.svg';
 import { SidebarItem } from '../Viewport/Sidebar/SidebarItem'
-const SquareIcon = () => null
+
+import SquareIcon from '@material-ui/icons/CropSquare'
 
 const ToolboxDiv = styled.div<{ enabled: boolean }>`
   transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
