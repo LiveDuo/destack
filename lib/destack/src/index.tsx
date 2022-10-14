@@ -26,7 +26,6 @@ function ContentProvider() {
   return (
     <ThemeProvider theme={theme}>
       <div className="h-full h-screen">
-        <link rel="stylesheet" href={'https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css'} />
         <Editor resolver={resolver} enabled={false} onRender={RenderNode}>
           <Viewport>
             <Frame>

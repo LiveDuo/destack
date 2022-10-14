@@ -1,4 +1,3 @@
-require('./styles/index.module.css')
 export { getStaticProps } from 'destack/build/server'
 import { ContentProvider } from 'destack'
 

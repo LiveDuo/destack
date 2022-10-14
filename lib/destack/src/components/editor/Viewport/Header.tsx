@@ -81,7 +81,7 @@ export const Header = () => {
               'transition cursor-pointer',
               {
                 'bg-green-400': enabled,
-                'bg-blue-400': !enabled,
+                'bg-primary': !enabled,
               },
             ])}
             onClick={() => {
