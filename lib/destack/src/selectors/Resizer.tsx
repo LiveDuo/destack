@@ -4,7 +4,7 @@ import { useNode } from '@craftjs/core'
 
 import { Resizable } from 're-resizable'
 
-export const Resizer = () => {
+export const Resizer = ({ children }: any) => {
   const { connectors, node } = useNode((node) => ({ node }))
   const { width, height } = node.data.props
 
@@ -12,5 +12,9 @@ export const Resizer = () => {
     if (ref) connectors.connect(ref.resizable)
   }
 
-  return <Resizable enable={{}} ref={(ref) => onLoad(ref)} size={{ width, height }} />
+  return (
+    <Resizable enable={{}} ref={(ref) => onLoad(ref)} size={{ width, height }}>
+      {children}
+    </Resizable>
+  )
 }
