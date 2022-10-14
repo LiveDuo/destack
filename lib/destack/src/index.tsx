@@ -22,15 +22,17 @@ function ContentProvider() {
       <Editor resolver={resolver} enabled={false} onRender={RenderNode}>
         <Viewport>
           <Frame>
-            <Element
-              canvas
-              is={Container}
-              width="800px"
-              height="800px"
-              background={{ r: 255, g: 255, b: 255, a: 1 }}
-              padding={['0', '0', '0', '0']}
-              custom={{ displayName: 'App' }}
-            ></Element>
+            <div className="bg-white">
+              <Element
+                canvas
+                is={Container}
+                width="800px"
+                height="800px"
+                background={{ r: 255, g: 255, b: 255, a: 1 }}
+                padding={['0', '0', '0', '0']}
+                custom={{ displayName: 'App' }}
+              />
+            </div>
           </Frame>
         </Viewport>
       </Editor>
