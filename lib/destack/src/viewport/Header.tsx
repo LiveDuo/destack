@@ -29,8 +29,10 @@ export const Header = () => {
           <div className="flex-1 flex">
             <Tooltip title="Undo" placement="bottom">
               <a
-                className={`hover:opacity-50 ${
-                  query.history.canUndo() ? 'cursor-pointer' : 'cursor-not-allowed'
+                className={` ${
+                  query.history.canUndo()
+                    ? 'hover:opacity-50 cursor-pointer'
+                    : 'opacity-50 cursor-not-allowed'
                 } p-2`}
                 onClick={actions.history.undo}
               >
@@ -39,8 +41,10 @@ export const Header = () => {
             </Tooltip>
             <Tooltip title="Redo" placement="bottom">
               <a
-                className={`hover:opacity-50 ${
-                  query.history.canRedo() ? 'cursor-pointer' : 'cursor-not-allowed'
+                className={` ${
+                  query.history.canRedo()
+                    ? 'hover:opacity-50 cursor-pointer'
+                    : 'opacity-50 cursor-not-allowed'
                 } p-2`}
                 onClick={actions.history.redo}
               >
