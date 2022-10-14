@@ -1,8 +1,7 @@
+import React from 'react'
+
 import { useEditor } from '@craftjs/core'
 import { Tooltip } from '@material-ui/core'
-import cx from 'classnames'
-import React from 'react'
-import styled from 'styled-components'
 
 import Checkmark from '@material-ui/icons/Check'
 import Customize from '@material-ui/icons/Edit'
@@ -10,99 +9,74 @@ import RedoSvg from '@material-ui/icons/Redo'
 import UndoSvg from '@material-ui/icons/Undo'
 import Export from '@material-ui/icons/CloudDownload'
 
-const HeaderDiv = styled.div`
-  width: 100%;
-  height: 45px;
-  z-index: 99999;
-  position: relative;
-  padding: 0px 10px;
-  background: #d4d4d4;
-  display: flex;
-`
-
-const Btn = styled.a`
-  display: flex;
-  align-items: center;
-  padding: 5px 15px;
-  border-radius: 3px;
-  color: #fff;
-  font-size: 13px;
-  svg {
-    margin-right: 6px;
-    width: 12px;
-    height: 12px;
-    fill: #fff;
-    opacity: 0.9;
-  }
-`
-
-const Item = styled.a<{ disabled?: boolean }>`
-  margin-right: 10px;
-  cursor: pointer;
-  svg {
-    width: 20px;
-    height: 20px;
-    fill: #707070;
-  }
-  ${(props) =>
-    props.disabled &&
-    `
-    opacity:0.5;
-    cursor: not-allowed;
-  `}
-`
-
 export const Header = () => {
   const { state, query, actions } = useEditor((state, query) => ({ state, query }))
-
   const enabled = state.options.enabled
 
+  const onExport = () => {
+    console.log(JSON.parse(query.serialize()))
+    alert('Export done!')
+  }
+
+  const togglePreview = () => {
+    actions.setOptions((o) => (o.enabled = !enabled))
+  }
+
   return (
-    <HeaderDiv className="header text-white transition w-full">
-      <div className="items-center flex w-full px-4 justify-end">
+    <div className="transition w-full bg-gray-300">
+      <div className="flex px-4 py-2 justify-end">
         {enabled && (
           <div className="flex-1 flex">
             <Tooltip title="Undo" placement="bottom">
-              <Item disabled={!query.history.canUndo()} onClick={() => actions.history.undo()}>
+              <a
+                className={`hover:opacity-50 ${
+                  query.history.canUndo() ? 'cursor-pointer' : 'cursor-not-allowed'
+                } p-2`}
+                onClick={actions.history.undo}
+              >
                 <UndoSvg />
-              </Item>
+              </a>
             </Tooltip>
             <Tooltip title="Redo" placement="bottom">
-              <Item disabled={!query.history.canRedo()} onClick={() => actions.history.redo()}>
+              <a
+                className={`hover:opacity-50 ${
+                  query.history.canRedo() ? 'cursor-pointer' : 'cursor-not-allowed'
+                } p-2`}
+                onClick={actions.history.redo}
+              >
                 <RedoSvg />
-              </Item>
+              </a>
             </Tooltip>
             <Tooltip title="Export" placement="bottom">
-              <Item
-                disabled={!query}
-                onClick={() => {
-                  console.log(JSON.parse(query.serialize()))
-                  alert('Export done!')
-                }}
+              <a
+                className={`hover:opacity-50 ${
+                  query ? 'cursor-pointer' : 'cursor-not-allowed'
+                } p-2`}
+                onClick={onExport}
               >
                 <Export />
-              </Item>
+              </a>
             </Tooltip>
           </div>
         )}
         <div className="flex">
-          <Btn
-            className={cx([
-              'transition cursor-pointer',
-              {
-                'bg-green-600': enabled,
-                'bg-primary': !enabled,
-              },
-            ])}
-            onClick={() => {
-              actions.setOptions((options) => (options.enabled = !enabled))
-            }}
-          >
-            {enabled ? <Checkmark /> : <Customize />}
-            {enabled ? 'Preview' : 'Edit'}
-          </Btn>
+          {enabled ? (
+            <a
+              className="flex bg-green-600 text-white rounded py-2 px-4 transition cursor-pointer"
+              onClick={togglePreview}
+            >
+              <Checkmark style={{ marginRight: '8px', width: '16px' }} /> Preview
+            </a>
+          ) : (
+            <a
+              className="flex bg-primary text-white rounded py-2 px-4 transition cursor-pointer"
+              onClick={togglePreview}
+            >
+              <Customize style={{ marginRight: '8px', width: '16px' }} /> Edit
+            </a>
+          )}
         </div>
       </div>
-    </HeaderDiv>
+    </div>
   )
 }

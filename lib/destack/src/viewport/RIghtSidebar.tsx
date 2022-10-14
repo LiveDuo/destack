@@ -1,10 +1,11 @@
+import React, { useState } from 'react'
+
 import { useEditor } from '@craftjs/core'
 import { Layers } from '@craftjs/layers'
-import React, { useState } from 'react'
+
 import styled from 'styled-components'
 
 import { SidebarItem } from './SidebarItem'
-
 import { Toolbar } from '../toolbar/index'
 
 import LayerIcon from '@material-ui/icons/Layers'
@@ -32,7 +33,7 @@ export const Sidebar = () => {
           title="Customize"
           height={!layersVisible ? 'full' : '55%'}
           visible={toolbarVisible}
-          onChange={(val) => setToolbarVisible(val)}
+          onChange={(v) => setToolbarVisible(v)}
         >
           <Toolbar />
         </SidebarItem>
@@ -41,9 +42,9 @@ export const Sidebar = () => {
           title="Layers"
           height={!toolbarVisible ? 'full' : '45%'}
           visible={layersVisible}
-          onChange={(val) => setLayerVisible(val)}
+          onChange={(v) => setLayerVisible(v)}
         >
-          <div className="">
+          <div>
             <Layers expandRootOnLoad={true} />
           </div>
         </SidebarItem>

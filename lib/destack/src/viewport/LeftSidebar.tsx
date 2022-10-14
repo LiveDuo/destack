@@ -1,24 +1,16 @@
+import React, { useState } from 'react'
+
 import { useEditor } from '@craftjs/core'
 import { Tooltip } from '@material-ui/core'
-import React, { useState } from 'react'
+
 import styled from 'styled-components'
 
-// import ButtonSvg from '../../../public/icons/toolbox/button.svg';
-// import SquareSvg from '../../../public/icons/toolbox/rectangle.svg';
-// import TypeSvg from '../../../public/icons/toolbox/text.svg';
-// import YoutubeSvg from '../../../public/icons/toolbox/video-line.svg';
-// import { Button } from '../../selectors/Button';
-// import { Container } from '../../selectors/Container';
-// import { Text } from '../../selectors/Text';
-// import { Video } from '../../selectors/Video';
 import Banner1 from '../selectors/Banner1'
 import Banner2 from '../selectors/Banner2'
 
-// import video from '../../selectors/Video/video.png';
 import bannerImage1 from '../selectors/Banner1/preview.png'
 import bannerImage2 from '../selectors/Banner2/preview.png'
 
-// import SquareIcon from '../../../public/icons/square.svg';
 import { SidebarItem } from './SidebarItem'
 
 import SquareIcon from '@material-ui/icons/CropSquare'
@@ -29,63 +21,33 @@ const ToolboxDiv = styled.div<{ enabled: boolean }>`
   ${(props) => (!props.enabled ? `opacity: 0;` : '')}
 `
 
-const Item = styled.a<{ move?: boolean }>`
-  svg {
-    width: 22px;
-    height: 22px;
-    fill: #707070;
-  }
-  ${(props) =>
-    props.move &&
-    `
-    cursor: move;
-  `}
-`
-
 export const Toolbox = () => {
-  const {
-    enabled,
-    connectors: { create },
-  } = useEditor((state) => ({
-    enabled: state.options.enabled,
-  }))
+  const { enabled, connectors } = useEditor(({ options }) => ({ enabled: options.enabled }))
 
   const [toolbarVisible, setToolbarVisible] = useState(true)
   const [toolbar2Visible, setToolbar2Visible] = useState(true)
 
   return (
-    <ToolboxDiv
-      enabled={enabled && enabled}
-      className="toolbox transition w-48 h-full flex flex-col bg-white"
-    >
+    <ToolboxDiv enabled={enabled} className="toolbox transition w-48 h-full flex flex-col bg-white">
       <div className="flex flex-1 flex-col items-center pt-3">
-        {/* <div ref={(ref) => create(ref, <Video />)}>
-          <Tooltip title="Video" placement="right">
-            <Item className="m-2 pb-2 cursor-pointer block" move>
-              <img src={video} width="600px" height="300px"/>
-            </Item>
-          </Tooltip>
-        </div> */}
-
         <SidebarItem
           icon={SquareIcon}
           title="Banners"
-          // height={'full'}
           visible={toolbarVisible}
-          onChange={(val) => setToolbarVisible(val)}
+          onChange={(v) => setToolbarVisible(v)}
         >
-          <div ref={(ref) => create(ref as HTMLElement, <Banner1 />)}>
+          <div ref={(ref) => connectors.create(ref as HTMLElement, <Banner1 />)}>
             <Tooltip title="Banner 1" placement="right">
-              <Item className="m-2 pb-2 cursor-pointer block" move>
+              <a className="cursor-move m-2 pb-2 cursor-pointer block" move>
                 <img src={bannerImage1} width="600px" height="300px" />
-              </Item>
+              </a>
             </Tooltip>
           </div>
-          <div ref={(ref) => create(ref as HTMLElement, <Banner2 />)}>
+          <div ref={(ref) => connectors.create(ref as HTMLElement, <Banner2 />)}>
             <Tooltip title="Banner 2" placement="right">
-              <Item className="m-2 pb-2 cursor-pointer block" move>
+              <a className="cursor-move m-2 pb-2 cursor-pointer block" move>
                 <img src={bannerImage2} width="600px" height="300px" />
-              </Item>
+              </a>
             </Tooltip>
           </div>
         </SidebarItem>
@@ -93,22 +55,21 @@ export const Toolbox = () => {
         <SidebarItem
           icon={SquareIcon}
           title="CTA"
-          // height={'full'}
           visible={toolbar2Visible}
-          onChange={(val) => setToolbar2Visible(val)}
+          onChange={(v) => setToolbar2Visible(v)}
         >
-          <div ref={(ref) => create(ref as HTMLElement, <Banner1 />)}>
+          <div ref={(ref) => connectors.create(ref as HTMLElement, <Banner1 />)}>
             <Tooltip title="CTA 1" placement="right">
-              <Item className="m-2 pb-2 cursor-pointer block" move>
+              <a className="m-2 pb-2 cursor-pointer block" move>
                 <img src={bannerImage1} width="600px" height="300px" />
-              </Item>
+              </a>
             </Tooltip>
           </div>
-          <div ref={(ref) => create(ref as HTMLElement, <Banner2 />)}>
+          <div ref={(ref) => connectors.create(ref as HTMLElement, <Banner2 />)}>
             <Tooltip title="CTA 2" placement="right">
-              <Item className="m-2 pb-2 cursor-pointer block" move>
+              <a className="m-2 pb-2 cursor-pointer block" move>
                 <img src={bannerImage2} width="600px" height="300px" />
-              </Item>
+              </a>
             </Tooltip>
           </div>
         </SidebarItem>

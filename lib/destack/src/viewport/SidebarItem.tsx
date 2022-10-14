@@ -27,14 +27,6 @@ export type SidebarItemProps = {
   onChange?: (bool: boolean) => void
 }
 
-const HeaderDiv = styled.div`
-  color: #615c5c;
-  height: 45px;
-  svg {
-    fill: #707070;
-  }
-`
-
 export const SidebarItem: React.FC<SidebarItemProps> = ({
   visible,
   icon: Icon,
@@ -45,22 +37,21 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
 }) => {
   return (
     <SidebarItemDiv visible={visible} height={height} className="flex flex-col">
-      <HeaderDiv
+      <div
         onClick={() => {
           if (onChange) onChange(!visible)
         }}
-        className={`cursor-pointer bg-white border-b last:border-b-0 flex items-center px-2 ${
+        className={`h-12 cursor-pointer bg-white border-b last:border-b-0 flex items-center px-2 ${
           visible ? 'shadow-sm' : ''
         }`}
       >
         <div className="flex-1 flex items-center">
-          <Icon />
-          <h2 className="text-xs uppercase">{title}</h2>
+          <Icon /> <h2 className="text-xs uppercase">{title}</h2>
         </div>
         <Chevron visible={visible}>
           <Arrow />
         </Chevron>
-      </HeaderDiv>
+      </div>
       {visible ? <div className="w-full flex-1 overflow-auto">{children}</div> : null}
     </SidebarItemDiv>
   )
