@@ -8,7 +8,6 @@ import { RenderNode } from './editor/RenderNode'
 import { Container } from './selectors/Container'
 import { ContainerSimple } from './selectors/ContainerSimple'
 import Child from './selectors/Child'
-import { Video } from './selectors/Video'
 import Banner1 from './selectors/Banner1'
 import Banner2 from './selectors/Banner2'
 import { Text } from './selectors/Text'
@@ -21,7 +20,7 @@ const theme = createTheme({
   },
 })
 
-const resolver = { Container, ContainerSimple, Banner1, Banner2, Element, Video, Text, Child }
+const resolver = { Container, ContainerSimple, Banner1, Banner2, Element, Text, Child }
 
 function ContentProvider() {
   return (

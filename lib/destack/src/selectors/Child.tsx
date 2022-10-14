@@ -1,15 +1,15 @@
+import React from 'react'
+
 import { Element } from '@craftjs/core'
 import { useNode, useEditor } from '@craftjs/core'
-import React from 'react'
-import styled from 'styled-components'
 
 import { HTMLElement, TextNode } from 'node-html-parser'
-
-import { ToolbarSection, ToolbarItem } from '../toolbar/index'
 
 import { ContainerSimple } from './ContainerSimple'
 import { Container } from './Container'
 import { Text } from './Text'
+
+import { ToolbarSection, ToolbarItem } from '../toolbar/index'
 
 interface ChildProps {
   root: HTMLElement
@@ -108,21 +108,13 @@ const Child: React.FC<ChildProps> = ({ root, d = 0 }) => {
 }
 export default Child
 
-const ComponentDiv = styled.div<any>`
-  width: 100%;
-  height: 100%;
-  > div {
-    height: 100%;
-  }
-`
-
 const Component = ({ children }) => {
   const { enabled } = useEditor((state) => ({ enabled: state.options.enabled }))
   const { connectors } = useNode((node) => ({ selected: node.events.selected }))
   return (
-    <ComponentDiv ref={connectors.connect} enabled={enabled}>
+    <div ref={connectors.connect} enabled={enabled}>
       {children}
-    </ComponentDiv>
+    </div>
   )
 }
 export { Component }

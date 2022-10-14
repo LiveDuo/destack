@@ -145,7 +145,7 @@ export const Resizer = ({ propKey, children, ...props }: any) => {
   }, [])
 
   const getUpdatedDimensions = (width, height) => {
-    const dom = resizable.current.resizable
+    const dom = resizable.current?.resizable
     if (!dom) return
 
     const currentWidth = parseInt(editingDimensions.current.width),

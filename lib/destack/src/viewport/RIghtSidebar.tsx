@@ -3,20 +3,11 @@ import React, { useState } from 'react'
 import { useEditor } from '@craftjs/core'
 import { Layers } from '@craftjs/layers'
 
-import styled from 'styled-components'
-
 import { SidebarItem } from './SidebarItem'
 import { Toolbar } from '../toolbar/index'
 
 import LayerIcon from '@material-ui/icons/Layers'
 import CustomizeIcon from '@material-ui/icons/Edit'
-
-export const SidebarDiv = styled.div<{ enabled: boolean }>`
-  width: 280px;
-  opacity: ${(props) => (props.enabled ? 1 : 0)};
-  background: #fff;
-  margin-right: ${(props) => (props.enabled ? 0 : -280)}px;
-`
 
 export const Sidebar = () => {
   const [layersVisible, setLayerVisible] = useState(true)
@@ -26,7 +17,7 @@ export const Sidebar = () => {
   }))
 
   return (
-    <SidebarDiv enabled={enabled} className="sidebar transition bg-white w-2">
+    <div className="sidebar transition bg-white w-64">
       <div className="flex flex-col h-full">
         <SidebarItem
           icon={CustomizeIcon}
@@ -49,6 +40,6 @@ export const Sidebar = () => {
           </div>
         </SidebarItem>
       </div>
-    </SidebarDiv>
+    </div>
   )
 }

@@ -1,23 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
 
 import Arrow from '@material-ui/icons/KeyboardArrowUp'
-
-const SidebarItemDiv = styled.div<{ visible?: boolean; height?: string }>`
-  height: ${(props) =>
-    props.visible && props.height && props.height !== 'full' ? `${props.height}` : 'auto'};
-  width: 100%;
-  flex: ${(props) => (props.visible && props.height && props.height === 'full' ? `1` : 'unset')};
-  color: #545454;
-`
-
-const Chevron = styled.a<{ visible: boolean }>`
-  transform: rotate(${(props) => (props.visible ? 180 : 0)}deg);
-  svg {
-    width: 18px;
-    height: 18px;
-  }
-`
 
 export type SidebarItemProps = {
   title: string
@@ -32,11 +15,10 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
   icon: Icon,
   title,
   children,
-  height,
   onChange,
 }) => {
   return (
-    <SidebarItemDiv visible={visible} height={height} className="flex flex-col">
+    <div className="flex flex-col w-full">
       <div
         onClick={() => {
           if (onChange) onChange(!visible)
@@ -48,11 +30,11 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
         <div className="flex-1 flex items-center">
           <Icon /> <h2 className="text-xs uppercase">{title}</h2>
         </div>
-        <Chevron visible={visible}>
+        <a style={{ transform: `rotate(${visible ? 180 : 0}deg)` }}>
           <Arrow />
-        </Chevron>
+        </a>
       </div>
       {visible ? <div className="w-full flex-1 overflow-auto">{children}</div> : null}
-    </SidebarItemDiv>
+    </div>
   )
 }
