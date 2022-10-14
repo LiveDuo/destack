@@ -11,29 +11,25 @@ import { ArrowsPointingOutIcon } from '@heroicons/react/24/outline'
 
 export const RenderNode = ({ render }) => {
   const { id } = useNode()
-  const { actions, query, isActive } = useEditor((_, query) => ({
+  const { actions, isActive } = useEditor((_, query) => ({
     isActive: query.getEvent('selected').contains(id),
   }))
 
-  const {
-    isHover,
-    dom,
-    name,
-    moveable,
-    deletable,
-    connectors: { drag },
-    parent,
-  } = useNode((node) => {
-    return {
-      isHover: node.events.hovered,
-      dom: node.dom,
-      name: node.data.custom.displayName || node.data.displayName,
-      moveable: node.id !== 'ROOT',
-      deletable: node.id !== 'ROOT',
-      parent: node.data.parent,
-      props: node.data.props,
-    }
-  })
+  const { isHover, dom, name, showFocus, moveable, deletable, connectors, parent } = useNode(
+    (node) => {
+      const displayName = node.data.custom?.displayName
+      return {
+        isHover: node.events.hovered,
+        dom: node.dom,
+        name: displayName || node.data.displayName,
+        showFocus: node.id !== 'ROOT' && displayName !== 'App',
+        moveable: node.id !== 'ROOT' && displayName !== 'App',
+        deletable: node.id !== 'ROOT' && displayName !== 'App',
+        parent: node.data.parent,
+        props: node.data.props,
+      }
+    },
+  )
 
   const currentRef = useRef<HTMLDivElement>()
 
@@ -88,11 +84,11 @@ export const RenderNode = ({ render }) => {
             >
               <h2 className="flex-1 mr-4">{name}</h2>
               {moveable ? (
-                <a className="mr-2 cursor-move" ref={() => drag}>
+                <a className="mr-2 cursor-move" ref={() => connectors.drag}>
                   <ArrowsPointingOutIcon className="h-4 w-4" />
                 </a>
               ) : null}
-              {id !== ROOT_NODE && (
+              {showFocus && (
                 <a
                   className="mr-2 cursor-pointer"
                   onClick={() => {
