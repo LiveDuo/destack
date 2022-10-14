@@ -46,16 +46,12 @@ export const Viewport: React.FC = ({ children }) => {
           <div
             className={cx([
               'craftjs-renderer flex-1 h-full w-full transition pb-8 overflow-auto',
-              {
-                'bg-renderer-gray': enabled,
-              },
+              {},
             ])}
             ref={(ref) => connectors.select(connectors.hover(ref, null), null)}
           >
             <div className="relative flex-col flex items-center pt-8">{children}</div>
-            <div
-              className={'flex items-center justify-center w-full pt-6 text-xs text-light-gray-2'}
-            >
+            <div className={'flex items-center justify-center w-full pt-6 text-xs text-gray-400'}>
               <a href="https://www.netlify.com">This site is powered by Netlify</a>
             </div>
           </div>

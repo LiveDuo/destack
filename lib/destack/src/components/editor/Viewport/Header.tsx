@@ -80,7 +80,7 @@ export const Header = () => {
             className={cx([
               'transition cursor-pointer',
               {
-                'bg-green-400': enabled,
+                'bg-green-600': enabled,
                 'bg-primary': !enabled,
               },
             ])}
