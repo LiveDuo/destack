@@ -8,6 +8,7 @@ import Checkmark from '@material-ui/icons/Check'
 import Customize from '@material-ui/icons/Edit'
 import RedoSvg from '@material-ui/icons/Redo'
 import UndoSvg from '@material-ui/icons/Undo'
+import Export from '@material-ui/icons/CloudDownload'
 
 const HeaderDiv = styled.div`
   width: 100%;
@@ -52,11 +53,9 @@ const Item = styled.a<{ disabled?: boolean }>`
 `
 
 export const Header = () => {
-  const { enabled, canUndo, canRedo, actions } = useEditor((state, query) => ({
-    enabled: state.options.enabled,
-    canUndo: query.history.canUndo(),
-    canRedo: query.history.canRedo(),
-  }))
+  const { state, query, actions } = useEditor((state, query) => ({ state, query }))
+
+  const enabled = state.options.enabled
 
   return (
     <HeaderDiv className="header text-white transition w-full">
@@ -64,13 +63,24 @@ export const Header = () => {
         {enabled && (
           <div className="flex-1 flex">
             <Tooltip title="Undo" placement="bottom">
-              <Item disabled={!canUndo} onClick={() => actions.history.undo()}>
+              <Item disabled={!query.history.canUndo()} onClick={() => actions.history.undo()}>
                 <UndoSvg />
               </Item>
             </Tooltip>
             <Tooltip title="Redo" placement="bottom">
-              <Item disabled={!canRedo} onClick={() => actions.history.redo()}>
+              <Item disabled={!query.history.canRedo()} onClick={() => actions.history.redo()}>
                 <RedoSvg />
+              </Item>
+            </Tooltip>
+            <Tooltip title="Export" placement="bottom">
+              <Item
+                disabled={!query}
+                onClick={() => {
+                  console.log(query.serialize())
+                  alert('Export done!')
+                }}
+              >
+                <Export />
               </Item>
             </Tooltip>
           </div>
