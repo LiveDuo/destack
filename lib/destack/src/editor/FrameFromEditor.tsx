@@ -49,8 +49,7 @@ const FrameFromEditor = () => {
 
 const RenderFromEditor = () => {
   const onStateChange = (e) => {
-    console.log('saving', !!e)
-    // saveTemplateDebounce(e)
+    saveTemplateDebounce(e)
   }
 
   return (

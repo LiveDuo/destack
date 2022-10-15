@@ -53,7 +53,14 @@ const saveTemplate = async (state, standaloneServer) => {
   })
 }
 
+// NOTE: prevent saving on first load
+// would be better to somehow check from editor state
+let stateChanged = false
+
 const saveTemplateDebounce = debounce((e) => {
-  saveTemplate(e, false)
+  if (stateChanged) {
+    saveTemplate(e, false)
+  }
+  stateChanged = true
 })
 export { saveTemplateDebounce }
