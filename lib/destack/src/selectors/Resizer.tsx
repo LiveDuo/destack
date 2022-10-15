@@ -18,6 +18,7 @@ export const Resizer = ({ children }: any) => {
       ref={(ref) => onLoad(ref)}
       size={{ width: 'unset', height }}
       minWidth={800}
+      style={{ backgroundColor: 'white' }}
     >
       {children}
     </Resizable>
