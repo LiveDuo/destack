@@ -18,7 +18,7 @@ import './styles/app.css'
 
 const resolver = { Container, ContainerSimple, Banner1, Banner2, Element, Text, Child }
 
-const showEditor = true
+const showEditor = false
 
 function ContentProvider() {
   return (
