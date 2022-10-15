@@ -15,7 +15,7 @@ export const Header = () => {
   const enabled = state.options.enabled
 
   const onExport = () => {
-    console.log(JSON.parse(query.serialize()))
+    console.log(query.serialize())
     alert('Export done!')
   }
 
