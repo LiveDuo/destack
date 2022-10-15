@@ -27,7 +27,7 @@ const TextEditable = ({ className, text }: Partial<TextProps>) => {
       onChange={(e) => {
         actions.setProp((prop) => (prop.text = e.target.value), 500)
       }} // use true to disable editing
-      tagName="h2" // Use a custom HTML tag (uses a div by default)
+      tagName="span" // Use a custom HTML tag (uses a div by default)
       className={className}
     />
   )
