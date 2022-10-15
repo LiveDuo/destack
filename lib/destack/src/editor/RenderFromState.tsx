@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react'
 import Banner1 from '../selectors/Banner1'
 import { ContainerSimple } from '../selectors/ContainerSimple'
 
-import { loadTemplate } from '../utils/fetch'
-
 const Components = {
   Banner1: Banner1,
   Container: ContainerSimple,
@@ -31,16 +29,11 @@ const parse = (json, nodeId: string, parentNodeId?: string) => {
   }
 }
 
-const RenderFromState = ({ data: _data }) => {
+const RenderFromState = ({ data }) => {
   const [json, setJson] = useState(null)
 
   useEffect(() => {
-    loadTemplate(false)
-      .then((d) => {
-        const data = JSON.parse(d as string)
-        setJson(data)
-      })
-      .catch((e) => console.error(e))
+    setJson(JSON.parse(data[0].content))
   }, [])
 
   return json && parse(json, 'ROOT')

@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import RenderFromState from './editor/RenderFromState'
 import RenderFromEditor from './editor/FrameFromEditor'
 
 import './styles/app.css'
 
-const showEditor = true
-
 const ContentProvider = ({ data }) => {
+  useEffect(() => {
+    console.log(data)
+  }, [])
+
   return (
     <div className="h-full h-screen">
-      {showEditor ? <RenderFromEditor /> : <RenderFromState data={data} />}
+      {!data ? <RenderFromEditor /> : <RenderFromState data={data} />}
     </div>
   )
 }
