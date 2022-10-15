@@ -13,9 +13,9 @@ import { ToolbarSection, ToolbarItem } from '../toolbar/index'
 interface ChildProps {
   root: HTMLElement
   editable: boolean
-  d?: number
+  d?: number[]
 }
-const Child: React.FC<ChildProps> = ({ root, d = 0, editable }) => {
+const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
   // console.log(`depth=${d}`)
   if (!root || root?.childNodes.length === 0) return null
 
@@ -23,58 +23,60 @@ const Child: React.FC<ChildProps> = ({ root, d = 0, editable }) => {
     <>
       {Array.from(root?.childNodes).map((h, i) => {
         const r = h as HTMLElement
-        const id = Math.random().toString() // `${d}${i}`
-        // console.log(`key=${d}${i} type=${r.nodeType} tag=${r.tagName}`)
+        const id = `${r.rawText}-${r.rawAttrs}`
+        // const id = `(${d.join(', ')}), (${i})`
+        // console.log(id)
+        const n = d[d.length - 1] + 1
 
         if (r.nodeType === 1) {
           if (r.tagName === 'DIV')
             return (
               <div className={r.classNames} id={id}>
-                <Child root={r} d={d + 1} editable={editable} />
+                <Child root={r} d={d.concat(n)} editable={editable} />
               </div>
             )
           else if (r.tagName === 'H1')
             return (
               <h1 className={r.classNames} id={id}>
-                <Child root={r} d={d + 1} editable={editable} />
+                <Child root={r} d={d.concat(n)} editable={editable} />
               </h1>
             )
           else if (r.tagName === 'H2')
             return (
               <h2 className={r.classNames} id={id}>
-                <Child root={r} d={d + 1} editable={editable} />
+                <Child root={r} d={d.concat(n)} editable={editable} />
               </h2>
             )
           else if (r.tagName === 'P')
             return (
               <p className={r.classNames} id={id}>
-                <Child root={r} d={d + 1} editable={editable} />
+                <Child root={r} d={d.concat(n)} editable={editable} />
               </p>
             )
           else if (r.tagName === 'A')
             return (
               // <Element is={ContainerSimple} id={id}>
               <a className={r.classNames}>
-                <Child root={r} d={d + 1} editable={editable} />
+                <Child root={r} d={d.concat(n)} editable={editable} />
               </a>
               // </Element>
             )
           else if (r.tagName === 'SPAN')
             return (
               <span className={r.classNames} id={id}>
-                <Child root={r} d={d + 1} editable={editable} />
+                <Child root={r} d={d.concat(n)} editable={editable} />
               </span>
             )
           else if (r.tagName === 'STRONG')
             return (
               <strong className={r.classNames} id={id}>
-                <Child root={r} d={d + 1} editable={editable} />
+                <Child root={r} d={d.concat(n)} editable={editable} />
               </strong>
             )
           else if (r.tagName === 'SECTION')
             return (
               <section className={r.classNames} id={id}>
-                <Child root={r} d={d + 1} editable={editable} />
+                <Child root={r} d={d.concat(n)} editable={editable} />
               </section>
             )
           else return <p>Unknown container</p>

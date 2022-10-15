@@ -6,14 +6,19 @@ import { Resizable } from 're-resizable'
 
 export const Resizer = ({ children }: any) => {
   const { connectors, node } = useNode((node) => ({ node }))
-  const { width, height } = node.data.props
+  const { height } = node.data.props
 
   const onLoad = (ref) => {
     if (ref) connectors.connect(ref.resizable)
   }
 
   return (
-    <Resizable enable={{}} ref={(ref) => onLoad(ref)} size={{ width, height }}>
+    <Resizable
+      enable={{}}
+      ref={(ref) => onLoad(ref)}
+      size={{ width: 'unset', height }}
+      minWidth={800}
+    >
       {children}
     </Resizable>
   )

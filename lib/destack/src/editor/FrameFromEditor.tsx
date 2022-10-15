@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Editor, Frame, Element, useEditor } from '@craftjs/core'
 
@@ -16,45 +16,52 @@ import { loadTemplate, saveTemplateDebounce } from '../utils/fetch'
 
 const resolver = { Container, ContainerSimple, Banner1, Banner2, Element, Text, Child }
 
-const FrameFromEditor = () => {
+const FrameFromEditor = ({ data }) => {
   const { actions } = useEditor()
 
   useEffect(() => {
-    loadTemplate(false)
-      .then((d) => {
-        const data = JSON.parse(d as string)
-        actions.deserialize(data) // NOTE: also loads the data in the editor
-      })
-      .catch((e) => console.error(e))
+    if (data) {
+      const content = JSON.parse(data[0].content)
+      actions.deserialize(content)
+    } else {
+      loadTemplate(false)
+        .then((d) => {
+          const content = JSON.parse(d as string)
+          actions.deserialize(content) // NOTE: also loads the data in the editor
+        })
+        .catch((e) => console.error(e))
+    }
   }, [])
 
-  return (
+  return !data ? (
     <Viewport>
       <Frame>
-        <div className="bg-white">
-          <Element
-            canvas
-            is={Container}
-            width="800px"
-            height="800px"
-            background={{ r: 255, g: 255, b: 255, a: 1 }}
-            padding={['0', '0', '0', '0']}
-            custom={{ displayName: 'App' }}
-          />
-        </div>
+        <Element
+          canvas
+          is={Container}
+          width="100%"
+          height="800px"
+          background={{ r: 255, g: 255, b: 255, a: 1 }}
+          padding={['0', '0', '0', '0']}
+          custom={{ displayName: 'App' }}
+        />
       </Frame>
     </Viewport>
+  ) : (
+    <div className="page-container">
+      <Frame />
+    </div>
   )
 }
 
-const RenderFromEditor = () => {
+const RenderFromEditor = ({ data }) => {
   const onStateChange = (e) => {
     saveTemplateDebounce(e)
   }
 
   return (
     <Editor resolver={resolver} enabled={false} onRender={RenderNode} onNodesChange={onStateChange}>
-      <FrameFromEditor />
+      <FrameFromEditor data={data} />
     </Editor>
   )
 }

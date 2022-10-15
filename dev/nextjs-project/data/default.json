@@ -1,1 +1,176 @@
-{"ROOT":{"type":"div","isCanvas":false,"props":{"className":"bg-white"},"displayName":"div","custom":{},"hidden":false,"nodes":["KyNvL3f9DT"],"linkedNodes":{}},"KyNvL3f9DT":{"type":{"resolvedName":"Container"},"isCanvas":true,"props":{"flexDirection":"column","alignItems":"flex-center","justifyContent":"flex-start","fillSpace":"no","padding":["0","0","0","0"],"margin":["0","0","0","0"],"shadow":0,"radius":0,"width":"800px","height":"800px","background":{"r":255,"g":255,"b":255,"a":1}},"displayName":"Container","custom":{"displayName":"App"},"parent":"ROOT","hidden":false,"nodes":["byqb6gshiG"],"linkedNodes":{}},"byqb6gshiG":{"type":{"resolvedName":"Banner1"},"isCanvas":false,"props":{},"displayName":"Banner 1","custom":{},"parent":"KyNvL3f9DT","hidden":false,"nodes":[],"linkedNodes":{"0.33447949819738065":"wHkLl2796j","0.7649568723048552":"gpeknxd0TF","0.9952072028529031":"c7SefYNsOU","0.5082873936458887":"yNcrR-EIV3","0.11748503848630931":"ApTAcrU5Ol","0.2897489282348853":"YVmRc2lzSj","0.8733685774243951":"a2itiB33ln","0.4301775886902306":"d0aLPEsOlC","0.3154581133877128":"gALzG9lnyz","0.6132420570344201":"r40vLF_Mb1"}},"wHkLl2796j":{"type":{"resolvedName":"ContainerSimple"},"isCanvas":false,"props":{},"displayName":"Container","custom":{},"parent":"byqb6gshiG","hidden":false,"nodes":["asJ6M44SPY"],"linkedNodes":{}},"asJ6M44SPY":{"type":{"resolvedName":"Text"},"isCanvas":false,"props":{"textAlign":"left","margin":[0,0,0,0],"text":"\n        Understand User Flow.\n        ","editable":true},"displayName":"Text","custom":{},"parent":"wHkLl2796j","hidden":false,"nodes":[],"linkedNodes":{}},"gpeknxd0TF":{"type":{"resolvedName":"ContainerSimple"},"isCanvas":false,"props":{},"displayName":"Container","custom":{},"parent":"byqb6gshiG","hidden":false,"nodes":["ApXdx26rmJ"],"linkedNodes":{}},"ApXdx26rmJ":{"type":{"resolvedName":"Text"},"isCanvas":false,"props":{"textAlign":"left","margin":[0,0,0,0],"text":"\n          Increase Conversion.\n        ","editable":true},"displayName":"Text","custom":{},"parent":"gpeknxd0TF","hidden":false,"nodes":[],"linkedNodes":{}},"c7SefYNsOU":{"type":{"resolvedName":"ContainerSimple"},"isCanvas":false,"props":{},"displayName":"Container","custom":{},"parent":"byqb6gshiG","hidden":false,"nodes":["UqsYwrGF0x"],"linkedNodes":{}},"UqsYwrGF0x":{"type":{"resolvedName":"Text"},"isCanvas":false,"props":{"textAlign":"left","margin":[0,0,0,0],"text":"\n        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo\n        tenetur fuga ducimus numquam ea!\n      ","editable":true},"displayName":"Text","custom":{},"parent":"c7SefYNsOU","hidden":false,"nodes":[],"linkedNodes":{}},"yNcrR-EIV3":{"type":{"resolvedName":"ContainerSimple"},"isCanvas":false,"props":{},"displayName":"Container","custom":{},"parent":"byqb6gshiG","hidden":false,"nodes":["QfT1v8kD9V"],"linkedNodes":{}},"QfT1v8kD9V":{"type":{"resolvedName":"Text"},"isCanvas":false,"props":{"textAlign":"left","margin":[0,0,0,0],"text":"\n          Get Started\n        ","editable":true},"displayName":"Text","custom":{},"parent":"yNcrR-EIV3","hidden":false,"nodes":[],"linkedNodes":{}},"ApTAcrU5Ol":{"type":{"resolvedName":"ContainerSimple"},"isCanvas":false,"props":{},"displayName":"Container","custom":{},"parent":"byqb6gshiG","hidden":false,"nodes":["gDq70sSKh1"],"linkedNodes":{}},"gDq70sSKh1":{"type":{"resolvedName":"Text"},"isCanvas":false,"props":{"textAlign":"left","margin":[0,0,0,0],"text":"\n          Learn More\n        ","editable":true},"displayName":"Text","custom":{},"parent":"ApTAcrU5Ol","hidden":false,"nodes":[],"linkedNodes":{}},"YVmRc2lzSj":{"type":{"resolvedName":"ContainerSimple"},"isCanvas":false,"props":{},"displayName":"Container","custom":{},"parent":"byqb6gshiG","hidden":false,"nodes":["Q-Y6ub7pY4"],"linkedNodes":{}},"Q-Y6ub7pY4":{"type":{"resolvedName":"Text"},"isCanvas":false,"props":{"textAlign":"left","margin":[0,0,0,0],"text":"\n        Understand User Flow.\n        ","editable":true},"displayName":"Text","custom":{},"parent":"YVmRc2lzSj","hidden":false,"nodes":[],"linkedNodes":{}},"a2itiB33ln":{"type":{"resolvedName":"ContainerSimple"},"isCanvas":false,"props":{},"displayName":"Container","custom":{},"parent":"byqb6gshiG","hidden":false,"nodes":["MJFLVrbesU"],"linkedNodes":{}},"MJFLVrbesU":{"type":{"resolvedName":"Text"},"isCanvas":false,"props":{"textAlign":"left","margin":[0,0,0,0],"text":"\n          Increase Conversion.\n        ","editable":true},"displayName":"Text","custom":{},"parent":"a2itiB33ln","hidden":false,"nodes":[],"linkedNodes":{}},"d0aLPEsOlC":{"type":{"resolvedName":"ContainerSimple"},"isCanvas":false,"props":{},"displayName":"Container","custom":{},"parent":"byqb6gshiG","hidden":false,"nodes":["42OvdljVzx"],"linkedNodes":{}},"42OvdljVzx":{"type":{"resolvedName":"Text"},"isCanvas":false,"props":{"textAlign":"left","margin":[0,0,0,0],"text":"\n        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo\n        tenetur fuga ducimus numquam ea!\n      ","editable":true},"displayName":"Text","custom":{},"parent":"d0aLPEsOlC","hidden":false,"nodes":[],"linkedNodes":{}},"gALzG9lnyz":{"type":{"resolvedName":"ContainerSimple"},"isCanvas":false,"props":{},"displayName":"Container","custom":{},"parent":"byqb6gshiG","hidden":false,"nodes":["IdNePLveY_"],"linkedNodes":{}},"IdNePLveY_":{"type":{"resolvedName":"Text"},"isCanvas":false,"props":{"textAlign":"left","margin":[0,0,0,0],"text":"\n          Get Started\n        ","editable":true},"displayName":"Text","custom":{},"parent":"gALzG9lnyz","hidden":false,"nodes":[],"linkedNodes":{}},"r40vLF_Mb1":{"type":{"resolvedName":"ContainerSimple"},"isCanvas":false,"props":{},"displayName":"Container","custom":{},"parent":"byqb6gshiG","hidden":false,"nodes":["FTSreVExxs"],"linkedNodes":{}},"FTSreVExxs":{"type":{"resolvedName":"Text"},"isCanvas":false,"props":{"textAlign":"left","margin":[0,0,0,0],"text":"\n          Learn More\n        ","editable":true},"displayName":"Text","custom":{},"parent":"r40vLF_Mb1","hidden":false,"nodes":[],"linkedNodes":{}}}
+{
+  "ROOT": {
+    "type": { "resolvedName": "Container" },
+    "isCanvas": true,
+    "props": {
+      "flexDirection": "column",
+      "alignItems": "flex-center",
+      "justifyContent": "flex-start",
+      "fillSpace": "no",
+      "padding": ["0", "0", "0", "0"],
+      "margin": ["0", "0", "0", "0"],
+      "shadow": 0,
+      "radius": 0,
+      "width": "100%",
+      "height": "800px",
+      "background": { "r": 255, "g": 255, "b": 255, "a": 1 }
+    },
+    "displayName": "Container",
+    "custom": { "displayName": "App" },
+    "hidden": false,
+    "nodes": ["hKGYXe6LMw"],
+    "linkedNodes": {}
+  },
+  "hKGYXe6LMw": {
+    "type": { "resolvedName": "Banner1" },
+    "isCanvas": false,
+    "props": {},
+    "displayName": "Banner 1",
+    "custom": {},
+    "parent": "ROOT",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {
+      "\n        Understand User Flow.\n        -undefined": "1wJfdB2Kw6",
+      "\n          Increase Conversion.\n        -undefined": "b_sk1tVp75",
+      "\n        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo\n        tenetur fuga ducimus numquam ea!\n      -undefined": "B5MY4a-mox",
+      "\n          Get Started\n        -undefined": "rwHPJNdtrU",
+      "\n          Learn More\n        -undefined": "ERJ8RVSV2_"
+    }
+  },
+  "1wJfdB2Kw6": {
+    "type": { "resolvedName": "ContainerSimple" },
+    "isCanvas": false,
+    "props": {},
+    "displayName": "Container",
+    "custom": {},
+    "parent": "hKGYXe6LMw",
+    "hidden": false,
+    "nodes": ["t5LDiorcwq"],
+    "linkedNodes": {}
+  },
+  "t5LDiorcwq": {
+    "type": { "resolvedName": "Text" },
+    "isCanvas": false,
+    "props": {
+      "textAlign": "left",
+      "margin": [0, 0, 0, 0],
+      "text": "\n        Underssstand User Flow.\n        ",
+      "editable": true
+    },
+    "displayName": "Text",
+    "custom": {},
+    "parent": "1wJfdB2Kw6",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "b_sk1tVp75": {
+    "type": { "resolvedName": "ContainerSimple" },
+    "isCanvas": false,
+    "props": {},
+    "displayName": "Container",
+    "custom": {},
+    "parent": "hKGYXe6LMw",
+    "hidden": false,
+    "nodes": ["oP3T_-NajF"],
+    "linkedNodes": {}
+  },
+  "oP3T_-NajF": {
+    "type": { "resolvedName": "Text" },
+    "isCanvas": false,
+    "props": {
+      "textAlign": "left",
+      "margin": [0, 0, 0, 0],
+      "text": "\n          Increasde Conversion.\n        ",
+      "editable": true
+    },
+    "displayName": "Text",
+    "custom": {},
+    "parent": "b_sk1tVp75",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "B5MY4a-mox": {
+    "type": { "resolvedName": "ContainerSimple" },
+    "isCanvas": false,
+    "props": {},
+    "displayName": "Container",
+    "custom": {},
+    "parent": "hKGYXe6LMw",
+    "hidden": false,
+    "nodes": ["56WWwVzmrq"],
+    "linkedNodes": {}
+  },
+  "56WWwVzmrq": {
+    "type": { "resolvedName": "Text" },
+    "isCanvas": false,
+    "props": {
+      "textAlign": "left",
+      "margin": [0, 0, 0, 0],
+      "text": "\n        Lorem ipsum dolor sit amet 3consectetur, adipisicing elit. Nesciunt illo\n        tenetur fuga ducimus numquam ea!\n      ",
+      "editable": true
+    },
+    "displayName": "Text",
+    "custom": {},
+    "parent": "B5MY4a-mox",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "rwHPJNdtrU": {
+    "type": { "resolvedName": "ContainerSimple" },
+    "isCanvas": false,
+    "props": {},
+    "displayName": "Container",
+    "custom": {},
+    "parent": "hKGYXe6LMw",
+    "hidden": false,
+    "nodes": ["vDoYxImnmp"],
+    "linkedNodes": {}
+  },
+  "vDoYxImnmp": {
+    "type": { "resolvedName": "Text" },
+    "isCanvas": false,
+    "props": {
+      "textAlign": "left",
+      "margin": [0, 0, 0, 0],
+      "text": "\n          Get Staarted\n        ",
+      "editable": true
+    },
+    "displayName": "Text",
+    "custom": {},
+    "parent": "rwHPJNdtrU",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "ERJ8RVSV2_": {
+    "type": { "resolvedName": "ContainerSimple" },
+    "isCanvas": false,
+    "props": {},
+    "displayName": "Container",
+    "custom": {},
+    "parent": "hKGYXe6LMw",
+    "hidden": false,
+    "nodes": ["dhMsgnNbHg"],
+    "linkedNodes": {}
+  },
+  "dhMsgnNbHg": {
+    "type": { "resolvedName": "Text" },
+    "isCanvas": false,
+    "props": {
+      "textAlign": "left",
+      "margin": [0, 0, 0, 0],
+      "text": "\n          Learn More\n        ",
+      "editable": true
+    },
+    "displayName": "Text",
+    "custom": {},
+    "parent": "ERJ8RVSV2_",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  }
+}
