@@ -16,7 +16,7 @@ export type TextProps = {
   margin: [string, string, string, string]
 }
 
-export const Text = ({
+const TextEditable = ({
   className,
   fontSize,
   textAlign,
@@ -36,7 +36,7 @@ export const Text = ({
   return (
     <ContentEditable
       innerRef={connect}
-      html={text} // innerHTML of the editable div
+      html={text ?? ''} // innerHTML of the editable div
       disabled={!enabled}
       onChange={(e) => {
         setProp((prop) => (prop.text = e.target.value), 500)
@@ -57,6 +57,17 @@ export const Text = ({
     />
   )
 }
+
+const Text = ({ ...props }) =>
+  props.editable ? (
+    <TextEditable {...props} />
+  ) : (
+    <span className={props.className} style={{ ...props }}>
+      {props.text}
+    </span>
+  )
+
+export { Text }
 
 Text.craft = {
   displayName: 'Text',
