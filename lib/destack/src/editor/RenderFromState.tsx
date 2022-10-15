@@ -1,16 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Banner1 from '../selectors/Banner1'
 import { ContainerSimple } from '../selectors/ContainerSimple'
 
-import json from '../data/default'
+import { loadTemplate } from '../utils/fetch'
 
 const Components = {
   Banner1: Banner1,
   Container: ContainerSimple,
 }
 
-const parse = (nodeId: string, parentNodeId?: string) => {
+const parse = (json, nodeId: string, parentNodeId?: string) => {
   const childNodeNames: string[] = json[nodeId]?.nodes || []
   const ReactComponent = Components[json[nodeId].type.resolvedName]
   const extendedProps = { ...json[nodeId].props, parentNodeId, nodeId, key: nodeId }
@@ -18,7 +18,7 @@ const parse = (nodeId: string, parentNodeId?: string) => {
   if (childNodeNames.length === 0) {
     return <ReactComponent {...extendedProps} editable={false} />
   } else {
-    const childNodes = childNodeNames.map((childNodeId) => parse(childNodeId, nodeId))
+    const childNodes = childNodeNames.map((childNodeId) => parse(json, childNodeId, nodeId))
     if (ReactComponent) {
       return (
         <ReactComponent {...extendedProps} editable={false}>
@@ -31,5 +31,18 @@ const parse = (nodeId: string, parentNodeId?: string) => {
   }
 }
 
-const RenderFromState = () => parse('ROOT')
+const RenderFromState = ({ data: _data }) => {
+  const [json, setJson] = useState(null)
+
+  useEffect(() => {
+    loadTemplate(false)
+      .then((d) => {
+        const data = JSON.parse(d as string)
+        setJson(data)
+      })
+      .catch((e) => console.error(e))
+  }, [])
+
+  return json && parse(json, 'ROOT')
+}
 export default RenderFromState
