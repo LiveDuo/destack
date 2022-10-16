@@ -75,7 +75,17 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
                 <Child root={r} d={d.concat(i)} editable={editable} />
               </section>
             )
-          else return <p>Unknown container</p>
+          else if (r.tagName === 'IMG') {
+            return editable ? (
+              <img
+                className={`${r.classNames} hover:opacity-50 cursor-pointer`}
+                {...r.attrs}
+                onClick={() => alert('on click')}
+              />
+            ) : (
+              <img className={r.classNames} {...r.attrs} />
+            )
+          } else return <p>Unknown container</p>
         } else if (r.nodeType === 3) {
           if (r.innerText.trim() === '') return null
           // className={r.parentNode.classNames}

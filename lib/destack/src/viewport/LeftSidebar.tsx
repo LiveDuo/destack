@@ -4,6 +4,7 @@ import { useEditor } from '@craftjs/core'
 
 import Banner1 from '../selectors/Banner1'
 import Banner2 from '../selectors/Banner2'
+import Banner3 from '../selectors/Banner3'
 
 import bannerImage1 from '../selectors/Banner1/preview.png'
 import bannerImage2 from '../selectors/Banner2/preview.png'
@@ -46,15 +47,8 @@ export const Toolbox = () => {
         </SidebarItem>
 
         <SidebarItem title="CTA" visible={toolbar2Visible} onChange={(v) => setToolbar2Visible(v)}>
-          <div ref={(ref) => connectors.create(ref as HTMLElement, <Banner1 />)}>
-            <SimpleTooltip text="Banner 1" side="right" offset={12}>
-              <a className="m-2 pb-2 cursor-pointer block">
-                <img src={bannerImage1} width="600px" height="300px" />
-              </a>
-            </SimpleTooltip>
-          </div>
-          <div ref={(ref) => connectors.create(ref as HTMLElement, <Banner2 />)}>
-            <SimpleTooltip text="Banner 2" side="right" offset={12}>
+          <div ref={(ref) => connectors.create(ref as HTMLElement, <Banner3 />)}>
+            <SimpleTooltip text="Banner 3" side="right" offset={12}>
               <a className="m-2 pb-2 cursor-pointer block">
                 <img src={bannerImage2} width="600px" height="300px" />
               </a>

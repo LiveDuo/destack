@@ -52,7 +52,7 @@ export const Header = () => {
                 <ArrowUturnRightIcon className="h-4 w-4" />
               </a>
             </SimpleTooltip>
-            <SimpleTooltip text="Export" side="bottom" offset={4}>
+            {/* <SimpleTooltip text="Export" side="bottom" offset={4}>
               <a
                 className={`hover:opacity-50 ${
                   query ? 'cursor-pointer' : 'cursor-not-allowed'
@@ -61,7 +61,7 @@ export const Header = () => {
               >
                 <ArrowUpTrayIcon className="h-4 w-4" />
               </a>
-            </SimpleTooltip>
+            </SimpleTooltip> */}
           </div>
         )}
         <div className="flex">
