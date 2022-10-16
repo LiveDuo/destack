@@ -29,6 +29,7 @@ const TextEditable = ({ className, text }: Partial<TextProps>) => {
       }} // use true to disable editing
       tagName="span" // Use a custom HTML tag (uses a div by default)
       className={className}
+      onClick={(e) => e.stopPropagation()}
     />
   )
 }

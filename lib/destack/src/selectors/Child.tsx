@@ -52,7 +52,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
           else if (r.tagName === 'A')
             return (
               // <Element is={ContainerSimple} id={id}>
-              <a className={r.classNames}>
+              <a className={r.classNames} onClick={() => alert('link modal')}>
                 <Child root={r} d={d.concat(i)} editable={editable} />
               </a>
               // </Element>
@@ -80,7 +80,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
               <img
                 className={`${r.classNames} hover:opacity-50 cursor-pointer`}
                 {...r.attrs}
-                onClick={() => alert('on click')}
+                onClick={() => alert('image modal')}
               />
             ) : (
               <img className={r.classNames} {...r.attrs} />
