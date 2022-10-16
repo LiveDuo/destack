@@ -12,10 +12,22 @@ import Banner1 from '../selectors/Banner1'
 import Banner2 from '../selectors/Banner2'
 import Banner3 from '../selectors/Banner3'
 import { Text } from '../selectors/Text'
+import { Link, Image } from '../selectors/Child'
 
 import { loadTemplate, saveTemplateDebounce } from '../utils/fetch'
 
-const resolver = { Container, ContainerSimple, Banner1, Banner2, Banner3, Element, Text, Child }
+const resolver = {
+  Container,
+  ContainerSimple,
+  Banner1,
+  Banner2,
+  Banner3,
+  Element,
+  Text,
+  Child,
+  Link,
+  Image,
+}
 
 const FrameFromEditor = ({ data }) => {
   const { actions } = useEditor()

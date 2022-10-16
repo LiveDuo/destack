@@ -29,6 +29,15 @@ function debounce(callback, timeout = 1000) {
   }
 }
 
+const uploadFile = async (file, standaloneServer) => {
+  const formData = new FormData()
+  formData.append('file-0', file)
+  const baseUrl = standaloneServer ? `http://localhost:${standaloneServerPort}` : ''
+  const res = await fetch(`${baseUrl}/api/builder/handle`, { method: 'POST', body: formData })
+  return await res.json()
+}
+export { uploadFile }
+
 const loadTemplate = async (standaloneServer) => {
   const baseUrl = standaloneServer ? `http://localhost:${standaloneServerPort}` : ''
   const data = await fetchJSON({ method: 'get', url: `${baseUrl}/api/builder/handle` })

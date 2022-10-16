@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Element } from '@craftjs/core'
-import { useNode } from '@craftjs/core'
+import { useNode, useEditor } from '@craftjs/core'
 
 import { HTMLElement, TextNode } from 'node-html-parser'
 
@@ -9,6 +9,55 @@ import { ContainerSimple } from './ContainerSimple'
 import { Text } from './Text'
 
 import { ToolbarSection, ToolbarItem } from '../toolbar/index'
+
+import SimpleTooltip from '../components/Tooltip'
+import Dialog from '../components/Dialog'
+
+const Image = ({ classNames, attrs }) => {
+  const { actions, node } = useNode((node) => ({ node }))
+  const { enabled } = useEditor((state) => ({ enabled: state.options.enabled }))
+
+  const [open, setOpen] = useState(false)
+
+  const url = node.data.props.url
+
+  return !enabled ? (
+    <img className={classNames} {...attrs} src={node.data.props.url ?? attrs.src} />
+  ) : (
+    <>
+      <Dialog open={open} setOpen={setOpen} currentUrl={url} actions={actions} />
+      <SimpleTooltip text="Change image" side="bottom" offset={4}>
+        <img
+          className={`${classNames} hover:opacity-70 cursor-pointer`}
+          {...attrs}
+          src={node.data.props.url ?? attrs.src}
+          onClick={() => {
+            setOpen(true)
+          }}
+        />
+      </SimpleTooltip>
+    </>
+  )
+}
+export { Image }
+
+const Link = ({ r, editable, d, i }) => {
+  const { actions } = useNode()
+
+  return (
+    <a
+      className={r.classNames}
+      onClick={() => {
+        actions.setProp((prop) => (prop.href = 'https://example.com'), 500)
+
+        console.log('link modal')
+      }}
+    >
+      <Child root={r} d={d.concat(i)} editable={editable} />
+    </a>
+  )
+}
+export { Link }
 
 interface ChildProps {
   root: HTMLElement
@@ -52,9 +101,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
           else if (r.tagName === 'A')
             return (
               // <Element is={ContainerSimple} id={id}>
-              <a className={r.classNames} onClick={() => alert('link modal')}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
-              </a>
+              <Link r={r} d={d} i={i} editable={editable} />
               // </Element>
             )
           else if (r.tagName === 'SPAN')
@@ -77,11 +124,9 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
             )
           else if (r.tagName === 'IMG') {
             return editable ? (
-              <img
-                className={`${r.classNames} hover:opacity-50 cursor-pointer`}
-                {...r.attrs}
-                onClick={() => alert('image modal')}
-              />
+              <Element is={ContainerSimple} id={id} canvas>
+                <Image classNames={r.classNames} attrs={r.attrs} />
+              </Element>
             ) : (
               <img className={r.classNames} {...r.attrs} />
             )
