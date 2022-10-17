@@ -11,7 +11,7 @@ import { Text } from './Text'
 import { ToolbarSection, ToolbarItem } from '../toolbar/index'
 
 import SimpleTooltip from '../components/Tooltip'
-import Dialog from '../components/Dialog'
+import ImageDialog from '../components/ImageDialog'
 
 const Image = ({ classNames, attrs }) => {
   const { actions, node } = useNode((node) => ({ node }))
@@ -25,7 +25,7 @@ const Image = ({ classNames, attrs }) => {
     <img className={classNames} {...attrs} src={node.data.props.url ?? attrs.src} />
   ) : (
     <>
-      <Dialog open={open} setOpen={setOpen} currentUrl={url} actions={actions} />
+      <ImageDialog open={open} setOpen={setOpen} currentUrl={url} actions={actions} />
       <SimpleTooltip text="Change image" side="bottom" offset={4}>
         <img
           className={`${classNames} hover:opacity-70 cursor-pointer`}

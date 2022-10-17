@@ -6,12 +6,15 @@ import Banner1 from '../selectors/Banner1'
 import Banner2 from '../selectors/Banner2'
 import Banner3 from '../selectors/Banner3'
 
+import { ChevronDownIcon } from '@heroicons/react/24/outline'
+
 import bannerImage1 from '../selectors/Banner1/preview.png'
 import bannerImage2 from '../selectors/Banner2/preview.png'
 
 import { SidebarItem } from './SidebarItem'
 
 import SimpleTooltip from '../components/Tooltip'
+import Select from '../components/Select'
 
 const hyperUiComponents = [
   { name: 'Banner 1', category: 'Banners', render: Banner1, image: bannerImage1 },
@@ -25,21 +28,34 @@ const themes = [
   { name: 'Hyper UI', components: hyperUiComponents },
 ]
 
-export const Toolbox = () => {
+const Sidebar = () => {
   const { enabled, connectors } = useEditor(({ options }) => ({ enabled: options.enabled }))
   const [toolbarVisible, setToolbarVisible] = useState([true, true])
   const [themeIndex, setThemeIndex] = useState(2)
+  const [selectOpen, setSelectOpen] = useState(false)
 
   const components = themes[themeIndex]?.components
   const categories = [...new Set(components?.map((c) => c.category))]
+  const themeNames = themes.map((t) => t.name)
+
+  const onChange = (name) => {
+    setThemeIndex(themeNames.indexOf(name))
+  }
+
   return (
     <div
       className={`toolbox h-full flex flex-col bg-white ${enabled ? 'w-48' : 'w-0 opacity-0'}`}
       style={{ transition: '0.4s cubic-bezier(0.19, 1, 0.22, 1)' }}
     >
-      <button onClick={() => setThemeIndex((i) => (themeIndex < 2 ? i + 1 : 0))}>
-        change theme
-      </button>
+      <a
+        className="flex rounded py-2 px-4 transition cursor-pointer items-center m-2 justify-center"
+        onClick={() => setSelectOpen(true)}
+      >
+        {themeNames[themeIndex]}
+        <ChevronDownIcon className="h-4 w-4 ml-2" />
+      </a>
+
+      <Select values={themeNames} open={selectOpen} setOpen={setSelectOpen} onChange={onChange} />
       <div className="flex flex-1 flex-col items-center pt-3">
         {categories.map((b, j) => (
           <SidebarItem
@@ -71,3 +87,4 @@ export const Toolbox = () => {
     </div>
   )
 }
+export { Sidebar }
