@@ -13,37 +13,33 @@ import { SidebarItem } from './SidebarItem'
 
 import SimpleTooltip from '../components/Tooltip'
 
-const components = [
-  {
-    name: 'Banner 1',
-    category: 'Banners',
-    render: Banner1,
-    image: bannerImage1,
-  },
-  {
-    name: 'Banner 2',
-    category: 'Banners',
-    render: Banner2,
-    image: bannerImage2,
-  },
-  {
-    name: 'Banner 3',
-    category: 'CTA',
-    render: Banner3,
-    image: bannerImage2,
-  },
+const hyperUiComponents = [
+  { name: 'Banner 1', category: 'Banners', render: Banner1, image: bannerImage1 },
+  { name: 'Banner 2', category: 'Banners', render: Banner2, image: bannerImage2 },
+  { name: 'Banner 3', category: 'CTA', render: Banner3, image: bannerImage2 },
 ]
 
-const categories = [...new Set(components.map((c) => c.category))]
+const themes = [
+  { name: 'Tailblocks', components: [] },
+  { name: 'Meraki UI', components: [] },
+  { name: 'Hyper UI', components: hyperUiComponents },
+]
 
 export const Toolbox = () => {
   const { enabled, connectors } = useEditor(({ options }) => ({ enabled: options.enabled }))
   const [toolbarVisible, setToolbarVisible] = useState([true, true])
+  const [themeIndex, setThemeIndex] = useState(2)
+
+  const components = themes[themeIndex]?.components
+  const categories = [...new Set(components?.map((c) => c.category))]
   return (
     <div
       className={`toolbox h-full flex flex-col bg-white ${enabled ? 'w-48' : 'w-0 opacity-0'}`}
       style={{ transition: '0.4s cubic-bezier(0.19, 1, 0.22, 1)' }}
     >
+      <button onClick={() => setThemeIndex((i) => (themeIndex < 2 ? i + 1 : 0))}>
+        change theme
+      </button>
       <div className="flex flex-1 flex-col items-center pt-3">
         {categories.map((b, j) => (
           <SidebarItem
@@ -52,7 +48,7 @@ export const Toolbox = () => {
             onChange={() => setToolbarVisible((t) => t.map((c, i) => (i === j ? !c : c)))}
           >
             {components
-              .filter((c) => c.category === b)
+              ?.filter((c) => c.category === b)
               .map((c, i) => {
                 return (
                   <div
