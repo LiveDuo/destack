@@ -1,45 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 
 import { useEditor } from '@craftjs/core'
 
-import Banner1 from '../selectors/Banner1'
-import Banner2 from '../selectors/Banner2'
-import Banner3 from '../selectors/Banner3'
-
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
-
-import bannerImage1 from '../selectors/Banner1/preview.png'
-import bannerImage2 from '../selectors/Banner2/preview.png'
 
 import { SidebarItem } from './SidebarItem'
 
 import SimpleTooltip from '../components/Tooltip'
 import Select from '../components/Select'
 
-const hyperUiComponents = [
-  { name: 'Banner 1', category: 'Banners', render: Banner1, image: bannerImage1 },
-  { name: 'Banner 2', category: 'Banners', render: Banner2, image: bannerImage2 },
-  { name: 'Banner 3', category: 'CTA', render: Banner3, image: bannerImage2 },
-]
-
-const themes = [
-  { name: 'Tailblocks', components: [] },
-  { name: 'Meraki UI', components: [] },
-  { name: 'Hyper UI', components: hyperUiComponents },
-]
+import { ThemeContext } from '../store'
 
 const Sidebar = () => {
+  const { components, categories, themeNames, themeIndex, updateIndex } = useContext(ThemeContext)
   const { enabled, connectors } = useEditor(({ options }) => ({ enabled: options.enabled }))
   const [toolbarVisible, setToolbarVisible] = useState([true, true])
-  const [themeIndex, setThemeIndex] = useState(2)
   const [selectOpen, setSelectOpen] = useState(false)
 
-  const components = themes[themeIndex]?.components
-  const categories = [...new Set(components?.map((c) => c.category))]
-  const themeNames = themes.map((t) => t.name)
-
   const onChange = (name) => {
-    setThemeIndex(themeNames.indexOf(name))
+    updateIndex(themeNames.indexOf(name))
   }
 
   return (
