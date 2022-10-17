@@ -19,7 +19,29 @@ const themes = [
   { name: 'Hyper UI', components: hyperUiComponents },
 ]
 
-const ThemeContext = createContext()
+interface Component {
+  name: string
+  category: string
+  render
+  image: string
+}
+
+interface ContextInterface {
+  components: Component[]
+  categories: string[]
+  themeNames: string[]
+  themeIndex: number
+  updateIndex: (number) => void
+}
+
+const defaultValue = {
+  components: [],
+  categories: [],
+  themeNames: [],
+  themeIndex: 0,
+  updateIndex: () => {},
+}
+const ThemeContext = createContext<ContextInterface>(defaultValue)
 
 const ThemeProvider = ({ children }) => {
   const [themeIndex, setThemeIndex] = useState(2)
