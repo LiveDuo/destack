@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 
 import { useEditor } from '@craftjs/core'
 
@@ -10,13 +10,26 @@ import { ArrowUturnLeftIcon } from '@heroicons/react/24/outline'
 import { ArrowUturnRightIcon } from '@heroicons/react/24/outline'
 import { ArrowUpTrayIcon } from '@heroicons/react/24/outline'
 
+import { ChevronDownIcon } from '@heroicons/react/24/outline'
+
+import { ThemeContext } from '../store'
+
+import Select from '../components/Select'
+
 export const Header = () => {
   const { state, query, actions } = useEditor((state, query) => ({ state, query }))
+  const { updateIndex, themeNames, themeIndex } = useContext(ThemeContext)
+  const [selectOpen, setSelectOpen] = useState(false)
+
   const enabled = state.options.enabled
 
   const onExport = () => {
     console.log(query.serialize())
     alert('Export done!')
+  }
+
+  const onChange = (name) => {
+    updateIndex(themeNames.indexOf(name))
   }
 
   const togglePreview = () => {
@@ -62,6 +75,22 @@ export const Header = () => {
                 <ArrowUpTrayIcon className="h-4 w-4" />
               </a>
             </SimpleTooltip> */}
+
+            <div className="mr-auto ml-auto">
+              <div
+                className="flex rounded py-2 px-4 transition cursor-pointer items-center justify-center mr-auto ml-auto"
+                onClick={() => setSelectOpen(true)}
+              >
+                {themeNames[themeIndex]}
+                <ChevronDownIcon className="h-4 w-4 ml-2" />
+              </div>
+              <Select
+                values={themeNames}
+                open={selectOpen}
+                setOpen={setSelectOpen}
+                onChange={onChange}
+              />
+            </div>
           </div>
         )}
         <div className="flex">

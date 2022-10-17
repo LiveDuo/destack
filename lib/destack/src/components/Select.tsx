@@ -14,7 +14,7 @@ const Select = ({ values, open, setOpen, onChange }) => {
       open={open}
       onOpenChange={(e) => setOpen(e)}
     >
-      <SelectPrimitive.Content>
+      <SelectPrimitive.Content className="z-50 top-2">
         <SelectPrimitive.Viewport className="bg-white p-2 rounded-lg shadow-lg">
           <SelectPrimitive.Group>
             {values.map((f, i) => (
