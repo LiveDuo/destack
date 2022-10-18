@@ -3,8 +3,6 @@ import React, { useState } from 'react'
 import { Element } from '@craftjs/core'
 import { useNode, useEditor } from '@craftjs/core'
 
-import { HTMLElement, TextNode } from 'node-html-parser'
-
 import { ContainerSimple } from './Simple'
 import { Text } from './Text'
 
@@ -57,8 +55,17 @@ const Link = ({ r, editable, d, i }) => {
 }
 export { Link }
 
+interface RootProps {
+  childNodes: RootProps[]
+  attrs: object
+  tagName: string
+  classNames: string
+  nodeType: number
+  innerText: string
+  constructor: string
+}
 interface ChildProps {
-  root: HTMLElement
+  root: RootProps
   editable: boolean
   d?: number[]
 }
@@ -67,8 +74,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
 
   return (
     <>
-      {Array.from(root?.childNodes).map((h, i) => {
-        const r = h as HTMLElement
+      {Array.from(root?.childNodes).map((r, i) => {
         const id = 'components-' + d.concat(i).join('')
 
         if (r.nodeType === 1) {
@@ -98,9 +104,9 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
             )
           else if (r.tagName === 'A')
             return (
-              // <Element is={ContainerSimple} id={id}>
-              <Link r={r} d={d} i={i} editable={editable} />
-              // </Element>
+              <Element is={ContainerSimple} id={id}>
+                <Link r={r} d={d} i={i} editable={editable} />
+              </Element>
             )
           else if (r.tagName === 'SPAN')
             return (
@@ -132,7 +138,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
         } else if (r.nodeType === 3) {
           if (r.innerText.trim() === '') return null
           // className={r.parentNode.classNames}
-          if (r instanceof TextNode)
+          if (r.constructor === 'TextNode')
             return editable ? (
               <Element is={ContainerSimple} id={id}>
                 <Text text={r.innerText} editable={true} />

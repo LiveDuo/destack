@@ -1,7 +1,11 @@
 import React from 'react'
 
+import { useNode } from '@craftjs/core'
+
 export const ContainerSimple = ({ children }) => {
-  return <div>{children}</div>
+  const { connectors } = useNode((node) => ({ node }))
+
+  return <div ref={(ref) => connectors.connect(ref as HTMLElement)}>{children}</div>
 }
 
 ContainerSimple.craft = {

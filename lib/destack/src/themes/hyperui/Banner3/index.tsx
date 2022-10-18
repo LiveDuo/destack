@@ -5,9 +5,11 @@ import { source } from './source'
 
 import Child, { Component } from '../../shared/Child'
 
+import { cleanHTMLElement } from '../../../utils/html'
+
 import preview from './preview.png'
 
-const root = parse(source)
+const root = cleanHTMLElement(parse(source))
 const Component2 = ({ editable = true }) =>
   editable ? (
     <Component>
