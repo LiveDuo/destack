@@ -8,6 +8,7 @@ import { Text } from './Text'
 
 import SimpleTooltip from '../../components/Tooltip'
 import ImageDialog from '../../components/ImageDialog'
+import LinkDialog from '../../components/LinkDialog'
 
 const Image = ({ classNames, attrs }) => {
   const { actions, node } = useNode((node) => ({ node }))
@@ -18,15 +19,15 @@ const Image = ({ classNames, attrs }) => {
   const url = node.data.props.url
 
   return !enabled ? (
-    <img className={classNames} {...attrs} src={node.data.props.url ?? attrs.src} />
+    <img className={classNames} {...attrs} src={url ?? attrs.src} />
   ) : (
     <>
       <ImageDialog open={open} setOpen={setOpen} currentUrl={url} actions={actions} />
       <SimpleTooltip text="Change image" side="bottom" offset={4}>
         <img
-          className={`${classNames} hover:opacity-70 cursor-pointer`}
+          className={`${classNames} cursor-pointer`}
           {...attrs}
-          src={node.data.props.url ?? attrs.src}
+          src={url ?? attrs.src}
           onClick={() => {
             setOpen(true)
           }}
@@ -38,19 +39,40 @@ const Image = ({ classNames, attrs }) => {
 export { Image }
 
 const Link = ({ r, editable, d, i }) => {
-  const { actions } = useNode()
+  const { actions, node } = useNode((node) => ({ node }))
 
-  return (
+  const { enabled } = useEditor((state) => ({ enabled: state.options.enabled }))
+
+  const [open, setOpen] = useState(false)
+
+  return !enabled ? (
     <a
       className={r.classNames}
       onClick={() => {
-        actions.setProp((prop) => (prop.href = 'https://example.com'), 500)
-
-        console.log('link modal')
+        location.href = node.data.props.url
       }}
     >
       <Child root={r} d={d.concat(i)} editable={editable} />
     </a>
+  ) : (
+    <>
+      <LinkDialog
+        open={open}
+        setOpen={setOpen}
+        currentUrl={node.data.props.url}
+        actions={actions}
+      />
+      <SimpleTooltip text="Change link" side="bottom" offset={4}>
+        <a
+          className={`${r.classNames} cursor-pointer`}
+          onClick={() => {
+            setOpen(true)
+          }}
+        >
+          <Child root={r} d={d.concat(i)} editable={editable} />
+        </a>
+      </SimpleTooltip>
+    </>
   )
 }
 export { Link }
