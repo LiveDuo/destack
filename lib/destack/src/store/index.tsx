@@ -8,15 +8,8 @@ const themes = [
   { name: 'Hyper UI', components: hyperUiComponents },
 ]
 
-interface Component {
-  name: string
-  category: string
-  render
-  image: string
-}
-
 interface ContextInterface {
-  components: Component[]
+  components: any[]
   categories: string[]
   themeNames: string[]
   themeIndex: number
@@ -36,7 +29,7 @@ const ThemeProvider = ({ children }) => {
   const [themeIndex, setThemeIndex] = useState(2)
 
   const components = themes[themeIndex]?.components
-  const categories = [...new Set(components?.map((c) => c.category))]
+  const categories = [...new Set(components?.map((c) => c.craft.category))]
   const themeNames = themes.map((t) => t.name)
 
   const updateIndex = async (index) => {

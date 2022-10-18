@@ -26,18 +26,16 @@ const Sidebar = () => {
             onChange={() => setToolbarVisible((t) => t.map((c, i) => (i === j ? !c : c)))}
           >
             {components
-              ?.filter((c) => c.category === b)
+              ?.filter((c) => c.craft.category === b)
               .map((c, i) => {
                 return (
                   <div
                     key={i}
-                    ref={(ref) =>
-                      connectors.create(ref as HTMLElement, React.createElement(c.render))
-                    }
+                    ref={(ref) => connectors.create(ref as HTMLElement, React.createElement(c))}
                   >
-                    <SimpleTooltip text={c.name} side="right" offset={12}>
+                    <SimpleTooltip text={c.craft.displayName} side="right" offset={12}>
                       <a className="cursor-move m-2 pb-2 cursor-pointer block">
-                        <img src={c.image} width="600px" height="300px" />
+                        <img src={c.craft.image} width="600px" height="300px" />
                       </a>
                     </SimpleTooltip>
                   </div>
