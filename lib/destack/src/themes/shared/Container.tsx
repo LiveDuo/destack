@@ -8,17 +8,13 @@ export const Container = ({ children }) => {
   const { connectors, node } = useNode((node) => ({ node }))
   const { height } = node.data.props
 
-  const onLoad = (ref) => {
-    if (ref) connectors.connect(ref.resizable)
-  }
-
   return (
     <Resizable
       enable={{}}
-      ref={(ref) => onLoad(ref)}
+      ref={(ref) => connectors.connect(ref?.resizable as HTMLElement)}
       size={{ width: 'unset', height }}
       minWidth={800}
-      style={{ backgroundColor: 'white' }}
+      className="bg-white"
     >
       {children}
     </Resizable>
