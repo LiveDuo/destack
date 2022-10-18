@@ -5,13 +5,11 @@ import { useNode, useEditor } from '@craftjs/core'
 
 import { HTMLElement, TextNode } from 'node-html-parser'
 
-import { ContainerSimple } from './ContainerSimple'
+import { ContainerSimple } from './Simple'
 import { Text } from './Text'
 
-import { ToolbarSection, ToolbarItem } from '../toolbar/index'
-
-import SimpleTooltip from '../components/Tooltip'
-import ImageDialog from '../components/ImageDialog'
+import SimpleTooltip from '../../components/Tooltip'
+import ImageDialog from '../../components/ImageDialog'
 
 const Image = ({ classNames, attrs }) => {
   const { actions, node } = useNode((node) => ({ node }))
@@ -157,12 +155,3 @@ const Component = ({ children }) => {
   return <div ref={(ref) => connectors.connect(ref as HTMLDivElement)}>{children}</div>
 }
 export { Component }
-
-const ToolbarComponent = ({ title }) => {
-  return (
-    <ToolbarSection title={title}>
-      <ToolbarItem full={true} type="text" propKey="width" index={0} />
-    </ToolbarSection>
-  )
-}
-export { ToolbarComponent }

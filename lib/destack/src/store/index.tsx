@@ -1,17 +1,6 @@
 import React, { createContext, useState } from 'react'
 
-import Banner1 from '../selectors/Banner1'
-import Banner2 from '../selectors/Banner2'
-import Banner3 from '../selectors/Banner3'
-
-import bannerImage1 from '../selectors/Banner1/preview.png'
-import bannerImage2 from '../selectors/Banner2/preview.png'
-
-const hyperUiComponents = [
-  { name: 'Banner 1', category: 'Banners', render: Banner1, image: bannerImage1 },
-  { name: 'Banner 2', category: 'Banners', render: Banner2, image: bannerImage2 },
-  { name: 'Banner 3', category: 'CTA', render: Banner3, image: bannerImage2 },
-]
+import hyperUiComponents from '../themes/hyperui'
 
 const themes = [
   { name: 'Tailblocks', components: [] },

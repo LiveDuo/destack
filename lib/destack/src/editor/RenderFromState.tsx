@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
-import Banner1 from '../selectors/Banner1'
-import { ContainerSimple } from '../selectors/ContainerSimple'
+import Banner1 from '../themes/hyperui/Banner1'
+import { ContainerSimple } from '../themes/Simple'
 
 const Components = {
   Banner1: Banner1,

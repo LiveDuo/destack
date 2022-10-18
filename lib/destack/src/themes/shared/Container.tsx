@@ -1,8 +1,6 @@
 import React from 'react'
 
-import { ContainerSettings } from './ContainerSettings'
-
-import { Resizer } from '../Resizer'
+import { Resizer } from './Resizer'
 
 export type ContainerProps = {
   background: Record<'r' | 'g' | 'b' | 'a', number>
@@ -78,7 +76,5 @@ Container.craft = {
   rules: {
     canDrag: () => true,
   },
-  related: {
-    toolbar: ContainerSettings,
-  },
+  related: {},
 }
