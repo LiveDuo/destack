@@ -151,7 +151,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
 export default Child
 
 const Component = ({ children }) => {
-  const { connectors } = useNode((node) => ({ selected: node.events.selected }))
+  const { connectors } = useNode()
   return <div ref={(ref) => connectors.connect(ref as HTMLDivElement)}>{children}</div>
 }
 export { Component }

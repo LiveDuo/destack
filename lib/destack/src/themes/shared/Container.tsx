@@ -1,78 +1,33 @@
 import React from 'react'
 
-import { Resizer } from './Resizer'
+import { useNode } from '@craftjs/core'
 
-export type ContainerProps = {
-  background: Record<'r' | 'g' | 'b' | 'a', number>
-  color: Record<'r' | 'g' | 'b' | 'a', number>
-  flexDirection: string
-  alignItems: string
-  justifyContent: string
-  fillSpace: string
-  width: string
-  height: string
-  padding: string[]
-  margin: string[]
-  marginTop: number
-  marginLeft: number
-  marginBottom: number
-  marginRight: number
-  shadow: number
-  children: React.ReactNode
-  radius: number
-}
+import { Resizable } from 're-resizable'
 
-const defaultProps = {
-  flexDirection: 'column',
-  alignItems: 'flex-center',
-  justifyContent: 'flex-start',
-  fillSpace: 'no',
-  padding: ['0', '0', '0', '0'],
-  margin: ['0', '0', '0', '0'],
-  shadow: 0,
-  radius: 0,
-  width: '100%',
-  height: 'auto',
-}
+export const Container = ({ children }) => {
+  const { connectors, node } = useNode((node) => ({ node }))
+  const { height } = node.data.props
 
-export const Container = (props: Partial<ContainerProps>) => {
-  props = {
-    ...defaultProps,
-    ...props,
+  const onLoad = (ref) => {
+    if (ref) connectors.connect(ref.resizable)
   }
-  const {
-    flexDirection,
-    alignItems,
-    justifyContent,
-    fillSpace,
-    padding = [0, 0, 0, 0],
-    margin = [0, 0, 0, 0],
-    shadow,
-    radius,
-    children,
-  } = props
+
   return (
-    <Resizer
-      propKey={{ width: 'width', height: 'height' }}
-      style={{
-        justifyContent,
-        flexDirection,
-        alignItems,
-        padding: `${padding[0]}px ${padding[1]}px ${padding[2]}px ${padding[3]}px`,
-        margin: `${margin[0]}px ${margin[1]}px ${margin[2]}px ${margin[3]}px`,
-        boxShadow: shadow === 0 ? 'none' : `0px 3px 100px ${shadow}px rgba(0, 0, 0, 0.13)`,
-        borderRadius: `${radius}px`,
-        flex: fillSpace === 'yes' ? 1 : 'unset',
-      }}
+    <Resizable
+      enable={{}}
+      ref={(ref) => onLoad(ref)}
+      size={{ width: 'unset', height }}
+      minWidth={800}
+      style={{ backgroundColor: 'white' }}
     >
       {children}
-    </Resizer>
+    </Resizable>
   )
 }
 
 Container.craft = {
   displayName: 'Container',
-  props: defaultProps,
+  props: {},
   rules: {
     canDrag: () => true,
   },
