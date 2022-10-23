@@ -13,7 +13,7 @@ const root = cleanHTMLElement(parse(source))
 
 const WithProps = ({ editable = true }) => <Component root={root} editable={editable} />
 WithProps.craft = {
-  displayName: 'Banner 2',
+  displayName: 'Banner 3',
   category: 'Banners',
   image: preview,
   props: {},
