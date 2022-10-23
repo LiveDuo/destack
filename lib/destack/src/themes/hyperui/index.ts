@@ -66,8 +66,6 @@ import Testimonial6 from './Testimonial6/index'
 import Testimonial7 from './Testimonial7/index'
 import Testimonial8 from './Testimonial8/index'
 
-import Test from './Test/index'
-
 const components = {
   Banner1,
   Banner2,
@@ -137,4 +135,4 @@ const components = {
   Testimonial7,
   Testimonial8,
 }
-export default { ...components, Test }
+export default components
