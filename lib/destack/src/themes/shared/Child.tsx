@@ -148,6 +148,12 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
                 <Child root={r} d={d.concat(i)} editable={editable} />
               </section>
             )
+          else if (r.tagName === 'ASIDE')
+            return (
+              <aside className={r.classNames} id={id}>
+                <Child root={r} d={d.concat(i)} editable={editable} />
+              </aside>
+            )
           else if (r.tagName === 'IMG') {
             return editable ? (
               <Element is={ContainerSimple} id={id} canvas>
