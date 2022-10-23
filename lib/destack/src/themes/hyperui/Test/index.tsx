@@ -19,8 +19,8 @@ const Component2 = ({ editable = true }) =>
     <Child root={root} editable={editable} />
   )
 Component2.craft = {
-  displayName: 'Banner 3',
-  category: 'CTA',
+  displayName: 'Test',
+  category: 'Test',
   image: preview,
   props: {},
   related: {},

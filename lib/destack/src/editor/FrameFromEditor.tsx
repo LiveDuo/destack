@@ -5,29 +5,19 @@ import { Editor, Frame, Element, useEditor } from '@craftjs/core'
 import { Viewport } from '../viewport'
 import { RenderNode } from './RenderNode'
 
+import Child from '../themes/shared/Child'
+
 import { ContainerSimple } from '../themes/shared/Simple'
 import { Container } from '../themes/shared/Container'
-import Child from '../themes/shared/Child'
-import Banner1 from '../themes/hyperui/Banner1'
-import Banner2 from '../themes/hyperui/Banner2'
-import Banner3 from '../themes/hyperui/Banner3'
 import { Text } from '../themes/shared/Text'
 import { Link, Image } from '../themes/shared/Child'
 
+import HyperUiComponents from '../themes/hyperui'
+
 import { loadTemplate, saveTemplateDebounce } from '../utils/fetch'
 
-const resolver = {
-  Container,
-  ContainerSimple,
-  Banner1,
-  Banner2,
-  Banner3,
-  Element,
-  Text,
-  Child,
-  Link,
-  Image,
-}
+const SimpleComponents = { Container, ContainerSimple, Element, Text, Child, Link, Image }
+const resolver = { ...SimpleComponents, ...HyperUiComponents }
 
 const FrameFromEditor = ({ data }) => {
   const { actions } = useEditor()

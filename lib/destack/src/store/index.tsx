@@ -5,7 +5,7 @@ import hyperUiComponents from '../themes/hyperui'
 const themes = [
   { name: 'Tailblocks', components: [] },
   { name: 'Meraki UI', components: [] },
-  { name: 'Hyper UI', components: hyperUiComponents },
+  { name: 'Hyper UI', components: Object.values(hyperUiComponents) },
 ]
 
 interface ContextInterface {
