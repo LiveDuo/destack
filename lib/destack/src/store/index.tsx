@@ -1,9 +1,10 @@
 import React, { createContext, useState } from 'react'
 
 import hyperUiComponents from '../themes/hyperui'
+import tailblocksComponents from '../themes/tailblocks'
 
 const themes = [
-  { name: 'Tailblocks', components: [] },
+  { name: 'Tailblocks', components: Object.values(tailblocksComponents) },
   { name: 'Meraki UI', components: [] },
   { name: 'Hyper UI', components: Object.values(hyperUiComponents) },
 ]

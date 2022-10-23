@@ -13,11 +13,12 @@ import { Text } from '../themes/shared/Text'
 import { Link, Image } from '../themes/shared/Child'
 
 import HyperUiComponents from '../themes/hyperui'
+import TailblocksComponents from '../themes/tailblocks'
 
 import { loadTemplate, saveTemplateDebounce } from '../utils/fetch'
 
 const SimpleComponents = { Container, ContainerSimple, Element, Text, Child, Link, Image }
-const resolver = { ...SimpleComponents, ...HyperUiComponents }
+const resolver = { ...SimpleComponents, ...HyperUiComponents, ...TailblocksComponents }
 
 const FrameFromEditor = ({ data }) => {
   const { actions } = useEditor()
