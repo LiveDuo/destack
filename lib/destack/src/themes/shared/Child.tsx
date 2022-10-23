@@ -178,8 +178,17 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
 }
 export default Child
 
-const Component = ({ children }) => {
+const ComponentChild = ({ children }) => {
   const { connectors } = useNode()
   return <div ref={(ref) => connectors.connect(ref as HTMLDivElement)}>{children}</div>
 }
+
+const Component = ({ root, editable = true }) =>
+  editable ? (
+    <ComponentChild>
+      <Child root={root} editable={editable} />
+    </ComponentChild>
+  ) : (
+    <Child root={root} editable={editable} />
+  )
 export { Component }
