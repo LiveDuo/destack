@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 import { Editor, Frame, Element, useEditor } from '@craftjs/core'
 
@@ -49,15 +49,7 @@ const FrameFromEditor = ({ data }) => {
   return !data ? (
     <Viewport>
       <Frame>
-        <Element
-          canvas
-          is={Container}
-          width="100%"
-          height="800px"
-          background={{ r: 255, g: 255, b: 255, a: 1 }}
-          padding={['0', '0', '0', '0']}
-          custom={{ displayName: 'App' }}
-        />
+        <Element canvas is={Container} children={[]} custom={{ displayName: 'App' }} />
       </Frame>
     </Viewport>
   ) : (
