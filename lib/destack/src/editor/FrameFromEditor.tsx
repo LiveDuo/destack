@@ -14,11 +14,17 @@ import { Link, Image } from '../themes/shared/Child'
 
 import HyperUiComponents from '../themes/hyperui'
 import TailblocksComponents from '../themes/tailblocks'
+import MerakiLightComponents from '../themes/meraki-light'
 
 import { loadTemplate, saveTemplateDebounce } from '../utils/fetch'
 
 const SimpleComponents = { Container, ContainerSimple, Element, Text, Child, Link, Image }
-const resolver = { ...SimpleComponents, ...HyperUiComponents, ...TailblocksComponents }
+const resolver = {
+  ...SimpleComponents,
+  ...HyperUiComponents,
+  ...TailblocksComponents,
+  ...MerakiLightComponents,
+}
 
 const FrameFromEditor = ({ data }) => {
   const { actions } = useEditor()
