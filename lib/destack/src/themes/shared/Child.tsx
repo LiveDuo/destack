@@ -49,6 +49,30 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
                 <Child root={r} d={d.concat(i)} editable={editable} />
               </h2>
             )
+          else if (r.tagName === 'H3')
+            return (
+              <h3 className={r.classNames} id={id}>
+                <Child root={r} d={d.concat(i)} editable={editable} />
+              </h3>
+            )
+          else if (r.tagName === 'H4')
+            return (
+              <h4 className={r.classNames} id={id}>
+                <Child root={r} d={d.concat(i)} editable={editable} />
+              </h4>
+            )
+          else if (r.tagName === 'H5')
+            return (
+              <h5 className={r.classNames} id={id}>
+                <Child root={r} d={d.concat(i)} editable={editable} />
+              </h5>
+            )
+          else if (r.tagName === 'H6')
+            return (
+              <h6 className={r.classNames} id={id}>
+                <Child root={r} d={d.concat(i)} editable={editable} />
+              </h6>
+            )
           else if (r.tagName === 'P')
             return (
               <p className={r.classNames} id={id}>
@@ -78,6 +102,24 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
               <section className={r.classNames} id={id}>
                 <Child root={r} d={d.concat(i)} editable={editable} />
               </section>
+            )
+          else if (r.tagName === 'HEADER')
+            return (
+              <header className={r.classNames} id={id}>
+                <Child root={r} d={d.concat(i)} editable={editable} />
+              </header>
+            )
+          else if (r.tagName === 'FOOTER')
+            return (
+              <footer className={r.classNames} id={id}>
+                <Child root={r} d={d.concat(i)} editable={editable} />
+              </footer>
+            )
+          else if (r.tagName === 'NAV')
+            return (
+              <nav className={r.classNames} id={id}>
+                <Child root={r} d={d.concat(i)} editable={editable} />
+              </nav>
             )
           else if (r.tagName === 'ASIDE')
             return (
