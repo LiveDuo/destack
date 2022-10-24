@@ -45,7 +45,7 @@ const RenderFromEditor = ({ data }) => {
   const { resolver } = useContext(ThemeContext)
 
   const onStateChange = (e) => {
-    saveTemplateDebounce(e)
+    saveTemplateDebounce(e, false)
   }
 
   return (

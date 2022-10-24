@@ -66,9 +66,9 @@ const saveTemplate = async (state, standaloneServer) => {
 // would be better to somehow check from editor state
 let stateChanged = false
 
-const saveTemplateDebounce = debounce((e) => {
+const saveTemplateDebounce = debounce((e, standaloneServer) => {
   if (stateChanged) {
-    saveTemplate(e, false)
+    saveTemplate(e, standaloneServer)
   }
   stateChanged = true
 })
