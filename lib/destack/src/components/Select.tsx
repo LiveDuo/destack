@@ -6,10 +6,10 @@ import { CheckIcon } from '@heroicons/react/24/outline'
 
 import cx from 'classnames'
 
-const Select = ({ values, open, setOpen, onChange }) => {
+const Select = ({ defaultValue, values, open, setOpen, onChange }) => {
   return (
     <SelectPrimitive.Root
-      defaultValue={values[0]}
+      defaultValue={defaultValue}
       onValueChange={onChange}
       open={open}
       onOpenChange={(e) => setOpen(e)}

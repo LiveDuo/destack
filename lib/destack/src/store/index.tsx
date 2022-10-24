@@ -22,13 +22,13 @@ const defaultValue = {
   components: [],
   categories: [],
   themeNames: [],
-  themeIndex: 0,
+  themeIndex: 2,
   updateIndex: () => {},
 }
 const ThemeContext = createContext<ContextInterface>(defaultValue)
 
 const ThemeProvider = ({ children }) => {
-  const [themeIndex, setThemeIndex] = useState(2)
+  const [themeIndex, setThemeIndex] = useState(defaultValue.themeIndex)
 
   const components = themes[themeIndex]?.components
   const categories = [...new Set(components?.map((c) => c.craft.category))]

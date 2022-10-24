@@ -85,6 +85,7 @@ export const Header = () => {
                 <ChevronDownIcon className="h-4 w-4 ml-2" />
               </div>
               <Select
+                defaultValue={themeNames[themeIndex]}
                 values={themeNames}
                 open={selectOpen}
                 setOpen={setSelectOpen}

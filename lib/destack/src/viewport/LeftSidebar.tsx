@@ -23,6 +23,7 @@ const Sidebar = () => {
       <div className="flex flex-1 flex-col items-center pt-3 overflow-scroll hide-scrollbars">
         {categories.map((b, j) => (
           <SidebarItem
+            key={j}
             title={b}
             visible={toolbarVisible[j]}
             onChange={() => setToolbarVisible((t) => t.map((c, i) => (i === j ? !c : c)))}
