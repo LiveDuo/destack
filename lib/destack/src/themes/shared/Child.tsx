@@ -127,6 +127,30 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
                 <Child root={r} d={d.concat(i)} editable={editable} />
               </aside>
             )
+          else if (r.tagName === 'DETAILS')
+            return (
+              <details className={r.classNames} id={id}>
+                <Child root={r} d={d.concat(i)} editable={editable} />
+              </details>
+            )
+          else if (r.tagName === 'SUMMARY')
+            return (
+              <summary className={r.classNames} id={id}>
+                <Child root={r} d={d.concat(i)} editable={editable} />
+              </summary>
+            )
+          else if (r.tagName === 'BLOCKQUOTE')
+            return (
+              <blockquote className={r.classNames} id={id} {...r.attrs}>
+                <Child root={r} d={d.concat(i)} editable={editable} />
+              </blockquote>
+            )
+          else if (r.tagName === 'SVG')
+            return (
+              <svg className={r.classNames} id={id} {...r.attrs}>
+                {'path'}
+              </svg>
+            )
           else if (r.tagName === 'IMG') {
             return editable ? (
               <Element is={ContainerSimple} id={id} canvas>
