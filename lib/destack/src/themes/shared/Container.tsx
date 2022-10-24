@@ -12,8 +12,8 @@ export const Container = ({ children }) => {
     <Resizable
       enable={{}}
       ref={(ref) => connectors.connect(ref?.resizable as HTMLElement)}
-      size={{ width: 'unset', height }}
-      minWidth={800}
+      size={{ width: '800', height }}
+      // minWidth={800}
       className="bg-white"
     >
       {children}
