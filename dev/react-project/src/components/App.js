@@ -1,11 +1,11 @@
-require('../styles/index.module.css')
+require('destack/build/browser/index.css')
 
-import { ContentProviderReact } from 'destack'
+import { ContentProvider } from 'destack'
 
 const App = () => {
   return (
     <div style={{ height: '100%' }}>
-      <ContentProviderReact />
+      <ContentProvider />
     </div>
   )
 }
