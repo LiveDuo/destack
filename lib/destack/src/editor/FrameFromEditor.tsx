@@ -1,39 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 
-import { Editor, Frame, Element, useEditor } from '@craftjs/core'
+import { Editor, Frame, Element, useEditor, Resolver } from '@craftjs/core'
 
 import { Viewport } from '../viewport'
 import { RenderNode } from './RenderNode'
 
-import Child from '../themes/shared/Child'
-
-import { ContainerSimple } from '../themes/shared/Simple'
 import { Container } from '../themes/shared/Container'
-import { Text } from '../themes/shared/Text'
-import { Link } from '../themes/shared/Link'
-import { Image } from '../themes/shared/Image'
-
-import HyperUiComponents from '../themes/hyperui'
-import TailblocksComponents from '../themes/tailblocks'
-import MerakiLightComponents from '../themes/meraki-light'
 
 import { loadTemplate, saveTemplateDebounce } from '../utils/fetch'
 
-const mapComponents = (c, n) =>
-  Object.fromEntries(
-    Object.entries(c).map(([k, v]) => [
-      `${n.toLowerCase()}-${k.toLowerCase()}`,
-      v as React.FunctionComponent,
-    ]),
-  )
-
-const SimpleComponents = { Container, ContainerSimple, Element, Text, Child, Link, Image }
-const resolver = {
-  ...SimpleComponents,
-  ...mapComponents(HyperUiComponents, 'hyper'),
-  ...mapComponents(MerakiLightComponents, 'meraki'),
-  ...mapComponents(TailblocksComponents, 'tailblocks'),
-}
+import { ThemeContext } from '../store'
 
 const FrameFromEditor = ({ data }) => {
   const { actions } = useEditor()
@@ -66,12 +42,19 @@ const FrameFromEditor = ({ data }) => {
 }
 
 const RenderFromEditor = ({ data }) => {
+  const { resolver } = useContext(ThemeContext)
+
   const onStateChange = (e) => {
     saveTemplateDebounce(e)
   }
 
   return (
-    <Editor resolver={resolver} enabled={false} onRender={RenderNode} onNodesChange={onStateChange}>
+    <Editor
+      resolver={resolver as Resolver}
+      enabled={false}
+      onRender={RenderNode}
+      onNodesChange={onStateChange}
+    >
       <FrameFromEditor data={data} />
     </Editor>
   )
