@@ -11,7 +11,7 @@ import { loadTemplate, saveTemplateDebounce } from '../utils/fetch'
 
 import { ThemeContext } from '../store'
 
-const FrameFromEditor = ({ data }) => {
+const FrameFromEditor = ({ data, standaloneServer }) => {
   const { actions } = useEditor()
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const FrameFromEditor = ({ data }) => {
       const content = JSON.parse(data[0].content)
       actions.deserialize(content)
     } else {
-      loadTemplate(false)
+      loadTemplate(standaloneServer)
         .then((d) => {
           const content = JSON.parse(d as string)
           actions.deserialize(content) // NOTE: also loads the data in the editor
@@ -41,11 +41,11 @@ const FrameFromEditor = ({ data }) => {
   )
 }
 
-const RenderFromEditor = ({ data }) => {
+const RenderFromEditor = ({ data, standaloneServer }) => {
   const { resolver } = useContext(ThemeContext)
 
   const onStateChange = (e) => {
-    saveTemplateDebounce(e, false)
+    saveTemplateDebounce(e, standaloneServer)
   }
 
   return (
@@ -55,7 +55,7 @@ const RenderFromEditor = ({ data }) => {
       onRender={RenderNode}
       onNodesChange={onStateChange}
     >
-      <FrameFromEditor data={data} />
+      <FrameFromEditor data={data} standaloneServer={standaloneServer} />
     </Editor>
   )
 }
