@@ -13,13 +13,27 @@ const Link = ({ r, editable, d, i }) => {
 
   const [open, setOpen] = useState(false)
 
+  const onClick = (e) => {
+    const { props } = node.data
+    if (props.type === 'url') {
+      if (props.newTab) {
+        window.open(props.url, '_blank')?.focus()
+      } else {
+        location.href = props.url
+      }
+    } else if (props.type === 'email') {
+      location.href = props.email
+    } else if (props.type === 'submit') {
+      e.preventDefault()
+
+      const target = e.target as HTMLInputElement
+      const form = target.form as HTMLFormElement
+      console.log(form)
+    }
+  }
+
   return !enabled ? (
-    <a
-      className={r.classNames}
-      onClick={() => {
-        location.href = node.data.props.url
-      }}
-    >
+    <a className={r.classNames} onClick={onClick}>
       <Child root={r} d={d.concat(i)} editable={editable} />
     </a>
   ) : (

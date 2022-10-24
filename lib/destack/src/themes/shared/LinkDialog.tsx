@@ -13,9 +13,11 @@ const options = ['Url', 'Email', 'Submit']
 
 const Dialog = ({ currentUrl, open, setOpen, actions }) => {
   const [url, setUrl] = useState(currentUrl)
-
+  const [email, setEmail] = useState(currentUrl)
   const [openSelect, setOpenSelect] = useState(false)
+  const [newTab, setNewTab] = useState(false)
   const [selected, setSelected] = useState(0)
+
   const onChange = (e) => {
     setSelected(options.indexOf(e))
   }
@@ -66,7 +68,9 @@ const Dialog = ({ currentUrl, open, setOpen, actions }) => {
                         <div className="flex items-center ml-4">
                           <p>Open in new tab</p>
                           <input
+                            defaultChecked={newTab}
                             type="checkbox"
+                            onChange={(e) => setNewTab(e.target.checked)}
                             className="ml-4 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
                           />
                         </div>
@@ -80,7 +84,7 @@ const Dialog = ({ currentUrl, open, setOpen, actions }) => {
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                           placeholder="Eg. matt@mullenweg.com"
                           defaultValue={url as string}
-                          onChange={(e) => setUrl(e.target.value)}
+                          onChange={(e) => setEmail(e.target.value)}
                         />
                       </div>
                     )}
@@ -95,7 +99,12 @@ const Dialog = ({ currentUrl, open, setOpen, actions }) => {
               <DialogPrimitive.Close
                 onClick={() => {
                   setOpen(false)
-                  actions.setProp((prop) => (prop.url = url), 500)
+                  actions.setProp((prop) => {
+                    prop.type = options[selected].toLowerCase()
+                    prop.url = url
+                    prop.email = email
+                    prop.newTab = newTab
+                  }, 500)
                 }}
                 className={cx(
                   'inline-flex select-none justify-center rounded-md px-4 py-2 text-sm font-medium',
