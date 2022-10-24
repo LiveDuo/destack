@@ -1,81 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { Element } from '@craftjs/core'
-import { useNode, useEditor } from '@craftjs/core'
+import { useNode } from '@craftjs/core'
 
 import { ContainerSimple } from './Simple'
 import { Text } from './Text'
-
-import SimpleTooltip from '../../components/Tooltip'
-import ImageDialog from '../../components/ImageDialog'
-import LinkDialog from '../../components/LinkDialog'
-
-const Image = ({ classNames, attrs }) => {
-  const { actions, node } = useNode((node) => ({ node }))
-  const { enabled } = useEditor((state) => ({ enabled: state.options.enabled }))
-
-  const [open, setOpen] = useState(false)
-
-  const url = node.data.props.url
-
-  return !enabled ? (
-    <img className={classNames} {...attrs} src={url ?? attrs.src} />
-  ) : (
-    <>
-      <ImageDialog open={open} setOpen={setOpen} currentUrl={url} actions={actions} />
-      <SimpleTooltip text="Change image" side="bottom" offset={4}>
-        <img
-          className={`${classNames} cursor-pointer`}
-          {...attrs}
-          src={url ?? attrs.src}
-          onClick={() => {
-            setOpen(true)
-          }}
-        />
-      </SimpleTooltip>
-    </>
-  )
-}
-export { Image }
-
-const Link = ({ r, editable, d, i }) => {
-  const { actions, node } = useNode((node) => ({ node }))
-
-  const { enabled } = useEditor((state) => ({ enabled: state.options.enabled }))
-
-  const [open, setOpen] = useState(false)
-
-  return !enabled ? (
-    <a
-      className={r.classNames}
-      onClick={() => {
-        location.href = node.data.props.url
-      }}
-    >
-      <Child root={r} d={d.concat(i)} editable={editable} />
-    </a>
-  ) : (
-    <>
-      <LinkDialog
-        open={open}
-        setOpen={setOpen}
-        currentUrl={node.data.props.url}
-        actions={actions}
-      />
-      <SimpleTooltip text="Change link" side="bottom" offset={4}>
-        <a
-          className={`${r.classNames} cursor-pointer`}
-          onClick={() => {
-            setOpen(true)
-          }}
-        >
-          <Child root={r} d={d.concat(i)} editable={editable} />
-        </a>
-      </SimpleTooltip>
-    </>
-  )
-}
-export { Link }
+import { Link } from './Link'
+import { Image } from './Image'
 
 interface RootProps {
   childNodes: RootProps[]
