@@ -18,12 +18,20 @@ import MerakiLightComponents from '../themes/meraki-light'
 
 import { loadTemplate, saveTemplateDebounce } from '../utils/fetch'
 
+const mapComponents = (c, n) =>
+  Object.fromEntries(
+    Object.entries(c).map(([k, v]) => [
+      `${n.toLowerCase()}-${k.toLowerCase()}`,
+      v as React.FunctionComponent,
+    ]),
+  )
+
 const SimpleComponents = { Container, ContainerSimple, Element, Text, Child, Link, Image }
 const resolver = {
   ...SimpleComponents,
-  ...HyperUiComponents,
-  ...TailblocksComponents,
-  ...MerakiLightComponents,
+  ...mapComponents(HyperUiComponents, 'hyper'),
+  ...mapComponents(MerakiLightComponents, 'meraki'),
+  ...mapComponents(TailblocksComponents, 'tailblocks'),
 }
 
 const FrameFromEditor = ({ data }) => {
