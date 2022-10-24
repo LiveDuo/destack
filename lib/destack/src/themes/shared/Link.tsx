@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useNode, useEditor } from '@craftjs/core'
 
 import SimpleTooltip from '../../components/Tooltip'
-import LinkDialog from '../../components/LinkDialog'
+import LinkDialog from './LinkDialog'
 import Child from './Child'
 
 const Link = ({ r, editable, d, i }) => {

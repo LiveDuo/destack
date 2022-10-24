@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useNode, useEditor } from '@craftjs/core'
 
 import SimpleTooltip from '../../components/Tooltip'
-import ImageDialog from '../../components/ImageDialog'
+import ImageDialog from './ImageDialog'
 
 const Image = ({ classNames, attrs }) => {
   const { actions, node } = useNode((node) => ({ node }))

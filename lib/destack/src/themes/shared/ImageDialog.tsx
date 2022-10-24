@@ -5,7 +5,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 
 import cx from 'classnames'
 
-import { uploadFile } from '../utils/fetch'
+import { uploadFile } from '../../utils/fetch'
 
 const Content = ({ url, setUrl }) => {
   const onChange = async (e) => {
