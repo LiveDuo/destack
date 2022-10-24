@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 
 import { useEditor } from '@craftjs/core'
 
@@ -12,8 +12,12 @@ const Sidebar = () => {
   const { components, categories } = useContext(ThemeContext)
   const { enabled, connectors } = useEditor(({ options }) => ({ enabled: options.enabled }))
 
-  const defaultVisible = Array.from({ length: categories.length }, (_, i) => i === 0)
-  const [toolbarVisible, setToolbarVisible] = useState(defaultVisible)
+  const [toolbarVisible, setToolbarVisible] = useState<boolean[]>([])
+
+  useEffect(() => {
+    const v = Array.from({ length: categories.length }, (_, i) => i === 0)
+    setToolbarVisible(v)
+  }, [categories])
 
   return (
     <div
