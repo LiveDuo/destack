@@ -7,13 +7,7 @@ import cx from 'classnames'
 
 import { uploadFile } from '../../utils/fetch'
 
-const Content = ({ url, setUrl }) => {
-  const onChange = async (e) => {
-    const file = e?.path[0].files[0]
-    const response = await uploadFile(file, false)
-    setUrl(response[0])
-  }
-
+const Content = ({ url, text, setText, onUpload, onChange }) => {
   return (
     <div className="mt-4 mb-4">
       {!url ? (
@@ -26,7 +20,7 @@ const Content = ({ url, setUrl }) => {
               onClick={() => {
                 const input = document.createElement('input')
                 input.type = 'file'
-                input.onchange = onChange
+                input.onchange = onUpload
                 input.click()
               }}
             >
@@ -39,7 +33,19 @@ const Content = ({ url, setUrl }) => {
               type="text"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
               placeholder="Eg. https://www.w3schools.com/html/pic_trulli.jpg"
+              onChange={(e) => setText(e.target.value)}
             />
+            <button
+              onClick={() => onChange()}
+              className={cx(
+                'rounded-md px-4 py-2 text-sm font-medium bg-transparent border',
+                'text-blue-500 hover:opacity-50 border border-transparent',
+                `${text !== '' ? 'hover:opacity-50' : 'opacity-50 cursor-not-allowed'}`,
+              )}
+              disabled={text === ''}
+            >
+              Set
+            </button>
           </div>
         </div>
       ) : (
@@ -51,6 +57,18 @@ const Content = ({ url, setUrl }) => {
 
 const Dialog = ({ currentUrl, open, setOpen, actions }) => {
   const [url, setUrl] = useState<string | null>(currentUrl)
+  const [text, setText] = useState<string | null>('')
+
+  const onUpload = async (e) => {
+    const file = e?.path[0].files[0]
+    const response = await uploadFile(file, false)
+    setUrl(response[0])
+  }
+
+  const onChange = async () => {
+    setUrl(text)
+  }
+
   return (
     <DialogPrimitive.Root open={open} onOpenChange={setOpen}>
       <DialogPrimitive.Portal>
@@ -67,7 +85,13 @@ const Dialog = ({ currentUrl, open, setOpen, actions }) => {
             </DialogPrimitive.Title>
 
             <DialogPrimitive.Description className="mt-2 text-sm font-normal text-gray-700 dark:text-gray-400">
-              <Content url={url} setUrl={setUrl} />
+              <Content
+                url={url}
+                text={text}
+                setText={setText}
+                onUpload={onUpload}
+                onChange={onChange}
+              />
             </DialogPrimitive.Description>
 
             <div className="mt-4 flex justify-end">
@@ -77,7 +101,10 @@ const Dialog = ({ currentUrl, open, setOpen, actions }) => {
                   'rounded-md px-4 py-2 text-sm font-medium bg-transparent border',
                   'text-blue-500 hover:opacity-50 border border-transparent',
                 )}
-                onClick={() => setUrl(null)}
+                onClick={() => {
+                  setUrl(null)
+                  setText('')
+                }}
               >
                 Replace
               </button>
@@ -89,8 +116,11 @@ const Dialog = ({ currentUrl, open, setOpen, actions }) => {
                 }}
                 className={cx(
                   'inline-flex select-none justify-center rounded-md px-4 py-2 text-sm font-medium',
-                  'bg-blue-600 text-white hover:bg-blue-700 border border-transparent',
+                  `bg-blue-600 text-white border border-transparent ${
+                    url ? 'hover:bg-blue-700' : 'opacity-50 cursor-not-allowed'
+                  }`,
                 )}
+                disabled={!url}
               >
                 Save
               </DialogPrimitive.Close>

@@ -17,7 +17,7 @@ const Image = ({ classNames, attrs }) => {
     <img className={classNames} {...attrs} src={url ?? attrs.src} />
   ) : (
     <>
-      <ImageDialog open={open} setOpen={setOpen} currentUrl={url} actions={actions} />
+      <ImageDialog open={open} setOpen={setOpen} currentUrl={url ?? attrs.src} actions={actions} />
       <SimpleTooltip text="Change image" side="bottom" offset={4}>
         <img
           className={`${classNames} cursor-pointer`}
