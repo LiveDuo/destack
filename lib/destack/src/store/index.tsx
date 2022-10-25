@@ -3,8 +3,8 @@ import React, { createContext, useState } from 'react'
 import { Element } from '@craftjs/core'
 
 import hyperUiComponents from '../themes/hyperui'
-// import tailblocksComponents from '../themes/tailblocks'
-// import merakiLightComponents from '../themes/meraki-light'
+import tailblocksComponents from '../themes/tailblocks'
+import merakiLightComponents from '../themes/meraki-light'
 
 import Child from '../themes/shared/Child'
 
@@ -14,9 +14,14 @@ import { Text } from '../themes/shared/Text'
 import { Link } from '../themes/shared/Link'
 import { Image } from '../themes/shared/Image'
 
-import HyperUiComponents from '../themes/hyperui'
-// import TailblocksComponents from '../themes/tailblocks'
-// import MerakiLightComponents from '../themes/meraki-light'
+const themes = [
+  { name: 'Hyper UI', load: () => import(`../themes/hyperui`) },
+  { name: 'Tailblocks', load: () => import(`../themes/tailblocks`) },
+  { name: 'Meraki UI', load: () => import(`../themes/meraki-light`) },
+]
+
+const getCategories = (components) =>
+  [...new Set(components?.map((c) => c.craft.category))] as string[]
 
 const mapComponents = (c, n) =>
   Object.fromEntries(
@@ -25,20 +30,6 @@ const mapComponents = (c, n) =>
       v as React.FunctionComponent,
     ]),
   )
-
-const SimpleComponents = { Container, ContainerSimple, Element, Text, Child, Link, Image }
-const resolver = {
-  ...SimpleComponents,
-  ...mapComponents(HyperUiComponents, 'hyper'),
-  // ...mapComponents(MerakiLightComponents, 'meraki'),
-  // ...mapComponents(TailblocksComponents, 'tailblocks'),
-}
-
-const themes = [
-  { name: 'Hyper UI', components: Object.values(hyperUiComponents) },
-  // { name: 'Tailblocks', components: Object.values(tailblocksComponents) },
-  // { name: 'Meraki UI', components: Object.values(merakiLightComponents) },
-]
 
 interface ContextInterface {
   components: any[]
@@ -49,25 +40,47 @@ interface ContextInterface {
   updateIndex: (number) => void
 }
 
+const SimpleComponents = { Container, ContainerSimple, Element, Text, Child, Link, Image }
+
+const _resolver = {
+  ...SimpleComponents,
+  ...mapComponents(hyperUiComponents, 'hyper'),
+  ...mapComponents(tailblocksComponents, 'tailblocks'),
+  ...mapComponents(merakiLightComponents, 'meraki-light'),
+}
+
 const defaultValue = {
-  components: [],
-  categories: [],
+  components: Object.values(hyperUiComponents),
+  categories: getCategories(Object.values(hyperUiComponents)),
   themeNames: [],
   themeIndex: 0,
-  resolver: resolver,
+  resolver: _resolver,
   updateIndex: () => {},
 }
+
 const ThemeContext = createContext<ContextInterface>(defaultValue)
 
 const ThemeProvider = ({ children }) => {
   const [themeIndex, setThemeIndex] = useState(defaultValue.themeIndex)
+  const [components, setComponents] = useState(defaultValue.components)
+  const [categories, setCategories] = useState(defaultValue.categories)
+  const [resolver, setResolver] = useState(defaultValue.resolver)
 
-  const components = themes[themeIndex]?.components
-  const categories = [...new Set(components?.map((c) => c.craft.category))]
   const themeNames = themes.map((t) => t.name)
 
   const updateIndex = async (index) => {
     setThemeIndex(index)
+
+    const componentsObject = await themes[index].load()
+    const componentsArray = Object.values(componentsObject.default)
+    setComponents(componentsArray)
+    setCategories(getCategories(componentsArray))
+
+    // const themeName = themes[index].name.toLowerCase().replaceAll(' ', '-')
+    // const _resolver = { ...SimpleComponents, ...mapComponents(componentsObject.default, themeName), }
+    // setResolver(_resolver)
+
+    // console.log(_resolver)
   }
 
   const value = { components, categories, resolver, themeNames, themeIndex, updateIndex }
