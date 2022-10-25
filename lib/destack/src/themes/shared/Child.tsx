@@ -173,8 +173,23 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
             )
           else if (r.tagName === 'SVG')
             return (
-              <svg className={r.classNames} id={id} {...r.attrs}>
-                {'path'}
+              <svg
+                className={r.classNames}
+                id={id}
+                fill={r.attrs['fill']}
+                viewBox={r.attrs['view-box']}
+              >
+                {r.childNodes
+                  .filter((c) => c.tagName === 'PATH')
+                  .map((c, i) => (
+                    <path
+                      key={`${id}-${i}`}
+                      className={r.classNames}
+                      d={c.attrs['d']}
+                      fillRule={c.attrs['fill-rule']}
+                      clipRule={c.attrs['clip-rule']}
+                    />
+                  ))}
               </svg>
             )
           else if (r.tagName === 'ADDRESS')
