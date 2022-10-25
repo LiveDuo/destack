@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 
 import { Element } from '@craftjs/core'
 
@@ -50,8 +50,8 @@ const _resolver = {
 }
 
 const defaultValue = {
-  components: Object.values(hyperUiComponents),
-  categories: getCategories(Object.values(hyperUiComponents)),
+  components: [],
+  categories: [],
   themeNames: [],
   themeIndex: 0,
   resolver: _resolver,
@@ -61,12 +61,16 @@ const defaultValue = {
 const ThemeContext = createContext<ContextInterface>(defaultValue)
 
 const ThemeProvider = ({ children }) => {
-  const [themeIndex, setThemeIndex] = useState(defaultValue.themeIndex)
-  const [components, setComponents] = useState(defaultValue.components)
-  const [categories, setCategories] = useState(defaultValue.categories)
-  const [resolver, setResolver] = useState(defaultValue.resolver)
+  const [themeIndex, setThemeIndex] = useState<number>(defaultValue.themeIndex)
+  const [components, setComponents] = useState<any[]>(defaultValue.components)
+  const [categories, setCategories] = useState<string[]>(defaultValue.categories)
+  const [resolver, _setResolver] = useState<object>(defaultValue.resolver)
 
   const themeNames = themes.map((t) => t.name)
+
+  useEffect(() => {
+    updateIndex(0)
+  }, [])
 
   const updateIndex = async (index) => {
     setThemeIndex(index)
@@ -79,8 +83,6 @@ const ThemeProvider = ({ children }) => {
     // const themeName = themes[index].name.toLowerCase().replaceAll(' ', '-')
     // const _resolver = { ...SimpleComponents, ...mapComponents(componentsObject.default, themeName), }
     // setResolver(_resolver)
-
-    // console.log(_resolver)
   }
 
   const value = { components, categories, resolver, themeNames, themeIndex, updateIndex }
