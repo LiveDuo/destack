@@ -145,11 +145,49 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
                 <Child root={r} d={d.concat(i)} editable={editable} />
               </blockquote>
             )
+          else if (r.tagName === 'INPUT')
+            return <input className={r.classNames} id={id} {...r.attrs} />
+          else if (r.tagName === 'LABEL')
+            return (
+              <label className={r.classNames} id={id} {...r.attrs}>
+                {r.innerText}
+              </label>
+            )
+          else if (r.tagName === 'TEXTAREA')
+            return (
+              <textarea className={r.classNames} id={id} {...r.attrs}>
+                {r.innerText}
+              </textarea>
+            )
+          else if (r.tagName === 'BUTTON')
+            return (
+              <button className={r.classNames} id={id} {...r.attrs}>
+                {r.innerText}
+              </button>
+            )
+          else if (r.tagName === 'FORM')
+            return (
+              <form className={r.classNames} id={id} {...r.attrs}>
+                <Child root={r} d={d.concat(i)} editable={editable} />
+              </form>
+            )
           else if (r.tagName === 'SVG')
             return (
               <svg className={r.classNames} id={id} {...r.attrs}>
                 {'path'}
               </svg>
+            )
+          else if (r.tagName === 'ADDRESS')
+            return editable ? (
+              <Element is={ContainerSimple} id={id}>
+                <address className={r.classNames} id={id} {...r.attrs}>
+                  <Text text={r.innerText} editable={true} />
+                </address>
+              </Element>
+            ) : (
+              <address className={r.classNames} id={id} {...r.attrs}>
+                <Text text={r.innerText} editable={false} />
+              </address>
             )
           else if (r.tagName === 'IMG') {
             return editable ? (
