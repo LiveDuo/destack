@@ -14,11 +14,14 @@ const handleClick = (props, e) => {
       location.href = props.url
     }
   } else if (props.type === 'email') {
-    location.href = props.email
+    location.href = `mailto:${props.email}`
   } else if (props.type === 'submit') {
-    const target = e.target as HTMLInputElement
-    const form = target.form as HTMLFormElement
-    console.log(form)
+    const form = e.target.closest('form')
+    for (let e of form.elements) {
+      if (e.type !== 'submit') {
+        console.log(e.id, e.value, e.type)
+      }
+    }
   }
 }
 
