@@ -6,6 +6,7 @@ import { useNode } from '@craftjs/core'
 import { ContainerSimple } from './Simple'
 import { Text } from './Text'
 import { Link } from './Link'
+import { Button } from './Button'
 import { Image } from './Image'
 
 interface RootProps {
@@ -161,9 +162,9 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
             )
           else if (r.tagName === 'BUTTON')
             return (
-              <button className={r.classNames} id={id} {...r.attrs}>
-                {r.innerText}
-              </button>
+              <Element is={ContainerSimple} id={id}>
+                <Button r={r} d={d} i={i} editable={editable} />
+              </Element>
             )
           else if (r.tagName === 'FORM')
             return (

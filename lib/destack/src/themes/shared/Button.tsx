@@ -22,7 +22,7 @@ const handleClick = (props, e) => {
   }
 }
 
-const Link = ({ r, editable, d, i }) => {
+const Button = ({ r, editable, d, i }) => {
   const { actions, node } = useNode((node) => ({ node }))
   const { enabled } = useEditor((state) => ({ enabled: state.options.enabled }))
   const [open, setOpen] = useState(false)
@@ -32,9 +32,9 @@ const Link = ({ r, editable, d, i }) => {
   }
 
   return !enabled ? (
-    <a className={r.classNames} onClick={onClick}>
+    <button className={r.classNames} onClick={onClick}>
       <Child root={r} d={d.concat(i)} editable={editable} />
-    </a>
+    </button>
   ) : (
     <>
       <ActionDialog
@@ -43,17 +43,18 @@ const Link = ({ r, editable, d, i }) => {
         currentUrl={node.data.props.url}
         actions={actions}
       />
-      <SimpleTooltip text="Change link" side="bottom" offset={4}>
-        <a
+      <SimpleTooltip text="Change action" side="bottom" offset={4}>
+        <button
           className={`${r.classNames} cursor-pointer`}
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault()
             setOpen(true)
           }}
         >
           <Child root={r} d={d.concat(i)} editable={editable} />
-        </a>
+        </button>
       </SimpleTooltip>
     </>
   )
 }
-export { Link }
+export { Button }

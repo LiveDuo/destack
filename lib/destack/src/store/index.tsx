@@ -12,6 +12,7 @@ import { ContainerSimple } from '../themes/shared/Simple'
 import { Container } from '../themes/shared/Container'
 import { Text } from '../themes/shared/Text'
 import { Link } from '../themes/shared/Link'
+import { Button } from '../themes/shared/Button'
 import { Image } from '../themes/shared/Image'
 
 const themes = [
@@ -40,7 +41,7 @@ interface ContextInterface {
   updateIndex: (number) => void
 }
 
-const SimpleComponents = { Container, ContainerSimple, Element, Text, Child, Link, Image }
+const SimpleComponents = { Container, ContainerSimple, Element, Text, Child, Link, Button, Image }
 
 const _resolver = {
   ...SimpleComponents,
