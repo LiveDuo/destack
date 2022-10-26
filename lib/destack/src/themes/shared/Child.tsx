@@ -179,6 +179,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
                 id={id}
                 fill={r.attrs['fill']}
                 viewBox={r.attrs['view-box']}
+                stroke={r.attrs['stroke']}
               >
                 {r.childNodes
                   .filter((c) => c.tagName === 'PATH')
@@ -189,6 +190,9 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
                       d={c.attrs['d']}
                       fillRule={c.attrs['fill-rule']}
                       clipRule={c.attrs['clip-rule']}
+                      strokeLinecap={c.attrs['stroke-linecap']}
+                      strokeLinejoin={c.attrs['stroke-linejoin']}
+                      strokeWidth={c.attrs['stroke-width']}
                     />
                   ))}
               </svg>
