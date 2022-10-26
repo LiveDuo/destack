@@ -37,12 +37,7 @@ const Link = ({ r, editable, d, i }) => {
     </a>
   ) : (
     <>
-      <ActionDialog
-        open={open}
-        setOpen={setOpen}
-        currentUrl={node.data.props.url}
-        actions={actions}
-      />
+      <ActionDialog open={open} setOpen={setOpen} props={node.data.props} actions={actions} />
       <SimpleTooltip text="Change link" side="bottom" offset={4}>
         <a
           className={`${r.classNames} cursor-pointer`}

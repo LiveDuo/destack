@@ -11,12 +11,12 @@ import cx from 'classnames'
 
 const options = ['Url', 'Email', 'Submit']
 
-const Dialog = ({ currentUrl, open, setOpen, actions }) => {
-  const [url, setUrl] = useState(currentUrl)
-  const [email, setEmail] = useState(currentUrl)
+const Dialog = ({ props, open, setOpen, actions }) => {
+  const [url, setUrl] = useState(props.url)
+  const [email, setEmail] = useState(props.url)
   const [openSelect, setOpenSelect] = useState(false)
   const [newTab, setNewTab] = useState(false)
-  const [selected, setSelected] = useState(0)
+  const [selected, setSelected] = useState(options.map((o) => o.toLowerCase()).indexOf(props.type))
 
   const onChange = (e) => {
     setSelected(options.indexOf(e))
@@ -83,7 +83,7 @@ const Dialog = ({ currentUrl, open, setOpen, actions }) => {
                           type="text"
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                           placeholder="Eg. matt@mullenweg.com"
-                          defaultValue={url as string}
+                          defaultValue={email as string}
                           onChange={(e) => setEmail(e.target.value)}
                         />
                       </div>

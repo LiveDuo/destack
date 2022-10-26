@@ -40,12 +40,7 @@ const Button = ({ r, editable, d, i }) => {
     </button>
   ) : (
     <>
-      <ActionDialog
-        open={open}
-        setOpen={setOpen}
-        currentUrl={node.data.props.url}
-        actions={actions}
-      />
+      <ActionDialog open={open} setOpen={setOpen} props={node.data.props} actions={actions} />
       <SimpleTooltip text="Change action" side="bottom" offset={4}>
         <button
           className={`${r.classNames} cursor-pointer`}
