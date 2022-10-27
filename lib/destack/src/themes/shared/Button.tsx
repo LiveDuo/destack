@@ -17,11 +17,28 @@ const handleClick = (props, e) => {
     location.href = `mailto:${props.email}`
   } else if (props.type === 'submit') {
     const form = e.target.closest('form')
+
+    if (!props.submitAsync) {
+      form.submit()
+      return
+    }
+
+    const formData = new FormData()
     for (let e of form.elements) {
       if (e.type !== 'submit') {
-        console.log(e.id, e.value, e.type)
+        formData.append(e.id, e.type === 'radio' ? e.checked : e.value)
       }
     }
+
+    const options = {
+      method: props.submitMethod,
+      ...(props.submitMethod !== 'GET' ? { body: formData } : {}),
+    }
+    fetch(props.submitUrl, options)
+      .then((e) => e.text().then((d) => ({ ok: e.ok, text: d })))
+      .then(({ ok, text }) => {
+        alert(ok ? text ?? 'All good' : 'Something went wrong')
+      })
   }
 }
 
