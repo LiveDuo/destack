@@ -24,7 +24,7 @@ const Dialog = ({ props, open, setOpen, actions }) => {
   const [submitAsync, setSubmitAsync] = useState(props.submitAsync)
   const [methodSelect, setMethodSelect] = useState(props.methodSelect)
   const [newTab, setNewTab] = useState(props.newTab)
-  const [type, setType] = useState(props.type)
+  const [type, setType] = useState(props.type ?? 'url')
 
   const onChange = (e) => {
     setType(e.toLowerCase())
