@@ -3,22 +3,14 @@ import React, { useState } from 'react'
 import { useNode, useEditor } from '@craftjs/core'
 
 import SimpleTooltip from '../../components/Tooltip'
-import ActionDialog from './ActionDialog'
+import ActionDialog from './LinkDialog'
 import Child from './Child'
 
-const handleClick = (props, e) => {
-  if (props.type === 'url') {
-    if (props.newTab) {
-      window.open(props.url, '_blank')?.focus()
-    } else {
-      location.href = props.url
-    }
-  } else if (props.type === 'email') {
-    location.href = `mailto:${props.email}`
-  } else if (props.type === 'submit') {
-    const target = e.target as HTMLInputElement
-    const form = target.form as HTMLFormElement
-    console.log(form)
+const handleClick = (props) => {
+  if (props.newTab) {
+    window.open(props.link, '_blank')?.focus()
+  } else {
+    location.href = props.link
   }
 }
 
@@ -28,7 +20,7 @@ const Link = ({ r, editable, d, i }) => {
   const [open, setOpen] = useState(false)
   const onClick = (e) => {
     e.preventDefault()
-    handleClick(node.data.props, e)
+    handleClick(node.data.props)
   }
 
   return !enabled ? (

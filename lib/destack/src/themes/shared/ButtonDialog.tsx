@@ -9,17 +9,25 @@ import { ChevronDownIcon } from '@heroicons/react/24/outline'
 
 import cx from 'classnames'
 
-const options = ['Url', 'Email', 'Submit']
+import { capitalize } from '../../utils/text'
+
+const options = ['url', 'email', 'submit']
+const methods = ['GET', 'POST']
 
 const Dialog = ({ props, open, setOpen, actions }) => {
-  const [url, setUrl] = useState(props.url)
-  const [email, setEmail] = useState(props.url)
   const [openSelect, setOpenSelect] = useState(false)
-  const [newTab, setNewTab] = useState(false)
-  const [selected, setSelected] = useState(options.map((o) => o.toLowerCase()).indexOf(props.type))
+
+  const [url, setUrl] = useState(props.url)
+  const [email, setEmail] = useState(props.email)
+  const [submitUrl, setSubmitUrl] = useState(props.submitUrl)
+  const [submitMethod, setSubmitMethod] = useState(props.submitMethod ?? 'GET')
+  const [submitAsync, setSubmitAsync] = useState(props.submitAsync)
+  const [methodSelect, setMethodSelect] = useState(props.methodSelect)
+  const [newTab, setNewTab] = useState(props.newTab)
+  const [type, setType] = useState(props.type)
 
   const onChange = (e) => {
-    setSelected(options.indexOf(e))
+    setType(e.toLowerCase())
   }
 
   return (
@@ -34,7 +42,7 @@ const Dialog = ({ props, open, setOpen, actions }) => {
             )}
           >
             <DialogPrimitive.Title className="text-sm font-medium text-gray-900 dark:text-gray-100">
-              Update Link
+              Update Button
             </DialogPrimitive.Title>
 
             <DialogPrimitive.Description className="mt-2 text-sm font-normal text-gray-700 dark:text-gray-400">
@@ -44,11 +52,11 @@ const Dialog = ({ props, open, setOpen, actions }) => {
                     className="flex rounded py-2 px-4 transition cursor-pointer items-center ml-2 mb-4"
                     onClick={() => setOpenSelect(true)}
                   >
-                    {options[selected]} <ChevronDownIcon className="h-4 w-4 ml-2" />
+                    {capitalize(type)} <ChevronDownIcon className="h-4 w-4 ml-2" />
                   </div>
                   <Select
-                    defaultValue={options[selected]}
-                    values={options}
+                    defaultValue={type}
+                    values={options.map((o) => capitalize(o))}
                     open={openSelect}
                     setOpen={setOpenSelect}
                     onChange={onChange}
@@ -56,7 +64,7 @@ const Dialog = ({ props, open, setOpen, actions }) => {
 
                   <div>
                     {/* Url */}
-                    {selected === 0 && (
+                    {type === 'url' && (
                       <div className="flex justify-center mb-4 flex-col">
                         <input
                           type="text"
@@ -77,7 +85,7 @@ const Dialog = ({ props, open, setOpen, actions }) => {
                       </div>
                     )}
                     {/* Email */}
-                    {selected === 1 && (
+                    {type === 'email' && (
                       <div className="flex justify-center mb-4">
                         <input
                           type="text"
@@ -89,7 +97,41 @@ const Dialog = ({ props, open, setOpen, actions }) => {
                       </div>
                     )}
                     {/* Submit */}
-                    {selected === 2 && <div className="flex justify-center mb-4">{/* ... */}</div>}
+                    {type === 'submit' && (
+                      <div className="flex justify-center mb-4 flex-col">
+                        <div className="flex justify-end mb-4">
+                          <input
+                            type="text"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                            placeholder="Eg. /api/submit"
+                            defaultValue={submitUrl as string}
+                            onChange={(e) => setSubmitUrl(e.target.value)}
+                          />
+                          <div
+                            className="flex rounded py-2 px-4 transition cursor-pointer items-center ml-2"
+                            onClick={() => setMethodSelect(true)}
+                          >
+                            {submitMethod} <ChevronDownIcon className="h-4 w-4 ml-2" />
+                          </div>
+                          <Select
+                            defaultValue={submitMethod}
+                            values={methods}
+                            open={methodSelect}
+                            setOpen={setMethodSelect}
+                            onChange={(e) => setSubmitMethod(e)}
+                          />
+                        </div>
+                        <div className="flex items-center ml-4">
+                          <p>Async</p>
+                          <input
+                            defaultChecked={submitAsync}
+                            type="checkbox"
+                            onChange={(e) => setSubmitAsync(e.target.checked)}
+                            className="ml-4 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
+                          />
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -100,10 +142,13 @@ const Dialog = ({ props, open, setOpen, actions }) => {
                 onClick={() => {
                   setOpen(false)
                   actions.setProp((prop) => {
-                    prop.type = options[selected].toLowerCase()
+                    prop.type = type.toLowerCase()
                     prop.url = url
                     prop.email = email
                     prop.newTab = newTab
+                    prop.submitUrl = submitUrl
+                    prop.submitMethod = submitMethod
+                    prop.submitAsync = submitAsync
                   }, 500)
                 }}
                 className={cx(

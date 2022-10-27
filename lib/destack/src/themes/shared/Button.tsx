@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useNode, useEditor } from '@craftjs/core'
 
 import SimpleTooltip from '../../components/Tooltip'
-import ActionDialog from './ActionDialog'
+import ActionDialog from './ButtonDialog'
 import Child from './Child'
 
 const handleClick = (props, e) => {
