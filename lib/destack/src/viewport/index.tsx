@@ -24,7 +24,12 @@ export const Viewport: React.FC = ({ children }) => {
             className="craftjs-renderer flex-1 h-full w-full transition pb-8 overflow-auto"
             ref={(ref) => connectors.select(connectors.hover(ref as HTMLElement, ''), '')}
           >
-            <div className="relative flex-col flex items-center pt-8">{children}</div>
+            <div
+              className="relative flex-col flex items-center pt-8 justify-center"
+              style={{ width: '800px', minHeight: '800px', margin: 'auto' }}
+            >
+              {children}
+            </div>
             <div className={'flex items-center justify-center w-full pt-6 text-xs text-gray-400'}>
               <a href="https://www.netlify.com">This site is powered by Netlify</a>
             </div>

@@ -6,14 +6,13 @@ import { Resizable } from 're-resizable'
 
 export const Container = ({ children }) => {
   const { connectors, node } = useNode((node) => ({ node }))
-  const { height } = node.data.props
+  const { width, height } = node.data.props
 
   return (
     <Resizable
       enable={{}}
       ref={(ref) => connectors.connect(ref?.resizable as HTMLElement)}
-      size={{ width: '800', height: height ?? '800' }}
-      // minWidth={800}
+      size={{ width: width ?? '100%', height: height ?? '100%' }}
       className="bg-white"
     >
       {children}
