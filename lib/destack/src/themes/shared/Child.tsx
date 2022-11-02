@@ -221,7 +221,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
         } else if (r.nodeType === 3) {
           if (r.innerText.trim() === '') return null
           // className={r.parentNode.classNames}
-          if (r.constructor === 'TextNode')
+          if (r.constructor === 'TextNode' || r.constructor === 't')
             return editable ? (
               <Element is={ContainerSimple} id={id}>
                 <Text text={r.innerText} editable={true} />
