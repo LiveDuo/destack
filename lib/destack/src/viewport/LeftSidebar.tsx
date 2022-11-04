@@ -35,7 +35,7 @@ const Sidebar = () => {
             onChange={() => setToolbarVisible((t) => t.map((c, i) => (i === j ? !c : c)))}
           >
             {components
-              ?.filter((c) => c.craft.category === b)
+              ?.filter((c) => c.category === b)
               .map((c, i) => {
                 return (
                   <div
@@ -43,13 +43,13 @@ const Sidebar = () => {
                     ref={(ref) =>
                       connectors.create(
                         ref as HTMLElement,
-                        <Component editable={true} root={c.craft.root} />,
+                        <Component editable={true} root={c.root} />,
                       )
                     }
                   >
-                    <SimpleTooltip text={c.craft.displayName} side="right" offset={12}>
+                    <SimpleTooltip text={c.displayName} side="right" offset={12}>
                       <a className="cursor-move m-2 pb-2 cursor-pointer block">
-                        <img src={c.craft.image} width="600px" height="300px" />
+                        <img src={c.image} width="600px" height="300px" />
                       </a>
                     </SimpleTooltip>
                   </div>

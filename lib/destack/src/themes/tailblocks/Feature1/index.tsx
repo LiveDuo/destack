@@ -3,17 +3,11 @@ import { source } from './source'
 
 import { cleanHTMLElement } from '../../../utils/html'
 
-import preview from './preview.png'
-
 const root = cleanHTMLElement(parse(source))
 
-const WithProps = { craft: {} }
-WithProps.craft = {
+const Component = {
   root: root,
   displayName: 'Features 1',
   category: 'Features',
-  image: preview,
-  props: {},
-  related: {},
 }
-export default WithProps
+export default Component
