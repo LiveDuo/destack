@@ -14,6 +14,7 @@ import { Text } from '../themes/shared/Text'
 import { Link } from '../themes/shared/Link'
 import { Button } from '../themes/shared/Button'
 import { Image } from '../themes/shared/Image'
+import { Component } from '../themes/shared/Child'
 
 const themes = [
   { name: 'Hyper UI', load: () => import(`../themes/hyperui`) },
@@ -41,13 +42,16 @@ interface ContextInterface {
   updateIndex: (number) => void
 }
 
-const SimpleComponents = { Container, ContainerSimple, Element, Text, Child, Link, Button, Image }
-
 const _resolver = {
-  ...SimpleComponents,
-  ...mapComponents(hyperUiComponents, 'hyper'),
-  ...mapComponents(tailblocksComponents, 'tailblocks'),
-  ...mapComponents(merakiLightComponents, 'meraki-light'),
+  Container,
+  Component,
+  ContainerSimple,
+  Element,
+  Text,
+  Child,
+  Link,
+  Button,
+  Image,
 }
 
 const defaultValue = {

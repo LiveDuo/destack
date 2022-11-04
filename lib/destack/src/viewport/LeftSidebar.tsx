@@ -8,6 +8,8 @@ import SimpleTooltip from '../components/Tooltip'
 
 import { ThemeContext } from '../store'
 
+import { Component } from '../themes/shared/Child'
+
 const Sidebar = () => {
   const { components, categories } = useContext(ThemeContext)
   const { enabled, connectors } = useEditor(({ options }) => ({ enabled: options.enabled }))
@@ -38,7 +40,12 @@ const Sidebar = () => {
                 return (
                   <div
                     key={i}
-                    ref={(ref) => connectors.create(ref as HTMLElement, React.createElement(c))}
+                    ref={(ref) =>
+                      connectors.create(
+                        ref as HTMLElement,
+                        <Component editable={true} root={c.craft.root} />,
+                      )
+                    }
                   >
                     <SimpleTooltip text={c.craft.displayName} side="right" offset={12}>
                       <a className="cursor-move m-2 pb-2 cursor-pointer block">
