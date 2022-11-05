@@ -12,8 +12,6 @@ import { Button } from '../themes/shared/Button'
 import { Image } from '../themes/shared/Image'
 import { Component } from '../themes/shared/Child'
 
-import imageData from '../themes/hyperui/Banner1/preview.png'
-
 const themes = [
   { name: 'Hyper UI', load: () => import(`../themes/hyperui`) },
   { name: 'Tailblocks', load: () => import(`../themes/tailblocks`) },
