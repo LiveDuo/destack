@@ -71,7 +71,7 @@ const ThemeProvider = ({ children }) => {
 
     const componentsObject = await themes[index].load()
     const componentsArray = Object.values(componentsObject.default)
-    setComponents(componentsArray.map((c) => ({ ...c, image: imageData })))
+    setComponents(componentsArray)
     setCategories(getCategories(componentsArray))
   }
 
