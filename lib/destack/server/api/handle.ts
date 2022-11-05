@@ -89,11 +89,8 @@ const handleData = async (req: NextApiRequest, res: NextApiResponse): Promise<vo
 const handleAsset = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   if (req.method === 'GET') {
     const assetPath = path.join(
-      process.cwd(),
+      require.resolve('../../package.json'),
       '..',
-      '..',
-      'lib',
-      'destack',
       req.query.path as string,
     )
     const data = await fs.promises.readFile(assetPath)
