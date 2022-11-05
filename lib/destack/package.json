@@ -78,6 +78,7 @@
     "url": "https://github.com/LiveDuo/destack.git"
   },
   "files": [
-    "build"
+    "build",
+    "src"
   ]
 }
