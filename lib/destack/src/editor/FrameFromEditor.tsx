@@ -42,7 +42,9 @@ const FrameFromEditor = ({ data, standaloneServer }) => {
 }
 
 const RenderFromEditor = ({ data, standaloneServer }) => {
-  const { resolver } = useContext(ThemeContext)
+  const { resolver, setStandalone } = useContext(ThemeContext)
+
+  useEffect(() => setStandalone(standaloneServer), [])
 
   const onStateChange = (e) => {
     saveTemplateDebounce(e, standaloneServer)

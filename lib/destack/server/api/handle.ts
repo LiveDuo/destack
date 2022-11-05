@@ -67,8 +67,6 @@ const updateData = async (body: Record<string, string>): Promise<void> => {
 export { updateData }
 
 const handleData = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
-  if (!development) return res.status(401).json({ error: 'Not allowed' })
-
   if (req.method === 'GET') {
     const data = await loadData()
     return res.status(200).json(data)
@@ -87,7 +85,39 @@ const handleData = async (req: NextApiRequest, res: NextApiResponse): Promise<vo
     return res.status(401).json({ error: 'Not allowed' })
   }
 }
-export { handleData }
+
+const handleAsset = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
+  if (req.method === 'GET') {
+    const assetPath = path.join(
+      process.cwd(),
+      '..',
+      '..',
+      'lib',
+      'destack',
+      req.query.path as string,
+    )
+    const data = await fs.promises.readFile(assetPath)
+
+    const options = { 'Content-Type': 'image/png', 'Content-Length': data.length }
+    res.writeHead(200, options)
+    res.end(data, 'binary')
+  } else {
+    return res.status(401).json({ error: 'Not allowed' })
+  }
+}
+
+const handleEditor = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
+  if (!development) return res.status(401).json({ error: 'Not allowed' })
+
+  if (req.query.type === 'data') {
+    return handleData(req, res)
+  } else if (req.query.type === 'asset') {
+    return handleAsset(req, res)
+  } else {
+    return res.status(400).json({ error: 'Invalid type' })
+  }
+}
+export { handleEditor }
 
 const config = { api: { bodyParser: false } }
 export { config }

@@ -1,6 +1,6 @@
 import 'regenerator-runtime/runtime'
 
-export { handleData } from './api/handle'
+export { handleEditor } from './api/handle'
 
 export { updateData } from './api/handle'
 export { loadData } from './api/handle'

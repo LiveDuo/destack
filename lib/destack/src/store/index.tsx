@@ -13,19 +13,27 @@ import { Image } from '../themes/shared/Image'
 import { Component } from '../themes/shared/Child'
 
 const themes = [
-  { name: 'Hyper UI', load: () => import(`../themes/hyperui`) },
-  { name: 'Tailblocks', load: () => import(`../themes/tailblocks`) },
-  { name: 'Meraki UI', load: () => import(`../themes/meraki-light`) },
+  { name: 'Hyper UI', folder: 'hyperui', load: () => import(`../themes/hyperui`) },
+  { name: 'Tailblocks', folder: 'tailblocks', load: () => import(`../themes/tailblocks`) },
+  { name: 'Meraki UI', folder: 'meraki-light', load: () => import(`../themes/meraki-light`) },
 ]
 
 const getCategories = (components) => [...new Set(components?.map((c) => c.category))] as string[]
 
+interface ComponentInterface {
+  displayName: string
+  category: string
+  source: any
+}
+
 interface ContextInterface {
-  components: any[]
+  components: ComponentInterface[]
   categories: string[]
   themeNames: string[]
   themeIndex: number
   resolver: object
+  standalone: Boolean
+  setStandalone: (Boolean) => void
   updateIndex: (number) => void
 }
 
@@ -46,8 +54,10 @@ const defaultValue = {
   categories: [],
   themeNames: [],
   themeIndex: 0,
-  resolver: _resolver,
   updateIndex: () => {},
+  resolver: _resolver,
+  standalone: false,
+  setStandalone: () => {},
 }
 
 const ThemeContext = createContext<ContextInterface>(defaultValue)
@@ -56,6 +66,7 @@ const ThemeProvider = ({ children }) => {
   const [themeIndex, setThemeIndex] = useState<number>(defaultValue.themeIndex)
   const [components, setComponents] = useState<any[]>(defaultValue.components)
   const [categories, setCategories] = useState<string[]>(defaultValue.categories)
+  const [standalone, setStandalone] = useState<Boolean>(defaultValue.standalone)
   const [resolver, _setResolver] = useState<object>(defaultValue.resolver)
 
   const themeNames = themes.map((t) => t.name)
@@ -68,12 +79,27 @@ const ThemeProvider = ({ children }) => {
     setThemeIndex(index)
 
     const componentsObject = await themes[index].load()
-    const componentsArray = Object.values(componentsObject.default)
-    setComponents(componentsArray)
+    const componentsArray = Object.values(componentsObject.default) as ComponentInterface[]
+    setComponents(
+      componentsArray.map((c) => ({
+        ...c,
+        themeFolder: themes[index].folder,
+        blockFolder: c.displayName.replaceAll(' ', '') as string,
+      })),
+    )
     setCategories(getCategories(componentsArray))
   }
 
-  const value = { components, categories, resolver, themeNames, themeIndex, updateIndex }
+  const value = {
+    components,
+    categories,
+    resolver,
+    themeNames,
+    themeIndex,
+    updateIndex,
+    standalone,
+    setStandalone,
+  }
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
 }

@@ -10,6 +10,16 @@ type templateData = {
   content: string
 }
 
+const getBaseUrl = (standaloneServer) => {
+  return standaloneServer ? `http://localhost:${standaloneServerPort}` : ''
+}
+
+const getImageUrl = (standaloneServer, imageSrc) => {
+  const baseUrl = getBaseUrl(standaloneServer)
+  return `${baseUrl}/api/builder/handle?type=asset&path=${imageSrc}`
+}
+export { getImageUrl }
+
 const fetchJSON = async ({ method, url, data }: fetchJSONArgs): Promise<templateData[]> => {
   const res = await fetch(url, {
     method,
@@ -32,22 +42,25 @@ function debounce(callback, timeout = 1000) {
 const uploadFile = async (file, standaloneServer) => {
   const formData = new FormData()
   formData.append('file-0', file)
-  const baseUrl = standaloneServer ? `http://localhost:${standaloneServerPort}` : ''
-  const res = await fetch(`${baseUrl}/api/builder/handle`, { method: 'POST', body: formData })
+  const baseUrl = getBaseUrl(standaloneServer)
+  const res = await fetch(`${baseUrl}/api/builder/handle?type=data`, {
+    method: 'POST',
+    body: formData,
+  })
   return await res.json()
 }
 export { uploadFile }
 
 const loadTemplate = async (standaloneServer) => {
-  const baseUrl = standaloneServer ? `http://localhost:${standaloneServerPort}` : ''
-  const data = await fetchJSON({ method: 'get', url: `${baseUrl}/api/builder/handle` })
+  const baseUrl = getBaseUrl(standaloneServer)
+  const data = await fetchJSON({ method: 'get', url: `${baseUrl}/api/builder/handle?type=data` })
   const component = data.find((c) => c.filename === '/default.json') // TODO: fix for windows
   return component?.content
 }
 export { loadTemplate }
 
 const saveTemplate = async (state, standaloneServer) => {
-  const baseUrl = standaloneServer ? `http://localhost:${standaloneServerPort}` : ''
+  const baseUrl = getBaseUrl(standaloneServer)
   const path =
     window.location.pathname === '/' || window.location.pathname === ''
       ? 'default.json'
@@ -57,7 +70,7 @@ const saveTemplate = async (state, standaloneServer) => {
 
   await fetchJSON({
     method: 'post',
-    url: `${baseUrl}/api/builder/handle`,
+    url: `${baseUrl}/api/builder/handle?type=data`,
     data: body,
   })
 }

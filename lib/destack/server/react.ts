@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 
-import { handleData } from './api/handle'
+import { handleEditor } from './api/handle'
 import { standaloneServerPort as port } from './config'
 
 const app = express()
@@ -13,7 +13,7 @@ app.get('/ping', (_, res) => {
 })
 
 app.all('/api/builder/handle', cors(), (req, res) => {
-  return handleData(req, res)
+  return handleEditor(req, res)
 })
 
 app.listen(port, () => {

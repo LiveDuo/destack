@@ -10,26 +10,36 @@ import { ThemeContext } from '../store'
 
 import { Component } from '../themes/shared/Child'
 
+import { parse } from 'node-html-parser'
+
+import { cleanHTMLElement } from '../utils/html'
+
+import { getImageUrl } from '../utils/fetch'
+
 const Category = SidebarItem
 
 const Item = ({ connectors, c }) => {
-  const [image, setImage] = useState()
-
-  useEffect(() => {
-    // c.imagePromise()
-    //   .then(d => setImage(d.default))
-    import(`../themes/hyperui/Banner1/preview.png`).then((d) => setImage(d.default))
-  }, [])
+  const { standalone } = useContext(ThemeContext)
 
   return (
     <div
       ref={(ref) =>
-        connectors.create(ref as HTMLElement, <Component editable={true} root={c.root} />)
+        connectors.create(
+          ref as HTMLElement,
+          <Component editable={true} root={cleanHTMLElement(parse(c.source))} />,
+        )
       }
     >
       <SimpleTooltip text={c.displayName} side="right" offset={12}>
         <a className="cursor-move m-2 pb-2 cursor-pointer block">
-          <img src={image} width="600px" height="300px" />
+          <img
+            src={getImageUrl(
+              standalone,
+              `/src/themes/${c.themeFolder}/${c.blockFolder}/preview.png`,
+            )}
+            width="600px"
+            height="300px"
+          />
         </a>
       </SimpleTooltip>
     </div>
