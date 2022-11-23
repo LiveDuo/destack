@@ -27,7 +27,7 @@ const source = `
 
       <div class="mt-6 flex justify-center gap-6 sm:mt-0 sm:justify-end">
         <a
-          class="rounded-full border border-white/25 p-2 hover:opacity-75"
+          class="p-2 hover:opacity-75"
           href=""
           target="_blank"
           rel="noreferrer"
