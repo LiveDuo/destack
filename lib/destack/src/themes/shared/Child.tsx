@@ -178,21 +178,22 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
                 className={r.classNames}
                 id={id}
                 fill={r.attrs['fill']}
-                viewBox={r.attrs['view-box']}
+                viewBox={r.attrs['viewbox']}
                 stroke={r.attrs['stroke']}
+                xmlns={r.attrs['xmlns']}
               >
                 {r.childNodes
                   .filter((c) => c.tagName === 'PATH')
                   .map((c, i) => (
                     <path
                       key={`${id}-${i}`}
-                      className={r.classNames}
                       d={c.attrs['d']}
                       fillRule={c.attrs['fill-rule']}
                       clipRule={c.attrs['clip-rule']}
                       strokeLinecap={c.attrs['stroke-linecap']}
                       strokeLinejoin={c.attrs['stroke-linejoin']}
                       strokeWidth={c.attrs['stroke-width']}
+                      fill={c.attrs['fill']}
                     />
                   ))}
               </svg>
