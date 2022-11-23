@@ -218,7 +218,58 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
             ) : (
               <img className={r.classNames} {...r.attrs} />
             )
-          } else return <p>Unknown container</p>
+          } else if (r.tagName === 'ARTICLE') {
+            return (
+              <article className={r.classNames} id={id}>
+                <Child root={r} d={d.concat(i)} editable={editable} />
+              </article>
+            )
+          } else if (r.tagName === 'DL') {
+            return (
+              <article className={r.classNames} id={id}>
+                <Child root={r} d={d.concat(i)} editable={editable} />
+              </article>
+            )
+          } else if (r.tagName === 'DD') {
+            return (
+              <article className={r.classNames} id={id}>
+                <Child root={r} d={d.concat(i)} editable={editable} />
+              </article>
+            )
+          } else if (r.tagName === 'DT') {
+            return (
+              <article className={r.classNames} id={id}>
+                <Child root={r} d={d.concat(i)} editable={editable} />
+              </article>
+            )
+          } else if (r.tagName === 'SCRIPT') {
+            return null
+          } else if (r.tagName === 'LINK') {
+            return <link {...r.attrs}></link>
+          } else if (r.tagName === 'BR') {
+            return <br className={r.classNames} id={id} />
+          } else if (r.tagName === 'UL') {
+            return (
+              <ul className={r.classNames}>
+                <Child root={r} d={d.concat(i)} editable={editable} />
+              </ul>
+            )
+          } else if (r.tagName === 'LI') {
+            return (
+              <li className={r.classNames}>
+                <Child root={r} d={d.concat(i)} editable={editable} />
+              </li>
+            )
+          } else if (r.tagName === 'CITE') {
+            return (
+              <cite className={r.classNames}>
+                <Child root={r} d={d.concat(i)} editable={editable} />
+              </cite>
+            )
+          } else {
+            console.log(r.tagName)
+            return <p>Unknown container</p>
+          }
         } else if (r.nodeType === 3) {
           if (r.innerText.trim() === '') return null
           // className={r.parentNode.classNames}
