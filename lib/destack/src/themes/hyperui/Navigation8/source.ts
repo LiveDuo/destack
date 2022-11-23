@@ -91,13 +91,13 @@ const source = `
 
     <div class="hidden items-center gap-4 lg:flex">
       <a
-        class="rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-600"
+        class="block rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-600"
         href=""
       >
         Log in
       </a>
       <a
-        class="rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white"
+        class="block rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white"
         href=""
       >
         Sign up

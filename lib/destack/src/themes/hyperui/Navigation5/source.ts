@@ -83,7 +83,7 @@ const source = `
         <div class="flex items-center gap-4">
           <div class="sm:flex sm:gap-4">
             <a
-              class="rounded-md bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow"
+              class="block rounded-md bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow"
               href="/"
             >
               Login
@@ -91,7 +91,7 @@ const source = `
 
             <div class="hidden sm:flex">
               <a
-                class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-blue-600"
+                class="block rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-blue-600"
                 href="/"
               >
                 Register
