@@ -14,30 +14,26 @@ export const RenderNode = ({ render }) => {
     isActive: query.getEvent('selected').contains(id),
   }))
 
-  const { isHover, dom, name, showFocus, moveable, deletable, connectors, parent } = useNode(
-    (node) => {
-      const displayName = node.data.custom?.displayName
-      return {
-        isHover: node.events.hovered,
-        dom: node.dom,
-        name: displayName || node.data.displayName,
-        showFocus: node.id !== 'ROOT' && displayName !== 'App',
-        moveable: node.id !== 'ROOT' && displayName !== 'App',
-        deletable: node.id !== 'ROOT' && displayName !== 'App',
-        parent: node.data.parent,
-        props: node.data.props,
-      }
-    },
-  )
+  const { events, dom, connectors, data } = useNode((node) => ({
+    id: node.id,
+    events: node.events,
+    dom: node.dom,
+    data: node.data,
+  }))
+
+  const displayName = data.custom?.displayName || data.displayName
+  const showFocus = id !== 'ROOT' && displayName !== 'App'
+  const moveable = id !== 'ROOT' && displayName !== 'App'
+  const deletable = id !== 'ROOT' && displayName !== 'App'
 
   const currentRef = useRef<HTMLDivElement>()
 
   useEffect(() => {
     if (dom) {
-      if (isActive || isHover) dom.classList.add('component-selected')
+      if (isActive || events.hovered) dom.classList.add('component-selected')
       else dom.classList.remove('component-selected')
     }
-  }, [dom, isActive, isHover])
+  }, [dom, isActive, events.hovered])
 
   const getPos = useCallback((dom: HTMLElement | null) => {
     const { top, left, bottom } = dom ? dom.getBoundingClientRect() : { top: 0, left: 0, bottom: 0 }
@@ -68,7 +64,7 @@ export const RenderNode = ({ render }) => {
 
   return (
     <>
-      {isHover || isActive
+      {events.hovered || isActive
         ? ReactDOM.createPortal(
             <div
               ref={() => currentRef}
@@ -81,7 +77,7 @@ export const RenderNode = ({ render }) => {
                 zIndex: 9999,
               }}
             >
-              <h2 className="flex-1 mr-4">{name}</h2>
+              <h2 className="flex-1 mr-4">{displayName}</h2>
               {moveable ? (
                 <a className="mr-2 cursor-move" ref={() => connectors.drag}>
                   <ArrowsPointingOutIcon className="h-4 w-4" />
@@ -91,7 +87,7 @@ export const RenderNode = ({ render }) => {
                 <a
                   className="mr-2 cursor-pointer"
                   onClick={() => {
-                    actions.selectNode(parent)
+                    actions.selectNode(data.parent)
                   }}
                 >
                   <ArrowSmallUpIcon className="h-4 w-4" />
