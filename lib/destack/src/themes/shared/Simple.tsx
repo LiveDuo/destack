@@ -5,7 +5,11 @@ import { useNode } from '@craftjs/core'
 export const ContainerSimple = ({ children }) => {
   const { connectors } = useNode((node) => ({ node }))
 
-  return <div ref={(ref) => connectors.connect(ref as HTMLElement)}>{children}</div>
+  return (
+    <div style={{ height: '100%' }} ref={(ref) => connectors.connect(ref as HTMLElement)}>
+      {children}
+    </div>
+  )
 }
 
 ContainerSimple.craft = {
