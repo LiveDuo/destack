@@ -23,8 +23,8 @@ export const RenderNode = ({ render }) => {
 
   const displayName = data.custom?.displayName || data.displayName
   const showFocus = id !== 'ROOT' && displayName !== 'App'
-  const moveable = id !== 'ROOT' && displayName !== 'App'
-  const deletable = id !== 'ROOT' && displayName !== 'App'
+  const moveable = data.parent === 'ROOT'
+  const deletable = data.parent === 'ROOT'
 
   const currentRef = useRef<HTMLDivElement>()
 
