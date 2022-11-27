@@ -26,7 +26,7 @@ export const Viewport: React.FC = ({ children }) => {
           >
             <div
               className="relative flex-col flex items-center pt-8 justify-center"
-              style={{ width: '800px', minHeight: '800px', height: '100%', margin: 'auto' }}
+              style={{ maxWidth: '800px', margin: 'auto' }}
             >
               {children}
             </div>
