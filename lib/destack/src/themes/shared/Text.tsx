@@ -30,8 +30,8 @@ const Text = (props) => {
     <span
       ref={(ref) => connectors.connect(ref as HTMLElement)}
       contentEditable
+      suppressContentEditableWarning={true}
       className={props.className}
-      // style={{ caretColor: 'white' }}
       onClick={onClick}
       onChange={onChange}
     >
