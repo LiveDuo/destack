@@ -5,7 +5,7 @@ import { Editor, Frame, Element, useEditor, Resolver } from '@craftjs/core'
 import { Viewport } from '../viewport'
 import { RenderNode } from './RenderNode'
 
-import { Container } from '../themes/shared/Container'
+import { Canvas } from '../themes/shared/Canvas'
 
 import { loadTemplate, saveTemplateDebounce } from '../utils/fetch'
 
@@ -31,7 +31,7 @@ const FrameFromEditor = ({ data, standaloneServer }) => {
   return !data ? (
     <Viewport>
       <Frame>
-        <Element canvas is={Container} children={[]} custom={{ displayName: 'App' }} />
+        <Element canvas is={Canvas} children={[]} custom={{ displayName: 'App' }} />
       </Frame>
     </Viewport>
   ) : (
