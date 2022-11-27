@@ -267,7 +267,6 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
               </cite>
             )
           } else {
-            console.log(r.tagName)
             return <p>Unknown container</p>
           }
         } else if (r.nodeType === 3) {
