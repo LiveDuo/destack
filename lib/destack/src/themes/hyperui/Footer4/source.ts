@@ -25,16 +25,16 @@ const source = `
         </ul>
 
         <div class="mt-16 flex gap-3">
-          <a
-            class="rounded-full border border-white/25 p-2 hover:opacity-75"
-            href=""
-            target="_blank"
+            <a
+            href="/"
             rel="noreferrer"
+            target="_blank"
+            class="transition hover:opacity-75"
           >
-            <span class="sr-only"> Facebook </span>
+            <span class="sr-only">Facebook</span>
 
             <svg
-              class="h-4 w-4"
+              class="w-6 h-6"
               fill="currentColor"
               viewBox="0 0 24 24"
               aria-hidden="true"
@@ -48,15 +48,15 @@ const source = `
           </a>
 
           <a
-            class="rounded-full border border-white/25 p-2 hover:opacity-75"
-            href=""
-            target="_blank"
+            href="/"
             rel="noreferrer"
+            target="_blank"
+            class="transition hover:opacity-75"
           >
-            <span class="sr-only"> Instagram </span>
+            <span class="sr-only">Instagram</span>
 
             <svg
-              class="h-4 w-4"
+              class="w-6 h-6"
               fill="currentColor"
               viewBox="0 0 24 24"
               aria-hidden="true"
@@ -68,17 +68,16 @@ const source = `
               />
             </svg>
           </a>
-
           <a
-            class="rounded-full border border-white/25 p-2 hover:opacity-75"
-            href=""
-            target="_blank"
+            href="/"
             rel="noreferrer"
+            target="_blank"
+            class="transition hover:opacity-75"
           >
-            <span class="sr-only"> Twitter </span>
+            <span class="sr-only">Twitter</span>
 
             <svg
-              class="h-4 w-4"
+              class="w-6 h-6"
               fill="currentColor"
               viewBox="0 0 24 24"
               aria-hidden="true"
@@ -90,15 +89,15 @@ const source = `
           </a>
 
           <a
-            class="rounded-full border border-white/25 p-2 hover:opacity-75"
-            href=""
-            target="_blank"
+            href="/"
             rel="noreferrer"
+            target="_blank"
+            class="transition hover:opacity-75"
           >
-            <span class="sr-only"> GitHub </span>
+            <span class="sr-only">GitHub</span>
 
             <svg
-              class="h-4 w-4"
+              class="w-6 h-6"
               fill="currentColor"
               viewBox="0 0 24 24"
               aria-hidden="true"
@@ -112,15 +111,15 @@ const source = `
           </a>
 
           <a
-            class="rounded-full border border-white/25 p-2 hover:opacity-75"
-            href=""
-            target="_blank"
+            href="/"
             rel="noreferrer"
+            target="_blank"
+            class="transition hover:opacity-75"
           >
-            <span class="sr-only"> Dribbble </span>
+            <span class="sr-only">Dribbble</span>
 
             <svg
-              class="h-4 w-4"
+              class="w-6 h-6"
               fill="currentColor"
               viewBox="0 0 24 24"
               aria-hidden="true"
@@ -132,6 +131,7 @@ const source = `
               />
             </svg>
           </a>
+
         </div>
       </div>
 

@@ -29,7 +29,7 @@ const source = `
           />
 
           <button
-            class="absolute top-1/2 right-1 -translate-y-1/2 rounded-full bg-blue-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-700"
+            class="absolute top-1 right-1 -translate-y-1/2 rounded-full bg-blue-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-700"
             type="button"
           >
             Subscribe

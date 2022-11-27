@@ -83,7 +83,7 @@ const source = `
               />
 
               <button
-                class="absolute top-1/2 right-1.5 -translate-y-1/2 rounded bg-indigo-600 p-3 text-white transition hover:bg-indigo-700"
+                class="absolute top-1 right-1.5 -translate-y-1/2 rounded bg-indigo-600 p-3 text-white transition hover:bg-indigo-700"
                 type="button"
               >
                 <svg

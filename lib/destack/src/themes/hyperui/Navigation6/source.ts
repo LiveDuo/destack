@@ -83,7 +83,7 @@ const source = `
         <div class="flex items-center gap-4">
           <div class="sm:flex sm:gap-4">
             <a
-              class="rounded-md bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow hover:bg-blue-500"
+              class="block rounded-md bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow hover:bg-blue-500"
               href="/"
             >
               Login
@@ -91,7 +91,7 @@ const source = `
 
             <div class="hidden sm:flex">
               <a
-                class="rounded-md  px-5 py-2.5 text-sm font-medium  bg-gray-800 text-white hover:text-white/75"
+                class="block rounded-md  px-5 py-2.5 text-sm font-medium  bg-gray-800 text-white hover:text-white/75"
                 href="/"
               >
                 Register
