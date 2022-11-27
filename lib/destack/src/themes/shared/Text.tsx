@@ -19,13 +19,20 @@ const Text = (props) => {
   const onChange = (e) => {
     actions.setProp((prop) => (prop.text = e.target.value), 500)
   }
+  const onClick = (e) => {
+    if (enabled) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+  }
   const text = node.data.props.text ?? props.text ?? ''
   return enabled ? (
     <span
       ref={(ref) => connectors.connect(ref as HTMLElement)}
       contentEditable
       className={props.className}
-      style={{ ...props }}
+      // style={{ caretColor: 'white' }}
+      onClick={onClick}
       onChange={onChange}
     >
       {text}
