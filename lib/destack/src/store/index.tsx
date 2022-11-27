@@ -5,7 +5,7 @@ import { Element } from '@craftjs/core'
 import Child from '../themes/shared/Child'
 
 import { ContainerSimple } from '../themes/shared/Simple'
-import { Canvas } from '../themes/shared/Canvas'
+import { Container } from '../themes/shared/Container'
 import { Text } from '../themes/shared/Text'
 import { Link } from '../themes/shared/Link'
 import { Button } from '../themes/shared/Button'
@@ -38,7 +38,7 @@ interface ContextInterface {
 }
 
 const _resolver = {
-  Canvas,
+  Container,
   Component,
   ContainerSimple,
   Element,
