@@ -42,7 +42,7 @@ const handleClick = (props, e) => {
   }
 }
 
-const Button = ({ r, editable, d, i }) => {
+const Button = ({ r, d, i }) => {
   const { actions, node } = useNode((node) => ({ node }))
   const { enabled } = useEditor((state) => ({ enabled: state.options.enabled }))
   const [open, setOpen] = useState(false)
@@ -53,7 +53,7 @@ const Button = ({ r, editable, d, i }) => {
 
   return !enabled ? (
     <button className={r.classNames} onClick={onClick}>
-      <Child root={r} d={d.concat(i)} editable={editable} />
+      <Child root={r} d={d.concat(i)} />
     </button>
   ) : (
     <>
@@ -66,7 +66,7 @@ const Button = ({ r, editable, d, i }) => {
             setOpen(true)
           }}
         >
-          <Child root={r} d={d.concat(i)} editable={editable} />
+          <Child root={r} d={d.concat(i)} />
         </button>
       </SimpleTooltip>
     </>

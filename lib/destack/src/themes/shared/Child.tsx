@@ -20,10 +20,9 @@ interface RootProps {
 }
 interface ChildProps {
   root: RootProps
-  editable: boolean
   d?: number[]
 }
-const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
+const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
   if (!root || root?.childNodes.length === 0) return null
 
   return (
@@ -35,115 +34,115 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
           if (r.tagName === 'DIV')
             return (
               <div className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </div>
             )
           else if (r.tagName === 'H1')
             return (
               <h1 className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </h1>
             )
           else if (r.tagName === 'H2')
             return (
               <h2 className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </h2>
             )
           else if (r.tagName === 'H3')
             return (
               <h3 className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </h3>
             )
           else if (r.tagName === 'H4')
             return (
               <h4 className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </h4>
             )
           else if (r.tagName === 'H5')
             return (
               <h5 className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </h5>
             )
           else if (r.tagName === 'H6')
             return (
               <h6 className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </h6>
             )
           else if (r.tagName === 'P')
             return (
               <p className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </p>
             )
           else if (r.tagName === 'A')
             return (
               <Element is={ContainerSimple} id={id}>
-                <Link r={r} d={d} i={i} editable={editable} />
+                <Link r={r} d={d} i={i} />
               </Element>
             )
           else if (r.tagName === 'SPAN')
             return (
               <span className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </span>
             )
           else if (r.tagName === 'STRONG')
             return (
               <strong className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </strong>
             )
           else if (r.tagName === 'SECTION')
             return (
               <section className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </section>
             )
           else if (r.tagName === 'HEADER')
             return (
               <header className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </header>
             )
           else if (r.tagName === 'FOOTER')
             return (
               <footer className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </footer>
             )
           else if (r.tagName === 'NAV')
             return (
               <nav className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </nav>
             )
           else if (r.tagName === 'ASIDE')
             return (
               <aside className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </aside>
             )
           else if (r.tagName === 'DETAILS')
             return (
               <details className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </details>
             )
           else if (r.tagName === 'SUMMARY')
             return (
               <summary className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </summary>
             )
           else if (r.tagName === 'BLOCKQUOTE')
             return (
               <blockquote className={r.classNames} id={id} {...r.attrs}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </blockquote>
             )
           else if (r.tagName === 'INPUT')
@@ -163,13 +162,13 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
           else if (r.tagName === 'BUTTON')
             return (
               <Element is={ContainerSimple} id={id}>
-                <Button r={r} d={d} i={i} editable={editable} />
+                <Button r={r} d={d} i={i} />
               </Element>
             )
           else if (r.tagName === 'FORM')
             return (
               <form className={r.classNames} id={id} {...r.attrs}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </form>
             )
           else if (r.tagName === 'SVG')
@@ -199,47 +198,41 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
               </svg>
             )
           else if (r.tagName === 'ADDRESS')
-            return editable ? (
+            return (
               <Element is={ContainerSimple} id={id}>
                 <address className={r.classNames} id={id} {...r.attrs}>
-                  <Text text={r.innerText} editable={true} />
+                  <Text text={r.innerText} />
                 </address>
               </Element>
-            ) : (
-              <address className={r.classNames} id={id} {...r.attrs}>
-                <Text text={r.innerText} editable={false} />
-              </address>
             )
           else if (r.tagName === 'IMG') {
-            return editable ? (
+            return (
               <Element is={ContainerSimple} id={id} canvas>
                 <Image classNames={r.classNames} attrs={r.attrs} />
               </Element>
-            ) : (
-              <img className={r.classNames} {...r.attrs} />
             )
           } else if (r.tagName === 'ARTICLE') {
             return (
               <article className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </article>
             )
           } else if (r.tagName === 'DL') {
             return (
               <article className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </article>
             )
           } else if (r.tagName === 'DD') {
             return (
               <article className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </article>
             )
           } else if (r.tagName === 'DT') {
             return (
               <article className={r.classNames} id={id}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </article>
             )
           } else if (r.tagName === 'SCRIPT') {
@@ -251,19 +244,19 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
           } else if (r.tagName === 'UL') {
             return (
               <ul className={r.classNames}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </ul>
             )
           } else if (r.tagName === 'LI') {
             return (
               <li className={r.classNames}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </li>
             )
           } else if (r.tagName === 'CITE') {
             return (
               <cite className={r.classNames}>
-                <Child root={r} d={d.concat(i)} editable={editable} />
+                <Child root={r} d={d.concat(i)} />
               </cite>
             )
           } else {
@@ -273,13 +266,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0], editable }) => {
           if (r.innerText.trim() === '') return null
           // className={r.parentNode.classNames}
           if (r.constructor === 'TextNode' || r.constructor === 't')
-            return editable ? (
-              <Element is={ContainerSimple} id={id}>
-                <Text text={r.innerText} editable={true} />
-              </Element>
-            ) : (
-              <Text text={r.innerText} editable={false} />
-            )
+            return <Text text={r.innerText} />
           else return <p>Unknown node</p>
         } else {
           return <p>Unknown type</p>
@@ -295,12 +282,12 @@ const ComponentChild = ({ children }) => {
   return <div ref={(ref) => connectors.connect(ref as HTMLDivElement)}>{children}</div>
 }
 
-const Component = ({ root, editable = true }) =>
+const Component = ({ root, editable }) =>
   editable ? (
     <ComponentChild>
-      <Child root={root} editable={editable} />
+      <Child root={root} />
     </ComponentChild>
   ) : (
-    <Child root={root} editable={editable} />
+    <Child root={root} />
   )
 export { Component }

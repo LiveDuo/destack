@@ -14,15 +14,11 @@ const parse = (json, nodeId: string, parentNodeId?: string) => {
   const extendedProps = { ...json[nodeId].props, parentNodeId, nodeId, key: nodeId }
 
   if (childNodeNames.length === 0) {
-    return <ReactComponent {...extendedProps} editable={false} />
+    return <ReactComponent {...extendedProps} />
   } else {
     const childNodes = childNodeNames.map((childNodeId) => parse(json, childNodeId, nodeId))
     if (ReactComponent) {
-      return (
-        <ReactComponent {...extendedProps} editable={false}>
-          {childNodes}
-        </ReactComponent>
-      )
+      return <ReactComponent {...extendedProps}>{childNodes}</ReactComponent>
     } else {
       return <div>{childNodes}</div>
     }

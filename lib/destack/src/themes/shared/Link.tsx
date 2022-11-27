@@ -14,7 +14,7 @@ const handleClick = (props) => {
   }
 }
 
-const Link = ({ r, editable, d, i }) => {
+const Link = ({ r, d, i }) => {
   const { actions, node } = useNode((node) => ({ node }))
   const { enabled } = useEditor((state) => ({ enabled: state.options.enabled }))
   const [open, setOpen] = useState(false)
@@ -25,7 +25,7 @@ const Link = ({ r, editable, d, i }) => {
 
   return !enabled ? (
     <a className={r.classNames} onClick={onClick}>
-      <Child root={r} d={d.concat(i)} editable={editable} />
+      <Child root={r} d={d.concat(i)} />
     </a>
   ) : (
     <>
@@ -37,7 +37,7 @@ const Link = ({ r, editable, d, i }) => {
             setOpen(true)
           }}
         >
-          <Child root={r} d={d.concat(i)} editable={editable} />
+          <Child root={r} d={d.concat(i)} />
         </a>
       </SimpleTooltip>
     </>
