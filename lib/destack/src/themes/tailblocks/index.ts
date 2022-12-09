@@ -21,14 +21,14 @@ import Cta4 from './Cta4/index'
 import Ecommerce1 from './Ecommerce1/index'
 import Ecommerce2 from './Ecommerce2/index'
 import Ecommerce3 from './Ecommerce3/index'
-import Feature1 from './Feature1/index'
-import Feature2 from './Feature2/index'
-import Feature3 from './Feature3/index'
-import Feature4 from './Feature4/index'
-import Feature5 from './Feature5/index'
-import Feature6 from './Feature6/index'
-import Feature7 from './Feature7/index'
-import Feature8 from './Feature8/index'
+import Features1 from './Features1/index'
+import Features2 from './Features2/index'
+import Features3 from './Features3/index'
+import Features4 from './Features4/index'
+import Features5 from './Features5/index'
+import Features6 from './Features6/index'
+import Features7 from './Features7/index'
+import Features8 from './Features8/index'
 import Footer1 from './Footer1/index'
 import Footer2 from './Footer2/index'
 import Footer3 from './Footer3/index'
@@ -86,14 +86,14 @@ const components = {
   Ecommerce1,
   Ecommerce2,
   Ecommerce3,
-  Feature1,
-  Feature2,
-  Feature3,
-  Feature4,
-  Feature5,
-  Feature6,
-  Feature7,
-  Feature8,
+  Features1,
+  Features2,
+  Features3,
+  Features4,
+  Features5,
+  Features6,
+  Features7,
+  Features8,
   Footer1,
   Footer2,
   Footer3,
