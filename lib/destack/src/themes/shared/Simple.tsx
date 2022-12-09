@@ -6,7 +6,7 @@ export const ContainerSimple = ({ children }) => {
   const { connectors } = useNode((node) => ({ node }))
 
   return (
-    <div style={{ height: '100%' }} ref={(ref) => connectors.connect(ref as HTMLElement)}>
+    <div style={{ flex: 1 }} ref={(ref) => connectors.connect(ref as HTMLElement)}>
       {children}
     </div>
   )
