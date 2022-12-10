@@ -2,7 +2,7 @@ import { source } from './source'
 
 const Component = {
   source: source,
-  displayName: 'Testimonial 1',
+  displayName: 'Testimonials 1',
   category: 'Testimonials',
 }
 export default Component

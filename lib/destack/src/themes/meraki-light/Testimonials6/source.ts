@@ -1,9 +1,9 @@
 const source = `
-<section class="relative flex">
+<section class="relative flex overflow-hidden">
     <div class="min-h-screen bg-white dark:bg-gray-900 md:w-3/4"></div>
     <div class="min-h-screen bg-blue-500 md:w-2/5"></div>
 
-    <div class="flex flex-col justify-center w-full min-h-screen px-4 py-10 md:fixed md:mx-24">
+    <div class="flex flex-col justify-center w-full min-h-screen px-4 py-10 md:absolute md:mx-24">
         <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl xl:text-5xl dark:text-white">
             What our <span class="text-blue-500">customers</span> <br> are saying
         </h1>
