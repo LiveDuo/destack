@@ -6,11 +6,13 @@ import ReactDOM from 'react-dom'
 
 import LinkDialog from '../themes/shared/LinkDialog'
 import ImageDialog from '../themes/shared/ImageDialog'
+import ButtonDialog from '../themes/shared/ButtonDialog'
 
 import { ArrowSmallUpIcon } from '@heroicons/react/24/outline'
 import { TrashIcon } from '@heroicons/react/24/outline'
 import { PhotoIcon } from '@heroicons/react/24/outline'
 import { LinkIcon } from '@heroicons/react/24/outline'
+import { CircleStackIcon } from '@heroicons/react/24/outline'
 import { ArrowsPointingOutIcon } from '@heroicons/react/24/outline'
 
 export const RenderNode = ({ render }) => {
@@ -66,9 +68,11 @@ export const RenderNode = ({ render }) => {
 
   const [openLink, setOpenLink] = useState(false)
   const [openImage, setOpenImage] = useState(false)
+  const [openButton, setOpenButton] = useState(false)
 
   const updateLink = dom?.childNodes[0]?.nodeName === 'A'
   const updateImage = dom?.childNodes[0]?.nodeName === 'IMG'
+  const updateButton = dom?.childNodes[0]?.nodeName === 'BUTTON'
   return (
     <>
       {node.events.hovered || isActive
@@ -122,6 +126,17 @@ export const RenderNode = ({ render }) => {
                   <LinkIcon className="h-4 w-4" />
                 </a>
               )}
+              {updateButton && (
+                <a
+                  className="cursor-pointer"
+                  onMouseDown={(e: React.MouseEvent) => {
+                    e.stopPropagation()
+                    setOpenButton(true)
+                  }}
+                >
+                  <CircleStackIcon className="h-4 w-4" />
+                </a>
+              )}
               {deletable && (
                 <a
                   className="cursor-pointer"
@@ -135,6 +150,12 @@ export const RenderNode = ({ render }) => {
               )}
               <LinkDialog open={openLink} setOpen={setOpenLink} node={node} actions={actions} />
               <ImageDialog open={openImage} setOpen={setOpenImage} node={node} actions={actions} />
+              <ButtonDialog
+                open={openButton}
+                setOpen={setOpenButton}
+                node={node}
+                actions={actions}
+              />
             </div>,
             document.querySelector('.page-container'),
           )

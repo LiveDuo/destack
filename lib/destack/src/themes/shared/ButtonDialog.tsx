@@ -14,9 +14,10 @@ import { capitalize } from '../../utils/text'
 const options = ['url', 'email', 'submit']
 const methods = ['GET', 'POST']
 
-const Dialog = ({ props, open, setOpen, actions }) => {
+const Dialog = ({ open, setOpen, node, actions }) => {
   const [openSelect, setOpenSelect] = useState(false)
 
+  const props = node.data.props
   const [url, setUrl] = useState(props.url)
   const [email, setEmail] = useState(props.email)
   const [submitUrl, setSubmitUrl] = useState(props.submitUrl)
@@ -141,7 +142,8 @@ const Dialog = ({ props, open, setOpen, actions }) => {
               <DialogPrimitive.Close
                 onClick={() => {
                   setOpen(false)
-                  actions.setProp((prop) => {
+                  const nodeId = node.data.nodes[0]
+                  actions.setProp(nodeId, (prop) => {
                     prop.type = type.toLowerCase()
                     prop.url = url
                     prop.email = email
@@ -149,7 +151,7 @@ const Dialog = ({ props, open, setOpen, actions }) => {
                     prop.submitUrl = submitUrl
                     prop.submitMethod = submitMethod
                     prop.submitAsync = submitAsync
-                  }, 500)
+                  })
                 }}
                 className={cx(
                   'inline-flex select-none justify-center rounded-md px-4 py-2 text-sm font-medium',

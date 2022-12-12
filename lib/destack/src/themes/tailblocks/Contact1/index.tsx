@@ -3,6 +3,6 @@ import { source } from './source'
 const Component = {
   source: source,
   displayName: 'Contact 1',
-  category: 'Contacts',
+  category: 'Contact',
 }
 export default Component
