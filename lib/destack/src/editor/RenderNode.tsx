@@ -1,11 +1,16 @@
-import React, { useEffect, useRef, useCallback } from 'react'
+import React, { useEffect, useRef, useState, useCallback } from 'react'
 
 import { useNode, useEditor } from '@craftjs/core'
 
 import ReactDOM from 'react-dom'
 
+import LinkDialog from '../themes/shared/LinkDialog'
+import ImageDialog from '../themes/shared/ImageDialog'
+
 import { ArrowSmallUpIcon } from '@heroicons/react/24/outline'
 import { TrashIcon } from '@heroicons/react/24/outline'
+import { PhotoIcon } from '@heroicons/react/24/outline'
+import { LinkIcon } from '@heroicons/react/24/outline'
 import { ArrowsPointingOutIcon } from '@heroicons/react/24/outline'
 
 export const RenderNode = ({ render }) => {
@@ -14,13 +19,10 @@ export const RenderNode = ({ render }) => {
     isActive: query.getEvent('selected').contains(id),
   }))
 
-  const { events, dom, connectors, data } = useNode((node) => ({
-    id: node.id,
-    events: node.events,
-    dom: node.dom,
-    data: node.data,
-  }))
+  const { connectors, node } = useNode((node) => ({ node }))
 
+  const data = node.data
+  const dom = node.dom
   const displayName = data.custom?.displayName || data.displayName
   const showFocus = id !== 'ROOT' && displayName !== 'App'
   const moveable = data.parent === 'ROOT'
@@ -30,10 +32,10 @@ export const RenderNode = ({ render }) => {
 
   useEffect(() => {
     if (dom) {
-      if (isActive || events.hovered) dom.classList.add('component-selected')
+      if (isActive || node.events.hovered) dom.classList.add('component-selected')
       else dom.classList.remove('component-selected')
     }
-  }, [dom, isActive, events.hovered])
+  }, [dom, isActive, node.events.hovered])
 
   const getPos = useCallback((dom: HTMLElement | null) => {
     const { top, left, bottom } = dom ? dom.getBoundingClientRect() : { top: 0, left: 0, bottom: 0 }
@@ -62,9 +64,14 @@ export const RenderNode = ({ render }) => {
     }
   }, [scroll])
 
+  const [openLink, setOpenLink] = useState(false)
+  const [openImage, setOpenImage] = useState(false)
+
+  const updateLink = dom?.childNodes[0]?.nodeName === 'A'
+  const updateImage = dom?.childNodes[0]?.nodeName === 'IMG'
   return (
     <>
-      {events.hovered || isActive
+      {node.events.hovered || isActive
         ? ReactDOM.createPortal(
             <div
               ref={() => currentRef}
@@ -78,11 +85,11 @@ export const RenderNode = ({ render }) => {
               }}
             >
               <h2 className="flex-1 mr-4">{displayName}</h2>
-              {moveable ? (
+              {moveable && (
                 <a className="mr-2 cursor-move" ref={() => connectors.drag}>
                   <ArrowsPointingOutIcon className="h-4 w-4" />
                 </a>
-              ) : null}
+              )}
               {showFocus && (
                 <a
                   className="mr-2 cursor-pointer"
@@ -93,7 +100,29 @@ export const RenderNode = ({ render }) => {
                   <ArrowSmallUpIcon className="h-4 w-4" />
                 </a>
               )}
-              {deletable ? (
+              {updateImage && (
+                <a
+                  className="cursor-pointer"
+                  onMouseDown={(e: React.MouseEvent) => {
+                    e.stopPropagation()
+                    setOpenImage(true)
+                  }}
+                >
+                  <PhotoIcon className="h-4 w-4" />
+                </a>
+              )}
+              {updateLink && (
+                <a
+                  className="cursor-pointer"
+                  onMouseDown={(e: React.MouseEvent) => {
+                    e.stopPropagation()
+                    setOpenLink(true)
+                  }}
+                >
+                  <LinkIcon className="h-4 w-4" />
+                </a>
+              )}
+              {deletable && (
                 <a
                   className="cursor-pointer"
                   onMouseDown={(e: React.MouseEvent) => {
@@ -103,7 +132,9 @@ export const RenderNode = ({ render }) => {
                 >
                   <TrashIcon className="h-4 w-4" />
                 </a>
-              ) : null}
+              )}
+              <LinkDialog open={openLink} setOpen={setOpenLink} node={node} actions={actions} />
+              <ImageDialog open={openImage} setOpen={setOpenImage} node={node} actions={actions} />
             </div>,
             document.querySelector('.page-container'),
           )

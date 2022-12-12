@@ -55,8 +55,8 @@ const Content = ({ url, text, setText, onUpload, onChange }) => {
   )
 }
 
-const Dialog = ({ currentUrl, open, setOpen, actions }) => {
-  const [url, setUrl] = useState<string | null>(currentUrl)
+const Dialog = ({ open, setOpen, node, actions }) => {
+  const [url, setUrl] = useState<string | null>(node.data.props.url ?? node.dom.childNodes[0]?.src)
   const [text, setText] = useState<string | null>('')
 
   const onUpload = async (e) => {
@@ -84,15 +84,13 @@ const Dialog = ({ currentUrl, open, setOpen, actions }) => {
               Upload Image
             </DialogPrimitive.Title>
 
-            <DialogPrimitive.Description className="mt-2 text-sm font-normal text-gray-700 dark:text-gray-400">
-              <Content
-                url={url}
-                text={text}
-                setText={setText}
-                onUpload={onUpload}
-                onChange={onChange}
-              />
-            </DialogPrimitive.Description>
+            <Content
+              url={url}
+              text={text}
+              setText={setText}
+              onUpload={onUpload}
+              onChange={onChange}
+            />
 
             <div className="mt-4 flex justify-end">
               <button
@@ -112,7 +110,8 @@ const Dialog = ({ currentUrl, open, setOpen, actions }) => {
               <DialogPrimitive.Close
                 onClick={() => {
                   setOpen(false)
-                  actions.setProp((prop) => (prop.url = url), 500)
+                  const nodeId = node.data.nodes[0]
+                  actions.setProp(nodeId, (prop) => (prop.url = url))
                 }}
                 className={cx(
                   'inline-flex select-none justify-center rounded-md px-4 py-2 text-sm font-medium',

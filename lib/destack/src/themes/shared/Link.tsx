@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { useNode, useEditor } from '@craftjs/core'
 
-import SimpleTooltip from '../../components/Tooltip'
-import ActionDialog from './LinkDialog'
 import Child from './Child'
 
 const handleClick = (props) => {
@@ -15,32 +13,17 @@ const handleClick = (props) => {
 }
 
 const Link = ({ r, d, i }) => {
-  const { actions, node } = useNode((node) => ({ node }))
+  const { node } = useNode((node) => ({ node }))
   const { enabled } = useEditor((state) => ({ enabled: state.options.enabled }))
-  const [open, setOpen] = useState(false)
   const onClick = (e) => {
     e.preventDefault()
-    handleClick(node.data.props)
+    if (!enabled) handleClick(node.data.props)
   }
 
-  return !enabled ? (
+  return (
     <a className={r.classNames} onClick={onClick}>
       <Child root={r} d={d.concat(i)} />
     </a>
-  ) : (
-    <>
-      <ActionDialog open={open} setOpen={setOpen} props={node.data.props} actions={actions} />
-      <SimpleTooltip text="Change link" side="bottom" offset={4}>
-        <a
-          className={`${r.classNames} cursor-pointer`}
-          onClick={() => {
-            setOpen(true)
-          }}
-        >
-          <Child root={r} d={d.concat(i)} />
-        </a>
-      </SimpleTooltip>
-    </>
   )
 }
 export { Link }

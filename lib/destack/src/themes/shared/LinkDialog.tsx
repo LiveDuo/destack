@@ -5,9 +5,9 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 
 import cx from 'classnames'
 
-const Dialog = ({ props, open, setOpen, actions }) => {
-  const [link, setLink] = useState(props.link)
-  const [newTab, setNewTab] = useState(props.newTab)
+const Dialog = ({ open, setOpen, node, actions }) => {
+  const [link, setLink] = useState(node.data.props.link ?? node.dom.childNodes[0]?.href)
+  const [newTab, setNewTab] = useState(node.data.props.newTab)
 
   return (
     <DialogPrimitive.Root open={open} onOpenChange={setOpen}>
@@ -24,41 +24,41 @@ const Dialog = ({ props, open, setOpen, actions }) => {
               Update Link
             </DialogPrimitive.Title>
 
-            <DialogPrimitive.Description className="mt-2 text-sm font-normal text-gray-700 dark:text-gray-400">
-              <div className="mt-8 mb-4">
+            <div className="mt-8 mb-4">
+              <div>
                 <div>
-                  <div>
-                    <div className="flex justify-center mb-4 flex-col">
+                  <div className="flex justify-center mb-4 flex-col">
+                    <input
+                      type="text"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-4"
+                      placeholder="Eg. https://github.com/LiveDuo/destack"
+                      defaultValue={link as string}
+                      onChange={(e) => setLink(e.target.value)}
+                    />
+                    <div className="flex items-center ml-4">
+                      <p>Open in new tab</p>
                       <input
-                        type="text"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-4"
-                        placeholder="Eg. https://github.com/LiveDuo/destack"
-                        defaultValue={link as string}
-                        onChange={(e) => setLink(e.target.value)}
+                        defaultChecked={newTab}
+                        type="checkbox"
+                        onChange={(e) => setNewTab(e.target.checked)}
+                        className="ml-4 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
                       />
-                      <div className="flex items-center ml-4">
-                        <p>Open in new tab</p>
-                        <input
-                          defaultChecked={newTab}
-                          type="checkbox"
-                          onChange={(e) => setNewTab(e.target.checked)}
-                          className="ml-4 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
-                        />
-                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </DialogPrimitive.Description>
+            </div>
 
             <div className="mt-4 flex justify-end">
               <DialogPrimitive.Close
                 onClick={() => {
                   setOpen(false)
-                  actions.setProp((prop) => {
+
+                  const nodeId = node.data.nodes[0]
+                  actions.setProp(nodeId, (prop) => {
                     prop.link = link
                     prop.newTab = newTab
-                  }, 500)
+                  })
                 }}
                 className={cx(
                   'inline-flex select-none justify-center rounded-md px-4 py-2 text-sm font-medium',
