@@ -108,7 +108,7 @@ const source = `
   </div>
   <div class="border-t border-gray-200">
     <div class="container px-5 py-8 flex flex-wrap mx-auto items-center">
-      <form style="margin: 0;">
+      <form>
         <div class="flex md:flex-nowrap flex-wrap justify-center items-end md:justify-start">
           <div class="relative sm:w-64 w-40 sm:mr-4 mr-2">
             <label for="footer-field" class="leading-7 text-sm text-gray-600">Placeholder</label>

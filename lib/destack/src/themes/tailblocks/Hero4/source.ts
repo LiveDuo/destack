@@ -4,7 +4,7 @@ const source = `
     <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
       <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Knausgaard typewriter readymade marfa</h1>
       <p class="mb-8 leading-relaxed">Chillwave portland ugh, knausgaard fam polaroid iPhone. Man braid swag typewriter affogato, hella selvage wolf narwhal dreamcatcher.</p>
-      <form style="margin: 0;">
+      <form>
         <div class="flex w-full md:justify-start justify-center items-end">
           <div class="relative mr-4 md:w-full lg:w-full xl:w-1/2 w-2/4">
             <label for="hero-field" class="leading-7 text-sm text-gray-600">Placeholder</label>

@@ -6,7 +6,7 @@ const source = `
       <p class="leading-relaxed mt-4">Poke slow-carb mixtape knausgaard, typewriter street art gentrify hammock starladder roathse. Craies vegan tousled etsy austin.</p>
     </div>
     <div class="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
-      <form style="margin: 0;">
+      <form>
         <h2 class="text-gray-900 text-lg font-medium title-font mb-5">Sign Up</h2>
         <div class="relative mb-4">
           <label for="full-name" class="leading-7 text-sm text-gray-600">Full Name</label>
