@@ -22,7 +22,7 @@ const source = `
             </div>
 
             <div class="flex mt-4 md:m-0">
-                <div class="-mx-4">
+                <div class="-mx-4 flex">
                     <a href="#" class="px-4 text-sm font-medium text-gray-600 transition-colors duration-300 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 hover:underline">About</a>
                     <a href="#" class="px-4 text-sm font-medium text-gray-600 transition-colors duration-300 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 hover:underline">Blog</a>
                     <a href="#" class="px-4 text-sm font-medium text-gray-600 transition-colors duration-300 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 hover:underline">News</a>

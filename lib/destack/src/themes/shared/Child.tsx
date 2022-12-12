@@ -192,6 +192,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
                       strokeLinecap={c.attrs['stroke-linecap']}
                       strokeLinejoin={c.attrs['stroke-linejoin']}
                       strokeWidth={c.attrs['stroke-width']}
+                      stroke={c.attrs['stroke']}
                       fill={c.attrs['fill']}
                     />
                   ))}
@@ -258,6 +259,48 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
               <cite className={r.classNames}>
                 <Child root={r} d={d.concat(i)} />
               </cite>
+            )
+          } else if (r.tagName === 'HR') {
+            return <hr className={r.classNames}></hr>
+          } else if (r.tagName === 'IFRAME') {
+            return <iframe className={r.classNames} {...r.attrs} />
+          } else if (r.tagName === 'STYLE') {
+            return <style>{r.innerText}</style>
+          } else if (r.tagName === 'TABLE') {
+            return (
+              <table className={r.classNames}>
+                <Child root={r} d={d.concat(i)} />
+              </table>
+            )
+          } else if (r.tagName === 'THEAD') {
+            return (
+              <thead className={r.classNames} {...r.attrs}>
+                <Child root={r} d={d.concat(i)} />
+              </thead>
+            )
+          } else if (r.tagName === 'TBODY') {
+            return (
+              <tbody className={r.classNames}>
+                <Child root={r} d={d.concat(i)} />
+              </tbody>
+            )
+          } else if (r.tagName === 'TR') {
+            return (
+              <tr className={r.classNames}>
+                <Child root={r} d={d.concat(i)} />
+              </tr>
+            )
+          } else if (r.tagName === 'TD') {
+            return (
+              <td className={r.classNames}>
+                <Child root={r} d={d.concat(i)} />
+              </td>
+            )
+          } else if (r.tagName === 'TH') {
+            return (
+              <th className={r.classNames}>
+                <Child root={r} d={d.concat(i)} />
+              </th>
             )
           } else {
             return <p>Unknown container</p>
