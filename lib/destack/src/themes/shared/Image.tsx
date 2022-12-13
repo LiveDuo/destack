@@ -2,10 +2,28 @@ import React from 'react'
 
 import { useNode } from '@craftjs/core'
 
-const Image = ({ classNames, attrs }) => {
+export const Image = ({ classNames, attrs }) => {
+  const { connectors } = useNode((node) => ({ node }))
+
   const { node } = useNode((node) => ({ node }))
   const url = node.data.props.url ?? attrs.src
   const { ['class']: foo, ...attrsR } = attrs
-  return <img className={classNames} {...attrsR} src={url} />
+
+  return (
+    <img
+      ref={(ref) => connectors.connect(ref as HTMLElement)}
+      className={classNames}
+      {...attrsR}
+      src={url}
+    />
+  )
 }
-export { Image }
+
+Image.craft = {
+  displayName: 'Image',
+  props: {},
+  rules: {
+    canDrag: () => true,
+  },
+  related: {},
+}

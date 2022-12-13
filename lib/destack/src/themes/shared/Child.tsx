@@ -3,7 +3,6 @@ import React from 'react'
 import { Element } from '@craftjs/core'
 import { useNode } from '@craftjs/core'
 
-import { ContainerSimple } from './Simple'
 import { Text } from './Text'
 import { Link } from './Link'
 import { Button } from './Button'
@@ -79,12 +78,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
                 <Child root={r} d={d.concat(i)} />
               </p>
             )
-          else if (r.tagName === 'A')
-            return (
-              <Element is={ContainerSimple} id={id}>
-                <Link r={r} d={d} i={i} />
-              </Element>
-            )
+          else if (r.tagName === 'A') return <Element is={Link} id={id} r={r} d={d} i={i} />
           else if (r.tagName === 'SPAN')
             return (
               <span className={r.classNames} id={id}>
@@ -159,12 +153,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
                 {r.innerText}
               </textarea>
             )
-          else if (r.tagName === 'BUTTON')
-            return (
-              <Element is={ContainerSimple} id={id}>
-                <Button r={r} d={d} i={i} />
-              </Element>
-            )
+          else if (r.tagName === 'BUTTON') return <Element is={Button} id={id} r={r} d={d} i={i} />
           else if (r.tagName === 'FORM')
             return (
               <form className={r.classNames} id={id} {...r.attrs}>
@@ -200,18 +189,12 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
             )
           else if (r.tagName === 'ADDRESS')
             return (
-              <Element is={ContainerSimple} id={id}>
-                <address className={r.classNames} id={id} {...r.attrs}>
-                  <Text text={r.innerText} />
-                </address>
-              </Element>
+              <address className={r.classNames} id={id} {...r.attrs}>
+                <Text text={r.innerText} />
+              </address>
             )
           else if (r.tagName === 'IMG') {
-            return (
-              <Element is={ContainerSimple} id={id} canvas>
-                <Image classNames={r.classNames} attrs={r.attrs} />
-              </Element>
-            )
+            return <Element is={Image} id={id} classNames={r.classNames} attrs={r.attrs} />
           } else if (r.tagName === 'ARTICLE') {
             return (
               <article className={r.classNames} id={id}>

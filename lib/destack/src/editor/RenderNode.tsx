@@ -70,9 +70,9 @@ export const RenderNode = ({ render }) => {
   const [openImage, setOpenImage] = useState(false)
   const [openButton, setOpenButton] = useState(false)
 
-  const updateLink = dom?.childNodes[0]?.nodeName === 'A'
-  const updateImage = dom?.childNodes[0]?.nodeName === 'IMG'
-  const updateButton = dom?.childNodes[0]?.nodeName === 'BUTTON'
+  const updateLink = dom?.nodeName === 'A'
+  const updateImage = dom?.nodeName === 'IMG'
+  const updateButton = dom?.nodeName === 'BUTTON'
   return (
     <>
       {node.events.hovered || isActive

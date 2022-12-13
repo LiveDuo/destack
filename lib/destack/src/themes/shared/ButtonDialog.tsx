@@ -142,8 +142,8 @@ const Dialog = ({ open, setOpen, node, actions }) => {
               <DialogPrimitive.Close
                 onClick={() => {
                   setOpen(false)
-                  const nodeId = node.data.nodes[0]
-                  actions.setProp(nodeId, (prop) => {
+
+                  actions.setProp(node.id, (prop) => {
                     prop.type = type.toLowerCase()
                     prop.url = url
                     prop.email = email

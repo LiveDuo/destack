@@ -6,7 +6,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import cx from 'classnames'
 
 const Dialog = ({ open, setOpen, node, actions }) => {
-  const [link, setLink] = useState(node.data.props.link ?? node.dom.childNodes[0]?.href)
+  const [link, setLink] = useState(node.data.props.link ?? node.dom?.href)
   const [newTab, setNewTab] = useState(node.data.props.newTab)
 
   return (
@@ -54,8 +54,7 @@ const Dialog = ({ open, setOpen, node, actions }) => {
                 onClick={() => {
                   setOpen(false)
 
-                  const nodeId = node.data.nodes[0]
-                  actions.setProp(nodeId, (prop) => {
+                  actions.setProp(node.id, (prop) => {
                     prop.link = link
                     prop.newTab = newTab
                   })
