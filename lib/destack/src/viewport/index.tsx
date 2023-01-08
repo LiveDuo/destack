@@ -31,7 +31,8 @@ const Viewport: React.FC = ({ children }) => {
               {children}
             </div>
             <div className={'flex items-center justify-center w-full pt-6 text-xs text-gray-400'}>
-              <a href="https://www.netlify.com">This site is powered by Netlify</a>
+              Powered by <a href="https://craft.js.org/">Craft.js</a> and{' '}
+              <a href="https://tailwindui.com/">Tailwind CSS</a>
             </div>
           </div>
         </div>
