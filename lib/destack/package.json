@@ -54,6 +54,7 @@
     "@types/formidable": "^1.2.2",
     "@types/react": "^17.0.8",
     "autoprefixer": "^10.2.6",
+    "axios": "^1.2.2",
     "esbuild": "^0.12.5",
     "nodemon": "^2.0.15",
     "rollup": "^2.45.2",
