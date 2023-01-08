@@ -53,7 +53,7 @@ const RenderFromEditor = ({ data, standaloneServer }) => {
   return (
     <Editor
       resolver={resolver as Resolver}
-      // enabled={false}
+      enabled={!data}
       onRender={EditorElement}
       onNodesChange={onStateChange}
     >
