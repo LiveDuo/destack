@@ -2,7 +2,7 @@ import { devices } from '@playwright/test'
 
 const PORT = process.env.PORT || 3000
 const baseURL = `http://localhost:${PORT}`
-const CI = process.env.CI || false
+const CI = process.env.CI === 'true'
 
 const config = {
   timeout: 10 * 1000,
