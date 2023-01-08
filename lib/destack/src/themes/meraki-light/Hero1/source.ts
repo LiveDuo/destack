@@ -57,7 +57,7 @@ const source = `
             </div>
 
             <div class="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
-                <img class="w-full h-full lg:max-w-2xl" src="/images/components/Catalogue-pana.svg" alt="Catalogue-pana.svg">
+            <img class="w-full h-full max-w-md" src="https://images.unsplash.com/photo-1508394522741-82ac9c15ba69?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=748&q=80">
             </div>
         </div>
     </div>
