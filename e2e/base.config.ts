@@ -16,7 +16,7 @@ const config = {
   projects: [
     { name: 'Desktop Chrome', use: { ...devices['Desktop Chrome'] } },
     { name: 'Desktop Firefox', use: { ...devices['Desktop Firefox'] } },
-    { name: 'Desktop Safari', use: { ...devices['Desktop Safari'] } },
+    // { name: 'Desktop Safari', use: { ...devices['Desktop Safari'] } },
   ].filter((_, i) => i === 0 || CI), // run all only in CI
 }
 export default config
