@@ -28,7 +28,6 @@ jobs:
       - run: npx playwright install --with-deps
       - run: npm i -g npm@7.5
       - run: npm ci
-      - run: cd lib/destack && npm run build
       - uses: mxschmitt/action-tmate@v3
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'interactive' }}
-      - run: npm run test:e2e
+      - run: CI=true npm run test:e2e
