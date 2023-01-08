@@ -2,8 +2,8 @@ import React, { useEffect, useContext } from 'react'
 
 import { Editor, Frame, Element, useEditor, Resolver } from '@craftjs/core'
 
-import { Viewport } from '../viewport'
-import { RenderNode } from './RenderNode'
+import Viewport from '../viewport'
+import EditorElement from './EditorElement'
 
 import { Container } from '../themes/shared/Container'
 
@@ -54,7 +54,7 @@ const RenderFromEditor = ({ data, standaloneServer }) => {
     <Editor
       resolver={resolver as Resolver}
       // enabled={false}
-      onRender={RenderNode}
+      onRender={EditorElement}
       onNodesChange={onStateChange}
     >
       <FrameFromEditor data={data} standaloneServer={standaloneServer} />

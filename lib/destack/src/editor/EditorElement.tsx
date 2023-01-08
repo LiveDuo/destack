@@ -15,7 +15,7 @@ import { LinkIcon } from '@heroicons/react/24/outline'
 import { CircleStackIcon } from '@heroicons/react/24/outline'
 import { ArrowsPointingOutIcon } from '@heroicons/react/24/outline'
 
-export const RenderNode = ({ render }) => {
+const EditorElement = ({ render }) => {
   const { id } = useNode()
   const { actions, isActive } = useEditor((_, query) => ({
     isActive: query.getEvent('selected').contains(id),
@@ -164,3 +164,4 @@ export const RenderNode = ({ render }) => {
     </>
   )
 }
+export default EditorElement

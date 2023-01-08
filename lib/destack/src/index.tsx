@@ -1,29 +1,24 @@
 import React from 'react'
 
-import RenderFromEditor from './editor/FrameFromEditor'
+import Editor from './editor/Editor'
 
 import { ThemeProvider } from './store'
 
 import './styles/app.css'
 
-const ContentProvider = ({ data }) => {
+const ContentProviderBase = ({ data, standaloneServer }) => {
   return (
     <ThemeProvider>
       <div className="h-full h-screen">
-        <RenderFromEditor data={data} standaloneServer={false} />
+        <Editor data={data} standaloneServer={standaloneServer} />
       </div>
     </ThemeProvider>
   )
 }
-export { ContentProvider }
 
-const ContentProviderReact = () => {
-  return (
-    <ThemeProvider>
-      <div className="h-full h-screen">
-        <RenderFromEditor data={null} standaloneServer={true} />
-      </div>
-    </ThemeProvider>
-  )
-}
-export { ContentProviderReact }
+export const ContentProvider = ({ data }) => (
+  <ContentProviderBase data={data} standaloneServer={false} />
+)
+export const ContentProviderReact = () => (
+  <ContentProviderBase data={null} standaloneServer={true} />
+)

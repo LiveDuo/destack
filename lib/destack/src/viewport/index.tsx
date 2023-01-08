@@ -5,7 +5,7 @@ import { useEditor } from '@craftjs/core'
 import { Header } from './Header'
 import { Sidebar as LeftSidebar } from './LeftSidebar'
 
-export const Viewport: React.FC = ({ children }) => {
+const Viewport: React.FC = ({ children }) => {
   const { connectors, actions } = useEditor((state) => ({ enabled: state.options.enabled }))
 
   useEffect(() => {
@@ -40,3 +40,4 @@ export const Viewport: React.FC = ({ children }) => {
     </div>
   )
 }
+export default Viewport
