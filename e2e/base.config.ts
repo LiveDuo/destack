@@ -12,7 +12,7 @@ const config = {
     timeout: 30 * 1000,
     reuseExistingServer: true,
   },
-  use: { baseURL, trace: 'retry-with-trace', headless: !CI },
+  use: { baseURL, trace: 'retry-with-trace', headless: CI },
   projects: [
     { name: 'Desktop Chrome', use: { ...devices['Desktop Chrome'] } },
     { name: 'Desktop Firefox', use: { ...devices['Desktop Firefox'] } },
