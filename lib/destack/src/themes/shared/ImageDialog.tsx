@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import { XMarkIcon } from '@heroicons/react/24/outline'
@@ -8,20 +8,20 @@ import cx from 'classnames'
 import { uploadFile } from '../../utils/fetch'
 
 const Content = ({ url, text, setText, onUpload, onChange }) => {
+  const input = useRef<HTMLInputElement>(null)
+
   return (
     <div className="mt-4 mb-4">
       {!url ? (
         <div>
           <div className="flex justify-center mt-8 mb-4">
+            <input ref={input} type="file" onChange={onUpload} style={{ display: 'none' }} />
             <button
               className={
                 'rounded-md px-4 py-2 text-sm font-medium bg-transparent border border-blue-500 text-blue-500 hover:bg-blue-700 hover:text-white border border-transparent'
               }
               onClick={() => {
-                const input = document.createElement('input')
-                input.type = 'file'
-                input.onchange = onUpload
-                input.click()
+                input.current?.click()
               }}
             >
               Upload
@@ -60,7 +60,7 @@ const Dialog = ({ open, setOpen, node, actions }) => {
   const [text, setText] = useState<string | null>('')
 
   const onUpload = async (e) => {
-    const file = e?.path[0].files[0]
+    const file = e?.target.files[0]
     const response = await uploadFile(file, false)
     setUrl(response[0])
   }
