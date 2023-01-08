@@ -21,15 +21,14 @@ jobs:
         node-version: [16.x]
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      - run: npx playwright install --with-deps
       - run: npm i -g npm@7.5
       - run: npm ci
       - run: cd lib/destack && npm run build
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+      - uses: mxschmitt/action-tmate@v3
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'interactive' }}
-      - run: npm test
+      - run: npm run test:e2e
