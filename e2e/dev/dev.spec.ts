@@ -13,8 +13,9 @@ test('should drap and drop a component', async ({ page }) => {
   await page.dragAndDrop(`img[src='${imagePath}']`, 'div.craftjs-renderer > div > div')
   await expect(page.locator('div.craftjs-renderer > div > div')).toHaveCount(1)
 
-  // delete the component
-  // await page.click('div.page-container > div > a:nth-child(4)')
+  // remove the component
+  await page.hover('#components-01')
+  await page.click('div.page-container > div > a:nth-child(4)')
 })
 
 test('should add an image to renderer', async ({ page }) => {
@@ -40,8 +41,10 @@ test('should add an image to renderer', async ({ page }) => {
   // check image uploaded
   await expect(page.locator(`img[src='/uploaded/pattern.jpg']`)).toHaveCount(1)
 
-  // delete the component
-  // await page.click('div.page-container > div > a:nth-child(4)')
+  // remove the component
+  await page.hover('#components-011')
+  await page.click('div.page-container > div > a:nth-child(4)')
 
-  // TODO delete the uploaded image
+  // remove the uploaded image
+  await require('fs/promises').rm('dev/nextjs-project/public/uploaded/pattern.jpg')
 })
