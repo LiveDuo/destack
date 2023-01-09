@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useNode, useEditor } from '@craftjs/core'
 
@@ -17,8 +17,9 @@ export type TextProps = {
 const Text = (props) => {
   const { node, connectors, actions } = useNode((node) => ({ node }))
   const { enabled } = useEditor((state) => ({ enabled: state.options.enabled }))
+  const [text] = useState(node.data.props[props.id] ?? props.text)
   const onChange = (e) => {
-    // actions.setProp((prop) => (prop.text = e.target.innerText), 500)
+    actions.setProp((prop) => (prop[props.id] = e.target.innerText), 500)
   }
   const onClick = (e) => {
     if (enabled) {
@@ -27,7 +28,6 @@ const Text = (props) => {
     }
   }
 
-  const text = node.data.props.text ?? props.text
   return enabled ? (
     <span
       ref={(ref) => connectors.connect(ref as HTMLElement)}
