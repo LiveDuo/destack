@@ -14,7 +14,7 @@ test('should drap and drop a component', async ({ page }) => {
   await expect(page.locator('div.craftjs-renderer > div > div')).toHaveCount(1)
 
   // remove the component
-  await page.hover('#components-01')
+  await page.hover('div.craftjs-renderer > div > div')
   await page.click('div.page-container > div > a:nth-child(4)')
 })
 
@@ -29,7 +29,7 @@ test('should add an image to renderer', async ({ page }) => {
   await expect(page.locator('div.craftjs-renderer > div > div')).toHaveCount(1)
 
   // open image dialog
-  await page.hover('#components-01 > img')
+  await page.hover('div.craftjs-renderer > div > div img')
   await page.click('div.page-container > div > a:nth-child(3)')
 
   // click replace image
@@ -42,7 +42,7 @@ test('should add an image to renderer', async ({ page }) => {
   await expect(page.locator(`img[src='/uploaded/pattern.jpg']`)).toHaveCount(1)
 
   // remove the component
-  await page.hover('#components-011')
+  await page.hover('div.craftjs-renderer > div > div')
   await page.click('div.page-container > div > a:nth-child(4)')
 
   // remove the uploaded image
