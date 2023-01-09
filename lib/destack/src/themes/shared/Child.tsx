@@ -292,7 +292,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
           if (r.innerText.trim() === '') return null
           // className={r.parentNode.classNames}
           if (r.constructor === 'TextNode' || r.constructor === 't')
-            return <Text text={r.innerText} />
+            return <Text text={r.innerText ?? ''} />
           else return <p>Unknown node</p>
         } else {
           return <p>Unknown type</p>

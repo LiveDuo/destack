@@ -1,5 +1,6 @@
-import { useNode, useEditor } from '@craftjs/core'
 import React from 'react'
+
+import { useNode, useEditor } from '@craftjs/core'
 
 export type TextProps = {
   id: String
@@ -14,10 +15,10 @@ export type TextProps = {
 }
 
 const Text = (props) => {
-  const { node, actions, connectors } = useNode((node) => ({ node }))
+  const { node, connectors, actions } = useNode((node) => ({ node }))
   const { enabled } = useEditor((state) => ({ enabled: state.options.enabled }))
   const onChange = (e) => {
-    actions.setProp((prop) => (prop.text = e.target.value), 500)
+    // actions.setProp((prop) => (prop.text = e.target.innerText), 500)
   }
   const onClick = (e) => {
     if (enabled) {
@@ -25,7 +26,8 @@ const Text = (props) => {
       e.stopPropagation()
     }
   }
-  const text = node.data.props.text ?? props.text ?? ''
+
+  const text = node.data.props.text ?? props.text
   return enabled ? (
     <span
       ref={(ref) => connectors.connect(ref as HTMLElement)}
@@ -33,7 +35,7 @@ const Text = (props) => {
       suppressContentEditableWarning={true}
       className={props.className}
       onClick={onClick}
-      onChange={onChange}
+      onInput={onChange}
     >
       {text}
     </span>
