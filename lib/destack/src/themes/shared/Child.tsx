@@ -27,7 +27,6 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
   return (
     <>
       {Array.from(root?.childNodes).map((r, i) => {
-        const id = 'components-' + d.concat(i).join('')
         const key = d.concat(i).join('')
 
         if (r.nodeType === 1) {
@@ -86,7 +85,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
               </p>
             )
           else if (r.tagName === 'A')
-            return <Element is={Link} key={key} r={r} d={d} i={i} id={id} />
+            return <Element is={Link} key={key} r={r} d={d} i={i} id={key} />
           else if (r.tagName === 'SPAN')
             return (
               <span className={r.classNames} key={key}>
@@ -156,7 +155,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
               </textarea>
             )
           else if (r.tagName === 'BUTTON')
-            return <Element is={Button} key={key} r={r} d={d} i={i} id={id} />
+            return <Element is={Button} key={key} r={r} d={d} i={i} id={key} />
           else if (r.tagName === 'FORM')
             return (
               <form className={r.classNames} key={key} {...r.attrs}>
@@ -193,12 +192,12 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
           else if (r.tagName === 'ADDRESS')
             return (
               <address className={r.classNames} key={key} {...r.attrs}>
-                <Text text={r.innerText} />
+                <Text text={r.innerText} key={key} id={key} />
               </address>
             )
           else if (r.tagName === 'IMG') {
             return (
-              <Element is={Image} key={key} classNames={r.classNames} attrs={r.attrs} id={id} />
+              <Element is={Image} key={key} classNames={r.classNames} attrs={r.attrs} id={key} />
             )
           } else if (r.tagName === 'ARTICLE') {
             return (
@@ -297,7 +296,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
           if (r.innerText.trim() === '') return null
           // className={r.parentNode.classNames}
           if (r.constructor === 'TextNode' || r.constructor === 't')
-            return <Text text={r.innerText ?? ''} key={key} />
+            return <Text text={r.innerText ?? ''} key={key} id={key} />
           else return <p key={key}>Unknown node</p>
         } else {
           return <p key={key}>Unknown type</p>
