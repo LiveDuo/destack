@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react'
 
-import { Editor, Frame, Element, useEditor, Resolver } from '@craftjs/core'
+import { Editor as CraftEditor, Frame, Element, useEditor, Resolver } from '@craftjs/core'
 
 import Viewport from '../viewport'
 import EditorElement from './EditorElement'
@@ -11,7 +11,7 @@ import { loadTemplate, saveTemplateDebounce } from '../utils/fetch'
 
 import { ThemeContext } from '../store'
 
-const FrameFromEditor = ({ data, standaloneServer }) => {
+const FrameEditor = ({ data, standaloneServer }) => {
   const { actions } = useEditor()
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const FrameFromEditor = ({ data, standaloneServer }) => {
   )
 }
 
-const RenderFromEditor = ({ data, standaloneServer }) => {
+const Editor = ({ data, standaloneServer }) => {
   const { resolver, setStandalone } = useContext(ThemeContext)
 
   useEffect(() => setStandalone(standaloneServer), [])
@@ -51,14 +51,14 @@ const RenderFromEditor = ({ data, standaloneServer }) => {
   }
 
   return (
-    <Editor
+    <CraftEditor
       resolver={resolver as Resolver}
       enabled={!data}
       onRender={EditorElement}
       onNodesChange={onStateChange}
     >
-      <FrameFromEditor data={data} standaloneServer={standaloneServer} />
-    </Editor>
+      <FrameEditor data={data} standaloneServer={standaloneServer} />
+    </CraftEditor>
   )
 }
-export default RenderFromEditor
+export default Editor
