@@ -40,7 +40,7 @@ const handleClick = (props, e) => {
   }
 }
 
-const Button = ({ r, d, i }) => {
+const Button = ({ r, d, i, propId }) => {
   const { node } = useNode((node) => ({ node }))
   const { enabled } = useEditor((state) => ({ enabled: state.options.enabled }))
   const { connectors } = useNode((node) => ({ node }))
@@ -49,7 +49,7 @@ const Button = ({ r, d, i }) => {
 
   const onClick = (e) => {
     e.preventDefault()
-    if (!enabled) handleClick(node.data.props, e)
+    if (!enabled) handleClick(node.data.props[propId], e)
   }
 
   return (

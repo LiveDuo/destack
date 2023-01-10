@@ -18,6 +18,9 @@ const Dialog = ({ open, setOpen, node, actions }) => {
   const [openSelect, setOpenSelect] = useState(false)
 
   const props = node.data.props
+  const key = props.d?.concat(props.i).join('')
+  // console.log('id', key)
+
   const [url, setUrl] = useState(props.url)
   const [email, setEmail] = useState(props.email)
   const [submitUrl, setSubmitUrl] = useState(props.submitUrl)
@@ -144,13 +147,14 @@ const Dialog = ({ open, setOpen, node, actions }) => {
                   setOpen(false)
 
                   actions.setProp(node.id, (prop) => {
-                    prop.type = type.toLowerCase()
-                    prop.url = url
-                    prop.email = email
-                    prop.newTab = newTab
-                    prop.submitUrl = submitUrl
-                    prop.submitMethod = submitMethod
-                    prop.submitAsync = submitAsync
+                    if (!prop[key]) prop[key] = {}
+                    prop[key].type = type.toLowerCase()
+                    prop[key].url = url
+                    prop[key].email = email
+                    prop[key].newTab = newTab
+                    prop[key].submitUrl = submitUrl
+                    prop[key].submitMethod = submitMethod
+                    prop[key].submitAsync = submitAsync
                   })
                 }}
                 className={cx(

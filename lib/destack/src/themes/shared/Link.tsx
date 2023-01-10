@@ -12,7 +12,7 @@ const handleClick = (props) => {
   }
 }
 
-const Link = ({ r, d, i }) => {
+const Link = ({ r, d, i, propId }) => {
   const { node } = useNode((node) => ({ node }))
   const { enabled } = useEditor((state) => ({ enabled: state.options.enabled }))
   const { connectors } = useNode((node) => ({ node }))
@@ -21,13 +21,14 @@ const Link = ({ r, d, i }) => {
 
   const onClick = (e) => {
     e.preventDefault()
-    if (!enabled) handleClick(node.data.props)
+    if (!enabled) handleClick(node.data.props[propId])
   }
 
   return (
     <a
       ref={(ref) => connectors.connect(ref as HTMLElement)}
       {...attrsR}
+      href={node.data.props[propId]?.link}
       className={r.classNames}
       onClick={onClick}
     >

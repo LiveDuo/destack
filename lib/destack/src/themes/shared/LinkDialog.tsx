@@ -6,8 +6,10 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import cx from 'classnames'
 
 const Dialog = ({ open, setOpen, node, actions }) => {
-  const [link, setLink] = useState(node.data.props.link ?? node.dom?.href)
-  const [newTab, setNewTab] = useState(node.data.props.newTab)
+  const props = node.data.props
+  const key = props.d?.concat(props.i).join('')
+  const [link, setLink] = useState(node.data.props[key]?.link ?? node.dom?.href)
+  const [newTab, setNewTab] = useState(node.data.props[key]?.newTab)
 
   return (
     <DialogPrimitive.Root open={open} onOpenChange={setOpen}>
@@ -55,8 +57,9 @@ const Dialog = ({ open, setOpen, node, actions }) => {
                   setOpen(false)
 
                   actions.setProp(node.id, (prop) => {
-                    prop.link = link
-                    prop.newTab = newTab
+                    if (!prop[key]) prop[key] = {}
+                    prop[key].link = link
+                    prop[key].newTab = newTab
                   })
                 }}
                 className={cx(

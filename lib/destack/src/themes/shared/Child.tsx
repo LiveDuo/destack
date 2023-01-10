@@ -85,7 +85,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
               </p>
             )
           else if (r.tagName === 'A')
-            return <Element is={Link} key={key} r={r} d={d} i={i} id={key} />
+            return <Element is={Link} key={key} r={r} d={d} i={i} id={key} propId={key} />
           else if (r.tagName === 'SPAN')
             return (
               <span className={r.classNames} key={key}>
@@ -150,12 +150,15 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
             )
           else if (r.tagName === 'TEXTAREA')
             return (
-              <textarea className={r.classNames} key={key} {...r.attrs}>
-                {r.innerText}
-              </textarea>
+              <textarea
+                defaultValue={r.innerText}
+                className={r.classNames}
+                key={key}
+                {...r.attrs}
+              />
             )
           else if (r.tagName === 'BUTTON')
-            return <Element is={Button} key={key} r={r} d={d} i={i} id={key} />
+            return <Element is={Button} key={key} r={r} d={d} i={i} id={key} propId={key} />
           else if (r.tagName === 'FORM')
             return (
               <form className={r.classNames} key={key} {...r.attrs}>
@@ -197,7 +200,16 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
             )
           else if (r.tagName === 'IMG') {
             return (
-              <Element is={Image} key={key} classNames={r.classNames} attrs={r.attrs} id={key} />
+              <Element
+                is={Image}
+                key={key}
+                d={d}
+                i={i}
+                classNames={r.classNames}
+                attrs={r.attrs}
+                id={key}
+                propId={key}
+              />
             )
           } else if (r.tagName === 'ARTICLE') {
             return (

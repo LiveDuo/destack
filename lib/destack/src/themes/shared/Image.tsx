@@ -2,11 +2,12 @@ import React from 'react'
 
 import { useNode } from '@craftjs/core'
 
-export const Image = ({ classNames, attrs }) => {
+export const Image = ({ d: _d, i: _i, classNames, attrs, propId }) => {
   const { connectors } = useNode((node) => ({ node }))
 
   const { node } = useNode((node) => ({ node }))
-  const url = node.data.props.url ?? attrs.src
+
+  const url = node.data.props[propId]?.url ?? attrs.src
   const { ['class']: foo, ...attrsR } = attrs
 
   return (

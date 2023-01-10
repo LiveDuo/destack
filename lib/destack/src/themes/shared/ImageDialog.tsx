@@ -56,8 +56,11 @@ const Content = ({ url, text, setText, onUpload, onChange }) => {
 }
 
 const Dialog = ({ open, setOpen, node, actions }) => {
-  const [url, setUrl] = useState<string | null>(node.data.props.url ?? node.dom?.src)
-  const [text, setText] = useState<string | null>('')
+  const props = node.data.props
+  const propId = props.propId
+
+  const [url, setUrl] = useState(props[propId]?.url ?? node.dom?.src)
+  const [text, setText] = useState('')
 
   const onUpload = async (e) => {
     const file = e?.target.files[0]
@@ -111,7 +114,10 @@ const Dialog = ({ open, setOpen, node, actions }) => {
                 onClick={() => {
                   setOpen(false)
 
-                  actions.setProp(node.id, (prop) => (prop.url = url))
+                  actions.setProp(node.id, (prop) => {
+                    if (!prop[propId]) prop[propId] = {}
+                    prop[propId].url = url
+                  })
                 }}
                 className={cx(
                   'inline-flex select-none justify-center rounded-md px-4 py-2 text-sm font-medium',
