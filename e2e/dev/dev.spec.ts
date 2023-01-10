@@ -14,8 +14,8 @@ test('should drap and drop a component', async ({ page }) => {
   await expect(page.locator('div.craftjs-renderer > div > div')).toHaveCount(1)
 
   // remove the component
-  await page.hover('div.craftjs-renderer > div > div')
-  await page.click('div.page-container > div > a:nth-child(4)')
+  await page.hover('text=Understand')
+  await page.click('div.page-container a:nth-child(4)')
 })
 
 test('should add an image to renderer', async ({ page }) => {
@@ -29,8 +29,8 @@ test('should add an image to renderer', async ({ page }) => {
   await expect(page.locator('div.craftjs-renderer > div > div')).toHaveCount(1)
 
   // open image dialog
-  await page.hover('div.craftjs-renderer > div > div img')
-  await page.click('div.page-container > div > a:nth-child(3)')
+  await page.hover('div.craftjs-renderer img')
+  await page.click('div.page-container a:nth-child(3)')
 
   // click replace image
   await page.click('text=Replace')
@@ -42,8 +42,8 @@ test('should add an image to renderer', async ({ page }) => {
   await expect(page.locator(`img[src='/uploaded/pattern.jpg']`)).toHaveCount(1)
 
   // remove the component
-  await page.hover('div.craftjs-renderer > div > div')
-  await page.click('div.page-container > div > a:nth-child(4)')
+  await page.hover('text=Lorem')
+  await page.click('div.page-container a:nth-child(4)')
 
   // remove the uploaded image
   await require('fs/promises').rm('dev/nextjs-project/public/uploaded/pattern.jpg')
