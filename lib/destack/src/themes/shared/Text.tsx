@@ -17,9 +17,12 @@ export type TextProps = {
 const Text = (props) => {
   const { node, connectors, actions } = useNode((node) => ({ node }))
   const { enabled } = useEditor((state) => ({ enabled: state.options.enabled }))
-  const [text] = useState(node.data.props[props.id] ?? props.text)
+  const [text] = useState(node.data.props[props.id]?.text ?? props.text)
   const onChange = (e) => {
-    actions.setProp((prop) => (prop[props.id] = e.target.innerText), 500)
+    actions.setProp((prop) => {
+      if (!prop[props.id]) prop[props.id] = {}
+      prop[props.id].text = e.target.innerText
+    }, 500)
   }
   const onClick = (e) => {
     if (enabled) {
