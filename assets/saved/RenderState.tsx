@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
 import Banner1 from '../themes/hyperui/Banner1'
-import { ContainerSimple } from '../themes/shared/Simple'
 
 const Components = {
   Banner1: Banner1,
-  Container: ContainerSimple,
 }
 
 const parse = (json, nodeId: string, parentNodeId?: string) => {
