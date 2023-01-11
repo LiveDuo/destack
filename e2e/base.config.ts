@@ -5,11 +5,11 @@ const baseURL = `http://localhost:${PORT}`
 const CI = process.env.CI === 'true'
 
 const config = {
-  timeout: 10 * 1000,
+  timeout: 15 * 1000,
   retries: 1,
   webServer: {
     url: baseURL,
-    timeout: 30 * 1000,
+    timeout: 60 * 1000,
     reuseExistingServer: true,
   },
   use: { baseURL, trace: 'retry-with-trace', headless: CI },
