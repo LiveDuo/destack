@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 
 import Editor from './editor/Editor'
 
@@ -16,9 +17,7 @@ const ContentProviderBase = ({ data, standaloneServer }) => {
   )
 }
 
-export const ContentProvider = ({ data }) => (
-  <ContentProviderBase data={data} standaloneServer={false} />
-)
-export const ContentProviderReact = () => (
-  <ContentProviderBase data={null} standaloneServer={true} />
-)
+const ContentProvider = ({ data }) => <ContentProviderBase data={data} standaloneServer={false} />
+
+const container = document.getElementById('root')
+ReactDOM.render(<ContentProvider data={null} />, container)
