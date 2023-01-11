@@ -2,7 +2,7 @@ import React from 'react'
 
 import * as SelectPrimitive from '@radix-ui/react-select'
 
-import { CheckIcon } from '@heroicons/react/24/outline'
+import CheckIcon from '@heroicons/react/24/outline/CheckIcon'
 
 import cx from 'classnames'
 

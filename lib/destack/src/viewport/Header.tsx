@@ -4,13 +4,11 @@ import { useEditor } from '@craftjs/core'
 
 import SimpleTooltip from '../components/Tooltip'
 
-import { CheckIcon } from '@heroicons/react/24/outline'
-import { PencilSquareIcon } from '@heroicons/react/24/outline'
-import { ArrowUturnLeftIcon } from '@heroicons/react/24/outline'
-import { ArrowUturnRightIcon } from '@heroicons/react/24/outline'
-import { ArrowUpTrayIcon } from '@heroicons/react/24/outline'
-
-import { ChevronDownIcon } from '@heroicons/react/24/outline'
+import CheckIcon from '@heroicons/react/24/outline/CheckIcon'
+import PencilSquareIcon from '@heroicons/react/24/outline/PencilSquareIcon'
+import ArrowUturnLeftIcon from '@heroicons/react/24/outline/ArrowUturnLeftIcon'
+import ArrowUturnRightIcon from '@heroicons/react/24/outline/ArrowUturnRightIcon'
+import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon'
 
 import { ThemeContext } from '../store'
 

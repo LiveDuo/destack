@@ -8,12 +8,12 @@ import LinkDialog from '../themes/shared/LinkDialog'
 import ImageDialog from '../themes/shared/ImageDialog'
 import ButtonDialog from '../themes/shared/ButtonDialog'
 
-import { ArrowSmallUpIcon } from '@heroicons/react/24/outline'
-import { TrashIcon } from '@heroicons/react/24/outline'
-import { PhotoIcon } from '@heroicons/react/24/outline'
-import { LinkIcon } from '@heroicons/react/24/outline'
-import { CircleStackIcon } from '@heroicons/react/24/outline'
-import { ArrowsPointingOutIcon } from '@heroicons/react/24/outline'
+import ArrowSmallUpIcon from '@heroicons/react/24/outline/ArrowSmallUpIcon'
+import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
+import PhotoIcon from '@heroicons/react/24/outline/PhotoIcon'
+import LinkIcon from '@heroicons/react/24/outline/LinkIcon'
+import CircleStackIcon from '@heroicons/react/24/outline/CircleStackIcon'
+import ArrowsPointingOutIcon from '@heroicons/react/24/outline/ArrowsPointingOutIcon'
 
 const EditorElement = ({ render }) => {
   const { id } = useNode()

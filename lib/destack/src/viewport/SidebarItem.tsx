@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Squares2X2Icon } from '@heroicons/react/24/outline'
-import { ArrowSmallUpIcon } from '@heroicons/react/24/outline'
+import Squares2X2Icon from '@heroicons/react/24/outline/Squares2X2Icon'
+import ArrowSmallUpIcon from '@heroicons/react/24/outline/ArrowSmallUpIcon'
 
 export type SidebarItemProps = {
   title: string

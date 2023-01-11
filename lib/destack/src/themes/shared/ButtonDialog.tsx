@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 
 import * as DialogPrimitive from '@radix-ui/react-dialog'
-import { XMarkIcon } from '@heroicons/react/24/outline'
 
 import Select from '../../components/Select'
 
-import { ChevronDownIcon } from '@heroicons/react/24/outline'
+import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
+import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon'
 
 import cx from 'classnames'
 

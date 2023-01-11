@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import * as DialogPrimitive from '@radix-ui/react-dialog'
-import { XMarkIcon } from '@heroicons/react/24/outline'
+import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
 
 import cx from 'classnames'
 
