@@ -25,9 +25,20 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+
+      - id: npm-cache-dir
+        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
+      - uses: actions/cache@v3
+        id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
+      
       - run: npx playwright install --with-deps
+        if: steps.npm-cache.outputs.cache-hit != 'true'
       - run: npm i -g npm@7.5
+        if: steps.npm-cache.outputs.cache-hit != 'true'
       - run: npm ci
-      - uses: mxschmitt/action-tmate@v3
-        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'interactive' }}
+        if: steps.npm-cache.outputs.cache-hit != 'true'
       - run: CI=true npm run test:e2e
