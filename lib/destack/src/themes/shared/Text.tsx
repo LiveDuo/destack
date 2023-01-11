@@ -54,9 +54,7 @@ export { Text }
 Text.craft = {
   displayName: 'Text',
   props: {
-    textAlign: 'left',
-    margin: [0, 0, 0, 0],
-    text: 'Text',
+    text: '',
   },
   related: {},
 }
