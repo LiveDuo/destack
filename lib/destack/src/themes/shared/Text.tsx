@@ -44,7 +44,7 @@ const Text = (props) => {
     </span>
   ) : (
     <span className={props.className} style={{ ...props }}>
-      {props.text}
+      {text}
     </span>
   )
 }
