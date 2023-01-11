@@ -33,10 +33,13 @@ jobs:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-
+      - uses: actions/cache@v3
+        id: playwright-cache
+        with:
+          path: |
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-1.28.0
       - run: npx playwright install --with-deps
-        if: steps.npm-cache.outputs.cache-hit != 'true'
-      - run: npm i -g npm@7.5
-        if: steps.npm-cache.outputs.cache-hit != 'true'
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
       - run: npm ci
-        if: steps.npm-cache.outputs.cache-hit != 'true'
       - run: CI=true npm run test:e2e
