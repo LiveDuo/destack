@@ -34,3 +34,4 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit != 'true'
       - run: npm ci
       - run: CI=true npm run test:e2e
+
