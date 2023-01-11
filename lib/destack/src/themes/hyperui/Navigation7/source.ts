@@ -4,7 +4,7 @@ const source = `
     class="mx-auto flex h-16 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8"
   >
     <div class="flex items-center">
-      <button type="button" class="p-2 sm:mr-4 lg:hidden">
+      <button type="button" class="p-2 sm:mr-4 lg:hidden cursor-pointer">
         <svg
           class="h-6 w-6"
           xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +21,7 @@ const source = `
         </svg>
       </button>
 
-      <a href="" class="flex">
+      <a href="" class="flex cursor-pointer">
         <span class="inline-block h-10 w-32 rounded-lg bg-gray-200"></span>
       </a>
     </div>
@@ -32,28 +32,28 @@ const source = `
       >
         <a
           href="/about"
-          class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700"
+          class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 cursor-pointer"
         >
           About
         </a>
 
         <a
           href="/news"
-          class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700"
+          class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 cursor-pointer"
         >
           News
         </a>
 
         <a
           href="/products"
-          class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700"
+          class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 cursor-pointer"
         >
           Products
         </a>
 
         <a
           href="/contact"
-          class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700"
+          class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 cursor-pointer"
         >
           Contact
         </a>
@@ -66,7 +66,7 @@ const source = `
           <span>
             <a
               href="/cart"
-              class="block border-b-4 border-transparent p-6 hover:border-red-700"
+              class="block border-b-4 border-transparent p-6 hover:border-red-700 cursor-pointer"
             >
               <svg
                 class="h-4 w-4"
@@ -90,7 +90,7 @@ const source = `
           <span>
             <a
               href="/account"
-              class="block border-b-4 border-transparent p-6 hover:border-red-700"
+              class="block border-b-4 border-transparent p-6 hover:border-red-700 cursor-pointer"
             >
               <svg
                 class="h-4 w-4"
@@ -114,7 +114,7 @@ const source = `
           <span class="hidden sm:block">
             <a
               href="/search"
-              class="block border-b-4 border-transparent p-6 hover:border-red-700"
+              class="block border-b-4 border-transparent p-6 hover:border-red-700 cursor-pointer"
             >
               <svg
                 class="h-4 w-4"

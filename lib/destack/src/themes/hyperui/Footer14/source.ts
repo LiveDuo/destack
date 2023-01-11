@@ -5,7 +5,7 @@ const source = `
   >
     <div class="absolute top-4 right-4 sm:top-6 sm:right-6 lg:top-8 lg:right-8">
       <a
-        class="inline-block rounded-full bg-blue-600 p-2 shadow transition bg-gray-700 text-blue-300 hover:bg-gray-600 sm:p-3 lg:p-4"
+        class="inline-block rounded-full bg-blue-600 p-2 shadow transition bg-gray-700 text-blue-300 hover:bg-gray-600 sm:p-3 lg:p-4 cursor-pointer"
         href="#MainContent"
       >
         <span class="sr-only">Back to top</span>
@@ -95,7 +95,7 @@ const source = `
         >
           <li>
             <a
-              class="transition text-white hover:text-white/75"
+              class="transition text-white hover:text-white/75 cursor-pointer"
               href="/"
             >
               About
@@ -104,7 +104,7 @@ const source = `
 
           <li>
             <a
-              class="transition text-white hover:text-white/75"
+              class="transition text-white hover:text-white/75 cursor-pointer"
               href="/"
             >
               Services
@@ -113,7 +113,7 @@ const source = `
 
           <li>
             <a
-              class="transition text-white hover:text-white/75"
+              class="transition text-white hover:text-white/75 cursor-pointer"
               href="/"
             >
               Projects
@@ -122,7 +122,7 @@ const source = `
 
           <li>
             <a
-              class="transition text-white hover:text-white/75"
+              class="transition text-white hover:text-white/75 cursor-pointer"
               href="/"
             >
               Blog
@@ -135,7 +135,7 @@ const source = `
     <p
       class="mt-12 text-center text-sm text-gray-400 lg:text-right"
     >
-      Copyright &copy; 2022. All rights reserved.
+      Copyright © 2022. All rights reserved.
     </p>
   </div>
 </footer>

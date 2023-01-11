@@ -14,7 +14,7 @@ const source = `
         <p class="font-medium">
           <span class="text-xs uppercase tracking-widest"> Call </span>
 
-          <a class="block text-2xl hover:opacity-75 sm:text-3xl" href="">
+          <a class="block text-2xl hover:opacity-75 sm:text-3xl cursor-pointer" href="">
             0123456789
           </a>
         </p>
@@ -29,7 +29,7 @@ const source = `
             href="/"
             rel="noreferrer"
             target="_blank"
-            class="transition hover:opacity-75"
+            class="transition hover:opacity-75 cursor-pointer"
           >
             <span class="sr-only">Facebook</span>
 
@@ -51,7 +51,7 @@ const source = `
             href="/"
             rel="noreferrer"
             target="_blank"
-            class="transition hover:opacity-75"
+            class="transition hover:opacity-75 cursor-pointer"
           >
             <span class="sr-only">Instagram</span>
 
@@ -72,7 +72,7 @@ const source = `
             href="/"
             rel="noreferrer"
             target="_blank"
-            class="transition hover:opacity-75"
+            class="transition hover:opacity-75 cursor-pointer"
           >
             <span class="sr-only">Twitter</span>
 
@@ -92,7 +92,7 @@ const source = `
             href="/"
             rel="noreferrer"
             target="_blank"
-            class="transition hover:opacity-75"
+            class="transition hover:opacity-75 cursor-pointer"
           >
             <span class="sr-only">GitHub</span>
 
@@ -114,7 +114,7 @@ const source = `
             href="/"
             rel="noreferrer"
             target="_blank"
-            class="transition hover:opacity-75"
+            class="transition hover:opacity-75 cursor-pointer"
           >
             <span class="sr-only">Dribbble</span>
 
@@ -140,10 +140,10 @@ const source = `
           <p class="font-medium">Support</p>
 
           <nav class="mt-4 flex flex-col space-y-2 text-sm text-gray-300">
-            <a class="hover:opacity-75" href=""> Contact </a>
-            <a class="hover:opacity-75" href=""> FAQs </a>
-            <a class="hover:opacity-75" href=""> Live Chat </a>
-            <a class="hover:opacity-75" href=""> Forums </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> Contact </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> FAQs </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> Live Chat </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> Forums </a>
           </nav>
         </div>
 
@@ -151,10 +151,10 @@ const source = `
           <p class="font-medium">Products</p>
 
           <nav class="mt-4 flex flex-col space-y-2 text-sm text-gray-300">
-            <a class="hover:opacity-75" href=""> 1to1 Coaching </a>
-            <a class="hover:opacity-75" href=""> Lesson Plans </a>
-            <a class="hover:opacity-75" href=""> Meal Plans </a>
-            <a class="hover:opacity-75" href=""> Gym Sessions </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> 1to1 Coaching </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> Lesson Plans </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> Meal Plans </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> Gym Sessions </a>
           </nav>
         </div>
       </div>
@@ -165,12 +165,12 @@ const source = `
         class="text-sm text-gray-300 sm:flex sm:items-center sm:justify-between"
       >
         <div class="flex gap-3">
-          <a class="hover:opacity-75" href=""> Privacy Policy </a>
-          <a class="hover:opacity-75" href=""> Terms & Conditions </a>
-          <a class="hover:opacity-75" href=""> Returns Policy </a>
+          <a class="hover:opacity-75 cursor-pointer" href=""> Privacy Policy </a>
+          <a class="hover:opacity-75 cursor-pointer" href=""> Terms & Conditions </a>
+          <a class="hover:opacity-75 cursor-pointer" href=""> Returns Policy </a>
         </div>
 
-        <p class="mt-4 sm:mt-0">&copy; 2022 Company Name.</p>
+        <p class="mt-4 sm:mt-0">© 2022 Company Name.</p>
       </div>
 
       <p class="mt-8 text-xs text-gray-500">

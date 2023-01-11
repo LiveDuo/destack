@@ -26,14 +26,14 @@ const source = `
       <div class="mt-8 flex flex-wrap gap-4 text-center">
         <a
           href="#"
-          class="block w-full rounded bg-red-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
+          class="block w-full rounded bg-red-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto cursor-pointer"
         >
           Get Started
         </a>
 
         <a
           href="#"
-          class="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-red-600 shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto"
+          class="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-red-600 shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto cursor-pointer"
         >
           Learn More
         </a>

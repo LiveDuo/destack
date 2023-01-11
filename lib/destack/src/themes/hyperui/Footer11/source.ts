@@ -61,37 +61,37 @@ const source = `
 
       <ul class="flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
         <li>
-          <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+          <a class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer" href="/">
             About
           </a>
         </li>
 
         <li>
-          <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+          <a class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer" href="/">
             Careers
           </a>
         </li>
 
         <li>
-          <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+          <a class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer" href="/">
             History
           </a>
         </li>
 
         <li>
-          <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+          <a class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer" href="/">
             Services
           </a>
         </li>
 
         <li>
-          <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+          <a class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer" href="/">
             Projects
           </a>
         </li>
 
         <li>
-          <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+          <a class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer" href="/">
             Blog
           </a>
         </li>
@@ -104,7 +104,7 @@ const source = `
           href="/"
           rel="noreferrer"
           target="_blank"
-          class="text-gray-700 transition hover:text-gray-700/75"
+          class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
         >
           <span class="sr-only">Facebook</span>
           <svg
@@ -127,7 +127,7 @@ const source = `
           href="/"
           rel="noreferrer"
           target="_blank"
-          class="text-gray-700 transition hover:text-gray-700/75"
+          class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
         >
           <span class="sr-only">Instagram</span>
           <svg
@@ -150,7 +150,7 @@ const source = `
           href="/"
           rel="noreferrer"
           target="_blank"
-          class="text-gray-700 transition hover:text-gray-700/75"
+          class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
         >
           <span class="sr-only">Twitter</span>
           <svg
@@ -171,7 +171,7 @@ const source = `
           href="/"
           rel="noreferrer"
           target="_blank"
-          class="text-gray-700 transition hover:text-gray-700/75"
+          class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
         >
           <span class="sr-only">GitHub</span>
           <svg
@@ -194,7 +194,7 @@ const source = `
           href="/"
           rel="noreferrer"
           target="_blank"
-          class="text-gray-700 transition hover:text-gray-700/75"
+          class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
         >
           <span class="sr-only">Dribbble</span>
           <svg

@@ -29,7 +29,7 @@ const source = `
           />
 
           <button
-            class="absolute top-1 right-1 -translate-y-1/2 rounded-full bg-blue-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-700"
+            class="absolute top-1 right-1 -translate-y-1/2 rounded-full bg-blue-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-700 cursor-pointer"
             type="button"
           >
             Subscribe
@@ -48,7 +48,7 @@ const source = `
 
         <div class="mt-6 flex justify-center gap-4 lg:justify-start">
           <a
-            class="text-gray-700 transition hover:text-gray-700/75"
+            class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
             href=""
             target="_blank"
             rel="noreferrer"
@@ -70,7 +70,7 @@ const source = `
           </a>
 
           <a
-            class="text-gray-700 transition hover:text-gray-700/75"
+            class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
             href=""
             target="_blank"
             rel="noreferrer"
@@ -92,7 +92,7 @@ const source = `
           </a>
 
           <a
-            class="text-gray-700 transition hover:text-gray-700/75"
+            class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
             href=""
             target="_blank"
             rel="noreferrer"
@@ -112,7 +112,7 @@ const source = `
           </a>
 
           <a
-            class="text-gray-700 transition hover:text-gray-700/75"
+            class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
             href=""
             target="_blank"
             rel="noreferrer"
@@ -134,7 +134,7 @@ const source = `
           </a>
 
           <a
-            class="text-gray-700 transition hover:text-gray-700/75"
+            class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
             href=""
             target="_blank"
             rel="noreferrer"
@@ -164,16 +164,16 @@ const source = `
           <strong class="font-medium text-gray-900"> Services </strong>
 
           <nav class="mt-6 flex flex-col space-y-1">
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+            <a class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer" href="/">
               Marketing
             </a>
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+            <a class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer" href="/">
               Graphic Design
             </a>
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+            <a class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer" href="/">
               App Development
             </a>
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+            <a class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer" href="/">
               Web Development
             </a>
           </nav>
@@ -183,16 +183,16 @@ const source = `
           <strong class="font-medium text-gray-900"> About </strong>
 
           <nav class="mt-6 flex flex-col space-y-1">
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+            <a class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer" href="/">
               About
             </a>
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+            <a class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer" href="/">
               Careers
             </a>
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+            <a class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer" href="/">
               History
             </a>
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+            <a class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer" href="/">
               Our Team
             </a>
           </nav>
@@ -202,15 +202,15 @@ const source = `
           <strong class="font-medium text-gray-900"> Support </strong>
 
           <nav class="mt-6 flex flex-col space-y-1">
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+            <a class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer" href="/">
               FAQs
             </a>
 
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+            <a class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer" href="/">
               Contact
             </a>
 
-            <a class="text-gray-700 transition hover:text-gray-700/75" href="/">
+            <a class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer" href="/">
               Live Chat
             </a>
           </nav>
@@ -227,13 +227,13 @@ const source = `
         Created with
         <a
           href=""
-          class="text-gray-700 underline transition hover:text-gray-700/75"
+          class="text-gray-700 underline transition hover:text-gray-700/75 cursor-pointer"
           >Laravel</a
         >
         and
         <a
           href=""
-          class="text-gray-700 underline transition hover:text-gray-700/75"
+          class="text-gray-700 underline transition hover:text-gray-700/75 cursor-pointer"
           >Laravel Livewire</a
         >.
       </p>

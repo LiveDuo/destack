@@ -13,7 +13,7 @@ const source = `
     class="mx-auto flex h-16 max-w-screen-xl items-center justify-between px-4"
   >
     <div class="flex w-0 flex-1 lg:hidden">
-      <button class="rounded-full bg-gray-100 p-2 text-gray-600" type="button">
+      <button class="rounded-full bg-gray-100 p-2 text-gray-600 cursor-pointer" type="button">
         <svg
           class="h-5 w-5"
           fill="none"
@@ -43,7 +43,7 @@ const source = `
           />
 
           <button
-            class="absolute inset-y-0 right-0 mr-px rounded-r-lg p-2 text-gray-600"
+            class="absolute inset-y-0 right-0 mr-px rounded-r-lg p-2 text-gray-600 cursor-pointer"
             type="submit"
           >
             <svg
@@ -64,7 +64,7 @@ const source = `
     </div>
 
     <div class="flex w-0 flex-1 justify-end lg:hidden">
-      <button class="rounded-full bg-gray-100 p-2 text-gray-500" type="button">
+      <button class="rounded-full bg-gray-100 p-2 text-gray-500 cursor-pointer" type="button">
         <svg
           class="h-5 w-5"
           fill="currentColor"
@@ -83,21 +83,21 @@ const source = `
     <nav
       class="hidden items-center justify-center gap-8 text-sm font-medium lg:flex lg:w-0 lg:flex-1"
     >
-      <a class="text-gray-900" href="">About</a>
-      <a class="text-gray-900" href="">Blog</a>
-      <a class="text-gray-900" href="">Projects</a>
-      <a class="text-gray-900" href="">Contact</a>
+      <a class="text-gray-900 cursor-pointer" href="">About</a>
+      <a class="text-gray-900 cursor-pointer" href="">Blog</a>
+      <a class="text-gray-900 cursor-pointer" href="">Projects</a>
+      <a class="text-gray-900 cursor-pointer" href="">Contact</a>
     </nav>
 
     <div class="hidden items-center gap-4 lg:flex">
       <a
-        class="block rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-600"
+        class="block rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-600 cursor-pointer"
         href=""
       >
         Log in
       </a>
       <a
-        class="block rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white"
+        class="block rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white cursor-pointer"
         href=""
       >
         Sign up
@@ -109,10 +109,10 @@ const source = `
     <nav
       class="flex items-center justify-center overflow-x-auto p-4 text-sm font-medium"
     >
-      <a class="flex-shrink-0 pl-4 text-gray-900" href="">About</a>
-      <a class="flex-shrink-0 pl-4 text-gray-900" href="">Blog</a>
-      <a class="flex-shrink-0 pl-4 text-gray-900" href="">Projects</a>
-      <a class="flex-shrink-0 pl-4 text-gray-900" href="">Contact</a>
+      <a class="flex-shrink-0 pl-4 text-gray-900 cursor-pointer" href="">About</a>
+      <a class="flex-shrink-0 pl-4 text-gray-900 cursor-pointer" href="">Blog</a>
+      <a class="flex-shrink-0 pl-4 text-gray-900 cursor-pointer" href="">Projects</a>
+      <a class="flex-shrink-0 pl-4 text-gray-900 cursor-pointer" href="">Contact</a>
     </nav>
   </div>
 </header>

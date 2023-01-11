@@ -7,7 +7,7 @@ const source = `
       <p class="text-4xl font-extrabold sm:text-6xl">Customise Your Product</p>
 
       <a
-        class="mt-8 inline-block rounded-full border border-white/25 px-12 py-3 text-sm font-medium hover:bg-white hover:text-red-500"
+        class="mt-8 inline-block rounded-full border border-white/25 px-12 py-3 text-sm font-medium hover:bg-white hover:text-red-500 cursor-pointer"
         href=""
       >
         Get Started
@@ -20,9 +20,9 @@ const source = `
       <nav
         class="flex justify-center gap-4 text-sm font-medium sm:justify-start"
       >
-        <a href="" class="hover:opacity-75"> FAQs </a>
-        <a href="" class="hover:opacity-75"> Contact </a>
-        <a href="" class="hover:opacity-75"> Returns Policy </a>
+        <a href="" class="hover:opacity-75 cursor-pointer"> FAQs </a>
+        <a href="" class="hover:opacity-75 cursor-pointer"> Contact </a>
+        <a href="" class="hover:opacity-75 cursor-pointer"> Returns Policy </a>
       </nav>
 
       <div class="mt-6 flex justify-center gap-6 sm:mt-0 sm:justify-end">
@@ -30,7 +30,7 @@ const source = `
           href="/"
           rel="noreferrer"
           target="_blank"
-          class="text-white transition hover:opacity-75"
+          class="text-white transition hover:opacity-75 cursor-pointer"
         >
           <span class="sr-only">Facebook</span>
 
@@ -52,7 +52,7 @@ const source = `
         href="/"
         rel="noreferrer"
         target="_blank"
-        class="text-white transition hover:opacity-75"
+        class="text-white transition hover:opacity-75 cursor-pointer"
         >
           <span class="sr-only">Instagram</span>
 
@@ -74,7 +74,7 @@ const source = `
             href="/"
             rel="noreferrer"
             target="_blank"
-            class="text-white transition hover:opacity-75"
+            class="text-white transition hover:opacity-75 cursor-pointer"
           >
             <span class="sr-only">Twitter</span>
 

@@ -29,7 +29,7 @@ const source = `
           />
 
           <button
-            class="absolute top-1 right-1 -translate-y-1/2 rounded-full bg-blue-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-700"
+            class="absolute top-1 right-1 -translate-y-1/2 rounded-full bg-blue-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-700 cursor-pointer"
             type="button"
           >
             Subscribe
@@ -50,7 +50,7 @@ const source = `
 
         <div class="mt-6 flex justify-center gap-4 lg:justify-start">
           <a
-            class="transition text-white hover:text-white/75"
+            class="transition text-white hover:text-white/75 cursor-pointer"
             href=""
             target="_blank"
             rel="noreferrer"
@@ -72,7 +72,7 @@ const source = `
           </a>
 
           <a
-            class="transition text-white hover:text-white/75"
+            class="transition text-white hover:text-white/75 cursor-pointer"
             href=""
             target="_blank"
             rel="noreferrer"
@@ -94,7 +94,7 @@ const source = `
           </a>
 
           <a
-            class="transition text-white hover:text-white/75"
+            class="transition text-white hover:text-white/75 cursor-pointer"
             href=""
             target="_blank"
             rel="noreferrer"
@@ -114,7 +114,7 @@ const source = `
           </a>
 
           <a
-            class="transition text-white hover:text-white/75"
+            class="transition text-white hover:text-white/75 cursor-pointer"
             href=""
             target="_blank"
             rel="noreferrer"
@@ -136,7 +136,7 @@ const source = `
           </a>
 
           <a
-            class="transition text-white hover:text-white/75"
+            class="transition text-white hover:text-white/75 cursor-pointer"
             href=""
             target="_blank"
             rel="noreferrer"
@@ -169,25 +169,25 @@ const source = `
 
           <nav class="mt-6 flex flex-col space-y-1">
             <a
-              class="transition text-white hover:text-white/75"
+              class="transition text-white hover:text-white/75 cursor-pointer"
               href="/"
             >
               Marketing
             </a>
             <a
-              class="transition text-white hover:text-white/75"
+              class="transition text-white hover:text-white/75 cursor-pointer"
               href="/"
             >
               Graphic Design
             </a>
             <a
-              class="transition text-white hover:text-white/75"
+              class="transition text-white hover:text-white/75 cursor-pointer"
               href="/"
             >
               App Development
             </a>
             <a
-              class="transition text-white hover:text-white/75"
+              class="transition text-white hover:text-white/75 cursor-pointer"
               href="/"
             >
               Web Development
@@ -202,25 +202,25 @@ const source = `
 
           <nav class="mt-6 flex flex-col space-y-1">
             <a
-              class="transition text-white hover:text-white/75"
+              class="transition text-white hover:text-white/75 cursor-pointer"
               href="/"
             >
               About
             </a>
             <a
-              class="transition text-white hover:text-white/75"
+              class="transition text-white hover:text-white/75 cursor-pointer"
               href="/"
             >
               Careers
             </a>
             <a
-              class="transition text-white hover:text-white/75"
+              class="transition text-white hover:text-white/75 cursor-pointer"
               href="/"
             >
               History
             </a>
             <a
-              class="transition text-white hover:text-white/75"
+              class="transition text-white hover:text-white/75 cursor-pointer"
               href="/"
             >
               Our Team
@@ -235,21 +235,21 @@ const source = `
 
           <nav class="mt-6 flex flex-col space-y-1">
             <a
-              class="transition text-white hover:text-white/75"
+              class="transition text-white hover:text-white/75 cursor-pointer"
               href="/"
             >
               FAQs
             </a>
 
             <a
-              class="transition text-white hover:text-white/75"
+              class="transition text-white hover:text-white/75 cursor-pointer"
               href="/"
             >
               Contact
             </a>
 
             <a
-              class="transition text-white hover:text-white/75"
+              class="transition text-white hover:text-white/75 cursor-pointer"
               href="/"
             >
             </a>
@@ -270,13 +270,13 @@ const source = `
         Created with
         <a
           href=""
-          class="underline transition text-white hover:text-white/75"
+          class="underline transition text-white hover:text-white/75 cursor-pointer"
           >Laravel</a
         >
         and
         <a
           href=""
-          class="underline transition text-white hover:text-white/75"
+          class="underline transition text-white hover:text-white/75 cursor-pointer"
           >Laravel Livewire</a
         >.
       </p>

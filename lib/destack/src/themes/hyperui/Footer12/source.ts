@@ -64,7 +64,7 @@ const source = `
       <ul class="flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
         <li>
           <a
-            class="transition text-white hover:text-white/75"
+            class="transition text-white hover:text-white/75 cursor-pointer"
             href="/"
           >
             About
@@ -73,7 +73,7 @@ const source = `
 
         <li>
           <a
-            class="transition text-white hover:text-white/75"
+            class="transition text-white hover:text-white/75 cursor-pointer"
             href="/"
           >
             Careers
@@ -82,7 +82,7 @@ const source = `
 
         <li>
           <a
-            class="transition text-white hover:text-white/75"
+            class="transition text-white hover:text-white/75 cursor-pointer"
             href="/"
           >
             History
@@ -91,7 +91,7 @@ const source = `
 
         <li>
           <a
-            class="transition text-white hover:text-white/75"
+            class="transition text-white hover:text-white/75 cursor-pointer"
             href="/"
           >
             Services
@@ -100,7 +100,7 @@ const source = `
 
         <li>
           <a
-            class="transition text-white hover:text-white/75"
+            class="transition text-white hover:text-white/75 cursor-pointer"
             href="/"
           >
             Projects
@@ -109,7 +109,7 @@ const source = `
 
         <li>
           <a
-            class="transition text-white hover:text-white/75"
+            class="transition text-white hover:text-white/75 cursor-pointer"
             href="/"
           >
             Blog
@@ -124,7 +124,7 @@ const source = `
           href="/"
           rel="noreferrer"
           target="_blank"
-          class="transition text-white hover:text-white/75"
+          class="transition text-white hover:text-white/75 cursor-pointer"
         >
           <span class="sr-only">Facebook</span>
           <svg
@@ -147,7 +147,7 @@ const source = `
           href="/"
           rel="noreferrer"
           target="_blank"
-          class="transition text-white hover:text-white/75"
+          class="transition text-white hover:text-white/75 cursor-pointer"
         >
           <span class="sr-only">Instagram</span>
           <svg
@@ -170,7 +170,7 @@ const source = `
           href="/"
           rel="noreferrer"
           target="_blank"
-          class="transition text-white hover:text-white/75"
+          class="transition text-white hover:text-white/75 cursor-pointer"
         >
           <span class="sr-only">Twitter</span>
           <svg
@@ -191,7 +191,7 @@ const source = `
           href="/"
           rel="noreferrer"
           target="_blank"
-          class="transition text-white hover:text-white/75"
+          class="transition text-white hover:text-white/75 cursor-pointer"
         >
           <span class="sr-only">GitHub</span>
           <svg
@@ -214,7 +214,7 @@ const source = `
           href="/"
           rel="noreferrer"
           target="_blank"
-          class="transition text-white hover:text-white/75"
+          class="transition text-white hover:text-white/75 cursor-pointer"
         >
           <span class="sr-only">Dribbble</span>
           <svg

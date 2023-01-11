@@ -3,7 +3,7 @@ const source = `
   <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
       <div class="flex-1 md:flex md:items-center md:gap-12">
-        <a class="block text-blue-300" href="/">
+        <a class="block text-blue-300 cursor-pointer" href="/">
           <span class="sr-only">Home</span>
           <svg
             class="h-8"
@@ -26,7 +26,7 @@ const source = `
           <ul class="flex items-center gap-6 text-sm">
             <li>
               <a
-                class="transition text-white hover:text-white/75"
+                class="transition text-white hover:text-white/75 cursor-pointer"
                 href="/"
               >
                 About
@@ -35,7 +35,7 @@ const source = `
 
             <li>
               <a
-                class="transition text-white hover:text-white/75"
+                class="transition text-white hover:text-white/75 cursor-pointer"
                 href="/"
               >
                 Careers
@@ -44,7 +44,7 @@ const source = `
 
             <li>
               <a
-                class="transition text-white hover:text-white/75"
+                class="transition text-white hover:text-white/75 cursor-pointer"
                 href="/"
               >
                 History
@@ -53,7 +53,7 @@ const source = `
 
             <li>
               <a
-                class="transition text-white hover:text-white/75"
+                class="transition text-white hover:text-white/75 cursor-pointer"
                 href="/"
               >
                 Services
@@ -62,7 +62,7 @@ const source = `
 
             <li>
               <a
-                class="transition text-white hover:text-white/75"
+                class="transition text-white hover:text-white/75 cursor-pointer"
                 href="/"
               >
                 Projects
@@ -71,7 +71,7 @@ const source = `
 
             <li>
               <a
-                class="transition text-white hover:text-white/75"
+                class="transition text-white hover:text-white/75 cursor-pointer"
                 href="/"
               >
                 Blog
@@ -83,7 +83,7 @@ const source = `
         <div class="flex items-center gap-4">
           <div class="sm:flex sm:gap-4">
             <a
-              class="block rounded-md bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow hover:bg-blue-500"
+              class="block rounded-md bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow hover:bg-blue-500 cursor-pointer"
               href="/"
             >
               Login
@@ -91,7 +91,7 @@ const source = `
 
             <div class="hidden sm:flex">
               <a
-                class="block rounded-md  px-5 py-2.5 text-sm font-medium  bg-gray-800 text-white hover:text-white/75"
+                class="block rounded-md  px-5 py-2.5 text-sm font-medium  bg-gray-800 text-white hover:text-white/75 cursor-pointer"
                 href="/"
               >
                 Register
@@ -101,7 +101,7 @@ const source = `
 
           <div class="block md:hidden">
             <button
-              class="rounded p-2 transition bg-gray-800 text-white hover:text-white/75"
+              class="rounded p-2 transition bg-gray-800 text-white hover:text-white/75 cursor-pointer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

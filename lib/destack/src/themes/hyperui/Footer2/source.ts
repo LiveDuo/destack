@@ -11,7 +11,7 @@ const source = `
         </p>
 
         <div class="mt-8 flex gap-6 text-gray-500">
-          <a class="hover:opacity-75" href="" target="_blank" rel="noreferrer">
+          <a class="hover:opacity-75 cursor-pointer" href="" target="_blank" rel="noreferrer">
             <span class="sr-only"> Facebook </span>
 
             <svg
@@ -28,7 +28,7 @@ const source = `
             </svg>
           </a>
 
-          <a class="hover:opacity-75" href="" target="_blank" rel="noreferrer">
+          <a class="hover:opacity-75 cursor-pointer" href="" target="_blank" rel="noreferrer">
             <span class="sr-only"> Instagram </span>
 
             <svg
@@ -45,7 +45,7 @@ const source = `
             </svg>
           </a>
 
-          <a class="hover:opacity-75" href="" target="_blank" rel="noreferrer">
+          <a class="hover:opacity-75 cursor-pointer" href="" target="_blank" rel="noreferrer">
             <span class="sr-only"> Twitter </span>
 
             <svg
@@ -60,7 +60,7 @@ const source = `
             </svg>
           </a>
 
-          <a class="hover:opacity-75" href="" target="_blank" rel="noreferrer">
+          <a class="hover:opacity-75 cursor-pointer" href="" target="_blank" rel="noreferrer">
             <span class="sr-only"> GitHub </span>
 
             <svg
@@ -77,7 +77,7 @@ const source = `
             </svg>
           </a>
 
-          <a class="hover:opacity-75" href="" target="_blank" rel="noreferrer">
+          <a class="hover:opacity-75 cursor-pointer" href="" target="_blank" rel="noreferrer">
             <span class="sr-only"> Dribbble </span>
 
             <svg
@@ -103,10 +103,10 @@ const source = `
           <p class="font-medium">Company</p>
 
           <nav class="mt-4 flex flex-col space-y-2 text-sm text-gray-500">
-            <a class="hover:opacity-75" href=""> About </a>
-            <a class="hover:opacity-75" href=""> Meet the Team </a>
-            <a class="hover:opacity-75" href=""> History </a>
-            <a class="hover:opacity-75" href=""> Careers </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> About </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> Meet the Team </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> History </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> Careers </a>
           </nav>
         </div>
 
@@ -114,11 +114,11 @@ const source = `
           <p class="font-medium">Services</p>
 
           <nav class="mt-4 flex flex-col space-y-2 text-sm text-gray-500">
-            <a class="hover:opacity-75" href=""> 1on1 Coaching </a>
-            <a class="hover:opacity-75" href=""> Company Review </a>
-            <a class="hover:opacity-75" href=""> Accounts Review </a>
-            <a class="hover:opacity-75" href=""> HR Consulting </a>
-            <a class="hover:opacity-75" href=""> SEO Optimisation </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> 1on1 Coaching </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> Company Review </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> Accounts Review </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> HR Consulting </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> SEO Optimisation </a>
           </nav>
         </div>
 
@@ -126,9 +126,9 @@ const source = `
           <p class="font-medium">Helpful Links</p>
 
           <nav class="mt-4 flex flex-col space-y-2 text-sm text-gray-500">
-            <a class="hover:opacity-75" href=""> Contact </a>
-            <a class="hover:opacity-75" href=""> FAQs </a>
-            <a class="hover:opacity-75" href=""> Live Chat </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> Contact </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> FAQs </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> Live Chat </a>
           </nav>
         </div>
 
@@ -136,16 +136,16 @@ const source = `
           <p class="font-medium">Legal</p>
 
           <nav class="mt-4 flex flex-col space-y-2 text-sm text-gray-500">
-            <a class="hover:opacity-75" href=""> Privacy Policy </a>
-            <a class="hover:opacity-75" href=""> Terms & Conditions </a>
-            <a class="hover:opacity-75" href=""> Returns Policy </a>
-            <a class="hover:opacity-75" href=""> Accessibility </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> Privacy Policy </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> Terms & Conditions </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> Returns Policy </a>
+            <a class="hover:opacity-75 cursor-pointer" href=""> Accessibility </a>
           </nav>
         </div>
       </div>
     </div>
 
-    <p class="mt-8 text-xs text-gray-500">&copy; 2022 Company Name</p>
+    <p class="mt-8 text-xs text-gray-500">© 2022 Company Name</p>
   </div>
 </footer>
 `

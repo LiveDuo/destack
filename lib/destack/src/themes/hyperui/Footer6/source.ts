@@ -4,7 +4,7 @@ const source = `
     <div class="mx-auto max-w-3xl space-y-6">
       <div class="flex justify-center gap-6">
         <a
-          class="text-blue-500 hover:text-blue-500/75"
+          class="text-blue-500 hover:text-blue-500/75 cursor-pointer"
           href="/"
           target="_blank"
           rel="noreferrer"
@@ -23,7 +23,7 @@ const source = `
         </a>
 
         <a
-          class="text-gray-900 hover:text-gray-900/75"
+          class="text-gray-900 hover:text-gray-900/75 cursor-pointer"
           href="/"
           target="_blank"
           rel="noreferrer"
@@ -44,7 +44,7 @@ const source = `
         </a>
 
         <a
-          class="text-pink-600 hover:text-pink-600/75"
+          class="text-pink-600 hover:text-pink-600/75 cursor-pointer"
           href="/dribbble"
           target="_blank"
           rel="noreferrer"
@@ -69,7 +69,7 @@ const source = `
         <ul class="flex flex-wrap justify-center gap-6 text-sm font-bold">
           <li>
             <a
-              class="text-gray-900 transition hover:text-gray-900/75"
+              class="text-gray-900 transition hover:text-gray-900/75 cursor-pointer"
               href="/"
               target="_blank"
               rel="noreferrer"
@@ -80,7 +80,7 @@ const source = `
 
           <li>
             <a
-              class="text-gray-900 transition hover:text-gray-900/75"
+              class="text-gray-900 transition hover:text-gray-900/75 cursor-pointer"
               href="/"
               target="_blank"
               rel="noreferrer"
@@ -91,7 +91,7 @@ const source = `
 
           <li>
             <a
-              class="text-gray-900 transition hover:text-gray-900/75"
+              class="text-gray-900 transition hover:text-gray-900/75 cursor-pointer"
               href="/"
               target="_blank"
               rel="noreferrer"
@@ -102,7 +102,7 @@ const source = `
 
           <li>
             <a
-              class="text-gray-900 transition hover:text-gray-900/75"
+              class="text-gray-900 transition hover:text-gray-900/75 cursor-pointer"
               href="/"
               target="_blank"
               rel="noreferrer"
@@ -119,7 +119,7 @@ const source = `
         eum similique pariatur alias exercitationem, porro perspiciatis esse.
         Corporis odit consequatur sint sequi.
 
-        <span class="mt-4 block"> &copy; 2022 Saul Goodman </span>
+        <span class="mt-4 block"> © 2022 Saul Goodman </span>
       </p>
     </div>
   </div>

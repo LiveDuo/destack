@@ -55,11 +55,11 @@ const source = `
           <p class="font-bold text-white">Services</p>
 
           <nav class="mt-6 flex flex-col space-y-4 text-sm text-gray-300">
-            <a class="inline-block" href=""> 1on1 Coaching </a>
-            <a class="inline-block" href=""> Company Review </a>
-            <a class="inline-block" href=""> Accounts Review </a>
-            <a class="inline-block" href=""> HR Consulting </a>
-            <a class="inline-block" href=""> SEO Optimisation </a>
+            <a class="inline-block cursor-pointer" href=""> 1on1 Coaching </a>
+            <a class="inline-block cursor-pointer" href=""> Company Review </a>
+            <a class="inline-block cursor-pointer" href=""> Accounts Review </a>
+            <a class="inline-block cursor-pointer" href=""> HR Consulting </a>
+            <a class="inline-block cursor-pointer" href=""> SEO Optimisation </a>
           </nav>
         </div>
 
@@ -67,10 +67,10 @@ const source = `
           <p class="font-bold text-white">Company</p>
 
           <nav class="mt-6 flex flex-col space-y-4 text-sm text-gray-300">
-            <a class="inline-block" href=""> About </a>
-            <a class="inline-block" href=""> Meet the Team </a>
-            <a class="inline-block" href=""> History </a>
-            <a class="inline-block" href=""> Careers </a>
+            <a class="inline-block cursor-pointer" href=""> About </a>
+            <a class="inline-block cursor-pointer" href=""> Meet the Team </a>
+            <a class="inline-block cursor-pointer" href=""> History </a>
+            <a class="inline-block cursor-pointer" href=""> Careers </a>
           </nav>
         </div>
 
@@ -78,9 +78,9 @@ const source = `
           <p class="font-bold text-white">Helpful Links</p>
 
           <nav class="mt-6 flex flex-col space-y-4 text-sm text-gray-300">
-            <a class="inline-block" href=""> Contact </a>
-            <a class="inline-block" href=""> FAQs </a>
-            <a class="inline-block" href=""> Live Chat </a>
+            <a class="inline-block cursor-pointer" href=""> Contact </a>
+            <a class="inline-block cursor-pointer" href=""> FAQs </a>
+            <a class="inline-block cursor-pointer" href=""> Live Chat </a>
           </nav>
         </div>
 
@@ -88,10 +88,10 @@ const source = `
           <p class="font-bold text-white">Legal</p>
 
           <nav class="mt-6 flex flex-col space-y-4 text-sm text-gray-300">
-            <a class="inline-block" href=""> Accessibility </a>
-            <a class="inline-block" href=""> Returns Policy </a>
-            <a class="inline-block" href=""> Refund Policy </a>
-            <a class="inline-block" href=""> Hiring Statistics </a>
+            <a class="inline-block cursor-pointer" href=""> Accessibility </a>
+            <a class="inline-block cursor-pointer" href=""> Returns Policy </a>
+            <a class="inline-block cursor-pointer" href=""> Refund Policy </a>
+            <a class="inline-block cursor-pointer" href=""> Hiring Statistics </a>
           </nav>
         </div>
 
@@ -99,13 +99,13 @@ const source = `
           <p class="font-bold text-white">Downloads</p>
 
           <nav class="mt-6 flex flex-col space-y-4 text-sm text-gray-300">
-            <a class="inline-block" href=""> Marketing Calendar </a>
-            <a class="inline-block" href=""> SEO Infographics </a>
+            <a class="inline-block cursor-pointer" href=""> Marketing Calendar </a>
+            <a class="inline-block cursor-pointer" href=""> SEO Infographics </a>
           </nav>
         </div>
 
         <div class="col-span-2 flex gap-4 text-gray-500 lg:col-span-5">
-          <a class="hover:opacity-75" href="" target="_blank" rel="noreferrer">
+          <a class="hover:opacity-75 cursor-pointer" href="" target="_blank" rel="noreferrer">
             <span class="sr-only"> Facebook </span>
 
             <svg
@@ -122,7 +122,7 @@ const source = `
             </svg>
           </a>
 
-          <a class="hover:opacity-75" href="" target="_blank" rel="noreferrer">
+          <a class="hover:opacity-75 cursor-pointer" href="" target="_blank" rel="noreferrer">
             <span class="sr-only"> Instagram </span>
 
             <svg
@@ -139,7 +139,7 @@ const source = `
             </svg>
           </a>
 
-          <a class="hover:opacity-75" href="" target="_blank" rel="noreferrer">
+          <a class="hover:opacity-75 cursor-pointer" href="" target="_blank" rel="noreferrer">
             <span class="sr-only"> Twitter </span>
 
             <svg
@@ -154,7 +154,7 @@ const source = `
             </svg>
           </a>
 
-          <a class="hover:opacity-75" href="" target="_blank" rel="noreferrer">
+          <a class="hover:opacity-75 cursor-pointer" href="" target="_blank" rel="noreferrer">
             <span class="sr-only"> GitHub </span>
 
             <svg
@@ -171,7 +171,7 @@ const source = `
             </svg>
           </a>
 
-          <a class="hover:opacity-75" href="" target="_blank" rel="noreferrer">
+          <a class="hover:opacity-75 cursor-pointer" href="" target="_blank" rel="noreferrer">
             <span class="sr-only"> Dribbble </span>
 
             <svg
@@ -194,15 +194,15 @@ const source = `
     <div class="mt-12 border-t border-white/10 pt-8">
       <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
         <p class="text-center text-xs text-gray-400 lg:text-left">
-          Copyright &copy; 2022. Company Name. All rights reserved.
+          Copyright © 2022. Company Name. All rights reserved.
         </p>
 
         <nav
           class="flex justify-center gap-4 text-xs text-gray-400 lg:justify-end"
         >
-          <a href=""> Terms & Conditions </a>
-          <a href=""> Privacy Policy </a>
-          <a href=""> Cookies </a>
+          <a class="cursor-pointer" href=""> Terms & Conditions </a>
+          <a class="cursor-pointer" href=""> Privacy Policy </a>
+          <a class="cursor-pointer" href=""> Cookies </a>
         </nav>
       </div>
     </div>

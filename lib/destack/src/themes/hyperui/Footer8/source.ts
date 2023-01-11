@@ -83,7 +83,7 @@ const source = `
               />
 
               <button
-                class="absolute top-1 right-1.5 -translate-y-1/2 rounded bg-indigo-600 p-3 text-white transition hover:bg-indigo-700"
+                class="absolute top-1 right-1.5 -translate-y-1/2 rounded bg-indigo-600 p-3 text-white transition hover:bg-indigo-700 cursor-pointer"
                 type="button"
               >
                 <svg
@@ -164,25 +164,25 @@ const source = `
             <nav class="mt-4">
               <ul class="space-y-1.5 text-sm">
                 <li>
-                  <a class="text-white transition hover:text-white/75" href="/">
+                  <a class="text-white transition hover:text-white/75 cursor-pointer" href="/">
                     Company History
                   </a>
                 </li>
 
                 <li>
-                  <a class="text-white transition hover:text-white/75" href="/">
+                  <a class="text-white transition hover:text-white/75 cursor-pointer" href="/">
                     Meet the Team
                   </a>
                 </li>
 
                 <li>
-                  <a class="text-white transition hover:text-white/75" href="/">
+                  <a class="text-white transition hover:text-white/75 cursor-pointer" href="/">
                     Employee Handbook
                   </a>
                 </li>
 
                 <li>
-                  <a class="text-white transition hover:text-white/75" href="/">
+                  <a class="text-white transition hover:text-white/75 cursor-pointer" href="/">
                     Careers
                   </a>
                 </li>
@@ -196,25 +196,25 @@ const source = `
             <nav class="mt-4">
               <ul class="space-y-1.5 text-sm">
                 <li>
-                  <a class="text-white transition hover:text-white/75" href="/">
+                  <a class="text-white transition hover:text-white/75 cursor-pointer" href="/">
                     Web Development
                   </a>
                 </li>
 
                 <li>
-                  <a class="text-white transition hover:text-white/75" href="/">
+                  <a class="text-white transition hover:text-white/75 cursor-pointer" href="/">
                     Web Design
                   </a>
                 </li>
 
                 <li>
-                  <a class="text-white transition hover:text-white/75" href="/">
+                  <a class="text-white transition hover:text-white/75 cursor-pointer" href="/">
                     Marketing
                   </a>
                 </li>
 
                 <li>
-                  <a class="text-white transition hover:text-white/75" href="/">
+                  <a class="text-white transition hover:text-white/75 cursor-pointer" href="/">
                     Google Ads
                   </a>
                 </li>
@@ -228,20 +228,20 @@ const source = `
             <nav class="mt-4">
               <ul class="space-y-1.5 text-sm">
                 <li>
-                  <a class="text-white transition hover:text-white/75" href="/">
+                  <a class="text-white transition hover:text-white/75 cursor-pointer" href="/">
                     FAQs
                   </a>
                 </li>
 
                 <li>
-                  <a class="text-white transition hover:text-white/75" href="/">
+                  <a class="text-white transition hover:text-white/75 cursor-pointer" href="/">
                     Support
                   </a>
                 </li>
 
                 <li>
                   <a
-                    class="group flex justify-center gap-1.5 lg:justify-start"
+                    class="group flex justify-center gap-1.5 lg:justify-start cursor-pointer"
                     href="/"
                   >
                     <span
@@ -270,7 +270,7 @@ const source = `
         >
           <p class="text-center lg:text-left">
             <a
-              class="inline-block text-white underline transition hover:text-white/75"
+              class="inline-block text-white underline transition hover:text-white/75 cursor-pointer"
               href="/"
             >
               Privacy Policy
@@ -279,7 +279,7 @@ const source = `
             <span>&middot;</span>
 
             <a
-              class="inline-block text-white underline transition hover:text-white/75"
+              class="inline-block text-white underline transition hover:text-white/75 cursor-pointer"
               href="/"
             >
               Terms & Conditions
@@ -288,7 +288,7 @@ const source = `
             <span>&middot;</span>
 
             <a
-              class="inline-block text-white underline transition hover:text-white/75"
+              class="inline-block text-white underline transition hover:text-white/75 cursor-pointer"
               href="/"
             >
               Cookies
@@ -296,7 +296,7 @@ const source = `
           </p>
 
           <p class="mt-4 text-center lg:text-left">
-            &copy; 2022 Company Name. All rights reserved.
+            © 2022 Company Name. All rights reserved.
           </p>
         </div>
       </div>

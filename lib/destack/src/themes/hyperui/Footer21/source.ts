@@ -9,7 +9,7 @@ const source = `
       </strong>
 
       <a
-        class="inline-flex items-center rounded-full border border-white bg-white px-8 py-3 text-indigo-600 hover:bg-transparent hover:text-white focus:outline-none focus:ring active:bg-white/90"
+        class="inline-flex items-center rounded-full border border-white bg-white px-8 py-3 text-indigo-600 hover:bg-transparent hover:text-white focus:outline-none focus:ring active:bg-white/90 cursor-pointer"
         href="/"
       >
         <span class="text-sm font-medium"> Let's Get Started </span>
@@ -39,7 +39,7 @@ const source = `
           <ul class="space-y-4 text-sm">
             <li>
               <a
-                class="text-gray-700 transition hover:text-gray-700/75"
+                class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
                 href="/"
               >
                 Company History
@@ -48,7 +48,7 @@ const source = `
 
             <li>
               <a
-                class="text-gray-700 transition hover:text-gray-700/75"
+                class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
                 href="/"
               >
                 Meet the Team
@@ -57,7 +57,7 @@ const source = `
 
             <li>
               <a
-                class="text-gray-700 transition hover:text-gray-700/75"
+                class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
                 href="/"
               >
                 Employee Handbook
@@ -66,7 +66,7 @@ const source = `
 
             <li>
               <a
-                class="text-gray-700 transition hover:text-gray-700/75"
+                class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
                 href="/"
               >
                 Careers
@@ -83,7 +83,7 @@ const source = `
           <ul class="space-y-4 text-sm">
             <li>
               <a
-                class="text-gray-700 transition hover:text-gray-700/75"
+                class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
                 href="/"
               >
                 Web Development
@@ -92,7 +92,7 @@ const source = `
 
             <li>
               <a
-                class="text-gray-700 transition hover:text-gray-700/75"
+                class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
                 href="/"
               >
                 Web Design
@@ -101,7 +101,7 @@ const source = `
 
             <li>
               <a
-                class="text-gray-700 transition hover:text-gray-700/75"
+                class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
                 href="/"
               >
                 Marketing
@@ -110,7 +110,7 @@ const source = `
 
             <li>
               <a
-                class="text-gray-700 transition hover:text-gray-700/75"
+                class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
                 href="/"
               >
                 Google Ads
@@ -127,7 +127,7 @@ const source = `
           <ul class="space-y-4 text-sm">
             <li>
               <a
-                class="text-gray-700 transition hover:text-gray-700/75"
+                class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
                 href="/"
               >
                 Online Guides
@@ -136,7 +136,7 @@ const source = `
 
             <li>
               <a
-                class="text-gray-700 transition hover:text-gray-700/75"
+                class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
                 href="/"
               >
                 Conference Notes
@@ -145,7 +145,7 @@ const source = `
 
             <li>
               <a
-                class="text-gray-700 transition hover:text-gray-700/75"
+                class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
                 href="/"
               >
                 Forum
@@ -154,7 +154,7 @@ const source = `
 
             <li>
               <a
-                class="text-gray-700 transition hover:text-gray-700/75"
+                class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
                 href="/"
               >
                 Downloads
@@ -163,7 +163,7 @@ const source = `
 
             <li>
               <a
-                class="text-gray-700 transition hover:text-gray-700/75"
+                class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
                 href="/"
               >
                 Upcoming Events
@@ -180,7 +180,7 @@ const source = `
           <ul class="space-y-4 text-sm">
             <li>
               <a
-                class="text-gray-700 transition hover:text-gray-700/75"
+                class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
                 href="/"
               >
                 FAQs
@@ -189,7 +189,7 @@ const source = `
 
             <li>
               <a
-                class="text-gray-700 transition hover:text-gray-700/75"
+                class="text-gray-700 transition hover:text-gray-700/75 cursor-pointer"
                 href="/"
               >
                 Support
@@ -198,7 +198,7 @@ const source = `
 
             <li>
               <a
-                class="group flex justify-center gap-1.5 sm:justify-start"
+                class="group flex justify-center gap-1.5 sm:justify-start cursor-pointer"
                 href="/"
               >
                 <span
@@ -229,7 +229,7 @@ const source = `
             href="/"
             rel="noreferrer"
             target="_blank"
-            class="text-blue-700 transition hover:text-blue-700/75"
+            class="text-blue-700 transition hover:text-blue-700/75 cursor-pointer"
           >
             <span class="sr-only">Facebook</span>
             <svg
@@ -252,7 +252,7 @@ const source = `
             href="/"
             rel="noreferrer"
             target="_blank"
-            class="text-blue-700 transition hover:text-blue-700/75"
+            class="text-blue-700 transition hover:text-blue-700/75 cursor-pointer"
           >
             <span class="sr-only">Instagram</span>
             <svg
@@ -275,7 +275,7 @@ const source = `
             href="/"
             rel="noreferrer"
             target="_blank"
-            class="text-blue-700 transition hover:text-blue-700/75"
+            class="text-blue-700 transition hover:text-blue-700/75 cursor-pointer"
           >
             <span class="sr-only">Twitter</span>
             <svg
@@ -296,7 +296,7 @@ const source = `
             href="/"
             rel="noreferrer"
             target="_blank"
-            class="text-blue-700 transition hover:text-blue-700/75"
+            class="text-blue-700 transition hover:text-blue-700/75 cursor-pointer"
           >
             <span class="sr-only">GitHub</span>
             <svg
@@ -319,7 +319,7 @@ const source = `
             href="/"
             rel="noreferrer"
             target="_blank"
-            class="text-blue-700 transition hover:text-blue-700/75"
+            class="text-blue-700 transition hover:text-blue-700/75 cursor-pointer"
           >
             <span class="sr-only">Dribbble</span>
             <svg
@@ -390,7 +390,7 @@ const source = `
         </div>
 
         <p class="mt-4 text-center text-sm text-gray-500 sm:mt-0 sm:text-right">
-          Copyright &copy; 2022. All rights reserved.
+          Copyright © 2022. All rights reserved.
         </p>
       </div>
     </div>

@@ -18,7 +18,7 @@ const source = `
           <div class="mt-4 md:mt-8">
             <a
               href="#"
-              class="inline-block rounded border border-white bg-white px-12 py-3 text-sm font-medium text-blue-500 transition hover:bg-transparent hover:text-white focus:outline-none focus:ring focus:ring-yellow-400"
+              class="inline-block rounded border border-white bg-white px-12 py-3 text-sm font-medium text-blue-500 transition hover:bg-transparent hover:text-white focus:outline-none focus:ring focus:ring-yellow-400 cursor-pointer"
             >
               Get Started Today
             </a>

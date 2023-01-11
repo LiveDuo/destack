@@ -7,22 +7,22 @@ const source = `
       </div>
 
       <nav class="hidden gap-8 text-sm font-medium md:flex">
-        <a class="text-gray-500" href="">About</a>
-        <a class="text-gray-500" href="">Blog</a>
-        <a class="text-gray-500" href="">Projects</a>
-        <a class="text-gray-500" href="">Contact</a>
+        <a class="text-gray-500 cursor-pointer" href="">About</a>
+        <a class="text-gray-500 cursor-pointer" href="">Blog</a>
+        <a class="text-gray-500 cursor-pointer" href="">Projects</a>
+        <a class="text-gray-500 cursor-pointer" href="">Contact</a>
       </nav>
 
       <div class="hidden flex-1 items-center justify-end gap-4 sm:flex">
         <a
-          class="block rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-500"
+          class="block rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-500 cursor-pointer"
           href=""
         >
           Log in
         </a>
 
         <a
-          class="block rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white"
+          class="block rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white cursor-pointer"
           href=""
         >
           Sign up
@@ -30,7 +30,7 @@ const source = `
       </div>
 
       <div class="lg:hidden">
-        <button class="rounded-lg bg-gray-100 p-2 text-gray-600" type="button">
+        <button class="rounded-lg bg-gray-100 p-2 text-gray-600 cursor-pointer" type="button">
           <span class="sr-only">Open menu</span>
           <svg
             aria-hidden="true"

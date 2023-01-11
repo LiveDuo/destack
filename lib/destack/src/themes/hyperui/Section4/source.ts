@@ -13,7 +13,7 @@ const source = `
 
     <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
       <a
-        class="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
+        class="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10 cursor-pointer"
         href="/services/digital-campaigns"
       >
         <svg
@@ -44,7 +44,7 @@ const source = `
       </a>
 
       <a
-        class="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
+        class="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10 cursor-pointer"
         href="/services/digital-campaigns"
       >
         <svg
@@ -75,7 +75,7 @@ const source = `
       </a>
 
       <a
-        class="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
+        class="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10 cursor-pointer"
         href="/services/digital-campaigns"
       >
         <svg
@@ -106,7 +106,7 @@ const source = `
       </a>
 
       <a
-        class="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
+        class="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10 cursor-pointer"
         href="/services/digital-campaigns"
       >
         <svg
@@ -137,7 +137,7 @@ const source = `
       </a>
 
       <a
-        class="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
+        class="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10 cursor-pointer"
         href="/services/digital-campaigns"
       >
         <svg
@@ -168,7 +168,7 @@ const source = `
       </a>
 
       <a
-        class="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
+        class="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10 cursor-pointer"
         href="/services/digital-campaigns"
       >
         <svg
@@ -201,7 +201,7 @@ const source = `
 
     <div class="mt-12 text-center">
       <a
-        class="mt-8 inline-flex items-center rounded border border-pink-600 bg-pink-600 px-8 py-3 text-white hover:bg-transparent focus:outline-none focus:ring active:text-pink-500"
+        class="mt-8 inline-flex items-center rounded border border-pink-600 bg-pink-600 px-8 py-3 text-white hover:bg-transparent focus:outline-none focus:ring active:text-pink-500 cursor-pointer"
         href="/get-started"
       >
         <span class="text-sm font-medium"> Get Started </span>
