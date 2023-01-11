@@ -319,17 +319,13 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
 }
 export default Child
 
-const ComponentChild = ({ children }) => {
-  const { connectors } = useNode()
-  return <div ref={(ref) => connectors.connect(ref as HTMLDivElement)}>{children}</div>
-}
+const Component = ({ root }) => {
+  const { connectors, node } = useNode((node) => ({ node }))
 
-const Component = ({ root, editable }) =>
-  editable ? (
-    <ComponentChild>
+  return (
+    <div id={node.data.props.id} ref={(ref) => connectors.connect(ref as HTMLDivElement)}>
       <Child root={root} />
-    </ComponentChild>
-  ) : (
-    <Child root={root} />
+    </div>
   )
+}
 export { Component }

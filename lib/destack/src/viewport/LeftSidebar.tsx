@@ -26,7 +26,7 @@ const Item = ({ connectors, c }) => {
       ref={(ref) =>
         connectors.create(
           ref as HTMLElement,
-          <Component editable={true} root={cleanHTMLElement(parse(c.source))} />,
+          <Component root={cleanHTMLElement(parse(c.source))} />,
         )
       }
     >
