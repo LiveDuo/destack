@@ -5,7 +5,7 @@ import { useNode, useEditor } from '@craftjs/core'
 import Child from './Child'
 
 const handleClick = (props) => {
-  if (props.newTab) {
+  if (props?.newTab) {
     window.open(props.link, '_blank')?.focus()
   } else {
     location.href = props.link

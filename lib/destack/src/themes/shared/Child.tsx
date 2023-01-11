@@ -179,7 +179,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
                   .filter((c) => c.tagName === 'PATH')
                   .map((c, i) => (
                     <path
-                      key={key}
+                      key={key + i.toString()}
                       d={c.attrs['d']}
                       fillRule={c.attrs['fill-rule']}
                       clipRule={c.attrs['clip-rule']}

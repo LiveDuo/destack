@@ -5,18 +5,18 @@ import { useNode, useEditor } from '@craftjs/core'
 import Child from './Child'
 
 const handleClick = (props, e) => {
-  if (props.type === 'url') {
-    if (props.newTab) {
+  if (props?.type === 'url') {
+    if (props?.newTab) {
       window.open(props.url, '_blank')?.focus()
     } else {
       location.href = props.url
     }
-  } else if (props.type === 'email') {
+  } else if (props?.type === 'email') {
     location.href = `mailto:${props.email}`
-  } else if (props.type === 'submit') {
+  } else if (props?.type === 'submit') {
     const form = e.target.closest('form')
 
-    if (!props.submitAsync) {
+    if (!props?.submitAsync) {
       form.submit()
       return
     }

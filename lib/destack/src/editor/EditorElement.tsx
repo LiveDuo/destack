@@ -43,19 +43,14 @@ const EditorElement = ({ render }) => {
 
   const getPos = useCallback((dom: HTMLElement | null) => {
     const { top, left, bottom } = dom ? dom.getBoundingClientRect() : { top: 0, left: 0, bottom: 0 }
-    return {
-      top: `${top > 0 ? top : bottom}px`,
-      left: `${left}px`,
-    }
+    return { top: `${top > 0 ? top : bottom}px`, left: `${left}px` }
   }, [])
 
   const scroll = useCallback(() => {
-    const { current: currentDOM } = currentRef
-
-    if (!currentDOM) return
+    if (!currentRef.current) return
     const { top, left } = getPos(dom)
-    currentDOM.style.top = top
-    currentDOM.style.left = left
+    currentRef.current.style.top = top
+    currentRef.current.style.left = left
   }, [dom, getPos])
 
   useEffect(() => {
@@ -82,7 +77,7 @@ const EditorElement = ({ render }) => {
       {node.events.hovered || isActive
         ? ReactDOM.createPortal(
             <div
-              ref={() => currentRef}
+              ref={() => currentRef.current}
               className="px-2 py-2 text-white bg-primary fixed flex items-center leading-3 text-xs"
               style={{
                 height: '30px',
