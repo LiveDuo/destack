@@ -8,6 +8,7 @@ import LinkDialog from '../themes/shared/LinkDialog'
 import ImageDialog from '../themes/shared/ImageDialog'
 import ButtonDialog from '../themes/shared/ButtonDialog'
 import HashtagDialog from '../themes/shared/HashtagDialog'
+import SvgDialog from '../themes/shared/SvgDialog'
 
 import ArrowSmallUpIcon from '@heroicons/react/24/outline/ArrowSmallUpIcon'
 import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
@@ -67,10 +68,9 @@ const EditorElement = ({ render }) => {
   const [openImage, setOpenImage] = useState(false)
   const [openButton, setOpenButton] = useState(false)
   const [openHash, setOpenHash] = useState(false)
+  const [openSvg, setOpenSvg] = useState(false)
 
-  const updateLink = dom?.nodeName === 'A'
-  const updateImage = dom?.nodeName === 'IMG'
-  const updateButton = dom?.nodeName === 'BUTTON'
+  // const linkWithSvg = dom?.nodeName === 'A' && [...dom?.childNodes].some(r => r.nodeName === 'svg')
 
   return (
     <>
@@ -114,7 +114,7 @@ const EditorElement = ({ render }) => {
                   <ArrowSmallUpIcon className="h-4 w-4" />
                 </a>
               )}
-              {updateImage && (
+              {dom?.nodeName === 'IMG' && (
                 <a
                   className="cursor-pointer"
                   onMouseDown={(e: React.MouseEvent) => {
@@ -125,7 +125,18 @@ const EditorElement = ({ render }) => {
                   <PhotoIcon className="h-4 w-4" />
                 </a>
               )}
-              {updateLink && (
+              {dom?.nodeName === 'svg' && (
+                <a
+                  className="cursor-pointer"
+                  onMouseDown={(e: React.MouseEvent) => {
+                    e.stopPropagation()
+                    setOpenSvg(true)
+                  }}
+                >
+                  <PhotoIcon className="h-4 w-4" />
+                </a>
+              )}
+              {dom?.nodeName === 'A' && (
                 <a
                   className="cursor-pointer"
                   onMouseDown={(e: React.MouseEvent) => {
@@ -136,7 +147,7 @@ const EditorElement = ({ render }) => {
                   <LinkIcon className="h-4 w-4" />
                 </a>
               )}
-              {updateButton && (
+              {dom?.nodeName === 'BUTTON' && (
                 <a
                   className="cursor-pointer"
                   onMouseDown={(e: React.MouseEvent) => {
@@ -161,6 +172,7 @@ const EditorElement = ({ render }) => {
               <LinkDialog open={openLink} setOpen={setOpenLink} node={node} actions={actions} />
               <ImageDialog open={openImage} setOpen={setOpenImage} node={node} actions={actions} />
               <HashtagDialog open={openHash} setOpen={setOpenHash} node={node} actions={actions} />
+              <SvgDialog open={openSvg} setOpen={setOpenSvg} node={node} actions={actions} />
               <ButtonDialog
                 open={openButton}
                 setOpen={setOpenButton}

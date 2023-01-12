@@ -8,8 +8,7 @@ import cx from 'classnames'
 const Dialog = ({ open, setOpen, node, actions }) => {
   const props = node.data.props
   const key = props.propId
-  const [link, setLink] = useState(node.data.props[key]?.link ?? node.dom?.href)
-  const [newTab, setNewTab] = useState(node.data.props[key]?.newTab)
+  const [path, setPath] = useState(node.data.props[key]?.path)
 
   return (
     <DialogPrimitive.Root open={open} onOpenChange={setOpen}>
@@ -23,7 +22,7 @@ const Dialog = ({ open, setOpen, node, actions }) => {
             )}
           >
             <DialogPrimitive.Title className="text-sm font-medium text-gray-900 dark:text-gray-100">
-              Update Link
+              Update SVG Path
             </DialogPrimitive.Title>
 
             <div className="mt-8 mb-4">
@@ -33,19 +32,10 @@ const Dialog = ({ open, setOpen, node, actions }) => {
                     <input
                       type="text"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-4"
-                      placeholder="Eg. https://github.com/LiveDuo/destack"
-                      defaultValue={link as string}
-                      onChange={(e) => setLink(e.target.value)}
+                      placeholder="Eg. d = 'M150 0 L75 200 L225 200 Z'"
+                      defaultValue={path as string}
+                      onChange={(e) => setPath(e.target.value)}
                     />
-                    <div className="flex items-center ml-4">
-                      <p>Open in new tab</p>
-                      <input
-                        defaultChecked={newTab}
-                        type="checkbox"
-                        onChange={(e) => setNewTab(e.target.checked)}
-                        className="ml-4 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
-                      />
-                    </div>
                   </div>
                 </div>
               </div>
@@ -58,8 +48,7 @@ const Dialog = ({ open, setOpen, node, actions }) => {
 
                   actions.setProp(node.id, (prop) => {
                     if (!prop[key]) prop[key] = {}
-                    prop[key].link = link
-                    prop[key].newTab = newTab
+                    prop[key].path = path
                   })
                 }}
                 className={cx(

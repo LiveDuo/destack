@@ -6,8 +6,6 @@ import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
 import cx from 'classnames'
 
 const Dialog = ({ open, setOpen, node, actions }) => {
-  const props = node.data.props
-  const key = props.d?.concat(props.i).join('')
   const [id, setId] = useState(node.data.props.id)
 
   return (

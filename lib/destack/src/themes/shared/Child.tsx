@@ -7,6 +7,7 @@ import { Text } from './Text'
 import { Link } from './Link'
 import { Button } from './Button'
 import { Image } from './Image'
+import { Svg } from './Svg'
 
 interface RootProps {
   childNodes: RootProps[]
@@ -166,32 +167,9 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
               </form>
             )
           else if (r.tagName === 'SVG')
-            return (
-              <svg
-                className={r.classNames}
-                key={key}
-                fill={r.attrs['fill']}
-                viewBox={r.attrs['viewbox']}
-                stroke={r.attrs['stroke']}
-                xmlns={r.attrs['xmlns']}
-              >
-                {r.childNodes
-                  .filter((c) => c.tagName === 'PATH')
-                  .map((c, i) => (
-                    <path
-                      key={key + i.toString()}
-                      d={c.attrs['d']}
-                      fillRule={c.attrs['fill-rule']}
-                      clipRule={c.attrs['clip-rule']}
-                      strokeLinecap={c.attrs['stroke-linecap']}
-                      strokeLinejoin={c.attrs['stroke-linejoin']}
-                      strokeWidth={c.attrs['stroke-width']}
-                      stroke={c.attrs['stroke']}
-                      fill={c.attrs['fill']}
-                    />
-                  ))}
-              </svg>
-            )
+            // if (root.tagName === 'A') return <Svg key={key} r={r} propId={key} />
+            // else return <Element is={Svg} key={key} r={r} id={key} propId={key} />
+            return <Element is={Svg} key={key} r={r} id={key} propId={key} />
           else if (r.tagName === 'ADDRESS')
             return (
               <address className={r.classNames} key={key} {...r.attrs}>

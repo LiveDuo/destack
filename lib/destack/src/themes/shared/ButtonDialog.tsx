@@ -18,7 +18,7 @@ const Dialog = ({ open, setOpen, node, actions }) => {
   const [openSelect, setOpenSelect] = useState(false)
 
   const props = node.data.props
-  const key = props.d?.concat(props.i).join('')
+  const key = props.propId
   // console.log('id', key)
 
   const [url, setUrl] = useState(props.url)

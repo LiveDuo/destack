@@ -7,6 +7,7 @@ import Child from '../themes/shared/Child'
 import { Container } from '../themes/shared/Container'
 import { Text } from '../themes/shared/Text'
 import { Link } from '../themes/shared/Link'
+import { Svg } from '../themes/shared/Svg'
 import { Button } from '../themes/shared/Button'
 import { Image } from '../themes/shared/Image'
 import { Component } from '../themes/shared/Child'
@@ -45,6 +46,7 @@ const _resolver = {
   Link,
   Button,
   Image,
+  Svg,
 }
 
 const defaultValue = {
