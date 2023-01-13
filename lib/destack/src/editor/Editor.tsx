@@ -14,18 +14,19 @@ import { ThemeContext } from '../store'
 const FrameEditor = ({ data, standaloneServer }) => {
   const { actions } = useEditor()
 
-  useEffect(() => {
+  const loadData = async () => {
     if (data) {
       const content = JSON.parse(data[0].content)
       actions.deserialize(content)
     } else {
-      loadTemplate(standaloneServer)
-        .then((d) => {
-          const content = JSON.parse(d as string)
-          actions.deserialize(content) // NOTE: also loads the data in the editor
-        })
-        .catch((e) => console.error(e))
+      const result = await loadTemplate(standaloneServer)
+      const content = JSON.parse(result as string)
+      actions.deserialize(content) // NOTE: also loads the data in the editor
     }
+  }
+
+  useEffect(() => {
+    loadData()
   }, [])
 
   return !data ? (

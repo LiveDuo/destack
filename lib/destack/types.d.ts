@@ -1,5 +1,4 @@
 export interface dataType {
-  filename: string
   content: string
 }
 

@@ -6,7 +6,6 @@ type fetchJSONArgs = {
   url: string
 }
 type templateData = {
-  filename: string
   content: string
 }
 
@@ -20,7 +19,7 @@ const getImageUrl = (standaloneServer, imageSrc) => {
 }
 export { getImageUrl }
 
-const fetchJSON = async ({ method, url, data }: fetchJSONArgs): Promise<templateData[]> => {
+const fetchJSON = async ({ method, url, data }: fetchJSONArgs): Promise<templateData> => {
   const res = await fetch(url, {
     method,
     headers: { 'Content-Type': 'application/json' },
@@ -53,24 +52,21 @@ export { uploadFile }
 
 const loadTemplate = async (standaloneServer) => {
   const baseUrl = getBaseUrl(standaloneServer)
-  const data = await fetchJSON({ method: 'get', url: `${baseUrl}/api/builder/handle?type=data` })
-  const component = data.find((c) => c.filename === '/default.json') // TODO: fix for windows
-  return component?.content
+  const data = await fetchJSON({
+    method: 'get',
+    url: `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}`,
+  })
+  return data?.content
 }
 export { loadTemplate }
 
 const saveTemplate = async (state, standaloneServer) => {
   const baseUrl = getBaseUrl(standaloneServer)
-  const path =
-    window.location.pathname === '/' || window.location.pathname === ''
-      ? 'default.json'
-      : `${window.location.pathname}.json`
-
-  const body = { path, data: JSON.parse(state.serialize()) }
+  const body = { data: JSON.parse(state.serialize()) }
 
   await fetchJSON({
     method: 'post',
-    url: `${baseUrl}/api/builder/handle?type=data`,
+    url: `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}`,
     data: body,
   })
 }

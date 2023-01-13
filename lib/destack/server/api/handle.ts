@@ -1,81 +1,80 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { dataType } from '../../types'
-import { formParse, getJson, zip, exists, readdirRecursive } from '../utils'
+import { formParse, getJson, exists } from '../utils'
 import fs from 'fs'
 import path from 'path'
 import { IncomingForm } from 'formidable'
 import { NextApiResponse, NextApiRequest } from 'next'
 
+const DEFAULT_TEMPLATE = {
+  ROOT: {
+    type: { resolvedName: 'Container' },
+    isCanvas: true,
+    props: { width: '100%', height: '800px' },
+    displayName: 'Container',
+    custom: { displayName: 'App' },
+  },
+}
+
 const development = process.env.NODE_ENV !== 'production'
 
 const rootPath = process.cwd()
 
-const folderPath = 'data'
-const uploadPath = 'uploaded'
+const dataFolder = 'data'
+const uploadFolder = 'uploaded'
 
 import formidable from 'formidable'
 
 const uploadFiles = async (req: NextApiRequest): Promise<string[]> => {
-  const form = new IncomingForm({ uploadDir: uploadPath, keepExtensions: true })
+  const form = new IncomingForm({ uploadDir: uploadFolder, keepExtensions: true })
 
-  const uploadFolder = path.join('public', uploadPath)
-  const uploadFolderExists = await exists(uploadFolder)
+  const uploadPath = path.join('public', uploadFolder)
+  const uploadFolderExists = await exists(uploadPath)
   if (!uploadFolderExists) {
-    await fs.promises.mkdir(uploadFolder)
+    await fs.promises.mkdir(uploadPath)
   }
 
-  form.on('fileBegin', (_, file) => (file.path = path.join('public', uploadPath, file.name!)))
+  form.on('fileBegin', (_, file) => (file.path = path.join('public', uploadFolder, file.name!)))
   const files = await formParse(form, req)
 
   const urls = Object.values(files).map((f) =>
-    path.join(path.sep, uploadPath, (<formidable.File>f).name ?? ''),
+    path.join(path.sep, uploadFolder, (<formidable.File>f).name ?? ''),
   )
   return urls
 }
 export { uploadFiles }
 
-const loadData = async (): Promise<dataType[]> => {
-  const basePath = path.join(rootPath, folderPath)
-  const folderExists = await exists(basePath)
-  if (!folderExists) return []
-  const files = readdirRecursive(basePath) as string[]
+const getFileNameFromRoute = (route) => (route === '/' ? 'default.json' : `${route}.json`)
 
-  const filesData = await Promise.all(files.map((f) => fs.promises.readFile(f)))
-
-  const data = zip([files, filesData]).map(([filename, content]) => ({
-    filename: filename.replace(basePath, ''),
-    content: content.toString(),
-  }))
-
-  return data
+const loadData = async (route: string): Promise<dataType> => {
+  const fileName = getFileNameFromRoute(route)
+  const dataPath = path.join(rootPath, dataFolder, fileName)
+  const dataExists = await exists(dataPath)
+  if (!dataExists) {
+    return { content: JSON.stringify(DEFAULT_TEMPLATE) }
+  } else {
+    const content = await fs.readFileSync(dataPath, 'utf8')
+    return { content }
+  }
 }
 export { loadData }
 
-const updateData = async (body: Record<string, string>): Promise<void> => {
-  const basePath = path.join(rootPath, folderPath)
-  const fileExists = await exists(path.join(basePath, body.path))
-  if (!fileExists) {
-    const folderPathExists = body.path.split(path.sep).slice(0, -1).join(path.sep)
-    const folderExists = await exists(path.join(basePath, folderPathExists))
-    if (!folderExists) {
-      await fs.promises.mkdir(path.join(basePath, folderPathExists), { recursive: true })
-    }
-    await fs.promises.writeFile(path.join(basePath, body.path), '{}')
-  }
-  await fs.promises.writeFile(path.join(basePath, body.path), JSON.stringify(body.data))
+const updateData = async (route: string, data: string): Promise<void> => {
+  const fileName = getFileNameFromRoute(route)
+  await fs.promises.writeFile(path.join(rootPath, dataFolder, fileName), JSON.stringify(data))
 }
 export { updateData }
 
 const handleData = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   if (req.method === 'GET') {
-    const data = await loadData()
+    const data = await loadData(req.query.path as string)
     return res.status(200).json(data)
   } else if (req.method === 'POST') {
     const contentType = req.headers['content-type']!
     const isMultiPart = contentType.startsWith('multipart/form-data')
     if (!isMultiPart) {
       const body = await getJson(req)
-      await updateData(body)
+      await updateData(req.query.path as string, body.data)
       return res.status(200).json({})
     } else {
       const urls = await uploadFiles(req)
