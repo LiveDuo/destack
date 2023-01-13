@@ -31,8 +31,14 @@ const Viewport: React.FC = ({ children }) => {
               {children}
             </div>
             <div className={'flex items-center justify-center w-full pt-6 text-xs text-gray-400'}>
-              Powered by <a href="https://craft.js.org/">Craft.js</a> and{' '}
-              <a href="https://tailwindui.com/">Tailwind CSS</a>
+              Powered by{' '}
+              <a className={'mx-1'} target="_blank" href="https://craft.js.org/">
+                Craft.js
+              </a>{' '}
+              and{' '}
+              <a className={'mx-1'} target="_blank" href="https://tailwindui.com/">
+                Tailwind CSS
+              </a>
             </div>
           </div>
         </div>

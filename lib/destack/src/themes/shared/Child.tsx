@@ -9,9 +9,13 @@ import { Button } from './Button'
 import { Image } from './Image'
 import { Svg } from './Svg'
 
+interface AttrsProps {
+  class?: String
+}
+
 interface RootProps {
   childNodes: RootProps[]
-  attrs: object
+  attrs: AttrsProps
   tagName: string
   classNames: string
   nodeType: number
@@ -29,7 +33,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
     <>
       {Array.from(root?.childNodes).map((r, i) => {
         const key = d.concat(i).join('')
-
+        const { ['class']: foo, ...attrsR } = r.attrs
         if (r.nodeType === 1) {
           if (r.tagName === 'DIV')
             return (
@@ -137,32 +141,27 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
             )
           else if (r.tagName === 'BLOCKQUOTE')
             return (
-              <blockquote className={r.classNames} key={key} {...r.attrs}>
+              <blockquote className={r.classNames} key={key} {...attrsR}>
                 <Child root={r} d={d.concat(i)} />
               </blockquote>
             )
           else if (r.tagName === 'INPUT')
-            return <input className={r.classNames} key={key} {...r.attrs} />
+            return <input className={r.classNames} key={key} {...attrsR} />
           else if (r.tagName === 'LABEL')
             return (
-              <label className={r.classNames} key={key} {...r.attrs}>
+              <label className={r.classNames} key={key} {...attrsR}>
                 {r.innerText}
               </label>
             )
           else if (r.tagName === 'TEXTAREA')
             return (
-              <textarea
-                defaultValue={r.innerText}
-                className={r.classNames}
-                key={key}
-                {...r.attrs}
-              />
+              <textarea defaultValue={r.innerText} className={r.classNames} key={key} {...attrsR} />
             )
           else if (r.tagName === 'BUTTON')
             return <Element is={Button} key={key} r={r} d={d} i={i} id={key} propId={key} />
           else if (r.tagName === 'FORM')
             return (
-              <form className={r.classNames} key={key} {...r.attrs}>
+              <form className={r.classNames} key={key} {...attrsR}>
                 <Child root={r} d={d.concat(i)} />
               </form>
             )
@@ -172,7 +171,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
             return <Element is={Svg} key={key} r={r} id={key} propId={key} />
           else if (r.tagName === 'ADDRESS')
             return (
-              <address className={r.classNames} key={key} {...r.attrs}>
+              <address className={r.classNames} key={key} {...attrsR}>
                 <Text text={r.innerText} key={key} id={key} />
               </address>
             )
@@ -184,7 +183,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
                 d={d}
                 i={i}
                 classNames={r.classNames}
-                attrs={r.attrs}
+                attrs={attrsR}
                 id={key}
                 propId={key}
               />
@@ -216,7 +215,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
           } else if (r.tagName === 'SCRIPT') {
             return null
           } else if (r.tagName === 'LINK') {
-            return <link {...r.attrs} key={key}></link>
+            return <link className={r.classNames} {...attrsR} key={key}></link>
           } else if (r.tagName === 'BR') {
             return <br className={r.classNames} key={key} />
           } else if (r.tagName === 'UL') {
@@ -240,7 +239,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
           } else if (r.tagName === 'HR') {
             return <hr className={r.classNames} key={key}></hr>
           } else if (r.tagName === 'IFRAME') {
-            return <iframe className={r.classNames} {...r.attrs} key={key} />
+            return <iframe className={r.classNames} {...attrsR} key={key} />
           } else if (r.tagName === 'STYLE') {
             return <style key={key}>{r.innerText}</style>
           } else if (r.tagName === 'TABLE') {
@@ -251,7 +250,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
             )
           } else if (r.tagName === 'THEAD') {
             return (
-              <thead className={r.classNames} {...r.attrs} key={key}>
+              <thead className={r.classNames} {...attrsR} key={key}>
                 <Child root={r} d={d.concat(i)} />
               </thead>
             )
