@@ -1,7 +1,7 @@
 import 'regenerator-runtime/runtime'
 
 import { dataType } from '../../types'
-import { loadData } from '../api/handle'
+import { loadAllData } from '../api/handle'
 
 const development = process.env.NODE_ENV !== 'production'
 
@@ -13,7 +13,7 @@ const getStaticProps = async (): Promise<StaticPropsReturn> => {
   if (development) {
     return { props: {} }
   } else {
-    const data = await loadData()
+    const data = await loadAllData()
     return { props: { data: data } }
   }
 }

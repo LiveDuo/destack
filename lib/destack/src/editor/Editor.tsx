@@ -16,7 +16,8 @@ const FrameEditor = ({ data, standaloneServer }) => {
 
   const loadData = async () => {
     if (data) {
-      const content = JSON.parse(data[0].content)
+      const templateData = data.find(({ name }) => name === location.pathname)
+      const content = JSON.parse(templateData.content)
       actions.deserialize(content)
     } else {
       const result = await loadTemplate(standaloneServer)

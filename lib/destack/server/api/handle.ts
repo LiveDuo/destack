@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { dataType } from '../../types'
-import { formParse, getJson, exists } from '../utils'
+import { dataType, dataFullType } from '../../types'
+import { formParse, getJson, exists, readdirRecursive } from '../utils'
 import fs from 'fs'
 import path from 'path'
 import { IncomingForm } from 'formidable'
@@ -45,6 +45,8 @@ const uploadFiles = async (req: NextApiRequest): Promise<string[]> => {
 export { uploadFiles }
 
 const getFileNameFromRoute = (route) => (route === '/' ? 'default.json' : `${route}.json`)
+const getRouteFromFilename = (filename) =>
+  filename === '/default.json' ? '/' : `${filename.slice(0, -5)}`
 
 const loadData = async (route: string): Promise<dataType> => {
   const fileName = getFileNameFromRoute(route)
@@ -58,6 +60,20 @@ const loadData = async (route: string): Promise<dataType> => {
   }
 }
 export { loadData }
+
+const loadAllData = async (): Promise<dataFullType[]> => {
+  const basePath = path.join(rootPath, dataFolder)
+  const files = readdirRecursive(basePath) as string[]
+  const data = await Promise.all(
+    files.map((f) =>
+      fs.promises
+        .readFile(f, 'utf8')
+        .then((c) => ({ name: getRouteFromFilename(f.replace(basePath, '')), content: c })),
+    ),
+  )
+  return data
+}
+export { loadAllData }
 
 const updateData = async (route: string, data: string): Promise<void> => {
   const fileName = getFileNameFromRoute(route)
