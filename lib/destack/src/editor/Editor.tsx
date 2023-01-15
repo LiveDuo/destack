@@ -8,6 +8,7 @@ import EditorElement from './EditorElement'
 import { Container } from '../themes/shared/Container'
 
 import { loadTemplate, saveTemplateDebounce } from '../utils/fetch'
+import { loadPoweredBy } from '../utils/powerby'
 
 import { ThemeContext } from '../store'
 
@@ -19,6 +20,8 @@ const FrameEditor = ({ data, standaloneServer }) => {
       const templateData = data.find(({ name }) => name === location.pathname)
       const content = JSON.parse(templateData.content)
       actions.deserialize(content)
+
+      loadPoweredBy()
     } else {
       const result = await loadTemplate(standaloneServer)
       const content = JSON.parse(result as string)
