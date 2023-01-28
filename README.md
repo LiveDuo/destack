@@ -6,7 +6,7 @@ Build landing pages visually right in your React or Next.js projects. Deploy the
 
 `👩‍🎨 Editor preview` Check it out on [Destack Online Builder](https://destack-page.vercel.app/)
 
-`🏭 Example in production` Visit [prettyfunnels.com](https://www.prettyfunnels.com/landing)
+`🏭 Examples in production` Visit [prettyfunnels.com](https://www.prettyfunnels.com/landing) or [getdestack.com](https://www.getdestack.com)
 
 <!-- <img src="https://github.com/LiveDuo/destack/raw/main/assets/logo_icons.png" width="100%"> -->
 
