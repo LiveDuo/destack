@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 
-import Select from '../../components/Select'
+import Select from '../components/Select'
 
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
 import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon'
 
 import cx from 'classnames'
 
-import { capitalize } from '../../utils/text'
+import { capitalize } from '../utils/text'
 
 const options = ['url', 'email', 'submit']
 const methods = ['GET', 'POST']

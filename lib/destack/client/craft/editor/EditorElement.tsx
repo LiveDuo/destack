@@ -4,11 +4,11 @@ import { useNode, useEditor } from '@craftjs/core'
 
 import ReactDOM from 'react-dom'
 
-import LinkDialog from '../themes/shared/LinkDialog'
-import ImageDialog from '../themes/shared/ImageDialog'
-import ButtonDialog from '../themes/shared/ButtonDialog'
-import HashtagDialog from '../themes/shared/HashtagDialog'
-import SvgDialog from '../themes/shared/SvgDialog'
+import LinkDialog from '../shared/LinkDialog'
+import ImageDialog from '../shared/ImageDialog'
+import ButtonDialog from '../shared/ButtonDialog'
+import HashtagDialog from '../shared/HashtagDialog'
+import SvgDialog from '../shared/SvgDialog'
 
 import ArrowSmallUpIcon from '@heroicons/react/24/outline/ArrowSmallUpIcon'
 import TrashIcon from '@heroicons/react/24/outline/TrashIcon'

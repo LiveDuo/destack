@@ -5,7 +5,7 @@ import { Editor as CraftEditor, Frame, Element, useEditor, Resolver } from '@cra
 import Viewport from '../viewport'
 import EditorElement from './EditorElement'
 
-import { Container } from '../themes/shared/Container'
+import { Container } from '../shared/Container'
 
 import { loadTemplate, saveTemplateDebounce } from '../utils/fetch'
 import { loadPoweredBy } from '../utils/powerby'

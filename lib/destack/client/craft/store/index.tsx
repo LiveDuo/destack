@@ -2,20 +2,20 @@ import React, { createContext, useState, useEffect } from 'react'
 
 import { Element } from '@craftjs/core'
 
-import Child from '../themes/shared/Child'
+import Child from '../shared/Child'
 
-import { Container } from '../themes/shared/Container'
-import { Text } from '../themes/shared/Text'
-import { Link } from '../themes/shared/Link'
-import { Svg } from '../themes/shared/Svg'
-import { Button } from '../themes/shared/Button'
-import { Image } from '../themes/shared/Image'
-import { Component } from '../themes/shared/Child'
+import { Container } from '../shared/Container'
+import { Text } from '../shared/Text'
+import { Link } from '../shared/Link'
+import { Svg } from '../shared/Svg'
+import { Button } from '../shared/Button'
+import { Image } from '../shared/Image'
+import { Component } from '../shared/Child'
 
 const themes = [
-  { name: 'Hyper UI', folder: 'hyperui', load: () => import(`../themes/hyperui`) },
-  { name: 'Tailblocks', folder: 'tailblocks', load: () => import(`../themes/tailblocks`) },
-  { name: 'Meraki UI', folder: 'meraki-light', load: () => import(`../themes/meraki-light`) },
+  { name: 'Hyper UI', folder: 'hyperui', load: () => import(`../../../themes/hyperui`) },
+  { name: 'Tailblocks', folder: 'tailblocks', load: () => import(`../../../themes/tailblocks`) },
+  { name: 'Meraki UI', folder: 'meraki-light', load: () => import(`../../../themes/meraki-light`) },
 ]
 
 const getCategories = (components) => [...new Set(components?.map((c) => c.category))] as string[]

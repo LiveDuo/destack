@@ -8,7 +8,7 @@ import SimpleTooltip from '../components/Tooltip'
 
 import { ThemeContext } from '../store'
 
-import { Component } from '../themes/shared/Child'
+import { Component } from '../shared/Child'
 
 import { parse } from 'node-html-parser'
 
@@ -33,10 +33,7 @@ const Item = ({ connectors, c }) => {
       <SimpleTooltip text={c.displayName} side="right" offset={12}>
         <a className="cursor-move m-2 pb-2 cursor-pointer block">
           <img
-            src={getImageUrl(
-              standalone,
-              `/client/craft/themes/${c.themeFolder}/${c.blockFolder}/preview.png`,
-            )}
+            src={getImageUrl(standalone, `/themes/${c.themeFolder}/${c.blockFolder}/preview.png`)}
             width="600px"
             height="300px"
           />

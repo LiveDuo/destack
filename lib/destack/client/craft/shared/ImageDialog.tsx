@@ -6,7 +6,7 @@ import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
 
 import cx from 'classnames'
 
-import { uploadFile } from '../../utils/fetch'
+import { uploadFile } from '../utils/fetch'
 
 const Content = ({ url, text, setText, onUpload, onChange }) => {
   const input = useRef<HTMLInputElement>(null)
@@ -64,6 +64,8 @@ const Dialog = ({ open, setOpen, node, actions, standaloneServer }) => {
   const [text, setText] = useState('')
 
   const onUpload = async (e) => {
+    e.preventDefault()
+
     const file = e?.target.files[0]
     const response = await uploadFile(file, standaloneServer)
     setUrl(response[0])
