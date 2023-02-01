@@ -55,16 +55,16 @@ import Section3 from './Section3/index'
 import Section4 from './Section4/index'
 import Section5 from './Section5/index'
 import Section6 from './Section6/index'
-import Stat1 from './Stats1/index'
-import Stat2 from './Stats2/index'
-import Testimonial1 from './Testimonials1/index'
-import Testimonial2 from './Testimonials2/index'
-import Testimonial3 from './Testimonials3/index'
-import Testimonial4 from './Testimonials4/index'
-import Testimonial5 from './Testimonials5/index'
-import Testimonial6 from './Testimonials6/index'
-import Testimonial7 from './Testimonials7/index'
-import Testimonial8 from './Testimonials8/index'
+import Stats1 from './Stats1/index'
+import Stats2 from './Stats2/index'
+import Testimonials1 from './Testimonials1/index'
+import Testimonials2 from './Testimonials2/index'
+import Testimonials3 from './Testimonials3/index'
+import Testimonials4 from './Testimonials4/index'
+import Testimonials5 from './Testimonials5/index'
+import Testimonials6 from './Testimonials6/index'
+import Testimonials7 from './Testimonials7/index'
+import Testimonials8 from './Testimonials8/index'
 
 const components = {
   Banner1,
@@ -124,15 +124,15 @@ const components = {
   Section4,
   Section5,
   Section6,
-  Stat1,
-  Stat2,
-  Testimonial1,
-  Testimonial2,
-  Testimonial3,
-  Testimonial4,
-  Testimonial5,
-  Testimonial6,
-  Testimonial7,
-  Testimonial8,
+  Stats1,
+  Stats2,
+  Testimonials1,
+  Testimonials2,
+  Testimonials3,
+  Testimonials4,
+  Testimonials5,
+  Testimonials6,
+  Testimonials7,
+  Testimonials8,
 }
 export default components

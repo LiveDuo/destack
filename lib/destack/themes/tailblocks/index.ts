@@ -49,18 +49,18 @@ import Hero5 from './Hero5/index'
 import Hero6 from './Hero6/index'
 import Pricing1 from './Pricing1/index'
 import Pricing2 from './Pricing2/index'
-import Statistic1 from './Statistics1/index'
-import Statistic2 from './Statistics2/index'
-import Statistic3 from './Statistics3/index'
-import Step1 from './Steps1/index'
-import Step2 from './Steps2/index'
-import Step3 from './Steps3/index'
+import Statistics1 from './Statistics1/index'
+import Statistics2 from './Statistics2/index'
+import Statistics3 from './Statistics3/index'
+import Steps1 from './Steps1/index'
+import Steps2 from './Steps2/index'
+import Steps3 from './Steps3/index'
 import Team1 from './Team1/index'
 import Team2 from './Team2/index'
 import Team3 from './Team3/index'
-import Testimonial1 from './Testimonials1/index'
-import Testimonial2 from './Testimonials2/index'
-import Testimonial3 from './Testimonials3/index'
+import Testimonials1 from './Testimonials1/index'
+import Testimonials2 from './Testimonials2/index'
+import Testimonials3 from './Testimonials3/index'
 
 const components = {
   Blog1,
@@ -114,17 +114,17 @@ const components = {
   Hero6,
   Pricing1,
   Pricing2,
-  Statistic1,
-  Statistic2,
-  Statistic3,
-  Step1,
-  Step2,
-  Step3,
+  Statistics1,
+  Statistics2,
+  Statistics3,
+  Steps1,
+  Steps2,
+  Steps3,
   Team1,
   Team2,
   Team3,
-  Testimonial1,
-  Testimonial2,
-  Testimonial3,
+  Testimonials1,
+  Testimonials2,
+  Testimonials3,
 }
 export default components

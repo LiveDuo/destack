@@ -72,12 +72,12 @@ import Team3 from './Team3/index'
 import Team4 from './Team4/index'
 import Team5 from './Team5/index'
 import Team6 from './Team6/index'
-import Testimonial1 from './Testimonials1/index'
-import Testimonial2 from './Testimonials2/index'
-import Testimonial3 from './Testimonials3/index'
-import Testimonial4 from './Testimonials4/index'
-import Testimonial5 from './Testimonials5/index'
-import Testimonial6 from './Testimonials6/index'
+import Testimonials1 from './Testimonials1/index'
+import Testimonials2 from './Testimonials2/index'
+import Testimonials3 from './Testimonials3/index'
+import Testimonials4 from './Testimonials4/index'
+import Testimonials5 from './Testimonials5/index'
+import Testimonials6 from './Testimonials6/index'
 
 const components = {
   Blog1,
@@ -154,12 +154,12 @@ const components = {
   Team4,
   Team5,
   Team6,
-  Testimonial1,
-  Testimonial2,
-  Testimonial3,
-  Testimonial4,
-  Testimonial5,
-  Testimonial6,
+  Testimonials1,
+  Testimonials2,
+  Testimonials3,
+  Testimonials4,
+  Testimonials5,
+  Testimonials6,
 }
 
 export default components
