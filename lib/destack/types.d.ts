@@ -1,17 +1,14 @@
-export interface dataType {
-  content: string
-}
-
-export interface dataFullType {
+interface dataType {
   content: string
   name: string
 }
 
-export interface StaticBuildProps {
+interface StaticBuildProps {
   data?: dataType[]
 }
 
-export interface ContentProviderProps extends StaticBuildProps {
+interface ContentProviderProps extends StaticBuildProps {
   showEditorInProd: boolean
   standaloneServer: boolean
 }
+export { ContentProviderProps }
