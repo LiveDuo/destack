@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useState, useRef } from 'react'
 
 import { ContentProvider } from './index'
-import { dataType } from '../../types'
+import { dataType } from '../../../types'
 
-import { isJsonValid } from '../utils'
+import { loadTemplate } from '../utils'
 
 const isDev = '_self' in React.createElement('div')
 
@@ -12,22 +12,22 @@ const ContentProviderReact: FC = () => {
   const [loaded, setLoaded] = useState<boolean>(false)
   const [data, setData] = useState<dataType[] | undefined>()
 
+  const loadData = async () => {
+    const data = await loadTemplate(true)
+
+    if (!data) return
+    const content = JSON.parse(data)
+
+    if (!content.components) return
+    setData(content)
+    setLoaded(true)
+  }
+
   useEffect(() => {
     if (mounted.current) return
 
-    const pathName =
-      location.pathname === '/' || location.pathname === ''
-        ? 'default.json'
-        : `${window.location.pathname.substring(1)}.json`
     if (!isDev) {
-      fetch(`/data/${pathName}`)
-        .then((response) => response.text())
-        .then((_data) => {
-          if (isJsonValid(_data)) {
-            setData([{ filename: `/${pathName}`, content: _data }])
-            setLoaded(true)
-          }
-        })
+      loadData()
     } else {
       setData(undefined)
       setLoaded(true)
