@@ -18,7 +18,7 @@ import LinkIcon from '@heroicons/react/24/outline/LinkIcon'
 import CircleStackIcon from '@heroicons/react/24/outline/CircleStackIcon'
 import ArrowsPointingOutIcon from '@heroicons/react/24/outline/ArrowsPointingOutIcon'
 
-const EditorElement = ({ render }) => {
+const EditorElement = ({ render, standaloneServer }) => {
   const { id } = useNode()
   const { actions, isActive } = useEditor((_, query) => ({
     isActive: query.getEvent('selected').contains(id),
@@ -170,7 +170,13 @@ const EditorElement = ({ render }) => {
                 </a>
               )}
               <LinkDialog open={openLink} setOpen={setOpenLink} node={node} actions={actions} />
-              <ImageDialog open={openImage} setOpen={setOpenImage} node={node} actions={actions} />
+              <ImageDialog
+                open={openImage}
+                setOpen={setOpenImage}
+                node={node}
+                actions={actions}
+                standaloneServer={standaloneServer}
+              />
               <HashtagDialog open={openHash} setOpen={setOpenHash} node={node} actions={actions} />
               <SvgDialog open={openSvg} setOpen={setOpenSvg} node={node} actions={actions} />
               <ButtonDialog

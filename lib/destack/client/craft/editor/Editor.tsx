@@ -59,7 +59,9 @@ const Editor = ({ data, standaloneServer }) => {
     <CraftEditor
       resolver={resolver as Resolver}
       enabled={!data}
-      onRender={EditorElement}
+      onRender={({ render }) => (
+        <EditorElement render={render} standaloneServer={standaloneServer} />
+      )} //
       onNodesChange={onStateChange}
     >
       <FrameEditor data={data} standaloneServer={standaloneServer} />

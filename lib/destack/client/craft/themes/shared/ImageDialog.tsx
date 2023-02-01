@@ -56,7 +56,7 @@ const Content = ({ url, text, setText, onUpload, onChange }) => {
   )
 }
 
-const Dialog = ({ open, setOpen, node, actions }) => {
+const Dialog = ({ open, setOpen, node, actions, standaloneServer }) => {
   const props = node.data.props
   const propId = props.propId
 
@@ -65,7 +65,7 @@ const Dialog = ({ open, setOpen, node, actions }) => {
 
   const onUpload = async (e) => {
     const file = e?.target.files[0]
-    const response = await uploadFile(file, false)
+    const response = await uploadFile(file, standaloneServer)
     setUrl(response[0])
   }
 
