@@ -22,6 +22,3 @@ export const ContentProvider = ({ data }) => (
 export const ContentProviderReact = () => (
   <ContentProviderBase data={null} standaloneServer={true} />
 )
-
-export { ContentProvider as ContentProviderGrapes } from '../src-grapes'
-export { ContentProviderReact as ContentProviderReactGrapes } from '../src-grapes'

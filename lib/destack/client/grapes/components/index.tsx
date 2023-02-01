@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useState, useRef } from 'react'
-import { ContentProviderProps } from '../../types'
+import { ContentProviderProps } from '../../../types'
 import { ToastContainer } from './toast'
 
 import cssOverrides from '../css/overrides'
 
-import { tailwindCssUrl } from '../../server/config'
+import { tailwindCssUrl } from '../../../server/config'
 
 const ContentProvider: FC<ContentProviderProps> = ({
   data,

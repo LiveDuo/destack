@@ -6,7 +6,7 @@ import { loadTemplate, saveTemplate, escapeName } from '../utils'
 import { appendCss } from '../lib/css'
 
 import { ChangeEvent } from 'react'
-import { standaloneServerPort as port } from '../../server/config'
+import { standaloneServerPort as port } from '../../../server/config'
 
 const uploadFile = (e, editor, standaloneServer): void => {
   const files = e.dataTransfer ? e.dataTransfer.files : e.target.files

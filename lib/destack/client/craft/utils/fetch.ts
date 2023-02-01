@@ -1,4 +1,4 @@
-import { standaloneServerPort } from '../../server/config'
+import { standaloneServerPort } from '../../../server/config'
 
 type fetchJSONArgs = {
   method: RequestInit['method']
