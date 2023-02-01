@@ -1,3 +1,5 @@
+import { standaloneServerPort } from '../../../server/config'
+
 type fetchJSONArgs = {
   method: RequestInit['method']
   data?: Record<string, unknown>
@@ -52,7 +54,7 @@ const isJsonValid = (str: string): boolean => {
 export { isJsonValid }
 
 const getBaseUrl = (standaloneServer) => {
-  return standaloneServer ? `http://localhost:${port}` : ''
+  return standaloneServer ? `http://localhost:${standaloneServerPort}` : ''
 }
 
 const saveTemplate = async (state, standaloneServer) => {
@@ -69,10 +71,28 @@ export { saveTemplate }
 
 const loadTemplate = async (standaloneServer) => {
   const baseUrl = getBaseUrl(standaloneServer)
-  const data = await fetchJSON({
+  const data = (await fetchJSON({
     method: 'get',
     url: `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}`,
-  })
+  })) as any
   return data?.content
 }
 export { loadTemplate }
+
+const getImageUrl = (standaloneServer, imageSrc) => {
+  const baseUrl = getBaseUrl(standaloneServer)
+  return `${baseUrl}/api/builder/handle?type=asset&path=${imageSrc}`
+}
+export { getImageUrl }
+
+const uploadFile = async (file, standaloneServer) => {
+  const formData = new FormData()
+  formData.append('file-0', file)
+  const baseUrl = getBaseUrl(standaloneServer)
+  const res = await fetch(`${baseUrl}/api/builder/handle?type=data`, {
+    method: 'POST',
+    body: formData,
+  })
+  return await res.json()
+}
+export { uploadFile }
