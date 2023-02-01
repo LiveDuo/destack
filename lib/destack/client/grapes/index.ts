@@ -1,4 +1,4 @@
 import 'regenerator-runtime/runtime'
 
-export { ContentProvider } from './components/index'
-export { ContentProviderReact } from './components/react'
+export { ContentProvider } from './editor/index'
+export { ContentProviderReact } from './editor/react'

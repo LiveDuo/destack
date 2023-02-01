@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState, useRef } from 'react'
 import { ContentProviderProps } from '../../../types'
-import { ToastContainer } from './toast'
+import { ToastContainer } from '../toast'
 
-import cssOverrides from '../css/overrides'
+import cssOverrides from '../styles/overrides'
 
 import { tailwindCssUrl } from '../../../server/config'
 
