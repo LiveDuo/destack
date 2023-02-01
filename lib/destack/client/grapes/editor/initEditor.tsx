@@ -2,25 +2,15 @@ import { loadPanels } from '../lib/panels'
 import { loadTraits } from '../lib/traits'
 import { loadComponents } from '../lib/components'
 import { loadBlocks } from '../lib/blocks'
-import { loadTemplate, saveTemplate, escapeName } from '../utils'
+import { loadTemplate, saveTemplate, escapeName, uploadFile } from '../utils'
 import { appendCss } from '../lib/css'
 
 import { ChangeEvent } from 'react'
-import { standaloneServerPort as port } from '../../../server/config'
 
-const uploadFile = (e, editor, standaloneServer): void => {
+const uploadFileAndAdd = async (e, editor, standaloneServer): Promise<void> => {
   const files = e.dataTransfer ? e.dataTransfer.files : e.target.files
-  const formData = new FormData()
-  for (const i in files) {
-    formData.append('file-' + i, files[i])
-  }
-
-  const baseUrl = standaloneServer ? `http://localhost:${port}` : ''
-  fetch(`${baseUrl}/api/builder/handle`, { method: 'POST', body: formData })
-    .then((res) => res.json())
-    .then((images) => {
-      editor.AssetManager.add(images)
-    })
+  const images = await uploadFile(files[0], standaloneServer)
+  editor.AssetManager.add(images)
 }
 
 const initEditor = async (startServer = true, standaloneServer): Promise<void> => {
@@ -31,7 +21,7 @@ const initEditor = async (startServer = true, standaloneServer): Promise<void> =
 
   if (startServer) {
     assetManagerOptions.uploadFile = (e: ChangeEvent<HTMLInputElement>) =>
-      uploadFile(e, editor, standaloneServer)
+      uploadFileAndAdd(e, editor, standaloneServer)
     editorOptions.assetManager = assetManagerOptions
   }
 
@@ -64,7 +54,7 @@ const assetManagerOptions = {
   storeOnChange: true,
   storeAfterUpload: true,
   assets: [],
-  uploadFile,
+  uploadFile: uploadFileAndAdd,
 }
 
 const editorOptions = {
