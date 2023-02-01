@@ -9,7 +9,8 @@ test('should drap and drop a component', async ({ page }) => {
   await page.goto('/')
 
   // add component
-  const imagePath = '/api/builder/handle?type=asset&path=/src/themes/hyperui/Banner1/preview.png'
+  const imagePath =
+    '/api/builder/handle?type=asset&path=/client/craft/themes/hyperui/Banner1/preview.png'
   await page.dragAndDrop(`img[src='${imagePath}']`, 'div.craftjs-renderer > div > div')
   await expect(page.locator('div.craftjs-renderer > div > div')).toHaveCount(1)
 
@@ -24,7 +25,8 @@ test('should add an image to renderer', async ({ page }) => {
   // add component with image
   await page.click('div.toolbox > div > div:nth-child(1)')
   await page.click('div.toolbox > div > div:nth-child(2)')
-  const imagePath = '/api/builder/handle?type=asset&path=/src/themes/hyperui/Cta1/preview.png'
+  const imagePath =
+    '/api/builder/handle?type=asset&path=/client/craft/themes/hyperui/Cta1/preview.png'
   await page.dragAndDrop(`img[src='${imagePath}']`, 'div.craftjs-renderer > div > div')
   await expect(page.locator('div.craftjs-renderer > div > div')).toHaveCount(1)
 

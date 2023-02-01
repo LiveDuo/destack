@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { dataType, dataFullType } from '../../types'
+import { dataType } from '../../types'
 import { formParse, getJson, exists, readdirRecursive } from '../utils'
 import fs from 'fs'
 import path from 'path'
@@ -61,7 +61,7 @@ const loadData = async (route: string): Promise<dataType> => {
 }
 export { loadData }
 
-const loadAllData = async (): Promise<dataFullType[]> => {
+const loadAllData = async (): Promise<dataType[]> => {
   const basePath = path.join(rootPath, dataFolder)
   const files = readdirRecursive(basePath) as string[]
   const data = await Promise.all(

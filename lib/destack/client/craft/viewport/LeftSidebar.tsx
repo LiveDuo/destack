@@ -35,7 +35,7 @@ const Item = ({ connectors, c }) => {
           <img
             src={getImageUrl(
               standalone,
-              `/src/themes/${c.themeFolder}/${c.blockFolder}/preview.png`,
+              `/client/craft/themes/${c.themeFolder}/${c.blockFolder}/preview.png`,
             )}
             width="600px"
             height="300px"

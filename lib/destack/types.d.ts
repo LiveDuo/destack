@@ -1,7 +1,8 @@
 interface dataType {
   content: string
-  name: string
+  name?: string
 }
+export { dataType }
 
 interface StaticBuildProps {
   data?: dataType[]
