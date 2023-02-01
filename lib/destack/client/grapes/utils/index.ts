@@ -79,6 +79,10 @@ const loadTemplate = async (standaloneServer) => {
 }
 export { loadTemplate }
 
+const getPngFromId = (theme, id, standaloneServer) =>
+  getPngHtml(getImageUrl(standaloneServer, `/themes/${theme}/${id}/preview.png`))
+export { getPngFromId }
+
 const getImageUrl = (standaloneServer, imageSrc) => {
   const baseUrl = getBaseUrl(standaloneServer)
   return `${baseUrl}/api/builder/handle?type=asset&path=${imageSrc}`

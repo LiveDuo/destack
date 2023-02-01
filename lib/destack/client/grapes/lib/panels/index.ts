@@ -14,10 +14,10 @@ import hyperuiLogo from '../../images/hyperui.png'
 import merakiLogo from '../../images/meraki.png'
 import tailblocksLogo from '../../images/tailblocks.png'
 
-import { loadBasicBlocks } from '../blocks/basic'
-import { loadMerakiUiLightBlocks } from '../blocks/merakiui-light'
-import { loadTailwindBlocks } from '../blocks/tailblocks'
-import { loadHyperUiBlocks } from '../blocks/hyperui'
+import loadBasicBlocks from '../blocks/basic'
+import loadMerakiUiLightBlocks from '../blocks/merakiui-light'
+import loadTailwindBlocks from '../blocks/tailblocks'
+import loadHyperUiBlocks from '../blocks/hyperui'
 
 const themeList = [
   { name: 'Tailblocks', url: tailblocksLogo, load: loadTailwindBlocks },
@@ -30,7 +30,7 @@ const colorRegex = new RegExp(
   'g',
 )
 
-const getUpdateThemeModal = (editor) => {
+const getUpdateThemeModal = (editor, standaloneServer) => {
   const md = editor.Modal
   const pfx = editor.getConfig().stylePrefix
 
@@ -88,7 +88,7 @@ const getUpdateThemeModal = (editor) => {
   btnEdit.className = pfx + 'btn-prim ' + pfx + 'btn-import'
   btnEdit.style.float = 'right'
   btnEdit.onclick = () => {
-    updateTheme(editor, selectedTheme?.load)
+    updateTheme(editor, selectedTheme?.load, standaloneServer)
     md.close()
   }
 
@@ -203,7 +203,7 @@ const updateColor = (editor, color) => {
   })
 }
 
-const updateTheme = (editor, loadTheme) => {
+const updateTheme = (editor, loadTheme, standaloneServer) => {
   if (!loadTheme) return
 
   // NOTE: just calling getAll once do not work
@@ -215,10 +215,10 @@ const updateTheme = (editor, loadTheme) => {
   editor.BlockManager.render()
 
   loadBasicBlocks(editor)
-  loadTheme(editor)
+  loadTheme(editor, standaloneServer)
 }
 
-export const loadPanels = (editor, isDev) => {
+export const loadPanels = (editor, isDev, standaloneServer) => {
   // Show Style Manager
   editor.on('component:selected', () => {
     const openSmBtn = editor.Panels.getButton('views', 'open-sm')
@@ -319,7 +319,7 @@ export const loadPanels = (editor, isDev) => {
       sender.set('active', 0)
       const md = editor.Modal
       md.setTitle('Change Theme')
-      const container = getUpdateThemeModal(editor)
+      const container = getUpdateThemeModal(editor, standaloneServer)
       md.setContent(container)
       md.open()
     },

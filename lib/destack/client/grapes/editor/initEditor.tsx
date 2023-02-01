@@ -30,9 +30,9 @@ const initEditor = async (startServer = true, standaloneServer): Promise<void> =
   var editor = grapesjs.init(editorOptions)
 
   loadTraits(editor)
-  loadPanels(editor, startServer)
+  loadPanels(editor, startServer, standaloneServer)
   loadComponents(editor)
-  loadBlocks(editor)
+  loadBlocks(editor, standaloneServer)
 
   appendCss(editor)
 

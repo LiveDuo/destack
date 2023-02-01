@@ -6,7 +6,7 @@ import b9s from './video.png'
 
 import { getPngHtml } from '../../../utils'
 
-const loadBasicBlocks = (editor) => {
+const loadBlocks = (editor) => {
   let bm = editor.BlockManager
 
   bm.add('text', {
@@ -54,4 +54,4 @@ const loadBasicBlocks = (editor) => {
   })
 }
 
-export { loadBasicBlocks }
+export default loadBlocks

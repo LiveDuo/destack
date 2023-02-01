@@ -9,7 +9,7 @@ import {
   typeLabel,
 } from '../../components/form'
 
-export function loadFormBlocks(editor) {
+const loadBlocks = (editor) => {
   const bm = editor.BlockManager
   const addBlock = (id, def) => {
     bm.add(id, {
@@ -102,3 +102,4 @@ export function loadFormBlocks(editor) {
     content: { type: typeRadio },
   })
 }
+export default loadBlocks
