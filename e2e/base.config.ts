@@ -9,7 +9,7 @@ const config = {
   retries: 1,
   webServer: {
     url: baseURL,
-    timeout: 60 * 1000,
+    timeout: 90 * 1000,
     reuseExistingServer: true,
   },
   use: { baseURL, trace: 'retry-with-trace', headless: CI },
