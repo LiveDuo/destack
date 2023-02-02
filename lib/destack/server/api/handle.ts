@@ -34,6 +34,7 @@ const uploadFiles = async (req: NextApiRequest): Promise<string[]> => {
     await fs.promises.mkdir(uploadPath)
   }
 
+  // NOTE: react-scripts triggers reload after uploading files in public folder
   form.on('fileBegin', (_, file) => (file.path = path.join('public', uploadFolder, file.name!)))
   const files = await formParse(form, req)
 
