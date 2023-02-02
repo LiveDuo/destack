@@ -30,8 +30,8 @@ jobs:
         with:
           path: ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-1.28.0
+      - run: npm ci
       - run: npx playwright install --with-deps
         # if: steps.playwright-cache.outputs.cache-hit != 'true'
-      - run: npm ci
       - run: CI=true npm run test:e2e
 
