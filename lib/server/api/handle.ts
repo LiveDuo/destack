@@ -4,7 +4,7 @@ import { NextApiResponse, NextApiRequest } from 'next'
 import path from 'path'
 import fs from 'fs'
 
-import { formParse, getJson, exists, readdirRecursive, getClosestPackageJson } from '../utils'
+import { formParse, getJson, exists, readdirRecursive } from '../utils'
 import { dataType } from '../../types'
 
 const DEFAULT_TEMPLATE = {
@@ -101,13 +101,11 @@ const handleData = async (req: NextApiRequest, res: NextApiResponse): Promise<vo
   }
 }
 
-const packageJsonPath = getClosestPackageJson()
-
 const handleAsset = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   if (req.method === 'GET') {
-    const assetPath = path.join(packageJsonPath, '..', '..', req.query.path as string)
+    const resolvePath = path.dirname(require.resolve('.'))
+    const assetPath = path.join(resolvePath, '..', '..', req.query.path as string)
     const data = await fs.promises.readFile(assetPath)
-
     const options = { 'Content-Type': 'image/png', 'Content-Length': data.length }
     res.writeHead(200, options)
     res.end(data, 'binary')

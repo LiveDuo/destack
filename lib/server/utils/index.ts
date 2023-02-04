@@ -55,13 +55,3 @@ export { readdirRecursive }
 
 const isNextJs = path.parse(process.argv[1]).base === 'next'
 export { isNextJs }
-
-const getClosestPackageJson = () => {
-  const path: string[] = []
-  while (true) {
-    const packagePath = path.join(...[...path, 'package.json'])
-    if (fs.existsSync(packagePath)) return require.resolve(packagePath)
-    path.push('..')
-  }
-}
-export { getClosestPackageJson }

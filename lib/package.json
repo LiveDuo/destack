@@ -1,7 +1,7 @@
 {
   "name": "destack",
   "description": "Page builder based on Next.js, Grapes.js & Tailwind CSS with zero-config deployment to Vercel",
-  "version": "2.0.7",
+  "version": "2.0.11",
   "main": "./build/browser/index.js",
   "homepage": "https://destack-page.vercel.app",
   "bin": "./server/react.bin.js",
@@ -16,7 +16,7 @@
   "scripts": {
     "dev": "rollup -c -w",
     "build": "rollup -c",
-    "build:react": "../node_modules/typescript/bin/tsc ./server/react.ts --outDir ./build/custom --module commonjs --esModuleInterop true --skipLibCheck",
+    "build:react": "../node_modules/typescript/bin/tsc ./server/react.ts --outFile ./build/custom/react.js --module amd --esModuleInterop true --skipLibCheck --moduleResolution node",
     "start:react": "node ./build/custom/react.js",
     "export": "npm run prepublishOnly && zip -r export.zip . && npm run postpublish",
     "publish:alpha": "node scripts/patch-version.js patch alpha && npm publish --tag alpha && node scripts/patch-version.js undo",
