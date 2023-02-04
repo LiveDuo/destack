@@ -2,19 +2,20 @@
   "name": "destack-workspace",
   "version": "1.0.0",
   "workspaces": [
-    "./lib/*",
-    "./dev/*"
+    "./lib",
+    "./dev/nextjs-project",
+    "./dev/react-project"
   ],
   "scripts": {
     "start": "npm run start:next",
     "start:next": "cd dev/nextjs-project && npm start",
     "start:react": "cd dev/react-project && npm start",
     "dev": "npm run dev:next",
-    "dev:next": "concurrently -k \"cd lib/destack && npm run dev\" \"cd dev/nextjs-project && npm run dev\"",
-    "dev:react": "concurrently -k \"cd lib/destack && npm run dev\" \"cd dev/react-project && npm run dev\"",
+    "dev:next": "concurrently -k \"cd lib && npm run dev\" \"cd dev/nextjs-project && npm run dev\"",
+    "dev:react": "concurrently -k \"cd lib && npm run dev\" \"cd dev/react-project && npm run dev\"",
     "build": "npm run build:next",
-    "build:next": "cd lib/destack && npm run build && cd ../../dev/nextjs-project && npm run build",
-    "build:react": "cd lib/destack && npm run build && cd ../../dev/react-project && npm run build",
+    "build:next": "cd lib && npm run build && cd ../../dev/nextjs-project && npm run build",
+    "build:react": "cd lib && npm run build && cd ../../dev/react-project && npm run build",
     "test:e2e": "npm run test:e2e:next && npm run test:e2e:react",
     "test:e2e:next": "npm run test:e2e:dev:next && npm run test:e2e:build:next",
     "test:e2e:react": "npm run test:e2e:dev:react && npm run test:e2e:build:react",
@@ -22,10 +23,10 @@
     "test:e2e:build:next": "playwright test --config=e2e/build/config.ts",
     "test:e2e:dev:react": "playwright test --config=e2e/dev-react/config.ts",
     "test:e2e:build:react": "playwright test --config=e2e/build-react/config.ts",
-    "export": "cd lib/destack && npm run export",
-    "publish": "cd lib/destack && npm publish",
-    "publish:alpha": "cd lib/destack && npm run publish:alpha",
-    "publish:beta": "cd lib/destack && npm run publish:beta",
+    "export": "cd lib && npm run export",
+    "publish": "cd lib && npm publish",
+    "publish:alpha": "cd lib && npm run publish:alpha",
+    "publish:beta": "cd lib && npm run publish:beta",
     "prepare": "husky install"
   },
   "devDependencies": {
