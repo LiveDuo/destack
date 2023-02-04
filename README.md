@@ -14,9 +14,9 @@ Build landing pages visually right in your React or Next.js projects. Deploy the
 
 # What's Destack?
 
-It's a tool to build landing pages within your [React](https://reactjs.org/) or [Next.js](https://nextjs.org/) projects. It's powered by [Grapes.js](https://grapesjs.com/) and includes the complete set of blocks from [Tailblocks](https://tailblocks.cc/), [Meraki UI](https://merakiui.com/) and [Hyper UI](https://www.hyperui.dev/). Supports asset uploading, form submission and a variaty of Tailwind colors. 
+It's a tool to build landing pages within your [React](https://reactjs.org/) or [Next.js](https://nextjs.org/) projects. Destack includes multiple components from [Tailblocks](https://tailblocks.cc/), [Meraki UI](https://merakiui.com/) and [Hyper UI](https://www.hyperui.dev/). It also supports image uploads and form submissions.
 
-*Destack is a tool to help you stop worrying about the marketing pages and focus on your project.*
+*Destack helps you stop worrying about marketing pages so you can focus on your project.*
 
 # Themes
 
@@ -49,7 +49,7 @@ There are hundreds of well designed and heavily functional blocks from [Tailbloc
 
 #### 🃏 Delightful Builder
 
-Powered by [Grapes.js](https://grapesjs.com/), a flexible and feature-full editor similar to Webflow that supports margins, paddings, borders and a lot of others CSS-like options that are familiar to developers.
+Powered by [Craft.js](https://craft.js.org/), a minimal page-builder framework. The builder was created with simplicity in mind and aims to be quickest way to build a landing page for a side-project.
 
 #### 🕹 Data Ownership
 
@@ -85,20 +85,20 @@ npm i destack
 
 Create `pages/api/builder/handle.js` and add the following:
 ```js
-export { handleData as default, config } from 'destack/build/server'
+export { handleEditor as default, config } from 'destack/build/server'
 ```
 
 ##### 3. Then create a new page
 
 On any Next.js page you want to setup Destack:
 ```js
-import 'grapesjs/dist/css/grapes.min.css'
+import 'destack/build/browser/index.css'
 export { getStaticProps } from 'destack/build/server'
 export { ContentProvider as default } from 'destack'
 ```
 
 <details>
-<summary>How to use along other components</summary>
+<summary>How to use the legacy page-builder (Grapesjs)</summary>
 <br>
 
 ```js
@@ -143,13 +143,13 @@ In `package.json`:
 
 In any React.js component you want to setup Destack:
 ```js
-import 'grapesjs/dist/css/grapes.min.css'
+import 'destack/build/browser/index.css'
 export { ContentProviderReact as default } from 'destack'
 
 ```
 
 <details>
-<summary>How to use along other components</summary>
+<summary>How to use the legacy page-builder (Grapesjs)</summary>
 <br>
 
 ```js
@@ -199,33 +199,6 @@ export default App
 - Select the image you want to update and click on it to add it to the page
 - Note: Images are uploaded to `public/uploaded` with their original filenames
 
-### Show editor in production
-
-- Install Destack to a new or existing project
-- Set `showEditorInProd={true}` in the `ContentProvider` component
-- The result should be similar to [Destack Online Builder](https://destack-page.vercel.app/)
-
-Note: this is only available for Next.js.
-
-<details>
-<summary>Code snippet</summary>
-<br>
-
-```js
-import { ContentProvider } from 'destack'
-import 'grapesjs/dist/css/grapes.min.css'
-
-export { getStaticProps } from 'destack/build/server'
-
-export default function Page(props) { 
-  return (
-    <div style={{height: '100%'}}>
-      <ContentProvider {...props} showEditorInProd={true}/>
-    </div>)
-}
-```
-</details>
-
 # Multi-page Support
 
 ### Next.js
@@ -244,7 +217,7 @@ Install a routing library such as `react-router-dom` or `router-tutorial` in the
 
 This project was nothing that was planned and design in depth in advance. Instead it was evolved out of the need and enjoyment of using some amazing tools and prototype quickly. These projects heavily improved my developer life and a few of my friends'.
 
-> Next.js 🅧 ➕ Tailwind CSS 🍃 ➕ Grapes.js 🍇 = 💣💣
+> Next.js 🅧 ➕ Tailwind CSS 🍃 ➕ Craft.js 🧶 = 💣💣
 
 Please go and show these projects some love (⭐️). 
 
@@ -258,7 +231,5 @@ Don't forget to check out [Tailblocks](https://tailblocks.cc/), [Meraki UI](http
 Made with [contributors-img](https://contrib.rocks).  
 
 # Upcoming Tasks
-- [ ] Custom tailwind.config.js file
 - [ ] Add admin UI as a Next.js route
-- [ ] Migrate to Craft.js (or similar)
 
