@@ -74,9 +74,9 @@ Works existing & new [React](https://reactjs.org/) and [Next.js](https://nextjs.
 
 - Fork the [destack-starter](https://github.com/LiveDuo/destack-starter) project
 
-- OR deploy a project to Vercel: [<img src="https://github.com/LiveDuo/destack/raw/main/assets/vercel_big.png" width="92">](https://vercel.com/new/git/external?repository-url=https://github.com/LiveDuo/destack-starter&project-name=destack-starter&repository-name=destack-starter)
+- OR deploy a project to Vercel: [<img src="https://raw.githubusercontent.com/LiveDuo/destack/main/assets/deploy/vercel_big.png" width="92">](https://vercel.com/new/git/external?repository-url=https://github.com/LiveDuo/destack-starter&project-name=destack-starter&repository-name=destack-starter)
 
-- OR preview it online with Gitpod: [<img src="https://github.com/LiveDuo/destack/raw/main/assets/gitpod_big.png" width="92">](https://gitpod.io/#https://github.com/LiveDuo/destack-starter)
+- OR preview it online with Gitpod: [<img src="https://raw.githubusercontent.com/LiveDuo/destack/main/assets/deploy/gitpod_big.png" width="92">](https://gitpod.io/#https://github.com/LiveDuo/destack-starter)
 
 ### With an existing Next.js project:
 
