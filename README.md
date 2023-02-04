@@ -1,10 +1,12 @@
-# Destack 🔌 Own your stack. Embrace your design.
+# Destack 🔌 Embrace design. Own the stack.
 
 Build landing pages visually right in your React or Next.js projects. Deploy them zero further configuration!
 
 **🏭 Examples:** [prettyfunnels.com](https://www.prettyfunnels.com/landing), [getdestack.com](https://www.getdestack.com/)
 
 # Announcements
+
+📣 [04/02/2023] The next version of Destack is out with the new editor is focused on simplicity. It's available on NPM with destack@2 or destack@latest.
 
 📣 [17/12/2022] Destack v2 is now in beta. It's a major rewrite that comes new custom page builder based on Craft.js.
 
