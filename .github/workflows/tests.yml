@@ -2,13 +2,13 @@ name: Tests
 
 on:
   push:
-    branches: [main]
+    branches: [main, feature/**]
   pull_request:
-    branches: [main]
+    branches: [main, feature/**]
   workflow_dispatch:
     inputs:
       mode:
-        description: 'Runtime Mode: "standard" or "interactive"'    
+        description: 'Runtime Mode: "standard" or "interactive"'
         required: false
         default: 'standard'
 
@@ -21,15 +21,16 @@ jobs:
         node-version: [16.x]
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm i -g npm@7.5
+      - uses: actions/cache@v3
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-1.28.0
       - run: npm ci
-      - run: cd lib/destack && npm run build
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'interactive' }}
-      - run: npm test
+      - run: npx playwright install --with-deps
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+      - run: CI=true npm run test:e2e
