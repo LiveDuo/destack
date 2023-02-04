@@ -2,11 +2,15 @@
 
 Build landing pages visually right in your React or Next.js projects. Deploy them zero further configuration!
 
-`📣 Update` Now supports 3 different themes: [Tailblocks](https://tailblocks.cc/), [Meraki UI](https://merakiui.com/) and [Hyper UI](https://www.hyperui.dev/)
+**🏭 Examples:** [prettyfunnels.com](https://www.prettyfunnels.com/landing), [getdestack.com](https://www.getdestack.com/)
 
-`👩‍🎨 Editor preview` Check it out on [Destack Online Builder](https://destack-page.vercel.app/)
+# Announcements
 
-`🏭 Examples in production` Visit [prettyfunnels.com](https://www.prettyfunnels.com/landing) or [getdestack.com](https://www.getdestack.com/)
+📣 [17/12/2022] Destack v2 is now in beta. It's a major rewrite that comes new custom page builder based on Craft.js.
+
+You can check it out at [destack-starter-beta](https://github.com/LiveDuo/destack-starter-beta). More info at https://github.com/LiveDuo/destack/pull/62 and https://github.com/LiveDuo/destack/issues/22.
+
+📣 [11/10/2022] Destack now supports multiple themes. Two new themes have been added [Meraki UI](https://merakiui.com/) and [Hyper UI](https://www.hyperui.dev/).
 
 <!-- <img src="https://github.com/LiveDuo/destack/raw/main/assets/logo_icons.png" width="100%"> -->
 
