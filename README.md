@@ -35,11 +35,11 @@ Destack now supports theme selection.
     <img src="https://raw.githubusercontent.com/LiveDuo/destack/feature/craftjs/assets/themes/screenshot-craft.png"/>    
     Theme selection
 </td>
-    <td width="48%"><img src="https://github.com/LiveDuo/destack/raw/main/assets/theme-meraki-ui.png"/>Meraki UI (<a href="https://merakiui.com/components">Components</a>)</td>
+    <td width="48%"><img src="https://raw.githubusercontent.com/LiveDuo/destack/main/assets/themes/screenshot-meraki-ui.png"/>Meraki UI (<a href="https://merakiui.com/components">Components</a>)</td>
  </tr>
   <tr>
-    <td width="48%"><img src="https://github.com/LiveDuo/destack/raw/main/assets/theme-hyper-ui.png"/>Hyper UI (<a href="https://www.hyperui.dev/components/marketing">Components</a>)</td>
-    <td width="48%"><img src="https://github.com/LiveDuo/destack/raw/main/assets/theme-tailblocks.png"/>Tailblocks (<a href="https://tailblocks.cc/">Components</a>)</td>
+    <td width="48%"><img src="https://raw.githubusercontent.com/LiveDuo/destack/main/assets/themes/screenshot-hyper-ui.png"/>Hyper UI (<a href="https://www.hyperui.dev/components/marketing">Components</a>)</td>
+    <td width="48%"><img src="https://raw.githubusercontent.com/LiveDuo/destack/main/assets/themes/screenshot-tailblocks.png"/>Tailblocks (<a href="https://tailblocks.cc/">Components</a>)</td>
  </tr>
 </table>
 
