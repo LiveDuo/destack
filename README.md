@@ -26,7 +26,7 @@ Destack now supports theme selection.
 
  <tr>
     <td width="48%">
-    <img src="https://github.com/LiveDuo/destack/raw/main/assets/theme-modal.png"/>    
+    <img src="https://raw.githubusercontent.com/LiveDuo/destack/feature/craftjs/assets/themes/screenshot-craft.png"/>    
     Theme selection
 </td>
     <td width="48%"><img src="https://github.com/LiveDuo/destack/raw/main/assets/theme-meraki-ui.png"/>Meraki UI (<a href="https://merakiui.com/components">Components</a>)</td>
@@ -37,9 +37,10 @@ Destack now supports theme selection.
  </tr>
 </table>
 
-<p>
-<b>Tip:</b> Change theme by clicking the theme icon. <img align="center" width="80px" src="https://github.com/LiveDuo/destack/raw/main/assets/theme-icon.png"/>
-</p>
+
+### Contribute (add a new theme)
+
+There are many open source Tailwind themes that Destack can support. If you want to help adding a new theme create a new topic in [discussions](https://github.com/LiveDuo/destack/discussions) or reach out to me on [twitter](https://twitter.com/andreas_tzionis).
 
 # Features
 
