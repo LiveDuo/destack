@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { dataType } from '../../types'
-import { formParse, getJson, exists, readdirRecursive } from '../utils'
-import fs from 'fs'
-import path from 'path'
-import { IncomingForm } from 'formidable'
+import { IncomingForm, File as FormidableFile } from 'formidable'
 import { NextApiResponse, NextApiRequest } from 'next'
+import path from 'path'
+import fs from 'fs'
+
+import { formParse, getJson, exists, readdirRecursive, getClosestPackageJson } from '../utils'
+import { dataType } from '../../types'
 
 const DEFAULT_TEMPLATE = {
   ROOT: {
@@ -23,8 +24,6 @@ const rootPath = process.cwd()
 const dataFolder = 'data'
 const uploadFolder = 'uploaded'
 
-import formidable from 'formidable'
-
 const uploadFiles = async (req: NextApiRequest): Promise<string[]> => {
   const form = new IncomingForm({ uploadDir: uploadFolder, keepExtensions: true })
 
@@ -39,7 +38,7 @@ const uploadFiles = async (req: NextApiRequest): Promise<string[]> => {
   const files = await formParse(form, req)
 
   const urls = Object.values(files).map((f) =>
-    path.join(path.sep, uploadFolder, (<formidable.File>f).name ?? ''),
+    path.join(path.sep, uploadFolder, (<FormidableFile>f).name ?? ''),
   )
   return urls
 }
@@ -102,13 +101,11 @@ const handleData = async (req: NextApiRequest, res: NextApiResponse): Promise<vo
   }
 }
 
+const packageJsonPath = getClosestPackageJson()
+
 const handleAsset = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   if (req.method === 'GET') {
-    const assetPath = path.join(
-      require.resolve('../../package.json'),
-      '..',
-      req.query.path as string,
-    )
+    const assetPath = path.join(packageJsonPath, '..', '..', req.query.path as string)
     const data = await fs.promises.readFile(assetPath)
 
     const options = { 'Content-Type': 'image/png', 'Content-Length': data.length }

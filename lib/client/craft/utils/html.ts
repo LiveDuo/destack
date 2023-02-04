@@ -1,9 +1,16 @@
+const cleanHTMLClasses = (classNames) => {
+  if (typeof classNames === 'string' || classNames instanceof String) return classNames
+  else if (Array.isArray(classNames) || classNames instanceof Array) return classNames.join(' ')
+  else return ''
+}
+
 const cleanHTMLElement = (root) => {
+  const classNames = cleanHTMLClasses(root?.classNames)
   return {
     childNodes: root.childNodes.map(cleanHTMLElement),
     attrs: root.attrs,
     tagName: root.tagName,
-    classNames: root?.classNames?.join(' ') ?? '',
+    classNames: classNames,
     nodeType: root.nodeType,
     innerText: root.innerText,
     constructor: root.constructor.name,
