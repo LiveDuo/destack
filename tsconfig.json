@@ -10,7 +10,6 @@
     "strictNullChecks": true,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
-    "useUnknownInCatchVariables": true,
     "strictPropertyInitialization": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
