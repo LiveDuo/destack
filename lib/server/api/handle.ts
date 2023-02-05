@@ -100,11 +100,11 @@ const handleData = async (req: NextApiRequest, res: NextApiResponse): Promise<vo
     return res.status(401).json({ error: 'Not allowed' })
   }
 }
-const resolvePath = path.dirname(require.resolve('destack'))
+const resolvePath = development ? path.dirname(require.resolve('destack')) : null
 
 const handleAsset = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   if (req.method === 'GET') {
-    const assetPath = path.join(resolvePath, '..', '..', req.query.path as string)
+    const assetPath = path.join(resolvePath as string, '..', '..', req.query.path as string)
     const data = await fs.promises.readFile(assetPath)
     const options = { 'Content-Type': 'image/png', 'Content-Length': data.length }
     res.writeHead(200, options)
