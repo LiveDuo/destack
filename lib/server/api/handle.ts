@@ -100,10 +100,10 @@ const handleData = async (req: NextApiRequest, res: NextApiResponse): Promise<vo
     return res.status(401).json({ error: 'Not allowed' })
   }
 }
+const resolvePath = path.dirname(require.resolve('destack'))
 
 const handleAsset = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   if (req.method === 'GET') {
-    const resolvePath = path.dirname(require.resolve('.'))
     const assetPath = path.join(resolvePath, '..', '..', req.query.path as string)
     const data = await fs.promises.readFile(assetPath)
     const options = { 'Content-Type': 'image/png', 'Content-Length': data.length }
