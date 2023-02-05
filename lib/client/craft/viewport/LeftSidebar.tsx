@@ -54,7 +54,7 @@ const Sidebar = () => {
     setToolbarVisible(v)
   }, [categories])
 
-  const toggleToolbar = (index) => {
+  const toggleToolbar = (index: number) => {
     setToolbarVisible((t) => t.map((c, i) => (i === index ? !c : c)))
   }
 

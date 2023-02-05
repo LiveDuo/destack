@@ -26,7 +26,7 @@ export const Header = () => {
     alert('Export done!')
   }
 
-  const onChange = (name) => {
+  const onChange = (name: string) => {
     updateIndex(themeNames.indexOf(name))
   }
 

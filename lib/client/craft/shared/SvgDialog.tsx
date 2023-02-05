@@ -5,7 +5,9 @@ import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
 
 import cx from 'classnames'
 
-const Dialog = ({ open, setOpen, node, actions }) => {
+type Props = { open: boolean; setOpen: any; node: any; actions: any }
+
+const Dialog: React.FC<Props> = ({ open, setOpen, node, actions }) => {
   const props = node.data.props
   const key = props.propId
   const [path, setPath] = useState(node.data.props[key]?.path)
@@ -46,7 +48,7 @@ const Dialog = ({ open, setOpen, node, actions }) => {
                 onClick={() => {
                   setOpen(false)
 
-                  actions.setProp(node.id, (prop) => {
+                  actions.setProp(node.id, (prop: any) => {
                     if (!prop[key]) prop[key] = {}
                     prop[key].path = path
                   })

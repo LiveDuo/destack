@@ -1,4 +1,4 @@
-const cssString = `.gjs-one-bg {
+const cssString: string = `.gjs-one-bg {
   background-color: white !important;
 }
 .gjs-three-bg {

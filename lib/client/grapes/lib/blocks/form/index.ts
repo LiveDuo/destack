@@ -11,7 +11,7 @@ import {
 
 const loadBlocks = (editor) => {
   const bm = editor.BlockManager
-  const addBlock = (id, def) => {
+  const addBlock = (id: string, def: any) => {
     bm.add(id, {
       ...def,
       category: { id: 'forms', label: 'Forms' },

@@ -51,6 +51,7 @@
     "@rollup/plugin-commonjs": "^23.0.0",
     "@rollup/plugin-image": "^2.1.1",
     "@rollup/plugin-node-resolve": "^15.0.0",
+    "@types/classnames": "^2.3.1",
     "@types/formidable": "^1.2.2",
     "autoprefixer": "^10.2.6",
     "axios": "^1.2.2",

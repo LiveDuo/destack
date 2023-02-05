@@ -32,8 +32,8 @@ interface ContextInterface {
   themeNames: string[]
   themeIndex: number
   resolver: object
-  standalone: Boolean
-  setStandalone: (Boolean) => void
+  standalone: boolean
+  setStandalone: (boolean) => void
   updateIndex: (number) => void
 }
 
@@ -66,7 +66,7 @@ const ThemeProvider = ({ children }) => {
   const [themeIndex, setThemeIndex] = useState<number>(defaultValue.themeIndex)
   const [components, setComponents] = useState<any[]>(defaultValue.components)
   const [categories, setCategories] = useState<string[]>(defaultValue.categories)
-  const [standalone, setStandalone] = useState<Boolean>(defaultValue.standalone)
+  const [standalone, setStandalone] = useState<boolean>(defaultValue.standalone)
   const [resolver, _setResolver] = useState<object>(defaultValue.resolver)
 
   const themeNames = themes.map((t) => t.name)

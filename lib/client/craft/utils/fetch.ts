@@ -9,11 +9,11 @@ type templateData = {
   content: string
 }
 
-const getBaseUrl = (standaloneServer) => {
+const getBaseUrl = (standaloneServer: boolean) => {
   return standaloneServer ? `http://localhost:${standaloneServerPort}` : ''
 }
 
-const getImageUrl = (standaloneServer, imageSrc) => {
+const getImageUrl = (standaloneServer: boolean, imageSrc: string) => {
   const baseUrl = getBaseUrl(standaloneServer)
   return `${baseUrl}/api/builder/handle?type=asset&path=${imageSrc}`
 }
@@ -29,7 +29,7 @@ const fetchJSON = async ({ method, url, data }: fetchJSONArgs): Promise<template
 }
 export { fetchJSON }
 
-function debounce(callback, timeout = 1000) {
+function debounce(callback: Function, timeout = 1000) {
   let timeoutFn
   return (...args) => {
     const context = this
@@ -38,7 +38,7 @@ function debounce(callback, timeout = 1000) {
   }
 }
 
-const uploadFile = async (file, standaloneServer) => {
+const uploadFile = async (file, standaloneServer: boolean) => {
   const formData = new FormData()
   formData.append('file-0', file)
   const baseUrl = getBaseUrl(standaloneServer)
@@ -50,7 +50,7 @@ const uploadFile = async (file, standaloneServer) => {
 }
 export { uploadFile }
 
-const loadTemplate = async (standaloneServer) => {
+const loadTemplate = async (standaloneServer: boolean) => {
   const baseUrl = getBaseUrl(standaloneServer)
   const data = await fetchJSON({
     method: 'get',
@@ -60,7 +60,7 @@ const loadTemplate = async (standaloneServer) => {
 }
 export { loadTemplate }
 
-const saveTemplate = async (state, standaloneServer) => {
+const saveTemplate = async (state, standaloneServer: boolean) => {
   const baseUrl = getBaseUrl(standaloneServer)
   const body = { data: JSON.parse(state.serialize()) }
 
@@ -75,7 +75,7 @@ const saveTemplate = async (state, standaloneServer) => {
 // would be better to somehow check from editor state
 let stateChanged = false
 
-const saveTemplateDebounce = debounce((e, standaloneServer) => {
+const saveTemplateDebounce = debounce((e, standaloneServer: boolean) => {
   if (stateChanged) {
     saveTemplate(e, standaloneServer)
   }

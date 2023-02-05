@@ -44,8 +44,8 @@ const uploadFiles = async (req: NextApiRequest): Promise<string[]> => {
 }
 export { uploadFiles }
 
-const getFileNameFromRoute = (route) => (route === '/' ? 'default.json' : `${route}.json`)
-const getRouteFromFilename = (filename) =>
+const getFileNameFromRoute = (route: string) => (route === '/' ? 'default.json' : `${route}.json`)
+const getRouteFromFilename = (filename: string) =>
   filename === '/default.json' ? '/' : `${filename.slice(0, -5)}`
 
 const loadData = async (route: string): Promise<dataType> => {

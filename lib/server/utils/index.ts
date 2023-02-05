@@ -29,16 +29,13 @@ const getJson = (req: NextApiRequest): Promise<Record<string, string>> =>
   })
 export { getJson }
 
-const zip = (rows: any[][]): Array<any> =>
-  rows[0].map((_: any, c: string | number) => rows.map((row) => row[c]))
-
 const exists = (s: fs.PathLike): Promise<boolean> =>
   fs.promises
     .access(s)
     .then(() => true)
     .catch(() => false)
 
-export { exists, zip }
+export { exists }
 
 const readdirRecursive = (folder: string, files: string[] = []): string[] | void => {
   fs.readdirSync(folder).forEach((file) => {
