@@ -14,7 +14,7 @@ You can check it out at [destack-starter-beta](https://github.com/LiveDuo/destac
 
 📣 [11/10/2022] Destack now supports multiple themes. Two new themes have been added [Meraki UI](https://merakiui.com/) and [Hyper UI](https://www.hyperui.dev/).
 
-[![Tutorial](https://raw.githubusercontent.com/LiveDuo/destack/main/assets/youtube/preview.jpg)](https://www.youtube.com/watch?v=zJoaxMX7AKM "Tutorial")
+[![Tutorial](https://raw.githubusercontent.com/LiveDuo/destack/main/assets/youtube/craft.jpg)](https://www.youtube.com/watch?v=JTfUCCGaUd4 "Tutorial")
 
 # What's Destack?
 
