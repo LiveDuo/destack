@@ -77,7 +77,14 @@ export { loadAllData }
 
 const updateData = async (route: string, data: string): Promise<void> => {
   const fileName = getFileNameFromRoute(route)
-  await fs.promises.writeFile(path.join(rootPath, dataFolder, fileName), JSON.stringify(data))
+
+  const updatePath = path.join(rootPath, dataFolder)
+  const updateFolderExists = await exists(updatePath)
+  if (!updateFolderExists) {
+    await fs.promises.mkdir(updatePath)
+  }
+
+  await fs.promises.writeFile(path.join(updatePath, fileName), JSON.stringify(data))
 }
 export { updateData }
 
