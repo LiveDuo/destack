@@ -6,13 +6,13 @@ const cleanHTMLClasses = (classNames: any) => {
   else return ''
 }
 
-const cleanHTMLElement = (root: RootProps) => {
+const cleanHTMLElement = (root: RootProps): RootProps => {
   const classNames = cleanHTMLClasses(root?.classNames)
   return {
     childNodes: root.childNodes.map(cleanHTMLElement),
     attrs: root.attrs,
     tagName: root.tagName,
-    classNames: classNames,
+    classNames: classNames as string,
     nodeType: root.nodeType,
     innerText: root.innerText,
     constructor: root.constructor.name,

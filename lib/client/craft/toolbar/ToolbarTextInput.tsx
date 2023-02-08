@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
+
+// @ts-ignore
 import { ChromePicker } from 'react-color'
 
 export type ToolbarTextInputProps = {

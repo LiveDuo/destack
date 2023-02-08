@@ -29,16 +29,16 @@ const fetchJSON = async ({ method, url, data }: fetchJSONArgs): Promise<template
 }
 export { fetchJSON }
 
-function debounce(callback: Function, timeout = 1000) {
-  let timeoutFn
-  return (...args) => {
+function debounce(this: any, callback: Function, timeout = 1000) {
+  let timeoutFn: any
+  return (...args: any) => {
     const context = this
     clearTimeout(timeoutFn)
     timeoutFn = setTimeout(() => callback.apply(context, args), timeout)
   }
 }
 
-const uploadFile = async (file, standaloneServer: boolean) => {
+const uploadFile = async (file: File, standaloneServer: boolean) => {
   const formData = new FormData()
   formData.append('file-0', file)
   const baseUrl = getBaseUrl(standaloneServer)
@@ -60,7 +60,7 @@ const loadTemplate = async (standaloneServer: boolean) => {
 }
 export { loadTemplate }
 
-const saveTemplate = async (state, standaloneServer: boolean) => {
+const saveTemplate = async (state: any, standaloneServer: boolean) => {
   const baseUrl = getBaseUrl(standaloneServer)
   const body = { data: JSON.parse(state.serialize()) }
 
@@ -75,7 +75,7 @@ const saveTemplate = async (state, standaloneServer: boolean) => {
 // would be better to somehow check from editor state
 let stateChanged = false
 
-const saveTemplateDebounce = debounce((e, standaloneServer: boolean) => {
+const saveTemplateDebounce = debounce((e: any, standaloneServer: boolean) => {
   if (stateChanged) {
     saveTemplate(e, standaloneServer)
   }

@@ -3,7 +3,7 @@ const getElementProperty = (
   property: string,
   defaultValue: string,
 ): string => {
-  const value = window.getComputedStyle(element)[property]
+  const value = window.getComputedStyle(element)[property as any]
   if (value !== defaultValue) return value
   else if (!element || element.childNodes.length === 0) return defaultValue
   else return getElementProperty(element?.childNodes[0] as HTMLElement, property, defaultValue)

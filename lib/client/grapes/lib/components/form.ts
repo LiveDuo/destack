@@ -16,11 +16,14 @@ export const svgImage = 'svg'
 
 const fixAppearanceStyle = '-webkit-appearance: auto; -moz-appearance: none; appearance: auto;'
 
-export function loadFormComponents(editor: {
-  DomComponents: any
-  TraitManager: any
-  Commands: any
-}): void {
+export function loadFormComponents(
+  this: any,
+  editor: {
+    DomComponents: any
+    TraitManager: any
+    Commands: any
+  },
+): void {
   const domc = editor.DomComponents
 
   const idTrait = {
@@ -122,7 +125,7 @@ export function loadFormComponents(editor: {
 
     extendFnView: ['updateAttributes'],
     view: {
-      updateAttributes() {
+      updateAttributes(this: any) {
         this.el.setAttribute('autocomplete', 'off')
       },
     },
@@ -209,11 +212,11 @@ export function loadFormComponents(editor: {
         click: (e: { preventDefault: () => any }) => e.preventDefault(),
       },
 
-      init() {
+      init(this: any) {
         this.listenTo(this.model, 'change:attributes:checked', this.handleChecked)
       },
 
-      handleChecked() {
+      handleChecked(this: any) {
         this.el.checked = !!this.model.get('attributes').checked
       },
     },
@@ -253,7 +256,7 @@ export function loadFormComponents(editor: {
         ],
       },
 
-      init() {
+      init(this: any) {
         const comps = this.components()
         const tChild = comps.length === 1 && comps.models[0]
         const chCnt = (tChild && tChild.is('textnode') && tChild.get('content')) || ''
@@ -263,7 +266,7 @@ export function loadFormComponents(editor: {
         text !== chCnt && this.__onTextChange()
       },
 
-      __onTextChange() {
+      __onTextChange(this: any) {
         this.components(this.get('text'))
       },
     },
@@ -375,7 +378,7 @@ export function loadFormComponents(editor: {
       return el
     },
 
-    onEvent({ elInput, component }) {
+    onEvent({ elInput, component }: any) {
       const inputType = elInput.querySelector('.href-next__type')
       let href = ''
 
@@ -400,7 +403,7 @@ export function loadFormComponents(editor: {
       component.addAttributes({ href })
     },
 
-    onUpdate({ elInput, component }) {
+    onUpdate({ elInput, component }: any) {
       const href = component.getAttributes().href || ''
       const inputType = elInput.querySelector('.href-next__type')
       let type = 'url'
@@ -424,7 +427,7 @@ export function loadFormComponents(editor: {
     },
   })
 
-  const onClickButtonClear = (src) => `const run = (e) => {
+  const onClickButtonClear = (src: string) => `const run = (e) => {
       if (e.target.getAttribute('data-gjs-type') !== 'button') {
         ${src}
       }
@@ -435,7 +438,7 @@ export function loadFormComponents(editor: {
   trtm.addType('button-next', {
     noLabel: true,
 
-    createInput({ trait }) {
+    createInput({ trait }: any) {
       const el = document.createElement('div')
       el.style.backgroundColor = 'white'
 
@@ -504,7 +507,7 @@ export function loadFormComponents(editor: {
       return el
     },
 
-    onEvent({ elInput, component }) {
+    onEvent({ elInput, component }: any) {
       const inputType = elInput.querySelector('.button-next__type')
       let onClickSrc = ''
 
@@ -555,7 +558,7 @@ export function loadFormComponents(editor: {
       }
     },
 
-    onUpdate({ elInput, component }) {
+    onUpdate({ elInput, component }: any) {
       const attrs = component.getAttributes()
       const type = attrs['data-gjs-sub-type']
 
@@ -595,7 +598,7 @@ export function loadFormComponents(editor: {
       return el
     },
 
-    onEvent({ elInput, component }) {
+    onEvent({ elInput, component }: any) {
       const newPath = elInput.querySelector('.svg-next__svg').value
       if (newPath === '' || !isPath(newPath)) return
 
@@ -608,7 +611,7 @@ export function loadFormComponents(editor: {
       component.replaceWith(htmlDoc.body.innerHTML)
     },
 
-    onUpdate({ elInput, component }) {
+    onUpdate({ elInput, component }: any) {
       const parser = new DOMParser()
       const htmlDoc = parser.parseFromString(component.toHTML(), 'text/html')
       const path = htmlDoc.querySelector('path')?.getAttribute('d')
@@ -631,7 +634,7 @@ export function loadFormComponents(editor: {
       return el
     },
 
-    onEvent({ elInput, component }) {
+    onEvent({ elInput, component }: any) {
       const valIsAsync = elInput.querySelector('.form-next__async').checked
 
       component.addAttributes({ 'data-gjs-async': valIsAsync })
@@ -687,7 +690,7 @@ export function loadFormComponents(editor: {
       component.addAttributes({ onsubmit: onClickSrc })
     },
 
-    onUpdate({ elInput, component }) {
+    onUpdate({ elInput, component }: any) {
       const attrs = component.getAttributes()
       const inputAsync = elInput.querySelector('.form-next__async')
       const isAsync = attrs['data-gjs-async']
