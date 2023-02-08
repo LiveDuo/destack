@@ -6,7 +6,7 @@ import b9s from './video.png'
 
 import { getPngHtml } from '../../../utils'
 
-const loadBlocks = (editor) => {
+const loadBlocks = (editor: any) => {
   let bm = editor.BlockManager
 
   bm.add('text', {

@@ -2,7 +2,7 @@ import { getPngFromId } from '../../../utils'
 
 import components from '../../../../../themes/meraki-light'
 
-const loadBlocks = (newEditor: { BlockManager: any }, standaloneServer): void => {
+const loadBlocks = (newEditor: { BlockManager: any }, standaloneServer: boolean): void => {
   const blockManager = newEditor.BlockManager
 
   Object.entries(components).forEach(([k, s]) => {

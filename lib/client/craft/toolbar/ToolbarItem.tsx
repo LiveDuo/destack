@@ -74,7 +74,7 @@ export const ToolbarItem = ({
         ) : type === 'select' ? (
           <ToolbarDropdown
             value={value || ''}
-            onChange={(value) =>
+            onChange={(value: number) =>
               setProp((props: any) => (props[propKey] = onChange ? onChange(value) : value))
             }
             {...props}

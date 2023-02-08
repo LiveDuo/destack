@@ -1,14 +1,23 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, ChangeEvent } from 'react'
 
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
 
+// @ts-ignore
 import cx from 'classnames'
 
 import { uploadFile } from '../utils/fetch'
 
-const Content = ({ url, text, setText, onUpload, onChange }) => {
+interface ContentProps {
+  url: string
+  text: string
+  setText: Function
+  onUpload: (event: ChangeEvent<HTMLInputElement>) => void
+  onChange: Function
+}
+
+const Content: React.FC<ContentProps> = ({ url, text, setText, onUpload, onChange }) => {
   const input = useRef<HTMLInputElement>(null)
 
   return (
@@ -56,14 +65,22 @@ const Content = ({ url, text, setText, onUpload, onChange }) => {
   )
 }
 
-const Dialog = ({ open, setOpen, node, actions, standaloneServer }) => {
+interface DialogProps {
+  open: boolean
+  setOpen: (open: boolean) => void
+  node: any
+  actions: any
+  standaloneServer: boolean
+}
+
+const Dialog: React.FC<DialogProps> = ({ open, setOpen, node, actions, standaloneServer }) => {
   const props = node.data.props
   const propId = props.propId
 
   const [url, setUrl] = useState(props[propId]?.url ?? node.dom?.src)
   const [text, setText] = useState('')
 
-  const onUpload = async (e) => {
+  const onUpload = async (e: any) => {
     e.preventDefault()
 
     const file = e?.target.files[0]
@@ -117,7 +134,7 @@ const Dialog = ({ open, setOpen, node, actions, standaloneServer }) => {
                 onClick={() => {
                   setOpen(false)
 
-                  actions.setProp(node.id, (prop) => {
+                  actions.setProp(node.id, (prop: any) => {
                     if (!prop[propId]) prop[propId] = {}
                     prop[propId].url = url
                   })

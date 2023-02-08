@@ -12,12 +12,17 @@ import { loadPoweredBy } from '../utils/powerby'
 
 import { ThemeContext } from '../store'
 
-const FrameEditor = ({ data, standaloneServer }) => {
+interface FrameProps {
+  data: any
+  standaloneServer: boolean
+}
+
+const FrameEditor: React.FC<FrameProps> = ({ data, standaloneServer }) => {
   const { actions } = useEditor()
 
   const loadData = async () => {
     if (data) {
-      const templateData = data.find(({ name }) => name === location.pathname)
+      const templateData = data.find(({ name }: any) => name === location.pathname)
       const content = JSON.parse(templateData.content)
       actions.deserialize(content)
 
@@ -46,12 +51,17 @@ const FrameEditor = ({ data, standaloneServer }) => {
   )
 }
 
-const Editor = ({ data, standaloneServer }) => {
+interface EditorProps {
+  data: any
+  standaloneServer: boolean
+}
+
+const Editor: React.FC<EditorProps> = ({ data, standaloneServer }) => {
   const { resolver, setStandalone } = useContext(ThemeContext)
 
   useEffect(() => setStandalone(standaloneServer), [])
 
-  const onStateChange = (e) => {
+  const onStateChange = (e: any) => {
     saveTemplateDebounce(e, standaloneServer)
   }
 

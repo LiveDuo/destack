@@ -1,7 +1,14 @@
 import React from 'react'
 import * as Tooltip from '@radix-ui/react-tooltip'
 
-const SimpleTooltip = ({ text, children, side, offset }) => (
+interface TooltipProps {
+  text: string
+  children: React.ReactNode
+  side: any
+  offset: number
+}
+
+const SimpleTooltip: React.FC<TooltipProps> = ({ text, children, side, offset }) => (
   <Tooltip.Provider>
     <Tooltip.Root delayDuration={0}>
       <Tooltip.Trigger asChild>{children}</Tooltip.Trigger>

@@ -4,9 +4,18 @@ import * as SelectPrimitive from '@radix-ui/react-select'
 
 import CheckIcon from '@heroicons/react/24/outline/CheckIcon'
 
+// @ts-ignore
 import cx from 'classnames'
 
-const Select = ({ defaultValue, values, open, setOpen, onChange }) => {
+interface SelectProps {
+  defaultValue: string
+  values: string[]
+  open: boolean
+  setOpen: Function
+  onChange: (value: string) => void
+}
+
+const Select: React.FC<SelectProps> = ({ defaultValue, values, open, setOpen, onChange }) => {
   return (
     <SelectPrimitive.Root
       defaultValue={defaultValue}
@@ -17,7 +26,7 @@ const Select = ({ defaultValue, values, open, setOpen, onChange }) => {
       <SelectPrimitive.Content className="z-50 top-2">
         <SelectPrimitive.Viewport className="bg-white p-2 rounded-lg shadow-lg">
           <SelectPrimitive.Group>
-            {values.map((f, i) => (
+            {values.map((f, i: number) => (
               <SelectPrimitive.Item
                 key={i}
                 value={f}

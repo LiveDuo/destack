@@ -6,7 +6,7 @@ type fetchJSONArgs = {
   url: string
 }
 
-const elementExists = (el) => typeof el !== 'undefined' && el !== null
+const elementExists = (el: any) => typeof el !== 'undefined' && el !== null
 export { elementExists }
 
 const fetchJSON = async ({ method, url, data }: fetchJSONArgs): Promise<JSON> => {
@@ -33,7 +33,7 @@ const getSvgHtml = (svg: () => Element): string => {
 }
 export { getSvgHtml }
 
-const getPngHtml = (png): string => {
+const getPngHtml = (png: string): string => {
   const img = new Image()
   img.src = png
   img.style.width = '100%'
@@ -54,11 +54,11 @@ const isJsonValid = (str: string): boolean => {
 }
 export { isJsonValid }
 
-const getBaseUrl = (standaloneServer) => {
+const getBaseUrl = (standaloneServer: boolean) => {
   return standaloneServer ? `http://localhost:${standaloneServerPort}` : ''
 }
 
-const saveTemplate = async (state, standaloneServer) => {
+const saveTemplate = async (state: any, standaloneServer: boolean) => {
   const baseUrl = getBaseUrl(standaloneServer)
   const body = { data: state }
 
@@ -70,7 +70,7 @@ const saveTemplate = async (state, standaloneServer) => {
 }
 export { saveTemplate }
 
-const loadTemplate = async (standaloneServer) => {
+const loadTemplate = async (standaloneServer: boolean) => {
   const baseUrl = getBaseUrl(standaloneServer)
   const data = (await fetchJSON({
     method: 'get',
@@ -80,17 +80,17 @@ const loadTemplate = async (standaloneServer) => {
 }
 export { loadTemplate }
 
-const getPngFromId = (theme, id, standaloneServer) =>
+const getPngFromId = (theme: string, id: string, standaloneServer: boolean) =>
   getPngHtml(getImageUrl(standaloneServer, `/themes/${theme}/${id}/preview.png`))
 export { getPngFromId }
 
-const getImageUrl = (standaloneServer, imageSrc) => {
+const getImageUrl = (standaloneServer: boolean, imageSrc: string) => {
   const baseUrl = getBaseUrl(standaloneServer)
   return `${baseUrl}/api/builder/handle?type=asset&path=${imageSrc}`
 }
 export { getImageUrl }
 
-const uploadFile = async (file, standaloneServer) => {
+const uploadFile = async (file: File, standaloneServer: boolean) => {
   const formData = new FormData()
   formData.append('file-0', file)
   const baseUrl = getBaseUrl(standaloneServer)

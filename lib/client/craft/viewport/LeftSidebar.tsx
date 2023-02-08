@@ -16,9 +16,13 @@ import { cleanHTMLElement } from '../utils/html'
 
 import { getImageUrl } from '../utils/fetch'
 
+import { RootProps } from '../../../types'
+
 const Category = SidebarItem
 
-const Item = ({ connectors, c }) => {
+type ItemProps = { connectors: any; c: any }
+
+const Item: React.FC<ItemProps> = ({ connectors, c }) => {
   const { standalone } = useContext(ThemeContext)
 
   return (
@@ -26,7 +30,7 @@ const Item = ({ connectors, c }) => {
       ref={(ref) =>
         connectors.create(
           ref as HTMLElement,
-          <Component root={cleanHTMLElement(parse(c.source))} />,
+          <Component root={cleanHTMLElement(parse(c.source) as unknown as RootProps)} />,
         )
       }
     >

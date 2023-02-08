@@ -18,7 +18,12 @@ import LinkIcon from '@heroicons/react/24/outline/LinkIcon'
 import CircleStackIcon from '@heroicons/react/24/outline/CircleStackIcon'
 import ArrowsPointingOutIcon from '@heroicons/react/24/outline/ArrowsPointingOutIcon'
 
-const EditorElement = ({ render, standaloneServer }) => {
+interface ContainerProps {
+  render: React.ReactNode
+  standaloneServer: boolean
+}
+
+const EditorElement: React.FC<ContainerProps> = ({ render, standaloneServer }) => {
   const { id } = useNode()
   const { actions, isActive } = useEditor((_, query) => ({
     isActive: query.getEvent('selected').contains(id),

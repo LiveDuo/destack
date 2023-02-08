@@ -4,7 +4,7 @@ import loadTailwindBlocks from './tailblocks'
 // import loadHyperUiBlocks from './hyperui'
 // import loadMerakiUiLightBlocks from './merakiui-light'
 
-export function loadBlocks(editor, standaloneServer) {
+export function loadBlocks(editor: any, standaloneServer: boolean) {
   loadBasicBlocks(editor)
   loadTailwindBlocks(editor, standaloneServer)
   // loadHyperUiBlocks(editor, standaloneServer)

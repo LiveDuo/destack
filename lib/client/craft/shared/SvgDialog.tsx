@@ -3,11 +3,12 @@ import React, { useState } from 'react'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
 
+// @ts-ignore
 import cx from 'classnames'
 
-type Props = { open: boolean; setOpen: any; node: any; actions: any }
+type DialogProps = { open: boolean; setOpen: any; node: any; actions: any }
 
-const Dialog: React.FC<Props> = ({ open, setOpen, node, actions }) => {
+const Dialog: React.FC<DialogProps> = ({ open, setOpen, node, actions }) => {
   const props = node.data.props
   const key = props.propId
   const [path, setPath] = useState(node.data.props[key]?.path)

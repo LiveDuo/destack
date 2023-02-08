@@ -2,7 +2,7 @@
 import { tailwindCssUrl } from '../../../../server/config'
 import { elementExists } from '../../utils'
 
-const appendTailwindCss = (newEditor): void => {
+const appendTailwindCss = (newEditor: any): void => {
   const iframe = newEditor.Canvas.getFrameEl()
 
   if (!iframe) return
@@ -36,7 +36,7 @@ const appendCustomCss = () => {
   element.style.height = '100%'
 }
 
-const appendCss = (newEditor) => {
+const appendCss = (newEditor: any) => {
   appendCustomCss()
   appendTailwindCss(newEditor)
 }

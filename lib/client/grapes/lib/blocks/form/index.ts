@@ -9,7 +9,7 @@ import {
   typeLabel,
 } from '../../components/form'
 
-const loadBlocks = (editor) => {
+const loadBlocks = (editor: any) => {
   const bm = editor.BlockManager
   const addBlock = (id: string, def: any) => {
     bm.add(id, {

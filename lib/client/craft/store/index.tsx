@@ -18,7 +18,8 @@ const themes = [
   { name: 'Meraki UI', folder: 'meraki-light', load: () => import(`../../../themes/meraki-light`) },
 ]
 
-const getCategories = (components) => [...new Set(components?.map((c) => c.category))] as string[]
+const getCategories = (components: any) =>
+  [...new Set(components?.map((c: any) => c.category))] as string[]
 
 interface ComponentInterface {
   displayName: string
@@ -33,8 +34,8 @@ interface ContextInterface {
   themeIndex: number
   resolver: object
   standalone: boolean
-  setStandalone: (boolean) => void
-  updateIndex: (number) => void
+  setStandalone: (arg0: boolean) => void
+  updateIndex: (arg0: number) => void
 }
 
 const _resolver = {
@@ -62,7 +63,9 @@ const defaultValue = {
 
 const ThemeContext = createContext<ContextInterface>(defaultValue)
 
-const ThemeProvider = ({ children }) => {
+type ProviderProps = { children: React.ReactNode }
+
+const ThemeProvider: React.FC<ProviderProps> = ({ children }) => {
   const [themeIndex, setThemeIndex] = useState<number>(defaultValue.themeIndex)
   const [components, setComponents] = useState<any[]>(defaultValue.components)
   const [categories, setCategories] = useState<string[]>(defaultValue.categories)
@@ -75,7 +78,7 @@ const ThemeProvider = ({ children }) => {
     updateIndex(0)
   }, [])
 
-  const updateIndex = async (index) => {
+  const updateIndex = async (index: number) => {
     setThemeIndex(index)
 
     const componentsObject = await themes[index].load()

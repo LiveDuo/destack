@@ -9,23 +9,13 @@ import { Button } from './Button'
 import { Image } from './Image'
 import { Svg } from './Svg'
 
-interface AttrsProps {
-  class?: String
-}
+import { RootProps } from '../../../types'
 
-interface RootProps {
-  childNodes: RootProps[]
-  attrs: AttrsProps
-  tagName: string
-  classNames: string
-  nodeType: number
-  innerText: string
-  constructor: string
-}
 interface ChildProps {
   root: RootProps
   d?: number[]
 }
+
 const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
   if (!root || root?.childNodes.length === 0) return null
 
@@ -172,7 +162,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
           else if (r.tagName === 'ADDRESS')
             return (
               <address className={r.classNames} key={key} {...attrsR}>
-                <Text text={r.innerText} key={key} id={key} />
+                <Text className={''} text={r.innerText} key={key} id={key} />
               </address>
             )
           else if (r.tagName === 'IMG') {
@@ -285,7 +275,7 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
           if (r.innerText.trim() === '') return null
           // className={r.parentNode.classNames}
           if (r.constructor === 'TextNode' || r.constructor === 't')
-            return <Text text={r.innerText ?? ''} key={key} id={key} />
+            return <Text className={r.classNames} text={r.innerText ?? ''} key={key} id={key} />
           else return <p key={key}>Unknown node</p>
         } else {
           return <p key={key}>Unknown type</p>
@@ -296,7 +286,11 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
 }
 export default Child
 
-const Component = ({ root }) => {
+interface ComponentProps {
+  root: RootProps
+}
+
+const Component: React.FC<ComponentProps> = ({ root }) => {
   const { connectors, node } = useNode((node) => ({ node }))
 
   return (

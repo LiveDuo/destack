@@ -7,6 +7,7 @@ import Select from '../components/Select'
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
 import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon'
 
+// @ts-ignore
 import cx from 'classnames'
 
 import { capitalize } from '../utils/text'
@@ -14,7 +15,14 @@ import { capitalize } from '../utils/text'
 const options = ['url', 'email', 'submit']
 const methods = ['GET', 'POST']
 
-const Dialog = ({ open, setOpen, node, actions }) => {
+interface DialogProps {
+  open: boolean
+  setOpen: (open: boolean) => void
+  node: any
+  actions: any
+}
+
+const Dialog: React.FC<DialogProps> = ({ open, setOpen, node, actions }) => {
   const [openSelect, setOpenSelect] = useState(false)
 
   const props = node.data.props
@@ -30,7 +38,7 @@ const Dialog = ({ open, setOpen, node, actions }) => {
   const [newTab, setNewTab] = useState(props.newTab)
   const [type, setType] = useState(props.type ?? 'url')
 
-  const onChange = (e) => {
+  const onChange = (e: string) => {
     setType(e.toLowerCase())
   }
 
@@ -146,7 +154,7 @@ const Dialog = ({ open, setOpen, node, actions }) => {
                 onClick={() => {
                   setOpen(false)
 
-                  actions.setProp(node.id, (prop) => {
+                  actions.setProp(node.id, (prop: any) => {
                     if (!prop[key]) prop[key] = {}
                     prop[key].type = type.toLowerCase()
                     prop[key].url = url

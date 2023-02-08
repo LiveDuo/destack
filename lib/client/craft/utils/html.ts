@@ -1,10 +1,12 @@
-const cleanHTMLClasses = (classNames) => {
+import { RootProps } from '../../../types'
+
+const cleanHTMLClasses = (classNames: any) => {
   if (typeof classNames === 'string' || classNames instanceof String) return classNames
   else if (Array.isArray(classNames) || classNames instanceof Array) return classNames.join(' ')
   else return ''
 }
 
-const cleanHTMLElement = (root) => {
+const cleanHTMLElement = (root: RootProps) => {
   const classNames = cleanHTMLClasses(root?.classNames)
   return {
     childNodes: root.childNodes.map(cleanHTMLElement),

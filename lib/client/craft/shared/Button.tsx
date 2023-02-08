@@ -4,7 +4,7 @@ import { useNode, useEditor } from '@craftjs/core'
 
 import Child from './Child'
 
-const handleClick = (props, e) => {
+const handleClick = (props: any, e: any) => {
   if (props?.type === 'url') {
     if (props?.newTab) {
       window.open(props.url, '_blank')?.focus()
@@ -40,14 +40,24 @@ const handleClick = (props, e) => {
   }
 }
 
-const Button = ({ r, d, i, propId }) => {
+interface ButtonProps {
+  r: any
+  d: number[]
+  i: number
+  propId: string
+}
+interface ButtonInterface extends React.FC<ButtonProps> {
+  craft: object
+}
+
+const Button: ButtonInterface = ({ r, d, i, propId }) => {
   const { node } = useNode((node) => ({ node }))
   const { enabled } = useEditor((state) => ({ enabled: state.options.enabled }))
   const { connectors } = useNode((node) => ({ node }))
 
   const { ['class']: foo, ...attrsR } = r.attrs
 
-  const onClick = (e) => {
+  const onClick = (e: any) => {
     e.preventDefault()
     if (!enabled) handleClick(node.data.props[propId], e)
   }

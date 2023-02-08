@@ -14,7 +14,7 @@ const ToastContainer = () => {
   useEffect(() => {
     if (mounted.current) return
 
-    const fn = (e) => {
+    const fn = (e: any) => {
       if (show) return
 
       const typeTemp = e.detail.type
@@ -47,7 +47,7 @@ const ToastContainer = () => {
 
     return () => document.removeEventListener('toast', fn, false)
   }, [])
-  const onAnimationEnd = (e) => {
+  const onAnimationEnd = (e: any) => {
     if (e.animationName === 'hideToastAnimation') {
       setAboutToHide(false)
       setShow(false)

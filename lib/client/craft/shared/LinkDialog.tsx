@@ -3,9 +3,17 @@ import React, { useState } from 'react'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
 
+// @ts-ignore
 import cx from 'classnames'
 
-const Dialog = ({ open, setOpen, node, actions }) => {
+interface DialogProps {
+  open: boolean
+  setOpen: (open: boolean) => void
+  node: any
+  actions: any
+}
+
+const Dialog: React.FC<DialogProps> = ({ open, setOpen, node, actions }) => {
   const props = node.data.props
   const key = props.propId
   const [link, setLink] = useState(node.data.props[key]?.link ?? node.dom?.href)
@@ -56,7 +64,7 @@ const Dialog = ({ open, setOpen, node, actions }) => {
                 onClick={() => {
                   setOpen(false)
 
-                  actions.setProp(node.id, (prop) => {
+                  actions.setProp(node.id, (prop: any) => {
                     if (!prop[key]) prop[key] = {}
                     prop[key].link = link
                     prop[key].newTab = newTab

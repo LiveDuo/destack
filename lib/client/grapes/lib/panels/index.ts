@@ -30,7 +30,7 @@ const colorRegex = new RegExp(
   'g',
 )
 
-const getUpdateThemeModal = (editor, standaloneServer) => {
+const getUpdateThemeModal = (editor: any, standaloneServer: boolean) => {
   const md = editor.Modal
   const pfx = editor.getConfig().stylePrefix
 
@@ -41,7 +41,7 @@ const getUpdateThemeModal = (editor, standaloneServer) => {
   containerBody.style.display = 'flex'
   containerBody.style.justifyContent = 'center'
 
-  let selectedTheme
+  let selectedTheme: any
   themeList.forEach((theme) => {
     const container = document.createElement('div')
     container.style.display = 'flex'
@@ -109,7 +109,7 @@ const getUpdateThemeModal = (editor, standaloneServer) => {
   return container
 }
 
-const getUpdateColorModal = (editor) => {
+const getUpdateColorModal = (editor: any) => {
   const md = editor.Modal
   const pfx = editor.getConfig().stylePrefix
 
@@ -120,7 +120,7 @@ const getUpdateColorModal = (editor) => {
   containerBody.style.display = 'flex'
   containerBody.style.justifyContent = 'center'
 
-  let selectedColor
+  let selectedColor: any
   colorList.forEach((data) => {
     const btnColor = document.createElement('button')
     btnColor.style.width = '40px'
@@ -184,11 +184,11 @@ const getUpdateColorModal = (editor) => {
 
 const getAllComponents = (model: any, result = [] as any[]) => {
   result.push(model)
-  model.components().each((mod) => getAllComponents(mod, result))
+  model.components().each((mod: any) => getAllComponents(mod, result))
   return result
 }
 
-const updateColor = (editor, color) => {
+const updateColor = (editor: any, color: string) => {
   const wrapper = editor.DomComponents.getWrapper()
   const componentsAll = getAllComponents(wrapper, [])
   componentsAll.forEach((c) => {
@@ -203,14 +203,14 @@ const updateColor = (editor, color) => {
   })
 }
 
-const updateTheme = (editor, loadTheme, standaloneServer) => {
+const updateTheme = (editor: any, loadTheme: Function, standaloneServer: boolean) => {
   if (!loadTheme) return
 
   // NOTE: just calling getAll once do not work
   let models = editor.BlockManager.getAll().models
   while (models.length > 0) {
     models = editor.BlockManager.getAll().models
-    models.forEach((element) => editor.BlockManager.remove(element.id))
+    models.forEach((element: any) => editor.BlockManager.remove(element.id))
   }
   editor.BlockManager.render()
 
@@ -218,7 +218,7 @@ const updateTheme = (editor, loadTheme, standaloneServer) => {
   loadTheme(editor, standaloneServer)
 }
 
-export const loadPanels = (editor, isDev, standaloneServer) => {
+export const loadPanels = (editor: any, isDev: boolean, standaloneServer: boolean) => {
   // Show Style Manager
   editor.on('component:selected', () => {
     const openSmBtn = editor.Panels.getButton('views', 'open-sm')
@@ -237,13 +237,13 @@ export const loadPanels = (editor, isDev, standaloneServer) => {
   })
 
   // Connfig Commands
-  editor.Commands.add('set-device-desktop', (e) => e.setDevice('Desktop'))
-  editor.Commands.add('set-device-tablet', (e) => e.setDevice('Tablet'))
-  editor.Commands.add('set-device-mobile', (e) => e.setDevice('Mobile portrait'))
+  editor.Commands.add('set-device-desktop', (e: any) => e.setDevice('Desktop'))
+  editor.Commands.add('set-device-tablet', (e: any) => e.setDevice('Tablet'))
+  editor.Commands.add('set-device-mobile', (e: any) => e.setDevice('Mobile portrait'))
 
   editor.Commands.add(
     'canvas-clear',
-    (e) => confirm(txtConfirm) && e.runCommand('core:canvas-clear'),
+    (e: any) => confirm(txtConfirm) && e.runCommand('core:canvas-clear'),
   )
 
   const devicePanel = editor.Panels.getPanel('commands')
@@ -260,13 +260,13 @@ export const loadPanels = (editor, isDev, standaloneServer) => {
     editor.Panels.addButton('options', {
       id: 'export-template',
       className: 'fa fa-code',
-      command: (e) => e.runCommand('export-template'),
+      command: (e: any) => e.runCommand('export-template'),
       attributes: { title: 'View Code' },
     })
   editor.Panels.addButton('options', {
     id: 'undo',
     className: 'fa fa-undo',
-    command: (e) => e.runCommand('core:undo'),
+    command: (e: any) => e.runCommand('core:undo'),
     attributes: { title: 'Undo' },
   })
   editor.Panels.addButton('options', {
@@ -296,14 +296,14 @@ export const loadPanels = (editor, isDev, standaloneServer) => {
   editor.Panels.addButton('options', {
     id: 'canvas-clear',
     className: 'fa fa-trash',
-    command: (e) => e.runCommand('canvas-clear'),
+    command: (e: any) => e.runCommand('canvas-clear'),
   })
 
   editor.Panels.removeButton('options', 'fullscreen')
 
   // Add color command
   editor.Commands.add('open-update-color', {
-    run(_, sender) {
+    run(_: any, sender: any) {
       sender.set('active', 0)
       const md = editor.Modal
       md.setTitle('Change Color')
@@ -315,7 +315,7 @@ export const loadPanels = (editor, isDev, standaloneServer) => {
 
   // Add theme command
   editor.Commands.add('open-update-theme', {
-    run(_, sender) {
+    run(_: any, sender: any) {
       sender.set('active', 0)
       const md = editor.Modal
       md.setTitle('Change Theme')

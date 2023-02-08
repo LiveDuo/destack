@@ -7,13 +7,22 @@ import { appendCss } from '../lib/css'
 
 import { ChangeEvent } from 'react'
 
-const uploadFileAndAdd = async (e, editor, standaloneServer: boolean): Promise<void> => {
-  const files = e.dataTransfer ? e.dataTransfer.files : e.target.files
+const uploadFileAndAdd = async (
+  e: ChangeEvent<HTMLInputElement>,
+  editor: any,
+  standaloneServer: boolean,
+): Promise<void> => {
+  const files = e.target.files as FileList
   const images = await uploadFile(files[0], standaloneServer)
   editor.AssetManager.add(images)
 }
 
+declare global {
+  var grapesjs: any
+}
+
 const initEditor = async (startServer = true, standaloneServer: boolean): Promise<void> => {
+  // @ts-ignore
   const grapesjs = await import('grapesjs')
 
   // for 'npm run test' only
@@ -21,7 +30,7 @@ const initEditor = async (startServer = true, standaloneServer: boolean): Promis
 
   if (startServer) {
     assetManagerOptions.uploadFile = (e: ChangeEvent<HTMLInputElement>) =>
-      uploadFileAndAdd(e, editor, standaloneServer)
+      uploadFileAndAdd(e as any, editor, standaloneServer)
     editorOptions.assetManager = assetManagerOptions
   }
 

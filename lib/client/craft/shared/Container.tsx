@@ -2,7 +2,14 @@ import React from 'react'
 
 import { useNode } from '@craftjs/core'
 
-export const Container = ({ children }) => {
+interface ContainerProps {
+  children: React.ReactNode
+}
+interface ContainerInterface extends React.FC<ContainerProps> {
+  craft: object
+}
+
+export const Container: ContainerInterface = ({ children }) => {
   const { connectors } = useNode()
 
   return (

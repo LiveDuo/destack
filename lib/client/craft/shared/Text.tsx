@@ -1,30 +1,28 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { useNode, useEditor } from '@craftjs/core'
 
-export type TextProps = {
-  id: String
+interface TextProps {
+  id: string
   className: string
-  fontSize: string
-  textAlign: string
-  fontWeight: string
-  color: Record<'r' | 'g' | 'b' | 'a', string>
-  shadow: number
+  key: string
   text: string
-  margin: [string, string, string, string]
+}
+interface TextInterface extends React.FC<TextProps> {
+  craft: object
 }
 
-const Text = (props) => {
+const Text: TextInterface = (props) => {
   const { node, connectors, actions } = useNode((node) => ({ node }))
   const { enabled } = useEditor((state) => ({ enabled: state.options.enabled }))
   const [text] = useState(node.data.props[props.id]?.text ?? props.text)
-  const onChange = (e) => {
-    actions.setProp((prop) => {
+  const onChange = (e: any) => {
+    actions.setProp((prop: any) => {
       if (!prop[props.id]) prop[props.id] = {}
       prop[props.id].text = e.target.innerText
     }, 500)
   }
-  const onClick = (e) => {
+  const onClick = (e: any) => {
     if (enabled) {
       e.preventDefault()
       e.stopPropagation()
@@ -43,7 +41,9 @@ const Text = (props) => {
       {text}
     </span>
   ) : (
-    <span className={props.className} style={{ ...props }}>
+    <span className={props.className}>
+      {' '}
+      {/* // style={{ ...props }} */}
       {text}
     </span>
   )

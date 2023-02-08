@@ -6,7 +6,12 @@ import { ThemeProvider } from './store'
 
 import './styles/app.css'
 
-const ContentProviderBase = ({ data, standaloneServer }) => {
+interface ContentProviderBaseProps {
+  data: any
+  standaloneServer: boolean
+}
+
+const ContentProviderBase: React.FC<ContentProviderBaseProps> = ({ data, standaloneServer }) => {
   return (
     <ThemeProvider>
       <div className="h-full h-screen">
@@ -16,9 +21,13 @@ const ContentProviderBase = ({ data, standaloneServer }) => {
   )
 }
 
-export const ContentProvider = ({ data }) => (
+interface ContentProviderProps {
+  data: any
+}
+
+export const ContentProvider: React.FC<ContentProviderProps> = ({ data }) => (
   <ContentProviderBase data={data} standaloneServer={false} />
 )
-export const ContentProviderReact = () => (
+export const ContentProviderReact: React.FC<ContentProviderProps> = () => (
   <ContentProviderBase data={null} standaloneServer={true} />
 )
