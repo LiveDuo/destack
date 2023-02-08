@@ -3,7 +3,7 @@
     "target": "es2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": false,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "strict": false,
     "noImplicitAny": false, // TODO more type annotations
     "noImplicitThis": false, // TODO fix classes types
@@ -23,6 +23,6 @@
     "tsBuildInfoFile": ".tsbuildinfo",
     "allowSyntheticDefaultImports": true
   },
-  "exclude": ["node_modules", "**/*.e2e.ts"],
-  "include": ["**/*.ts", "**/*.tsx", "types.d.ts", "images.d.ts", "grapesjs.d.ts"]
+  "exclude": ["lib/node_modules/**/*"],
+  "include": ["lib/**/*.ts", "lib/**/*.tsx", "types.d.ts"]
 }

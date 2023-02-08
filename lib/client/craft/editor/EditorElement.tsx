@@ -186,7 +186,7 @@ const EditorElement = ({ render, standaloneServer }) => {
                 actions={actions}
               />
             </div>,
-            document.querySelector('.page-container'),
+            document.querySelector('.page-container') as HTMLElement,
           )
         : null}
       {render}

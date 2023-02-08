@@ -23,6 +23,7 @@
     "test:e2e:build:next": "playwright test --config=e2e/build/config.ts",
     "test:e2e:dev:react": "playwright test --config=e2e/dev-react/config.ts",
     "test:e2e:build:react": "playwright test --config=e2e/build-react/config.ts",
+    "check:types": "cd lib && npm run check:types",
     "export": "cd lib && npm run export",
     "publish": "cd lib && npm publish",
     "publish:alpha": "cd lib && npm run publish:alpha",

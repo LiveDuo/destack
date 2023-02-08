@@ -8,6 +8,7 @@ export type SidebarItemProps = {
   height?: string
   visible?: boolean
   onChange?: (bool: boolean) => void
+  children: React.ReactNode
 }
 
 export const SidebarItem: React.FC<SidebarItemProps> = ({ visible, title, children, onChange }) => {

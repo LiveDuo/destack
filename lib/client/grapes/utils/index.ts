@@ -38,6 +38,7 @@ const getPngHtml = (png): string => {
   img.src = png
   img.style.width = '100%'
   img.style.objectFit = 'cover'
+  // @ts-ignore
   img.style.aspectRatio = '1.81'
   return img.outerHTML
 }

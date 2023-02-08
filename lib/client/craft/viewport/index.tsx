@@ -5,7 +5,7 @@ import { useEditor } from '@craftjs/core'
 import { Header } from './Header'
 import { Sidebar as LeftSidebar } from './LeftSidebar'
 
-const Viewport: React.FC = ({ children }) => {
+const Viewport = ({ children }) => {
   const { connectors, actions } = useEditor((state) => ({ enabled: state.options.enabled }))
 
   useEffect(() => {
