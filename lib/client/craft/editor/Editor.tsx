@@ -8,7 +8,7 @@ import EditorElement from './EditorElement'
 import { Container } from '../shared/Container'
 
 import { loadTemplate, saveTemplateDebounce } from '../utils/fetch'
-import { loadPoweredBy } from '../utils/powerby'
+import PoweredBy from './PoweredBy'
 
 import { ThemeContext } from '../store'
 
@@ -25,8 +25,6 @@ const FrameEditor: React.FC<FrameProps> = ({ data, standaloneServer }) => {
       const templateData = data.find(({ name }: any) => name === location.pathname)
       const content = JSON.parse(templateData.content)
       actions.deserialize(content)
-
-      loadPoweredBy()
     } else {
       const result = await loadTemplate(standaloneServer)
       const content = JSON.parse(result as string)
@@ -47,6 +45,7 @@ const FrameEditor: React.FC<FrameProps> = ({ data, standaloneServer }) => {
   ) : (
     <div className="page-container">
       <Frame />
+      <PoweredBy />
     </div>
   )
 }
