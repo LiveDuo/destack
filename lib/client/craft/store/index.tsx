@@ -12,23 +12,29 @@ import { Button } from '../shared/Button'
 import { Image } from '../shared/Image'
 import { Component } from '../shared/Child'
 
+import { getThemeUrl } from '../utils/fetch'
+
 const themes = [
-  { name: 'Hyper UI', folder: 'hyperui', load: () => import(`../../../themes/hyperui`) },
-  { name: 'Tailblocks', folder: 'tailblocks', load: () => import(`../../../themes/tailblocks`) },
-  { name: 'Meraki UI', folder: 'meraki-light', load: () => import(`../../../themes/meraki-light`) },
+  { name: 'Hyper UI', folder: 'hyperui' },
+  { name: 'Tailblocks', folder: 'tailblocks' },
+  { name: 'Meraki UI', folder: 'meraki-light' },
 ]
 
-const getCategories = (components: any) =>
-  [...new Set(components?.map((c: any) => c.category))] as string[]
-
 interface ComponentInterface {
-  displayName: string
-  category: string
+  folder: string
   source: any
 }
 
+interface ComponentInterfaceFull extends ComponentInterface {
+  displayName: string
+  category: string
+  source: string
+  themeFolder: string
+  blockFolder: string
+}
+
 interface ContextInterface {
-  components: ComponentInterface[]
+  components: ComponentInterfaceFull[]
   categories: string[]
   themeNames: string[]
   themeIndex: number
@@ -67,7 +73,7 @@ type ProviderProps = { children: React.ReactNode }
 
 const ThemeProvider: React.FC<ProviderProps> = ({ children }) => {
   const [themeIndex, setThemeIndex] = useState<number>(defaultValue.themeIndex)
-  const [components, setComponents] = useState<any[]>(defaultValue.components)
+  const [components, setComponents] = useState<ComponentInterfaceFull[]>(defaultValue.components)
   const [categories, setCategories] = useState<string[]>(defaultValue.categories)
   const [standalone, setStandalone] = useState<boolean>(defaultValue.standalone)
   const [resolver, _setResolver] = useState<object>(defaultValue.resolver)
@@ -81,16 +87,24 @@ const ThemeProvider: React.FC<ProviderProps> = ({ children }) => {
   const updateIndex = async (index: number) => {
     setThemeIndex(index)
 
-    const componentsObject = await themes[index].load()
-    const componentsArray = Object.values(componentsObject.default) as ComponentInterface[]
-    setComponents(
-      componentsArray.map((c) => ({
-        ...c,
-        themeFolder: themes[index].folder,
-        blockFolder: c.displayName.replaceAll(' ', '') as string,
-      })),
-    )
-    setCategories(getCategories(componentsArray))
+    // set components
+    const folder = themes[index].folder
+    const url = getThemeUrl(standalone, folder)
+    const data = await fetch(url).then((r) => r.json())
+    const _components = data.map((c: ComponentInterfaceFull) => ({
+      displayName: c.folder.replace(/(\d)/g, ' $1'),
+      category: c.folder.replace(/\d/g, ''),
+      source: c.source,
+      themeFolder: folder,
+      blockFolder: c.folder,
+    }))
+    setComponents(_components)
+
+    // set categories
+    const _categories = [
+      ...new Set(_components.map((c: ComponentInterfaceFull) => c.category)),
+    ] as string[]
+    setCategories(_categories)
   }
 
   const value = {

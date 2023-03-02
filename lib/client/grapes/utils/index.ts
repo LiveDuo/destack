@@ -84,6 +84,12 @@ const getPngFromId = (theme: string, id: string, standaloneServer: boolean) =>
   getPngHtml(getImageUrl(standaloneServer, `/themes/${theme}/${id}/preview.png`))
 export { getPngFromId }
 
+const getThemeUrl = (standaloneServer: boolean, themeFolder: string) => {
+  const baseUrl = getBaseUrl(standaloneServer)
+  return `${baseUrl}/api/builder/handle?type=theme&name=${themeFolder}`
+}
+export { getThemeUrl }
+
 const getImageUrl = (standaloneServer: boolean, imageSrc: string) => {
   const baseUrl = getBaseUrl(standaloneServer)
   return `${baseUrl}/api/builder/handle?type=asset&path=${imageSrc}`

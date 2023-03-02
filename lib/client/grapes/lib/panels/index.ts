@@ -15,14 +15,12 @@ import merakiLogo from '../../images/meraki.png'
 import tailblocksLogo from '../../images/tailblocks.png'
 
 import loadBasicBlocks from '../blocks/basic'
-import loadMerakiUiLightBlocks from '../blocks/merakiui-light'
-import loadTailwindBlocks from '../blocks/tailblocks'
-import loadHyperUiBlocks from '../blocks/hyperui'
+import { loadThemeBlocks } from '../blocks'
 
-const themeList = [
-  { name: 'Tailblocks', url: tailblocksLogo, load: loadTailwindBlocks },
-  { name: 'Hyper UI', url: hyperuiLogo, load: loadHyperUiBlocks },
-  { name: 'Meraki UI', url: merakiLogo, load: loadMerakiUiLightBlocks },
+const themeList: any[] = [
+  { name: 'Tailblocks', folder: 'tailblocks', url: tailblocksLogo },
+  { name: 'Hyper UI', folder: 'hyperui', url: hyperuiLogo },
+  { name: 'Meraki UI', folder: 'meraki-light', url: merakiLogo },
 ]
 
 const colorRegex = new RegExp(
@@ -88,7 +86,7 @@ const getUpdateThemeModal = (editor: any, standaloneServer: boolean) => {
   btnEdit.className = pfx + 'btn-prim ' + pfx + 'btn-import'
   btnEdit.style.float = 'right'
   btnEdit.onclick = () => {
-    updateTheme(editor, selectedTheme?.load, standaloneServer)
+    updateTheme(editor, selectedTheme, standaloneServer)
     md.close()
   }
 
@@ -203,8 +201,8 @@ const updateColor = (editor: any, color: string) => {
   })
 }
 
-const updateTheme = (editor: any, loadTheme: Function, standaloneServer: boolean) => {
-  if (!loadTheme) return
+const updateTheme = async (editor: any, selectedTheme: any, standaloneServer: boolean) => {
+  if (!selectedTheme) return
 
   // NOTE: just calling getAll once do not work
   let models = editor.BlockManager.getAll().models
@@ -215,7 +213,7 @@ const updateTheme = (editor: any, loadTheme: Function, standaloneServer: boolean
   editor.BlockManager.render()
 
   loadBasicBlocks(editor)
-  loadTheme(editor, standaloneServer)
+  loadThemeBlocks(editor, selectedTheme.folder, standaloneServer)
 }
 
 export const loadPanels = (editor: any, isDev: boolean, standaloneServer: boolean) => {

@@ -11,7 +11,7 @@ const loadBlocks = (editor: any) => {
 
   bm.add('text', {
     label: getPngHtml(b8s),
-    category: { label: 'Basic' },
+    category: { label: 'Basic', open: false },
     content: {
       type: 'text',
       content: 'Insert your text',
@@ -21,7 +21,7 @@ const loadBlocks = (editor: any) => {
 
   bm.add('link', {
     label: getPngHtml(b6s),
-    category: { label: 'Basic' },
+    category: { label: 'Basic', open: false },
     content: {
       type: 'link',
       content: 'Insert your link',
@@ -31,13 +31,13 @@ const loadBlocks = (editor: any) => {
 
   bm.add('image', {
     label: getPngHtml(b5s),
-    category: { label: 'Basic' },
+    category: { label: 'Basic', open: false },
     content: { type: 'image' },
   })
 
   bm.add('video', {
     label: getPngHtml(b9s),
-    category: { label: 'Basic' },
+    category: { label: 'Basic', open: false },
     content: {
       type: 'video',
       style: { height: '350px' },
@@ -46,7 +46,7 @@ const loadBlocks = (editor: any) => {
 
   bm.add('map', {
     label: getPngHtml(b7s),
-    category: { label: 'Basic' },
+    category: { label: 'Basic', open: false },
     content: {
       type: 'map',
       style: { height: '350px' },
