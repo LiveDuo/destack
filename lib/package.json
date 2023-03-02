@@ -42,7 +42,6 @@
     "is-svg-path": "^1.0.2",
     "node-html-parser": "^6.1.1",
     "postcss": "^8.4.18",
-    "re-resizable": "6.1.0",
     "react-color": "2.17.3",
     "ts-node": "^10.4.0",
     "yargs": "^17.3.0"
