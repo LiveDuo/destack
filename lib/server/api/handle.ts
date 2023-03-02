@@ -121,6 +121,25 @@ const handleAsset = async (req: NextApiRequest, res: NextApiResponse): Promise<v
   }
 }
 
+const handleTheme = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
+  if (req.method === 'GET') {
+    const themeName = req.query.name as string
+    const folderPath = path.join(resolvePath as string, '..', '..', 'themes', themeName)
+    const componentNames = await fs.promises
+      .readdir(folderPath)
+      .then((f) => f.filter((c) => c !== 'index.ts'))
+    const componentsP = componentNames.map(async (c) => {
+      const assetPath = path.join(folderPath, c, 'index.html')
+      const source = await fs.promises.readFile(assetPath, 'utf-8')
+      return { source, folder: c }
+    })
+    const components = await Promise.all(componentsP)
+    res.json(components)
+  } else {
+    return res.status(401).json({ error: 'Not allowed' })
+  }
+}
+
 const handleEditor = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   if (!development) return res.status(401).json({ error: 'Not allowed' })
 
@@ -128,6 +147,8 @@ const handleEditor = async (req: NextApiRequest, res: NextApiResponse): Promise<
     return handleData(req, res)
   } else if (req.query.type === 'asset') {
     return handleAsset(req, res)
+  } else if (req.query.type === 'theme') {
+    return handleTheme(req, res)
   } else {
     return res.status(400).json({ error: 'Invalid type' })
   }
