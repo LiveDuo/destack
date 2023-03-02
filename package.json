@@ -16,6 +16,7 @@
     "build": "npm run build:next",
     "build:next": "cd lib && npm run build && cd ../dev/nextjs-project && npm run build",
     "build:react": "cd lib && npm run build && cd ../dev/react-project && npm run build",
+    "analyze": "ANALYZE=true npm run build:next",
     "test:e2e": "npm run test:e2e:next && npm run test:e2e:react",
     "test:e2e:next": "npm run test:e2e:dev:next && npm run test:e2e:build:next",
     "test:e2e:react": "npm run test:e2e:dev:react && npm run test:e2e:build:react",
