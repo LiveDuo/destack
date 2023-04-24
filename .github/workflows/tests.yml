@@ -30,6 +30,7 @@ jobs:
         with:
           path: ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-1.28.0
+      - run: npm install -g npm@8.15.0
       - run: npm ci
       - run: npm run check:types
       - run: npx playwright install --with-deps
