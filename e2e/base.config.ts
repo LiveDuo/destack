@@ -1,12 +1,13 @@
 import { devices } from '@playwright/test'
 
-const PORT = process.env.PORT || 3000
-const baseURL = `http://localhost:${PORT}`
+const baseURL = `http://localhost:3000`
 const CI = process.env.CI === 'true'
 
 const config = {
   timeout: 15 * 1000,
   retries: 1,
+  reporter: CI ? 'github' : 'list',
+  forbidOnly: CI,
   webServer: {
     url: baseURL,
     timeout: 60 * 1000,
