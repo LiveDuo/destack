@@ -1,5 +1,3 @@
-require('destack/build/browser/index.css')
-
 import { ContentProviderReact } from 'destack'
 
 const App = () => {
