@@ -33,6 +33,7 @@ jobs:
       - run: npm ci
       - run: npm run check:types
       - run: npx playwright install --with-deps
+      - run: npm run build -w lib
         if: steps.playwright-cache.outputs.cache-hit != 'true'
       - uses: mxschmitt/action-tmate@v3
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}

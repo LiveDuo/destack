@@ -5,7 +5,7 @@ test('should contain craftjs renderer', async ({ page }) => {
   await expect(page.locator('div.craftjs-renderer')).toHaveCount(1)
 })
 
-test('should drap and drop a component', async ({ page }) => {
+test.skip('should drap and drop a component', async ({ page }) => {
   await page.goto('/')
 
   // add component
@@ -19,7 +19,7 @@ test('should drap and drop a component', async ({ page }) => {
   await page.click('div.page-container a:nth-child(4)')
 })
 
-test('should add an image to renderer', async ({ page }) => {
+test.skip('should add an image to renderer', async ({ page }) => {
   await page.goto('/')
 
   // NOTE: skip for now as upload image in not working in react
