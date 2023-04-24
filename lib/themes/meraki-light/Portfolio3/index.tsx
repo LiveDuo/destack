@@ -1,7 +1,4 @@
-import { source } from './source'
-
 const Component = {
-  source: source,
   displayName: 'Portfolio 3',
   category: 'Portfolios',
 }
