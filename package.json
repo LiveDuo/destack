@@ -11,8 +11,9 @@
     "start:next": "npm start -w dev/nextjs-project",
     "start:react": "npm start -w dev/react-project",
     "dev": "npm run dev:next",
-    "dev:next": "concurrently -k \"npm run dev -w lib\" \"npm run dev -w dev/nextjs-project\"",
-    "dev:react": "concurrently -k \"npm run dev -w lib\" \"npm run dev -w dev/react-project\"",
+    "dev:next": "concurrently -k \"npm run dev -w lib\" \"npm run wait:browser && npm run dev -w dev/nextjs-project\"",
+    "dev:react": "concurrently -k \"npm run dev -w lib\" \"npm run wait:browser && npm run dev -w dev/react-project\"",
+    "wait:browser": "wait-on lib/build/browser/index.js",
     "build": "npm run build:next",
     "build:next": "npm run build -w lib && npm run build -w dev/nextjs-project",
     "build:react": "npm run build -w lib && npm run build -w dev/react-project",
@@ -47,7 +48,8 @@
     "prettier": "^2.3.0",
     "pretty-quick": "^3.1.0",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^4.3.2"
+    "typescript": "^4.3.2",
+    "wait-on": "^7.0.1"
   },
   "lint-staged": {
     "*.{js,ts,tsx,jsx}": [
