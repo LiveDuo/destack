@@ -13,6 +13,7 @@ const colorList = [
 import hyperuiLogo from '../../images/hyperui.png'
 import merakiLogo from '../../images/meraki.png'
 import tailblocksLogo from '../../images/tailblocks.png'
+import prelineLogo from '../../images/tailblocks.png'
 
 import loadBasicBlocks from '../blocks/basic'
 import { loadThemeBlocks } from '../blocks'
@@ -21,6 +22,7 @@ const themeList: any[] = [
   { name: 'Tailblocks', folder: 'tailblocks', url: tailblocksLogo },
   { name: 'Hyper UI', folder: 'hyperui', url: hyperuiLogo },
   { name: 'Meraki UI', folder: 'meraki-light', url: merakiLogo },
+  { name: 'Preline', folder: 'preline', url: prelineLogo },
 ]
 
 const colorRegex = new RegExp(
