@@ -17,6 +17,9 @@ import Form1 from './Form1'
 import Form2 from './Form2'
 import Form3 from './Form3'
 import Form4 from './Form4'
+import Faq1 from './Faq1'
+import Testimonial1 from './Testimonial1'
+import Testimonial2 from './Testimonial2'
 
 const components = {
   Hero1,
@@ -38,5 +41,8 @@ const components = {
   Form2,
   Form3,
   Form4,
+  Faq1,
+  Testimonial1,
+  Testimonial2,
 }
 export default components
