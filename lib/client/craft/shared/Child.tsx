@@ -290,6 +290,12 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
                 <Child root={r} d={d.concat(i)} />
               </th>
             )
+          } else if (r.tagName === 'FIGCAPTION') {
+            return (
+              <figcaption className={r.classNames}>
+                <Child root={r} d={d.concat(i)} />
+              </figcaption>
+            )
           } else {
             return <p key={key}>Unknown container</p>
           }
