@@ -35,6 +35,14 @@ import Form2 from './Form2'
 import Gallery1 from './Gallery1'
 import Gallery2 from './Gallery2'
 import Gallery3 from './Gallery3'
+import Hero1 from './Hero1'
+import Hero2 from './Hero2'
+import Hero3 from './Hero3'
+import Hero4 from './Hero4'
+import Hero5 from './Hero5'
+import Hero6 from './Hero6'
+import Hero7 from './Hero7'
+import Hero8 from './Hero8'
 
 const components = {
   Banner1,
@@ -74,6 +82,14 @@ const components = {
   Gallery1,
   Gallery2,
   Gallery3,
+  Hero1,
+  Hero2,
+  Hero3,
+  Hero4,
+  Hero5,
+  Hero6,
+  Hero7,
+  Hero8,
 }
 
 export default components
