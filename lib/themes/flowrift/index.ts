@@ -13,6 +13,10 @@ import Cta1 from './Cta1'
 import Cta2 from './Cta2'
 import Cta3 from './Cta3'
 import Cta4 from './Cta4'
+import Faq1 from './Faq1'
+import Faq2 from './Faq2'
+import Faq3 from './Faq3'
+import Faq4 from './Faq4'
 
 const components = {
   Banner1,
@@ -30,6 +34,10 @@ const components = {
   Cta2,
   Cta3,
   Cta4,
+  Faq1,
+  Faq2,
+  Faq3,
+  Faq4,
 }
 
 export default components
