@@ -1,0 +1,14 @@
+{
+  "name": "destack-scripts",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "screenshots": "node ./screenshots.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^18.2.1",
+    "sharp": "^0.31.1"
+  }
+}
