@@ -23,6 +23,10 @@ import Testimonial2 from './Testimonial2'
 import Trusted1 from './Trusted1'
 import Blog1 from './Blog1'
 import Portfolio1 from './Portfolio1'
+import Event1 from './Event1'
+import Error1 from './Error1'
+import Error2 from './Error2'
+import Error3 from './Error3'
 
 const components = {
   Hero1,
@@ -50,5 +54,9 @@ const components = {
   Trusted1,
   Blog1,
   Portfolio1,
+  Event1,
+  Error1,
+  Error2,
+  Error3,
 }
 export default components
