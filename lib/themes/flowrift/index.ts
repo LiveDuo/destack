@@ -61,6 +61,9 @@ import Team3 from './Team3'
 import Testimonial1 from './Testimonial1'
 import Testimonial2 from './Testimonial2'
 import Testimonial3 from './Testimonial3'
+import Trusted1 from './Trusted1'
+import Trusted2 from './Trusted2'
+import Trusted3 from './Trusted3'
 
 const components = {
   Banner1,
@@ -126,6 +129,9 @@ const components = {
   Testimonial1,
   Testimonial2,
   Testimonial3,
+  Trusted1,
+  Trusted2,
+  Trusted3,
 }
 
 export default components
