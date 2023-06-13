@@ -13,7 +13,7 @@ const colorList = [
 import hyperuiLogo from '../../images/hyperui.png'
 import merakiLogo from '../../images/meraki.png'
 import tailblocksLogo from '../../images/tailblocks.png'
-import prelineLogo from '../../images/tailblocks.png'
+import prelineLogo from '../../images/preline.png'
 
 import loadBasicBlocks from '../blocks/basic'
 import { loadThemeBlocks } from '../blocks'
