@@ -297,7 +297,6 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
               </figcaption>
             )
           } else {
-            console.log(r.tagName)
             return <p key={key}>Unknown container</p>
           }
         } else if (r.nodeType === 3) {
