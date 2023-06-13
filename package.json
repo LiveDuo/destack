@@ -4,7 +4,8 @@
   "workspaces": [
     "./lib",
     "./dev/nextjs-project",
-    "./dev/react-project"
+    "./dev/react-project",
+    "./scripts"
   ],
   "scripts": {
     "start": "npm run start:next",
@@ -18,6 +19,7 @@
     "build:next": "npm run build -w lib && npm run build -w dev/nextjs-project",
     "build:react": "npm run build -w lib && npm run build -w dev/react-project",
     "analyze": "ANALYZE=true npm run build:next",
+    "screenshots": "npm run screenshots -w scripts",
     "test:e2e": "npm run test:e2e:next && npm run test:e2e:react",
     "test:e2e:next": "npm run test:e2e:dev:next && npm run test:e2e:build:next",
     "test:e2e:react": "npm run test:e2e:dev:react && npm run test:e2e:build:react",
