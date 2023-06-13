@@ -17,7 +17,6 @@ import prelineLogo from '../../images/preline.png'
 import flowriftLogo from '../../images/flowrift.png'
 import flowbiteLogo from '../../images/flowbite.png'
 
-
 import loadBasicBlocks from '../blocks/basic'
 import { loadThemeBlocks } from '../blocks'
 
@@ -45,6 +44,7 @@ const getUpdateThemeModal = (editor: any, standaloneServer: boolean) => {
   containerBody.style.padding = '40px 0px'
   containerBody.style.display = 'flex'
   containerBody.style.justifyContent = 'center'
+  containerBody.style.flexWrap = 'wrap'
 
   let selectedTheme: any
   themeList.forEach((theme) => {
