@@ -52,6 +52,12 @@ import Pricing3 from './Pricing3'
 import Review1 from './Review1'
 import Review2 from './Review2'
 import Review3 from './Review3'
+import Stats1 from './Stats1'
+import Stats2 from './Stats2'
+import Stats3 from './Stats3'
+import Team1 from './Team1'
+import Team2 from './Team2'
+import Team3 from './Team3'
 
 const components = {
   Banner1,
@@ -108,6 +114,12 @@ const components = {
   Review1,
   Review2,
   Review3,
+  Stats1,
+  Stats2,
+  Stats3,
+  Team1,
+  Team2,
+  Team3,
 }
 
 export default components
