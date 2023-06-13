@@ -1,10 +1,6 @@
-interface AttrsProps {
-  class?: String
-}
-
 interface RootProps {
   childNodes: RootProps[]
-  attrs: AttrsProps
+  attrs: map<string, string>
   tagName: string
   classNames: string
   nodeType: number

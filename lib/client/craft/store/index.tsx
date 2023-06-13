@@ -93,19 +93,25 @@ const ThemeProvider: React.FC<ProviderProps> = ({ children }) => {
     const url = getThemeUrl(standalone, folder)
     const data = await fetch(url).then((r) => r.json())
     const _components = data.map((c: ComponentInterfaceFull) => ({
-      displayName: c.folder.replace(/(\d)/g, ' $1'),
+      displayName: c.folder.replace(/(\d)/, ' $1'),
       category: c.folder.replace(/\d/g, ''),
       source: c.source,
       themeFolder: folder,
       blockFolder: c.folder,
-    }))
-    setComponents(_components)
+    })) as ComponentInterfaceFull[]
+
+    // sort components
+    const _coponentsSorted = _components.sort((a, b) => {
+      return a.displayName.localeCompare(b.displayName, undefined, {
+        numeric: true,
+        sensitivity: 'base',
+      })
+    })
+    setComponents(_coponentsSorted)
 
     // set categories
-    const _categories = [
-      ...new Set(_components.map((c: ComponentInterfaceFull) => c.category)),
-    ] as string[]
-    setCategories(_categories)
+    const _categories = _components.map((c: ComponentInterfaceFull) => c.category)
+    setCategories([...new Set(_categories)] as string[])
   }
 
   const value = {

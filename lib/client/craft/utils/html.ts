@@ -6,11 +6,26 @@ const cleanHTMLClasses = (classNames: any) => {
   else return ''
 }
 
+const cleanHTMLAttrs = (attrs: any) => {
+  if (!attrs) return {}
+  const mapped = Object.keys(attrs).reduce((acc: Object, key: string) => {
+    if (key === 'class') {
+      // skip
+    } else if (key === 'checked') {
+      acc['checkeddefault' as keyof Object] = attrs[key]
+    } else {
+      acc[key as keyof Object] = attrs[key]
+    }
+    return acc
+  }, {})
+  return mapped
+}
+
 const cleanHTMLElement = (root: RootProps): RootProps => {
   const classNames = cleanHTMLClasses(root?.classNames)
   return {
     childNodes: root.childNodes.map(cleanHTMLElement),
-    attrs: root.attrs,
+    attrs: cleanHTMLAttrs(root.attrs) as Object,
     tagName: root.tagName,
     classNames: classNames as string,
     nodeType: root.nodeType,
