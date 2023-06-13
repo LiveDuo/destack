@@ -22,6 +22,14 @@ import Feature2 from './Feature2'
 import Feature3 from './Feature3'
 import Feature4 from './Feature4'
 import Feature5 from './Feature5'
+import Footer1 from './Footer1'
+import Footer2 from './Footer2'
+import Footer3 from './Footer3'
+import Footer4 from './Footer4'
+import Footer5 from './Footer5'
+import Footer6 from './Footer6'
+import Footer7 from './Footer7'
+import Footer8 from './Footer8'
 
 const components = {
   Banner1,
@@ -48,6 +56,14 @@ const components = {
   Feature3,
   Feature4,
   Feature5,
+  Footer1,
+  Footer2,
+  Footer3,
+  Footer4,
+  Footer5,
+  Footer6,
+  Footer7,
+  Footer8,
 }
 
 export default components
