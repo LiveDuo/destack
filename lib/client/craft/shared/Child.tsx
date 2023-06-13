@@ -104,6 +104,12 @@ const Child: React.FC<ChildProps> = ({ root, d = [0] }) => {
                 <Child root={r} d={d.concat(i)} />
               </header>
             )
+          else if (r.tagName === 'MAIN')
+            return (
+              <main className={r.classNames} key={key}>
+                <Child root={r} d={d.concat(i)} />
+              </main>
+            )
           else if (r.tagName === 'FOOTER')
             return (
               <footer className={r.classNames} key={key}>
