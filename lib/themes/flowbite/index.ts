@@ -21,6 +21,7 @@ import Faq1 from './Faq1'
 import Testimonial1 from './Testimonial1'
 import Testimonial2 from './Testimonial2'
 import Trusted1 from './Trusted1'
+import Blog1 from './Blog1'
 
 const components = {
   Hero1,
@@ -46,5 +47,6 @@ const components = {
   Testimonial1,
   Testimonial2,
   Trusted1,
+  Blog1,
 }
 export default components
