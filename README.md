@@ -42,11 +42,11 @@ Destack now supports theme selection.
     <td width="48%"><img src="https://raw.githubusercontent.com/LiveDuo/destack/main/assets/themes/screenshot-tailblocks.png"/>Tailblocks (<a href="https://tailblocks.cc/">Components</a>)</td>
  </tr>
   <tr>
-    <td width="48%"><img src="https://raw.githubusercontent.com/LiveDuo/destack/main/assets/themes/screenshot-hyper-ui.png"/>Preline (<a href="https://preline.co/examples.html">Components</a>)</td>
-    <td width="48%"><img src="https://raw.githubusercontent.com/LiveDuo/destack/main/assets/themes/screenshot-tailblocks.png"/>Flow Rift (<a href="https://flowrift.com/">Components</a>)</td>
+    <td width="48%"><img src="https://raw.githubusercontent.com/LiveDuo/destack/main/assets/themes/screenshot-preline.png"/>Preline (<a href="https://preline.co/examples.html">Components</a>)</td>
+    <td width="48%"><img src="https://raw.githubusercontent.com/LiveDuo/destack/main/assets/themes/screenshot-flowrift.png"/>Flow Rift (<a href="https://flowrift.com/">Components</a>)</td>
  </tr>
  <tr>
-    <td width="48%"><img src="https://raw.githubusercontent.com/LiveDuo/destack/main/assets/themes/screenshot-hyper-ui.png"/>Flow Bite (<a href="https://flowbite.com/blocks/">Components</a>)</td>
+    <td width="48%"><img src="https://raw.githubusercontent.com/LiveDuo/destack/main/assets/themes/screenshot-flowbite.png"/>Flow Bite (<a href="https://flowbite.com/blocks/">Components</a>)</td>
  </tr>
 </table>
 
