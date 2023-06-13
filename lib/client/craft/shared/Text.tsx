@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useNode, useEditor } from '@craftjs/core'
 
@@ -15,11 +15,15 @@ interface TextInterface extends React.FC<TextProps> {
 const Text: TextInterface = (props) => {
   const { node, connectors, actions } = useNode((node) => ({ node }))
   const { enabled } = useEditor((state) => ({ enabled: state.options.enabled }))
-  const [text] = useState(node.data.props[props.id]?.text ?? props.text)
+
+  const [textEdit, setTextEdit] = useState(node.data.props[props.id]?.text ?? props.text)
+  const [textPreview, setTextPreview] = useState(textEdit)
+
   const onChange = (e: any) => {
     actions.setProp((prop: any) => {
       if (!prop[props.id]) prop[props.id] = {}
       prop[props.id].text = e.target.innerText
+      setTextPreview(e.target.innerText)
     }, 500)
   }
   const onClick = (e: any) => {
@@ -28,6 +32,10 @@ const Text: TextInterface = (props) => {
       e.stopPropagation()
     }
   }
+
+  useEffect(() => {
+    setTextEdit(node.data.props[props.id]?.text ?? props.text)
+  }, [enabled])
 
   return enabled ? (
     <span
@@ -38,14 +46,10 @@ const Text: TextInterface = (props) => {
       onClick={onClick}
       onInput={onChange}
     >
-      {text}
+      {textEdit}
     </span>
   ) : (
-    <span className={props.className}>
-      {' '}
-      {/* // style={{ ...props }} */}
-      {text}
-    </span>
+    <span className={props.className}>{textPreview}</span>
   )
 }
 
