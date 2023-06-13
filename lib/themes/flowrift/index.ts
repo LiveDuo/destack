@@ -30,6 +30,8 @@ import Footer5 from './Footer5'
 import Footer6 from './Footer6'
 import Footer7 from './Footer7'
 import Footer8 from './Footer8'
+import Form1 from './Form1'
+import Form2 from './Form2'
 
 const components = {
   Banner1,
@@ -64,6 +66,8 @@ const components = {
   Footer6,
   Footer7,
   Footer8,
+  Form1,
+  Form2,
 }
 
 export default components
