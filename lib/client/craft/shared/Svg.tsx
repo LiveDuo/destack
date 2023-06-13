@@ -22,6 +22,8 @@ const Svg: SvgInterface = ({ r, propId }) => {
       ref={(ref) => connectors.connect(ref as unknown as HTMLElement)}
       className={r.classNames}
       key={propId}
+      height={r.attrs['height']}
+      width={r.attrs['height']}
       fill={r.attrs['fill']}
       viewBox={r.attrs['viewbox']}
       stroke={r.attrs['stroke']}
