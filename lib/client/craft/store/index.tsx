@@ -17,6 +17,7 @@ import { getThemeUrl } from '../utils/fetch'
 const themes = [
   { name: 'Hyper UI', folder: 'hyperui' },
   { name: 'Tailblocks', folder: 'tailblocks' },
+  { name: 'Flowrift', folder: 'flowrift' },
   { name: 'Meraki UI', folder: 'meraki-light' },
   { name: 'Flowbite', folder: 'flowbite' },
 ]
