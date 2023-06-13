@@ -9,6 +9,10 @@ import Hero2 from './Hero2'
 import Header1 from './Header1'
 import Team1 from './Team1'
 import Team2 from './Team2'
+import Pricing1 from './Pricing1'
+import Stats1 from './Stats1'
+import Footer1 from './Footer1'
+import Footer2 from './Footer2'
 
 const components = {
   Hero1,
@@ -22,5 +26,9 @@ const components = {
   Header1,
   Team1,
   Team2,
+  Pricing1,
+  Stats1,
+  Footer1,
+  Footer2,
 }
 export default components
