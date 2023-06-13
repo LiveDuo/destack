@@ -7,6 +7,8 @@ import Feature1 from './Feature1'
 import Hero1 from './Hero1'
 import Hero2 from './Hero2'
 import Header1 from './Header1'
+import Team1 from './Team1'
+import Team2 from './Team2'
 
 const components = {
   Hero1,
@@ -18,5 +20,7 @@ const components = {
   Cta2,
   Cta3,
   Header1,
+  Team1,
+  Team2,
 }
 export default components
