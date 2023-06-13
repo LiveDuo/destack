@@ -13,6 +13,10 @@ import Pricing1 from './Pricing1'
 import Stats1 from './Stats1'
 import Footer1 from './Footer1'
 import Footer2 from './Footer2'
+import Form1 from './Form1'
+import Form2 from './Form2'
+import Form3 from './Form3'
+import Form4 from './Form4'
 
 const components = {
   Hero1,
@@ -30,5 +34,9 @@ const components = {
   Stats1,
   Footer1,
   Footer2,
+  Form1,
+  Form2,
+  Form3,
+  Form4,
 }
 export default components
