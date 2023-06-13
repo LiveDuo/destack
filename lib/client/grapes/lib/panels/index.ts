@@ -14,6 +14,9 @@ import hyperuiLogo from '../../images/hyperui.png'
 import merakiLogo from '../../images/meraki.png'
 import tailblocksLogo from '../../images/tailblocks.png'
 import prelineLogo from '../../images/preline.png'
+import flowriftLogo from '../../images/flowrift.png'
+import flowbiteLogo from '../../images/flowbite.png'
+
 
 import loadBasicBlocks from '../blocks/basic'
 import { loadThemeBlocks } from '../blocks'
@@ -21,8 +24,10 @@ import { loadThemeBlocks } from '../blocks'
 const themeList: any[] = [
   { name: 'Tailblocks', folder: 'tailblocks', url: tailblocksLogo },
   { name: 'Hyper UI', folder: 'hyperui', url: hyperuiLogo },
+  { name: 'Flowrift', folder: 'flowrift', url: flowriftLogo },
   { name: 'Meraki UI', folder: 'meraki-light', url: merakiLogo },
   { name: 'Preline', folder: 'preline', url: prelineLogo },
+  { name: 'Flowbite', folder: 'flowbite', url: flowbiteLogo },
 ]
 
 const colorRegex = new RegExp(

@@ -36,6 +36,9 @@ const aspectRatio = 0.55
     )}</body></html>`
     await page.setContent(html)
 
+    // wait to load the images
+    await new Promise((r) => setTimeout(r, 500))
+
     // take screenshot
     const filepath = `${componentsPath}/${themeName}/${c}/preview.png`
     await page.screenshot({ path: filepath })
