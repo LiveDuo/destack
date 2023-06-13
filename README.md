@@ -6,6 +6,8 @@ Build landing pages visually right in your React or Next.js projects. Deploy the
 
 # Announcements
 
+📣 [13/06/2023] Three more themes have been added [Preline](https://preline.co/), [Flow Bite](https://flowbite.com/) and [Flow Rift](https://flowrift.com/).
+
 📣 [04/02/2023] The next version of Destack is out with the new editor is focused on simplicity. It's available on NPM with destack@2 or destack@latest.
 
 📣 [17/12/2022] Destack v2 is now in beta. It's a major rewrite that comes new custom page builder based on Craft.js.
@@ -18,7 +20,7 @@ You can check it out at [destack-starter-beta](https://github.com/LiveDuo/destac
 
 # What's Destack?
 
-It's a tool to build landing pages within your [React](https://reactjs.org/) or [Next.js](https://nextjs.org/) projects. Destack includes multiple components from [Tailblocks](https://tailblocks.cc/), [Meraki UI](https://merakiui.com/) and [Hyper UI](https://www.hyperui.dev/). It also supports image uploads and form submissions.
+It's a tool to build landing pages within your [React](https://reactjs.org/) or [Next.js](https://nextjs.org/) projects. Destack includes multiple components from [Tailblocks](https://tailblocks.cc/), [Meraki UI](https://merakiui.com/), [Hyper UI](https://www.hyperui.dev/), [Preline](https://preline.co/), [Flow Bite](https://flowbite.com/) and [Flow Rift](https://flowrift.com/).. It also supports image uploads and form submissions.
 
 *Destack helps you stop worrying about marketing pages so you can focus on your project.*
 
@@ -39,6 +41,13 @@ Destack now supports theme selection.
     <td width="48%"><img src="https://raw.githubusercontent.com/LiveDuo/destack/main/assets/themes/screenshot-hyper-ui.png"/>Hyper UI (<a href="https://www.hyperui.dev/components/marketing">Components</a>)</td>
     <td width="48%"><img src="https://raw.githubusercontent.com/LiveDuo/destack/main/assets/themes/screenshot-tailblocks.png"/>Tailblocks (<a href="https://tailblocks.cc/">Components</a>)</td>
  </tr>
+  <tr>
+    <td width="48%"><img src="https://raw.githubusercontent.com/LiveDuo/destack/main/assets/themes/screenshot-hyper-ui.png"/>Preline (<a href="https://preline.co/examples.html">Components</a>)</td>
+    <td width="48%"><img src="https://raw.githubusercontent.com/LiveDuo/destack/main/assets/themes/screenshot-tailblocks.png"/>Flow Rift (<a href="https://flowrift.com/">Components</a>)</td>
+ </tr>
+ <tr>
+    <td width="48%"><img src="https://raw.githubusercontent.com/LiveDuo/destack/main/assets/themes/screenshot-hyper-ui.png"/>Flow Bite (<a href="https://flowbite.com/blocks/">Components</a>)</td>
+ </tr>
 </table>
 
 
@@ -50,7 +59,7 @@ There are many open source Tailwind themes that Destack can support. If you want
 
 #### 🧱 Powerful Blocks
 
-There are hundreds of well designed and heavily functional blocks from [Tailblocks](https://tailblocks.cc/), [Meraki UI](https://merakiui.com/) and [Hyper UI](https://www.hyperui.dev/). Supports Tailwind's theme colors ie. Red, Yellow, Green, Blue, Indigo, Purple & Pink.
+There are hundreds of well designed and heavily functional blocks from [Tailblocks](https://tailblocks.cc/), [Meraki UI](https://merakiui.com/), [Hyper UI](https://www.hyperui.dev/), [Preline](https://preline.co/), [Flow Bite](https://flowbite.com/) and [Flow Rift](https://flowrift.com/).. Supports Tailwind's theme colors ie. Red, Yellow, Green, Blue, Indigo, Purple & Pink.
 
 #### 🃏 Delightful Builder
 
@@ -226,7 +235,7 @@ This project was nothing that was planned and design in depth in advance. Instea
 
 Please go and show these projects some love (⭐️). 
 
-Don't forget to check out [Tailblocks](https://tailblocks.cc/), [Meraki UI](https://merakiui.com/) and [Hyper UI](https://www.hyperui.dev/), without their amazing open sourced components none of this would have been possible.  
+Don't forget to check out [Tailblocks](https://tailblocks.cc/), [Meraki UI](https://merakiui.com/), [Hyper UI](https://www.hyperui.dev/), [Preline](https://preline.co/), [Flow Bite](https://flowbite.com/) and [Flow Rift](https://flowrift.com/)., without their amazing open sourced components none of this would have been possible.  
 
 # Contributors
 <a href="https://github.com/liveduo/destack/graphs/contributors">
