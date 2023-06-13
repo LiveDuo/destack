@@ -32,6 +32,9 @@ import Footer7 from './Footer7'
 import Footer8 from './Footer8'
 import Form1 from './Form1'
 import Form2 from './Form2'
+import Gallery1 from './Gallery1'
+import Gallery2 from './Gallery2'
+import Gallery3 from './Gallery3'
 
 const components = {
   Banner1,
@@ -68,6 +71,9 @@ const components = {
   Footer8,
   Form1,
   Form2,
+  Gallery1,
+  Gallery2,
+  Gallery3,
 }
 
 export default components
