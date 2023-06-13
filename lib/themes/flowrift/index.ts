@@ -17,6 +17,11 @@ import Faq1 from './Faq1'
 import Faq2 from './Faq2'
 import Faq3 from './Faq3'
 import Faq4 from './Faq4'
+import Feature1 from './Feature1'
+import Feature2 from './Feature2'
+import Feature3 from './Feature3'
+import Feature4 from './Feature4'
+import Feature5 from './Feature5'
 
 const components = {
   Banner1,
@@ -38,6 +43,11 @@ const components = {
   Faq2,
   Faq3,
   Faq4,
+  Feature1,
+  Feature2,
+  Feature3,
+  Feature4,
+  Feature5,
 }
 
 export default components
