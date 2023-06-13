@@ -64,6 +64,19 @@ import Testimonial3 from './Testimonial3'
 import Trusted1 from './Trusted1'
 import Trusted2 from './Trusted2'
 import Trusted3 from './Trusted3'
+import Product1 from './Product1'
+import Product2 from './Product2'
+import Product3 from './Product3'
+import Product4 from './Product4'
+import Product5 from './Product5'
+import Heading1 from './Heading1'
+import Heading2 from './Heading2'
+import Heading3 from './Heading3'
+import PageNotFound1 from './Page_ not_found1'
+import PageNotFound2 from './Page_ not_found2'
+import PageNotFound3 from './Page_ not_found3'
+import PageNotFound4 from './Page_ not_found4'
+import PageNotFound5 from './Page_ not_found5'
 
 const components = {
   Banner1,
@@ -132,6 +145,19 @@ const components = {
   Trusted1,
   Trusted2,
   Trusted3,
+  Product1,
+  Product2,
+  Product3,
+  Product4,
+  Product5,
+  Heading1,
+  Heading2,
+  Heading3,
+  PageNotFound1,
+  PageNotFound2,
+  PageNotFound3,
+  PageNotFound4,
+  PageNotFound5,
 }
 
 export default components
