@@ -19,6 +19,7 @@ const themes = [
   { name: 'Tailblocks', folder: 'tailblocks' },
   { name: 'Flowrift', folder: 'flowrift' },
   { name: 'Meraki UI', folder: 'meraki-light' },
+  { name: 'Preline', folder: 'preline' },
   { name: 'Flowbite', folder: 'flowbite' },
 ]
 
