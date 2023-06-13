@@ -13,6 +13,10 @@ const cleanHTMLAttrs = (attrs: any) => {
       // skip
     } else if (key === 'checked') {
       acc['checkeddefault' as keyof Object] = attrs[key]
+    } else if (key === 'for') {
+      acc['htmlFor' as keyof Object] = attrs[key]
+    } else if (key === 'autocomplete') {
+      acc['autoComplete' as keyof Object] = attrs[key]
     } else {
       acc[key as keyof Object] = attrs[key]
     }
