@@ -23,7 +23,7 @@ const Svg: SvgInterface = ({ r, propId }) => {
       className={r.classNames}
       key={propId}
       height={r.attrs['height']}
-      width={r.attrs['height']}
+      width={r.attrs['width']}
       fill={r.attrs['fill']}
       viewBox={r.attrs['viewbox']}
       stroke={r.attrs['stroke']}
