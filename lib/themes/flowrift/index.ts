@@ -43,6 +43,9 @@ import Hero5 from './Hero5'
 import Hero6 from './Hero6'
 import Hero7 from './Hero7'
 import Hero8 from './Hero8'
+import Newsletter1 from './Newsletter1'
+import Newsletter2 from './Newsletter2'
+import Newsletter3 from './Newsletter3'
 
 const components = {
   Banner1,
@@ -90,6 +93,9 @@ const components = {
   Hero6,
   Hero7,
   Hero8,
+  Newsletter1,
+  Newsletter2,
+  Newsletter3,
 }
 
 export default components
