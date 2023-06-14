@@ -94,7 +94,12 @@ const EditorElement: React.FC<ContainerProps> = ({ render, standaloneServer }) =
             >
               <h2 className="flex-1 mr-4">{displayName}</h2>
               {isRootChild && (
-                <a className="mr-2 cursor-move" ref={() => connectors.drag}>
+                <a
+                  className="mr-2 cursor-move"
+                  ref={(e) => {
+                    if (e) connectors.drag(e)
+                  }}
+                >
                   <ArrowsPointingOutIcon className="h-4 w-4" />
                 </a>
               )}
@@ -113,7 +118,7 @@ const EditorElement: React.FC<ContainerProps> = ({ render, standaloneServer }) =
                 <a
                   className="mr-2 cursor-pointer"
                   onClick={() => {
-                    actions.selectNode(data.parent)
+                    actions.selectNode(data.parent ?? undefined)
                   }}
                 >
                   <ArrowSmallUpIcon className="h-4 w-4" />
