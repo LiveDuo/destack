@@ -113,7 +113,7 @@ const EditorElement: React.FC<ContainerProps> = ({ render, standaloneServer }) =
                 <a
                   className="mr-2 cursor-pointer"
                   onClick={() => {
-                    actions.selectNode(data.parent)
+                    actions.selectNode(data.parent ?? undefined)
                   }}
                 >
                   <ArrowSmallUpIcon className="h-4 w-4" />

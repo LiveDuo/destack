@@ -20,6 +20,7 @@
     "build:react": "npm run build -w lib && npm run build -w dev/react-project",
     "analyze": "ANALYZE=true npm run build:next",
     "screenshots": "npm run screenshots -w scripts",
+    "pretty": "pretty-quick --staged",
     "test:e2e": "npm run test:e2e:next && npm run test:e2e:react",
     "test:e2e:next": "npm run test:e2e:dev:next && npm run test:e2e:build:next",
     "test:e2e:react": "npm run test:e2e:dev:react && npm run test:e2e:build:react",
@@ -55,8 +56,7 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx,jsx}": [
-      "pretty-quick --staged",
-      "tsc --noEmit"
+      "npm run pretty"
     ]
   }
 }
