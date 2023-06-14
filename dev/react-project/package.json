@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "concurrently": "^6.4.0",
-    "http-server": "^14.0.0"
+    "http-server": "^14.0.0",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
