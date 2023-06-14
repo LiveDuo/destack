@@ -4,6 +4,7 @@
   "workspaces": [
     "./lib",
     "./dev/nextjs-project",
+    "./dev/nextjs-app-project",
     "./dev/react-project",
     "./scripts"
   ],
@@ -13,6 +14,7 @@
     "start:react": "npm start -w dev/react-project",
     "dev": "npm run dev:next",
     "dev:next": "concurrently -k \"npm run dev -w lib\" \"npm run wait:browser && npm run dev -w dev/nextjs-project\"",
+    "dev:next-app": "concurrently -k \"npm run dev -w lib\" \"npm run wait:browser && npm run dev -w dev/nextjs-app-project\"",
     "dev:react": "concurrently -k \"npm run dev -w lib\" \"npm run wait:browser && npm run dev -w dev/react-project\"",
     "wait:browser": "wait-on lib/build/browser/index.js",
     "build": "npm run build:next",
