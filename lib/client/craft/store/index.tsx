@@ -42,9 +42,8 @@ interface ContextInterface {
   themeNames: string[]
   themeIndex: number
   resolver: object
-  standalone: boolean
-  setStandalone: (arg0: boolean) => void
   updateIndex: (arg0: number) => void
+  standaloneServer: boolean
 }
 
 const _resolver = {
@@ -65,20 +64,18 @@ const defaultValue = {
   themeNames: [],
   themeIndex: 0,
   updateIndex: () => {},
+  standaloneServer: false,
   resolver: _resolver,
-  standalone: false,
-  setStandalone: () => {},
 }
 
 const ThemeContext = createContext<ContextInterface>(defaultValue)
 
-type ProviderProps = { children: React.ReactNode }
+type ProviderProps = { children: React.ReactNode; standaloneServer: boolean }
 
-const ThemeProvider: React.FC<ProviderProps> = ({ children }) => {
+const ThemeProvider: React.FC<ProviderProps> = ({ children, standaloneServer }) => {
   const [themeIndex, setThemeIndex] = useState<number>(defaultValue.themeIndex)
   const [components, setComponents] = useState<ComponentInterfaceFull[]>(defaultValue.components)
   const [categories, setCategories] = useState<string[]>(defaultValue.categories)
-  const [standalone, setStandalone] = useState<boolean>(defaultValue.standalone)
   const [resolver, _setResolver] = useState<object>(defaultValue.resolver)
 
   const themeNames = themes.map((t) => t.name)
@@ -92,7 +89,7 @@ const ThemeProvider: React.FC<ProviderProps> = ({ children }) => {
 
     // set components
     const folder = themes[index].folder
-    const url = getThemeUrl(standalone, folder)
+    const url = getThemeUrl(standaloneServer, folder)
     const data = await fetch(url).then((r) => r.json())
     const _components = data.map((c: ComponentInterfaceFull) => ({
       displayName: c.folder.replace(/(\d)/, ' $1'),
@@ -123,8 +120,7 @@ const ThemeProvider: React.FC<ProviderProps> = ({ children }) => {
     themeNames,
     themeIndex,
     updateIndex,
-    standalone,
-    setStandalone,
+    standaloneServer,
   }
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>

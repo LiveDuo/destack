@@ -23,7 +23,7 @@ const Category = SidebarItem
 type ItemProps = { connectors: any; c: any }
 
 const Item: React.FC<ItemProps> = ({ connectors, c }) => {
-  const { standalone } = useContext(ThemeContext)
+  const { standaloneServer } = useContext(ThemeContext)
 
   return (
     <div
@@ -37,7 +37,10 @@ const Item: React.FC<ItemProps> = ({ connectors, c }) => {
       <SimpleTooltip text={c.displayName} side="right" offset={12}>
         <a className="cursor-move m-2 pb-2 cursor-pointer block">
           <img
-            src={getImageUrl(standalone, `/themes/${c.themeFolder}/${c.blockFolder}/preview.png`)}
+            src={getImageUrl(
+              standaloneServer,
+              `/themes/${c.themeFolder}/${c.blockFolder}/preview.png`,
+            )}
             width="600px"
             height="300px"
           />

@@ -56,9 +56,7 @@ interface EditorProps {
 }
 
 const Editor: React.FC<EditorProps> = ({ data, standaloneServer }) => {
-  const { resolver, setStandalone } = useContext(ThemeContext)
-
-  useEffect(() => setStandalone(standaloneServer), [])
+  const { resolver } = useContext(ThemeContext)
 
   const onStateChange = (e: any) => {
     saveTemplateDebounce(e, standaloneServer)
