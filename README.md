@@ -32,7 +32,7 @@ Destack now supports theme selection.
 
  <tr>
     <td width="48%">
-    <img src="https://raw.githubusercontent.com/LiveDuo/destack/feature/craftjs/assets/themes/screenshot-craft.png"/>    
+    <img src="https://raw.githubusercontent.com/LiveDuo/destack/main/assets/themes/screenshot-craft.png"/>
     Theme selection
 </td>
     <td width="48%"><img src="https://raw.githubusercontent.com/LiveDuo/destack/main/assets/themes/screenshot-meraki-ui.png"/>Meraki UI (<a href="https://merakiui.com/components">Components</a>)</td>
@@ -106,7 +106,6 @@ export { handleEditor as default, config } from 'destack/build/server'
 
 On any Next.js page you want to setup Destack:
 ```js
-import 'destack/build/browser/index.css'
 export { getStaticProps } from 'destack/build/server'
 export { ContentProvider as default } from 'destack'
 ```
@@ -157,7 +156,6 @@ In `package.json`:
 
 In any React.js component you want to setup Destack:
 ```js
-import 'destack/build/browser/index.css'
 export { ContentProviderReact as default } from 'destack'
 
 ```
