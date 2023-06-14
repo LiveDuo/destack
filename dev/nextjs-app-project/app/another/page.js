@@ -1,3 +1,5 @@
+import ContentProviderApp from './editor'
+
 import fs from 'fs/promises'
 
 async function getData() {
@@ -5,7 +7,14 @@ async function getData() {
   return d.substring(0, 100)
 }
 
-export default async function Page() {
-  const name = await getData()
-  return <div>{name}</div>
+export default async function Page(props) {
+  const data = await getData()
+  return (
+    <div>
+      <div>{data}</div>
+      <div style={{ height: '100%' }}>
+        <ContentProviderApp />
+      </div>
+    </div>
+  )
 }
