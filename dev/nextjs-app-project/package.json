@@ -1,0 +1,20 @@
+{
+  "name": "next-destack-app-example",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "13.4.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "destack": "file:../../lib/"
+  },
+  "devDependencies": {
+    "@next/bundle-analyzer": "^13.2.3",
+    "@next/eslint-plugin-next": "13.4.5"
+  }
+}
