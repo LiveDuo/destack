@@ -107,11 +107,19 @@ const handleData = async (req: NextApiRequest, res: NextApiResponse): Promise<vo
     return res.status(401).json({ error: 'Not allowed' })
   }
 }
-const resolvePath = development ? path.dirname(require.resolve('destack')) : null
+const getPackagePath = () => {
+  if (!development) return null
+  const pathCurrent = path.dirname(require.resolve('destack/package.json'))
+  if (pathCurrent?.startsWith('(api)')) {
+    return path.join(process.cwd() as string, '..', pathCurrent as string)
+  } else {
+    return pathCurrent as string
+  }
+}
 
 const handleAsset = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   if (req.method === 'GET') {
-    const assetPath = path.join(resolvePath as string, '..', '..', req.query.path as string)
+    const assetPath = path.join(getPackagePath() as string, req.query.path as string)
     const data = await fs.promises.readFile(assetPath)
     const options = { 'Content-Type': 'image/png', 'Content-Length': data.length }
     res.writeHead(200, options)
@@ -124,7 +132,7 @@ const handleAsset = async (req: NextApiRequest, res: NextApiResponse): Promise<v
 const handleTheme = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   if (req.method === 'GET') {
     const themeName = req.query.name as string
-    const folderPath = path.join(resolvePath as string, '..', '..', 'themes', themeName)
+    const folderPath = path.join(getPackagePath() as string, 'themes', themeName)
     const componentNames = await fs.promises
       .readdir(folderPath)
       .then((f) => f.filter((c) => c !== 'index.ts'))
