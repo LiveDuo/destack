@@ -1,9 +1,12 @@
-import Link from 'next/link'
+import ContentProviderApp from './components/editor'
 
-export default function Page() {
+import { getStaticProps } from 'destack/build/server'
+
+export default async function Page() {
+  const props = await getStaticProps().then((d) => d.props)
   return (
-    <div>
-      <Link href="/another">Another</Link>
+    <div style={{ height: '100%' }}>
+      <ContentProviderApp data={props?.data} />
     </div>
   )
 }
