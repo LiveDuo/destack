@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "screenshots": "node ./screenshots.js"
+    "screenshots": "node ./screenshots.js",
+    "preview": "node ./preview.js"
   },
   "author": "",
   "license": "ISC",
