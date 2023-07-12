@@ -18,6 +18,7 @@ const uploadFileAndAdd = async (
 }
 
 declare global {
+  // @ts-ignore
   var grapesjs: any
 }
 
@@ -26,6 +27,7 @@ const initEditor = async (startServer = true, standaloneServer: boolean): Promis
   const grapesjs = await import('grapesjs')
 
   // for 'npm run test' only
+  // @ts-ignore
   globalThis.grapesjs = grapesjs
 
   if (startServer) {
@@ -34,8 +36,9 @@ const initEditor = async (startServer = true, standaloneServer: boolean): Promis
     editorOptions.assetManager = assetManagerOptions
   }
 
-  // need var intead of const so it's global
+  // need var instead of const so it's global
   // and its accessible in uploadFile function
+  // @ts-ignore
   var editor = grapesjs.init(editorOptions)
 
   loadTraits(editor)
@@ -46,15 +49,18 @@ const initEditor = async (startServer = true, standaloneServer: boolean): Promis
   appendCss(editor)
 
   if (startServer) {
-    editor.on('storage:store', (e: any) => saveTemplate(e, standaloneServer))
+    editor.on('storage:store', () => {
+      const e = { components: editor.getComponents(), styles: editor.getStyles() }
+      saveTemplate(e, standaloneServer)
+    })
     const data = await loadTemplate(standaloneServer)
 
     if (!data) return
     const content = JSON.parse(data)
 
     if (!content.components) return
-    editor.setComponents(JSON.parse(content.components))
-    editor.setStyle(JSON.parse(content.styles))
+    editor.setComponents(content.components)
+    editor.setStyle(content.styles)
   }
 }
 

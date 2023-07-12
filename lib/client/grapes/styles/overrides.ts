@@ -121,5 +121,26 @@ span.gjs-pn-btn.fa.fa-mobile {
     transform: translateY(100%);
   }
 }
+
+.gjs-sm-sector-title {
+  display: flex;
+  align-items: center;
+}
+
+.gjs-sm-sector-caret {
+  width: 17px;
+  height: 17px;
+  min-width: 17px;
+  transform: rotate(-90deg);
+}
+
+.gjs-sm-sector-label {
+  margin-left: 5px;
+}
+
+.gjs-sm-open {
+  border-bottom: 1px solid rgba(0,0,0,.25);
+}
+
 `
 export default cssString
