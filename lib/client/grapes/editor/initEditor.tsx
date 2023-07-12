@@ -59,8 +59,8 @@ const initEditor = async (startServer = true, standaloneServer: boolean): Promis
     const content = JSON.parse(data)
 
     if (!content.components) return
-    editor.setComponents(content.components)
-    editor.setStyle(content.styles)
+    editor.setComponents(JSON.parse(content.components))
+    editor.setStyle(JSON.parse(content.styles))
   }
 }
 
