@@ -50,7 +50,10 @@ const initEditor = async (startServer = true, standaloneServer: boolean): Promis
 
   if (startServer) {
     editor.on('storage:store', () => {
-      const e = { components: editor.getComponents(), styles: editor.getStyles() }
+      const e = {
+        components: JSON.stringify(editor.getComponents()),
+        styles: JSON.stringify(editor.getStyle()),
+      }
       saveTemplate(e, standaloneServer)
     })
     const data = await loadTemplate(standaloneServer)
