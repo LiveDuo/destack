@@ -8,11 +8,9 @@ Build landing pages visually right in your React or Next.js projects. Deploy the
 
 📣 [13/06/2023] Three more themes have been added [Preline](https://preline.co/), [Flow Bite](https://flowbite.com/) and [Flow Rift](https://flowrift.com/).
 
-📣 [04/02/2023] The next version of Destack is out with the new editor is focused on simplicity. It's available on NPM with destack@2 or destack@latest.
+📣 [04/02/2023] Version 2 has just been released on NPM. Try it out with destack@2 or destack@latest.
 
-📣 [17/12/2022] Destack v2 is now in beta. It's a major rewrite that comes new custom page builder based on Craft.js.
-
-You can check it out at [destack-starter-beta](https://github.com/LiveDuo/destack-starter-beta). More info at https://github.com/LiveDuo/destack/pull/62 and https://github.com/LiveDuo/destack/issues/22.
+📣 [17/12/2022] Destack v2 is now in beta. It's a major rewrite that comes new custom page builder based on Craft.js. Check it out at [destack-starter-beta](https://github.com/LiveDuo/destack-starter-beta). More at [pull/62](https://github.com/LiveDuo/destack/pull/62) and [issues/22](https://github.com/LiveDuo/destack/issues/22).
 
 📣 [11/10/2022] Destack now supports multiple themes. Two new themes have been added [Meraki UI](https://merakiui.com/) and [Hyper UI](https://www.hyperui.dev/).
 
