@@ -2,8 +2,6 @@ import React from 'react'
 
 import Editor from './editor/Editor'
 
-import { ThemeProvider } from './store'
-
 import './styles/app.css'
 
 interface ContentProviderBaseProps {
@@ -13,11 +11,9 @@ interface ContentProviderBaseProps {
 
 const ContentProviderBase: React.FC<ContentProviderBaseProps> = ({ data, standaloneServer }) => {
   return (
-    <ThemeProvider standaloneServer={standaloneServer}>
-      <div className="h-full h-screen">
-        <Editor data={data} standaloneServer={standaloneServer} />
-      </div>
-    </ThemeProvider>
+    <div className="h-full h-screen">
+      <Editor data={data} standaloneServer={standaloneServer} />
+    </div>
   )
 }
 

@@ -10,7 +10,7 @@ import { Container } from '../shared/Container'
 import { loadTemplate, saveTemplateDebounce } from '../utils/fetch'
 import PoweredBy from './PoweredBy'
 
-import { ThemeContext } from '../store'
+import { ThemeContext, ThemeProvider } from '../store'
 
 interface FrameProps {
   data: any
@@ -37,11 +37,13 @@ const FrameEditor: React.FC<FrameProps> = ({ data, standaloneServer }) => {
   }, [])
 
   return !data ? (
-    <Viewport>
-      <Frame>
-        <Element canvas is={Container} children={[]} custom={{ displayName: 'App' }} />
-      </Frame>
-    </Viewport>
+    <ThemeProvider standaloneServer={standaloneServer}>
+      <Viewport>
+        <Frame>
+          <Element canvas is={Container} children={[]} custom={{ displayName: 'App' }} />
+        </Frame>
+      </Viewport>
+    </ThemeProvider>
   ) : (
     <div className="page-container">
       <Frame />
