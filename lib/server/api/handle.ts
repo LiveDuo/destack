@@ -89,6 +89,12 @@ const updateData = async (route: string, data: string): Promise<void> => {
 export { updateData }
 
 const handleData = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
+  // check method
+  if (req.method !== 'GET' && req.method !== 'POST') {
+    return res.status(405).json({ error: 'Not allowed' })
+  }
+
+  // handle request
   if (req.method === 'GET') {
     const data = await loadData(req.query.path as string)
     return res.status(200).json(data)
@@ -103,12 +109,10 @@ const handleData = async (req: NextApiRequest, res: NextApiResponse): Promise<vo
       const urls = await uploadFiles(req)
       return res.status(200).json(urls)
     }
-  } else {
-    return res.status(401).json({ error: 'Not allowed' })
   }
 }
+
 const getPackagePath = () => {
-  if (!development) return null
   const pathCurrent = path.dirname(require.resolve('destack/package.json'))
   if (pathCurrent?.startsWith('(api)')) {
     return path.join(process.cwd() as string, '..', pathCurrent as string)
@@ -118,39 +122,47 @@ const getPackagePath = () => {
 }
 
 const handleAsset = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
-  if (req.method === 'GET') {
-    const assetPath = path.join(getPackagePath() as string, req.query.path as string)
-    const data = await fs.promises.readFile(assetPath)
-    const options = { 'Content-Type': 'image/png', 'Content-Length': data.length }
-    res.writeHead(200, options)
-    res.end(data, 'binary')
-  } else {
-    return res.status(401).json({ error: 'Not allowed' })
+  // check method
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Not allowed' })
   }
+
+  // handle request
+  const assetPath = path.join(getPackagePath() as string, req.query.path as string)
+  const data = await fs.promises.readFile(assetPath)
+  const options = { 'Content-Type': 'image/png', 'Content-Length': data.length }
+  res.writeHead(200, options)
+  res.end(data, 'binary')
 }
 
 const handleTheme = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
-  if (req.method === 'GET') {
-    const themeName = req.query.name as string
-    const folderPath = path.join(getPackagePath() as string, 'themes', themeName)
-    const componentNames = await fs.promises
-      .readdir(folderPath)
-      .then((f) => f.filter((c) => c !== 'index.ts'))
-    const componentsP = componentNames.map(async (c) => {
-      const assetPath = path.join(folderPath, c, 'index.html')
-      const source = await fs.promises.readFile(assetPath, 'utf-8')
-      return { source, folder: c }
-    })
-    const components = await Promise.all(componentsP)
-    res.json(components)
-  } else {
-    return res.status(401).json({ error: 'Not allowed' })
+  // check method
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Not allowed' })
   }
+
+  // handle request
+  const themeName = req.query.name as string
+  const folderPath = path.join(getPackagePath() as string, 'themes', themeName)
+  const componentNames = await fs.promises
+    .readdir(folderPath)
+    .then((f) => f.filter((c) => c !== 'index.ts'))
+  const componentsP = componentNames.map(async (c) => {
+    const assetPath = path.join(folderPath, c, 'index.html')
+    const source = await fs.promises.readFile(assetPath, 'utf-8')
+    return { source, folder: c }
+  })
+  const components = await Promise.all(componentsP)
+  res.json(components)
 }
 
 const handleEditor = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
-  if (!development) return res.status(401).json({ error: 'Not allowed' })
+  // check env
+  if (!development) {
+    return res.status(403).json({ error: 'Forbidden' })
+  }
 
+  // handle request
   if (req.query.type === 'data') {
     return handleData(req, res)
   } else if (req.query.type === 'asset') {
