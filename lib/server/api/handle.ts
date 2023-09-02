@@ -61,9 +61,11 @@ const loadData = async (route: string): Promise<dataType> => {
 }
 export { loadData }
 
-// fix windows/unix paths and default path
+// fix windows/unix paths and base path
 const fixPaths = (c: { name: string; content: string }, basePath: string) => {
-  return { ...c, name: getRouteFromFilename(c.name.replace(basePath, '')) }
+  const nameWithoutBasePath = getRouteFromFilename(c.name.replace(basePath, ''))
+  const nameWithFixSeps = nameWithoutBasePath.replaceAll(path.sep, '/')
+  return { content: c.content, name: nameWithFixSeps }
 }
 
 const loadAllData = async (): Promise<dataType[]> => {
