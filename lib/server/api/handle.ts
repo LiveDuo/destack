@@ -64,7 +64,7 @@ export { loadData }
 // fix windows/unix paths and base path
 const fixPaths = (c: { name: string; content: string }, basePath: string) => {
   const nameWithoutBasePath = getRouteFromFilename(c.name.replace(basePath, ''))
-  const nameWithFixSeps = nameWithoutBasePath.replaceAll(path.sep, '/')
+  const nameWithFixSeps = nameWithoutBasePath.split(path.sep).join('/') // replace all
   return { content: c.content, name: nameWithFixSeps }
 }
 
