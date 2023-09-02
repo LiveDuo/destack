@@ -44,9 +44,9 @@ const uploadFiles = async (req: NextApiRequest): Promise<string[]> => {
 }
 export { uploadFiles }
 
-const getFileNameFromRoute = (route: string) => (route === '/' ? 'default.json' : `${route}.json`)
+const getFileNameFromRoute = (route: string) => (route === '/' ? 'default.json' : `${route}.json`) // browser paths are always "/"
 const getRouteFromFilename = (filename: string) =>
-  filename === '/default.json' ? '/' : `${filename.slice(0, -5)}`
+  filename === path.sep + 'default.json' ? path.sep : `${filename.slice(0, -5)}` // file paths are OS-specific
 
 const loadData = async (route: string): Promise<dataType> => {
   const fileName = getFileNameFromRoute(route)
@@ -61,6 +61,11 @@ const loadData = async (route: string): Promise<dataType> => {
 }
 export { loadData }
 
+// fix windows/unix paths and default path
+const fixPaths = (c: { name: string; content: string }, basePath: string) => {
+  return { ...c, name: getRouteFromFilename(c.name.replace(basePath, '')) }
+}
+
 const loadAllData = async (): Promise<dataType[]> => {
   const basePath = path.join(rootPath, dataFolder)
   const files = readdirRecursive(basePath) as string[]
@@ -68,7 +73,8 @@ const loadAllData = async (): Promise<dataType[]> => {
     files.map((f) =>
       fs.promises
         .readFile(f, 'utf8')
-        .then((c) => ({ name: getRouteFromFilename(f.replace(basePath, '')), content: c })),
+        .then((c) => ({ name: f, content: c }))
+        .then((c) => fixPaths(c, basePath)),
     ),
   )
   return data
