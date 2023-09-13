@@ -7,7 +7,7 @@ Destack has are 2 main components:
 
 The local server supports 3 query types:
 1. The `data` type which [loads and saves](../../lib/server/api/handle.ts#L173) the user page data
-2. The `asset` type which [loads](../../lib/server/api/handle.ts#L173) specific assets (that's only `image/png` now)
+2. The `asset` type which [serves](../../lib/server/api/handle.ts#L173) specific assets (that's only `image/png` now)
 2. The `theme` type which [loads](../../lib/server/api/handle.ts#L173) the theme `HTML` source code
 
 ## Next.js
