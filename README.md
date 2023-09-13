@@ -191,6 +191,8 @@ export default App
 
 > Note: The above description is for Next.js. In React.js, the `destack -b` script creates an API route similar to the one described above that handles template changes and file uploads in development. In production the `destack -d` script copies `default.json` to the `public` folder and builds a static version of the page.
 
+More on the project's architecture [here](assets/design/overview.md).
+
 # How to's & guides
 
 ### Adding an HTML form
