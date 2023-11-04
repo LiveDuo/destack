@@ -54,6 +54,7 @@ function ContentProvider() {
       // TODO save to server
     })
     observer.observe(canvasRef.current, config)
+    return observer
   }
 
   useEffect(() => {
@@ -61,7 +62,9 @@ function ContentProvider() {
 
     loadComponents()
 
-    onDomChange()
+    const observer = onDomChange()
+
+    return () => observer.disconnect()
   }, [])
 
   const loadComponents = () => {
