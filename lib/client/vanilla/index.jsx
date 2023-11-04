@@ -8,11 +8,22 @@ import { TrashIcon } from '@heroicons/react/24/outline'
 import { ArrowDownIcon } from '@heroicons/react/24/outline'
 import { ArrowUpIcon } from '@heroicons/react/24/outline'
 
-// https://tailblocks.cc/
+const standaloneServerPort = 12785
 
-const components = ['component1', 'component2']
+const themes = [
+  { name: 'Hyper UI', folder: 'hyperui' },
+  { name: 'Tailblocks', folder: 'tailblocks' },
+  { name: 'Flowrift', folder: 'flowrift' },
+  { name: 'Meraki UI', folder: 'meraki-light' },
+  { name: 'Preline', folder: 'preline' },
+  { name: 'Flowbite', folder: 'flowbite' },
+]
 
 const placeholderImageUrl = 'https://placehold.co/400x200'
+
+const getBaseUrl = (standaloneServer) => {
+  return standaloneServer ? `http://localhost:${standaloneServerPort}` : ''
+}
 
 function ContentProvider() {
   const canvasRef = useRef(null)
@@ -24,8 +35,19 @@ function ContentProvider() {
 
   const [isPreview, setIsPreview] = useState(false)
   const [hoveredComponent, setHoveredComponent] = useState()
+  const [components, setComponents] = useState([])
+
+  const loadData = async () => {
+    const baseUrl = getBaseUrl(false)
+    const url = `${baseUrl}/api/builder/handle?type=theme&name=${themes[0].folder}`
+    const _components = await fetch(url).then((r) => r.json())
+
+    setComponents(_components)
+  }
 
   useEffect(() => {
+    loadData()
+
     loadComponents()
   }, [])
 
@@ -180,7 +202,7 @@ function ContentProvider() {
           <TrashIcon ref={deleteRef} className="h-7 w-7 text-white p-1" />
         </div>
       </div>
-      <div className="w-48 p-2">
+      <div className="w-48 p-2" style={{ height: '100vh', overflowY: 'scroll' }}>
         {components.map((c, i) => (
           <img
             key={i}
