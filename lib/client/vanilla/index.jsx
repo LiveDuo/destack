@@ -228,7 +228,10 @@ function ContentProvider() {
             {!isPreview ? 'Preview' : 'Editor'}
           </button>
         </div>
-        <div className="flex justify-center bg-gray-200">
+        <div
+          className="flex justify-center bg-gray-200"
+          style={{ height: '100vh', overflowY: 'scroll' }}
+        >
           <div
             ref={canvasRef}
             className="bg-white ease-animation"
