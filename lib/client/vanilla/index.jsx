@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import './index.css'
 
-import { ArrowDownOnSquareIcon } from '@heroicons/react/24/outline'
-import { ArrowUpOnSquareIcon } from '@heroicons/react/24/outline'
+// import { ArrowDownOnSquareIcon } from '@heroicons/react/24/outline'
+// import { ArrowUpOnSquareIcon } from '@heroicons/react/24/outline'
+
 import { TrashIcon } from '@heroicons/react/24/outline'
 import { ArrowDownIcon } from '@heroicons/react/24/outline'
 import { ArrowUpIcon } from '@heroicons/react/24/outline'
@@ -19,7 +20,7 @@ const themes = [
   { name: 'Flowbite', folder: 'flowbite' },
 ]
 
-const placeholderImageUrl = 'https://placehold.co/400x200'
+const theme = themes[0]
 
 function debounce(callback, timeout = 1000) {
   let timeoutFn
@@ -32,6 +33,11 @@ function debounce(callback, timeout = 1000) {
 
 const getBaseUrl = (standaloneServer) => {
   return standaloneServer ? `http://localhost:${standaloneServerPort}` : ''
+}
+
+const getImageUrl = (standaloneServer, imageSrc) => {
+  const baseUrl = getBaseUrl(standaloneServer)
+  return `${baseUrl}/api/builder/handle?type=asset&path=${imageSrc}`
 }
 
 function ContentProvider() {
@@ -48,7 +54,7 @@ function ContentProvider() {
 
   const loadComponents = async () => {
     const baseUrl = getBaseUrl(false)
-    const url = `${baseUrl}/api/builder/handle?type=theme&name=${themes[0].folder}`
+    const url = `${baseUrl}/api/builder/handle?type=theme&name=${theme.folder}`
     const _components = await fetch(url).then((r) => r.json())
 
     setComponents(_components)
@@ -233,7 +239,10 @@ function ContentProvider() {
           <img
             key={i}
             className="cursor-grab mb-2"
-            src={placeholderImageUrl}
+            src={getImageUrl(
+              false,
+              `/themes/${theme.name.replaceAll(' ', '')}/${c.folder}/preview.png`,
+            )}
             draggable="true"
             onDragStart={(e) => onComponentDragStart(e, i)}
           />
