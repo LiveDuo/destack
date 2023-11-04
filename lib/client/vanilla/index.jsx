@@ -40,7 +40,7 @@ const getImageUrl = (standaloneServer, imageSrc) => {
   return `${baseUrl}/api/builder/handle?type=asset&path=${imageSrc}`
 }
 
-const Category = ({ name, components }) => {
+const Category = ({ name, components, standaloneServer }) => {
   const [show, setShow] = useState(false)
 
   return (
@@ -66,7 +66,7 @@ const Category = ({ name, components }) => {
               key={i}
               className="cursor-grab mb-2"
               src={getImageUrl(
-                false,
+                standaloneServer,
                 `/themes/${theme.name.replaceAll(' ', '')}/${c.folder}/preview.png`,
               )}
               draggable="true"
@@ -79,7 +79,7 @@ const Category = ({ name, components }) => {
   )
 }
 
-function ContentProvider() {
+function ContentProvider({ standaloneServer = false }) {
   const canvasRef = useRef(null)
 
   const popoverRef = useRef(null)
@@ -92,7 +92,7 @@ function ContentProvider() {
   const [components, setComponents] = useState([])
 
   const loadComponents = async () => {
-    const baseUrl = getBaseUrl(false)
+    const baseUrl = getBaseUrl(standaloneServer)
     const url = `${baseUrl}/api/builder/handle?type=theme&name=${theme.folder}`
     const _componentsList = await fetch(url).then((r) => r.json())
 
@@ -107,7 +107,7 @@ function ContentProvider() {
   }
 
   const loadPage = async () => {
-    const baseUrl = getBaseUrl(false)
+    const baseUrl = getBaseUrl(standaloneServer)
     const url2 = `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}`
     const data = await fetch(url2).then((r) => r.text())
     canvasRef.current.innerHTML = data
@@ -116,7 +116,7 @@ function ContentProvider() {
   const savePage = async () => {
     console.log('dom changed')
 
-    const baseUrl = getBaseUrl(false)
+    const baseUrl = getBaseUrl(standaloneServer)
     const url = `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}`
 
     await fetch(url, { method: 'post', body: canvasRef.current.innerHTML })
@@ -278,7 +278,12 @@ function ContentProvider() {
       </div>
       <div className="w-56 p-2" style={{ height: '100vh', overflowY: 'scroll', flexShrink: 0 }}>
         {Object.keys(components).map((c, i) => (
-          <Category key={i} name={c} components={components[c]} />
+          <Category
+            key={i}
+            name={c}
+            components={components[c]}
+            standaloneServer={standaloneServer}
+          />
         ))}
       </div>
       <div className="w-full" style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -316,5 +321,5 @@ function ContentProvider() {
 
 export { ContentProvider }
 
-const ContentProviderReact = () => <div>todo</div>
+const ContentProviderReact = () => <ContentProvider standaloneServer={true} />
 export { ContentProviderReact }
