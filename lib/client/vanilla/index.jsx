@@ -71,12 +71,14 @@ function ContentProvider() {
   const onCanvasDrop = async (e) => {
     e.preventDefault()
 
-    const componentId = e.dataTransfer.getData('component')
-    const data = await fetch(`/${componentId}.html`)
-    const html = await data.text()
+    // const componentId = e.dataTransfer.getData('component')
+    // const data = await fetch(`/${componentId}.html`)
+    // const html = await data.text()
 
-    const components = getComponents()
-    if (components.length === 0) {
+    const html = components[0].source
+
+    const _components = getComponents()
+    if (_components.length === 0) {
       canvasRef.current.innerHTML = html
     } else if (isElementTopHalf(hoveredComponent, e)) {
       hoveredComponent.insertAdjacentHTML('beforebegin', html)
