@@ -43,15 +43,16 @@ function ContentProvider() {
     const _components = await fetch(url).then((r) => r.json())
 
     setComponents(_components)
+
+    // TODO load page from served
   }
 
-  // TODO should not register the listener twice
   const onDomChange = () => {
     canvasRef.current
     const config = { attributes: true, childList: true, subtree: true }
     const observer = new MutationObserver(() => {
       console.log('dom changed')
-      // TODO save to server
+      // TODO save page to server
     })
     observer.observe(canvasRef.current, config)
     return observer
