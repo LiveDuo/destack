@@ -339,6 +339,7 @@ function ContentProvider({ standaloneServer = false }) {
               margin: isPreview ? '0px' : '20px',
               maxWidth: isPreview ? '100%' : '868px',
               minHeight: '1024px',
+              height: 'fit-content',
             }}
           ></div>
         </div>
