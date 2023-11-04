@@ -71,11 +71,8 @@ function ContentProvider() {
   const onCanvasDrop = async (e) => {
     e.preventDefault()
 
-    // const componentId = e.dataTransfer.getData('component')
-    // const data = await fetch(`/${componentId}.html`)
-    // const html = await data.text()
-
-    const html = components[0].source
+    const componentId = e.dataTransfer.getData('component-id')
+    const html = components[componentId].source
 
     const _components = getComponents()
     if (_components.length === 0) {
@@ -89,8 +86,8 @@ function ContentProvider() {
     cleanCanvas()
   }
 
-  const onComponentDragStart = (e, c) => {
-    e.dataTransfer.setData('component', c)
+  const onComponentDragStart = (e, i) => {
+    e.dataTransfer.setData('component-id', i)
   }
 
   const getElementPosition = (element) => {
@@ -211,7 +208,7 @@ function ContentProvider() {
             className="cursor-grab mb-2"
             src={placeholderImageUrl}
             draggable="true"
-            onDragStart={(e) => onComponentDragStart(e, c)}
+            onDragStart={(e) => onComponentDragStart(e, i)}
           />
         ))}
       </div>
@@ -254,4 +251,5 @@ function ContentProvider() {
 
 export { ContentProvider }
 
-export const ContentProviderReact = () => <div>todo</div>
+const ContentProviderReact = () => <div>todo</div>
+export { ContentProviderReact }
