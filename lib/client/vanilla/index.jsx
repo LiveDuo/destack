@@ -41,7 +41,7 @@ const getImageUrl = (standaloneServer, imageSrc) => {
   return `${baseUrl}/api/builder/handle?type=asset&path=${imageSrc}`
 }
 
-const Category = ({ name, components, standaloneServer }) => {
+const Category = ({ themeIndex, category, components, standaloneServer }) => {
   const [show, setShow] = useState(false)
 
   return (
@@ -54,7 +54,7 @@ const Category = ({ name, components, standaloneServer }) => {
       >
         <div className="flex-1 flex items-center">
           <Squares2X2Icon className="h-4 w-4 ml-2 mr-4" />{' '}
-          <h2 className="text-xs uppercase">{name}</h2>
+          <h2 className="text-xs uppercase">{category}</h2>
         </div>
         <a style={{ transform: `rotate(${show ? 180 : 0}deg)` }}>
           <ArrowSmallUpIcon className="h-4 w-4" />
@@ -71,7 +71,7 @@ const Category = ({ name, components, standaloneServer }) => {
                 `/themes/${themes[themeIndex].name.replaceAll(' ', '')}/${c.folder}/preview.png`,
               )}
               draggable="true"
-              onDragStart={(e) => e.dataTransfer.setData('component', `${name}-${i}`)}
+              onDragStart={(e) => e.dataTransfer.setData('component', `${category}-${i}`)}
             />
           ))}
         </div>
@@ -96,9 +96,9 @@ function ContentProvider({ standaloneServer = false }) {
 
   const [themeIndex, setThemeIndex] = useState(0)
 
-  const loadComponents = async () => {
+  const loadTheme = async (index) => {
     const baseUrl = getBaseUrl(standaloneServer)
-    const url = `${baseUrl}/api/builder/handle?type=theme&name=${themes[themeIndex].folder}`
+    const url = `${baseUrl}/api/builder/handle?type=theme&name=${themes[index].folder}`
     const _componentsList = await fetch(url).then((r) => r.json())
 
     const _components = _componentsList.reduce((r, c) => {
@@ -141,7 +141,7 @@ function ContentProvider({ standaloneServer = false }) {
 
   useEffect(() => {
     loadPage()
-    loadComponents()
+    loadTheme(themeIndex)
 
     const observer = onDomChange()
 
@@ -285,7 +285,8 @@ function ContentProvider({ standaloneServer = false }) {
         {Object.keys(components).map((c, i) => (
           <Category
             key={i}
-            name={c}
+            category={c}
+            themeIndex={themeIndex}
             components={components[c]}
             standaloneServer={standaloneServer}
           />
@@ -309,7 +310,9 @@ function ContentProvider({ standaloneServer = false }) {
               open={selectOpen}
               setOpen={setSelectOpen}
               onChange={(e) => {
-                setThemeIndex(themes.findIndex((r) => r.name === e))
+                const index = themes.findIndex((r) => r.name === e)
+                loadTheme(index)
+                setThemeIndex(index)
               }}
             />
           </div>
