@@ -8,6 +8,9 @@ import ArrowUpIcon from '@heroicons/react/24/outline/ArrowUpIcon'
 
 import Squares2X2Icon from '@heroicons/react/24/outline/Squares2X2Icon'
 import ArrowSmallUpIcon from '@heroicons/react/24/outline/ArrowSmallUpIcon'
+import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon'
+
+import Select from './select'
 
 const standaloneServerPort = 12785
 
@@ -19,8 +22,6 @@ const themes = [
   { name: 'Preline', folder: 'preline' },
   { name: 'Flowbite', folder: 'flowbite' },
 ]
-
-const theme = themes[0]
 
 function debounce(callback, timeout = 1000) {
   let timeoutFn
@@ -67,7 +68,7 @@ const Category = ({ name, components, standaloneServer }) => {
               className="cursor-grab mb-2"
               src={getImageUrl(
                 standaloneServer,
-                `/themes/${theme.name.replaceAll(' ', '')}/${c.folder}/preview.png`,
+                `/themes/${themes[themeIndex].name.replaceAll(' ', '')}/${c.folder}/preview.png`,
               )}
               draggable="true"
               onDragStart={(e) => e.dataTransfer.setData('component', `${name}-${i}`)}
@@ -91,9 +92,13 @@ function ContentProvider({ standaloneServer = false }) {
   const [hoveredComponent, setHoveredComponent] = useState()
   const [components, setComponents] = useState([])
 
+  const [selectOpen, setSelectOpen] = useState(false)
+
+  const [themeIndex, setThemeIndex] = useState(0)
+
   const loadComponents = async () => {
     const baseUrl = getBaseUrl(standaloneServer)
-    const url = `${baseUrl}/api/builder/handle?type=theme&name=${theme.folder}`
+    const url = `${baseUrl}/api/builder/handle?type=theme&name=${themes[themeIndex].folder}`
     const _componentsList = await fetch(url).then((r) => r.json())
 
     const _components = _componentsList.reduce((r, c) => {
@@ -289,6 +294,26 @@ function ContentProvider({ standaloneServer = false }) {
       <div className="w-full" style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
         <div className="flex items-center m-2">
           <TrashIcon className="h-6 w-6 mx-2 cursor-pointer" onClick={clearComponents} />
+
+          <div className="mr-auto ml-auto">
+            <div
+              className="flex rounded py-2 px-4 transition cursor-pointer items-center justify-center mr-auto ml-auto"
+              onClick={() => setSelectOpen(true)}
+            >
+              {themes[themeIndex].name}
+              <ChevronDownIcon className="h-4 w-4 ml-2" />
+            </div>
+            <Select
+              defaultValue={themes[themeIndex].name}
+              values={themes.map((c) => c.name)}
+              open={selectOpen}
+              setOpen={setSelectOpen}
+              onChange={(e) => {
+                setThemeIndex(themes.findIndex((r) => r.name === e))
+              }}
+            />
+          </div>
+
           <button
             className="bg-green-500 hover:bg-green-700 text-white px-4 py-2 ml-auto mr-6 rounded-md"
             onClick={() => setIsPreview((s) => !s)}
