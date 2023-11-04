@@ -21,6 +21,15 @@ const themes = [
 
 const placeholderImageUrl = 'https://placehold.co/400x200'
 
+function debounce(callback, timeout = 1000) {
+  let timeoutFn
+  return (...args) => {
+    const context = this
+    clearTimeout(timeoutFn)
+    timeoutFn = setTimeout(() => callback.apply(context, args), timeout)
+  }
+}
+
 const getBaseUrl = (standaloneServer) => {
   return standaloneServer ? `http://localhost:${standaloneServerPort}` : ''
 }
@@ -37,49 +46,50 @@ function ContentProvider() {
   const [hoveredComponent, setHoveredComponent] = useState()
   const [components, setComponents] = useState([])
 
-  const loadData = async () => {
+  const loadComponents = async () => {
     const baseUrl = getBaseUrl(false)
     const url = `${baseUrl}/api/builder/handle?type=theme&name=${themes[0].folder}`
     const _components = await fetch(url).then((r) => r.json())
 
     setComponents(_components)
+  }
 
-    // TODO load page from served
+  const loadPage = async () => {
+    const baseUrl = getBaseUrl(false)
+    const url2 = `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}`
+    const data = await fetch(url2).then((r) => r.text())
+    canvasRef.current.innerHTML = data
+  }
+
+  const savePage = async () => {
+    console.log('dom changed')
+
+    const baseUrl = getBaseUrl(false)
+    const url = `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}`
+
+    await fetch(url, { method: 'post', body: canvasRef.current.innerHTML })
   }
 
   const onDomChange = () => {
     canvasRef.current
     const config = { attributes: true, childList: true, subtree: true }
-    const observer = new MutationObserver(() => {
-      console.log('dom changed')
-      // TODO save page to server
-    })
+    const observer = new MutationObserver(
+      debounce(() => {
+        savePage()
+      }),
+    )
     observer.observe(canvasRef.current, config)
     return observer
   }
 
   useEffect(() => {
-    loadData()
-
+    loadPage()
     loadComponents()
 
     const observer = onDomChange()
 
     return () => observer.disconnect()
   }, [])
-
-  const loadComponents = () => {
-    const html = localStorage.getItem('page')
-    if (html) {
-      canvasRef.current.innerHTML = html
-    } else {
-      alert('Save not found')
-    }
-  }
-
-  const saveComponents = () => {
-    localStorage.setItem('page', canvasRef.current.innerHTML)
-  }
 
   const clearComponents = async () => {
     canvasRef.current.innerHTML = ''
@@ -231,11 +241,11 @@ function ContentProvider() {
       </div>
       <div className="w-full" style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
         <div className="flex items-center m-2">
-          <ArrowDownOnSquareIcon
+          {/* <ArrowDownOnSquareIcon
             className="h-6 w-6 mx-2 ml-4 cursor-pointer"
-            onClick={loadComponents}
-          />
-          <ArrowUpOnSquareIcon className="h-6 w-6 mx-2 cursor-pointer" onClick={saveComponents} />
+            onClick={() => {}}
+          /> */}
+          {/* <ArrowUpOnSquareIcon className="h-6 w-6 mx-2 cursor-pointer" onClick={() => {}} /> */}
           <TrashIcon className="h-6 w-6 mx-2 cursor-pointer" onClick={clearComponents} />
           <button
             className="bg-green-500 hover:bg-green-700 text-white px-4 py-2 ml-auto mr-6 rounded-md"

@@ -4,18 +4,8 @@ import { NextApiResponse, NextApiRequest } from 'next'
 import path from 'path'
 import fs from 'fs'
 
-import { formParse, getJson, exists, readdirRecursive } from '../utils'
+import { formParse, getPage, exists, readdirRecursive } from '../utils'
 import { dataType } from '../../types'
-
-const DEFAULT_TEMPLATE = {
-  ROOT: {
-    type: { resolvedName: 'Container' },
-    isCanvas: true,
-    props: { width: '100%', height: '800px' },
-    displayName: 'Container',
-    custom: { displayName: 'App' },
-  },
-}
 
 const development = process.env.NODE_ENV !== 'production'
 
@@ -44,19 +34,19 @@ const uploadFiles = async (req: NextApiRequest): Promise<string[]> => {
 }
 export { uploadFiles }
 
-const getFileNameFromRoute = (route: string) => (route === '/' ? 'default.json' : `${route}.json`) // browser paths are always "/"
+const getFileNameFromRoute = (route: string) => (route === '/' ? 'default.html' : `${route}.html`) // browser paths are always "/"
 const getRouteFromFilename = (filename: string) =>
-  filename === path.sep + 'default.json' ? path.sep : `${filename.slice(0, -5)}` // file paths are OS-specific
+  filename === path.sep + 'default.html' ? path.sep : `${filename.slice(0, -5)}` // file paths are OS-specific
 
-const loadData = async (route: string): Promise<dataType> => {
+const loadData = async (route: string): Promise<string> => {
   const fileName = getFileNameFromRoute(route)
   const dataPath = path.join(rootPath, dataFolder, fileName)
   const dataExists = await exists(dataPath)
   if (!dataExists) {
-    return { content: JSON.stringify(DEFAULT_TEMPLATE) }
+    return '<div>hello</div>'
   } else {
-    const content = await fs.readFileSync(dataPath, 'utf8')
-    return { content }
+    const content = fs.readFileSync(dataPath, 'utf8')
+    return content
   }
 }
 export { loadData }
@@ -92,7 +82,7 @@ const updateData = async (route: string, data: string): Promise<void> => {
     await fs.promises.mkdir(updatePath)
   }
 
-  await fs.promises.writeFile(path.join(updatePath, fileName), JSON.stringify(data))
+  await fs.promises.writeFile(path.join(updatePath, fileName), data)
 }
 export { updateData }
 
@@ -105,13 +95,13 @@ const handleData = async (req: NextApiRequest, res: NextApiResponse): Promise<vo
   // handle request
   if (req.method === 'GET') {
     const data = await loadData(req.query.path as string)
-    return res.status(200).json(data)
+    return res.status(200).send(data)
   } else if (req.method === 'POST') {
     const contentType = req.headers['content-type']!
     const isMultiPart = contentType.startsWith('multipart/form-data')
     if (!isMultiPart) {
-      const body = await getJson(req)
-      await updateData(req.query.path as string, body.data)
+      const body = await getPage(req)
+      await updateData(req.query.path as string, body)
       return res.status(200).json({})
     } else {
       const urls = await uploadFiles(req)
