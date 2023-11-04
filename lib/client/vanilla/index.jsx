@@ -45,10 +45,23 @@ function ContentProvider() {
     setComponents(_components)
   }
 
+  // TODO should not register the listener twice
+  const onDomChange = () => {
+    canvasRef.current
+    const config = { attributes: true, childList: true, subtree: true }
+    const observer = new MutationObserver(() => {
+      console.log('dom changed')
+      // TODO save to server
+    })
+    observer.observe(canvasRef.current, config)
+  }
+
   useEffect(() => {
     loadData()
 
     loadComponents()
+
+    onDomChange()
   }, [])
 
   const loadComponents = () => {
