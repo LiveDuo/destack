@@ -213,7 +213,7 @@ function ContentProvider() {
           />
         ))}
       </div>
-      <div className="w-full">
+      <div className="w-full" style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
         <div className="flex items-center m-2">
           <ArrowDownOnSquareIcon
             className="h-6 w-6 mx-2 ml-4 cursor-pointer"
@@ -228,10 +228,7 @@ function ContentProvider() {
             {!isPreview ? 'Preview' : 'Editor'}
           </button>
         </div>
-        <div
-          className="flex justify-center bg-gray-200"
-          style={{ height: '100vh', overflowY: 'scroll' }}
-        >
+        <div className="flex justify-center bg-gray-200" style={{ overflowY: 'scroll' }}>
           <div
             ref={canvasRef}
             className="bg-white ease-animation"
