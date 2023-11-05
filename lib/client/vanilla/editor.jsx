@@ -348,7 +348,7 @@ function Editor({ standaloneServer = false }) {
           </div>
 
           <button
-            className="bg-green-500 hover:bg-green-700 text-white px-4 py-2 ml-auto mr-6 rounded-md"
+            className="bg-green-500 hover:bg-green-700 text-white px-4 py-2 ml-6 mr-6 rounded-md"
             onClick={() => setIsPreview((s) => !s)}
           >
             {!isPreview ? 'Preview' : 'Editor'}
