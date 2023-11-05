@@ -3,29 +3,23 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   mode: 'development',
-  entry: '/src/index.js', // main js
+  entry: '/src/index.jsx',
   output: {
-    path: path.resolve(__dirname, 'build'), // output folder
+    path: path.resolve(__dirname, 'build'),
     publicPath: '/',
   },
   module: {
     rules: [
       {
-        test: /\.?js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          },
+        test: /\.jsx?$/,
+        loader: 'esbuild-loader',
+        options: {
+          target: 'es2015',
         },
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader', // for styles
-        ],
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
@@ -34,7 +28,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html', // base html
+      template: './public/index.html',
     }),
   ],
   devServer: {
