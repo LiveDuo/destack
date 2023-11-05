@@ -1,18 +1,19 @@
 import { test, expect } from '@playwright/test'
 
-test('should contain craftjs renderer', async ({ page }) => {
+test('should contain the editor', async ({ page }) => {
   await page.goto('/')
-  await expect(page.locator('div.craftjs-renderer')).toHaveCount(1)
+  await expect(page.locator('#editor')).toHaveCount(1)
 })
 
+// TODO fix
 test.skip('should drap and drop a component', async ({ page }) => {
   await page.goto('/')
 
   // add component
   const imagePath =
     'http://localhost:12785/api/builder/handle?type=asset&path=/themes/hyperui/Banner1/preview.png'
-  await page.dragAndDrop(`img[src='${imagePath}']`, 'div.craftjs-renderer > div > div')
-  await expect(page.locator('div.craftjs-renderer > div > div')).toHaveCount(1)
+  await page.dragAndDrop(`img[src='${imagePath}']`, '#editor > div')
+  await expect(page.locator('#editor > div')).toHaveCount(1)
 
   // remove the component
   await page.hover('text=Understand')
@@ -31,11 +32,11 @@ test.skip('should add an image to renderer', async ({ page }) => {
   await page.click('div.toolbox > div > div:nth-child(2)')
   const imagePath =
     'http://localhost:12785/api/builder/handle?type=asset&path=/themes/hyperui/Cta1/preview.png'
-  await page.dragAndDrop(`img[src='${imagePath}']`, 'div.craftjs-renderer > div > div')
-  await expect(page.locator('div.craftjs-renderer > div > div')).toHaveCount(1)
+  await page.dragAndDrop(`img[src='${imagePath}']`, '#editor > div')
+  await expect(page.locator('#editor > div')).toHaveCount(1)
 
   // open image dialog
-  await page.hover('div.craftjs-renderer img')
+  await page.hover('#editor img')
   await page.click('div.page-container a:nth-child(3)')
 
   // click replace image
@@ -52,5 +53,6 @@ test.skip('should add an image to renderer', async ({ page }) => {
   await page.click('div.page-container a:nth-child(4)')
 
   // remove the uploaded image
+  // @ts-ignore
   await require('fs/promises').rm('dev/react-project/public/uploaded/pattern.jpg')
 })

@@ -48,5 +48,6 @@ test.skip('should add an image to renderer', async ({ page }) => {
   await page.click('div.page-container a:nth-child(4)')
 
   // remove the uploaded image
+  // @ts-ignore
   await require('fs/promises').rm('dev/nextjs-project/public/uploaded/pattern.jpg')
 })
