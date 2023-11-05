@@ -13,6 +13,7 @@ interface ContentProps {
   setText: Function
   onUpload: (event: ChangeEvent<HTMLInputElement>) => void
   onChange: Function
+  selectedElement: HTMLDivElement
 }
 
 const Content: React.FC<ContentProps> = ({ url, text, setText, onUpload, onChange }) => {
@@ -67,9 +68,10 @@ interface DialogProps {
   open: boolean
   setOpen: (open: boolean) => void
   standaloneServer: boolean
+  selectedElement: HTMLDivElement
 }
 
-const Dialog: React.FC<DialogProps> = ({ open, setOpen, standaloneServer }) => {
+const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement, standaloneServer }) => {
   const [url, setUrl] = useState<string | null>('')
   const [text, setText] = useState('')
 
@@ -98,7 +100,14 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, standaloneServer }) => {
               Upload Image
             </DialogPrimitive.Title>
 
-            <Content url={url as string} text={text} setText={setText} onUpload={onUpload} onChange={onChange} />
+            <Content
+              url={url as string}
+              text={text}
+              setText={setText}
+              onUpload={onUpload}
+              onChange={onChange}
+              selectedElement={selectedElement}
+            />
 
             <div className="mt-4 flex justify-end">
               <button

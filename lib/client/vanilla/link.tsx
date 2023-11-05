@@ -9,10 +9,11 @@ import cx from 'classnames'
 interface DialogProps {
   open: boolean
   setOpen: (open: boolean) => void
+  selectedElement: HTMLAnchorElement
 }
 
-const Dialog: React.FC<DialogProps> = ({ open, setOpen }) => {
-  const [link, setLink] = useState('')
+const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
+  const [link, setLink] = useState(selectedElement?.href ?? '')
   const [newTab, setNewTab] = useState(true)
 
   return (

@@ -18,6 +18,7 @@ const methods = ['GET', 'POST']
 interface DialogProps {
   open: boolean
   setOpen: (open: boolean) => void
+  selectedElement: HTMLButtonElement
 }
 
 const Dialog: React.FC<DialogProps> = ({ open, setOpen }) => {

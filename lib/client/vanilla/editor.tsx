@@ -107,6 +107,7 @@ function Editor({ standaloneServer = false }) {
 
   const [isPreview, setIsPreview] = useState(false)
   const [hoveredComponent, setHoveredComponent] = useState<HTMLDivElement | null>(null)
+  const [selectedElement, setSelectedElement] = useState<HTMLDivElement | null>(null)
   const [components, setComponents] = useState<ComponentWithCategories>({})
 
   const [selectOpen, setSelectOpen] = useState(false)
@@ -237,7 +238,7 @@ function Editor({ standaloneServer = false }) {
   }
 
   const onCanvasClick = (e: React.MouseEvent<HTMLElement>) => {
-    const target = e.target as HTMLElement
+    const target = e.target as HTMLDivElement
     if (target.tagName === 'IMG') {
       setOpenImage(true)
     } else if (target.tagName === 'BUTTON') {
@@ -247,6 +248,7 @@ function Editor({ standaloneServer = false }) {
     } else if (target.tagName === 'path') {
       setOpenSvg(true)
     }
+    setSelectedElement(target)
 
     if (isEventOnElement(deleteRef.current! as unknown as HTMLElement, e)) {
       const clickEvent = new MouseEvent('click', { bubbles: true })
@@ -397,10 +399,23 @@ function Editor({ standaloneServer = false }) {
             </button>
           )}
         </div>
-        <ImageDialog open={openImage} setOpen={setOpenImage} standaloneServer={standaloneServer} />
-        <ButtonDialog open={openButton} setOpen={setOpenButton} />
-        <LinkDialog open={openLink} setOpen={setOpenLink} />
-        <SvgDialog open={openSvg} setOpen={setOpenSvg} />
+        <ImageDialog
+          open={openImage}
+          setOpen={setOpenImage}
+          selectedElement={selectedElement!}
+          standaloneServer={standaloneServer}
+        />
+        <ButtonDialog
+          open={openButton}
+          setOpen={setOpenButton}
+          selectedElement={selectedElement as unknown as HTMLButtonElement}
+        />
+        <LinkDialog
+          open={openLink}
+          setOpen={setOpenLink}
+          selectedElement={selectedElement as unknown as HTMLAnchorElement}
+        />
+        <SvgDialog open={openSvg} setOpen={setOpenSvg} selectedElement={selectedElement as unknown as SVGElement} />
         <div className="flex justify-center bg-gray-200" style={{ overflowY: 'scroll' }}>
           <div
             id="editor"

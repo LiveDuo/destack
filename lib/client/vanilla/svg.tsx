@@ -6,9 +6,13 @@ import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
 // @ts-ignore
 import cx from 'classnames'
 
-type DialogProps = { open: boolean; setOpen: any }
+type DialogProps = {
+  open: boolean
+  setOpen: any
+  selectedElement: SVGElement
+}
 
-const Dialog: React.FC<DialogProps> = ({ open, setOpen }) => {
+const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
   const [path, setPath] = useState('')
 
   return (
