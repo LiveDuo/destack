@@ -13,7 +13,7 @@ test('should drap and drop a component', async ({ page }) => {
   await page.click('#banner')
 
   // add component
-  const imagePath = '/api/builder/handle?type=asset&path=/themes/HyperUI/Banner1/preview.png'
+  const imagePath = '/api/builder/handle?type=asset&path=/themes/hyperui/Banner1/preview.png'
   await page.dragAndDrop(`img[src='${imagePath}']`, '#editor')
   await page.isVisible("text='Understand User Flow'")
 

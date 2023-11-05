@@ -53,8 +53,7 @@ const Category = ({ themeIndex, category, components, standaloneServer }) => {
         }`}
       >
         <div className="flex-1 flex items-center">
-          <Squares2X2Icon className="h-4 w-4 ml-2 mr-4" />{' '}
-          <h2 className="text-xs uppercase">{category}</h2>
+          <Squares2X2Icon className="h-4 w-4 ml-2 mr-4" /> <h2 className="text-xs uppercase">{category}</h2>
         </div>
         <a style={{ transform: `rotate(${show ? 180 : 0}deg)` }}>
           <ArrowSmallUpIcon className="h-4 w-4" />
@@ -66,10 +65,7 @@ const Category = ({ themeIndex, category, components, standaloneServer }) => {
             <img
               key={i}
               className="cursor-grab mb-2"
-              src={getImageUrl(
-                standaloneServer,
-                `/themes/${themes[themeIndex].name.replaceAll(' ', '')}/${c.folder}/preview.png`,
-              )}
+              src={getImageUrl(standaloneServer, `/themes/${themes[themeIndex].folder}/${c.folder}/preview.png`)}
               draggable="true"
               onDragStart={(e) => e.dataTransfer.setData('component', `${category}-${i}`)}
             />
@@ -288,25 +284,12 @@ function Editor({ standaloneServer = false }) {
       >
         <div className="flex flex-row p-1">
           {getComponents().indexOf(hoveredComponent) < getComponents().length - 1 && (
-            <ArrowDownIcon
-              ref={moveDownRef}
-              onClick={onComponentMoveDown}
-              className="h-7 w-7 text-white p-1"
-            />
+            <ArrowDownIcon ref={moveDownRef} onClick={onComponentMoveDown} className="h-7 w-7 text-white p-1" />
           )}
           {getComponents().indexOf(hoveredComponent) > 0 && (
-            <ArrowUpIcon
-              ref={moveUpRef}
-              onClick={onComponentMoveUp}
-              className="h-7 w-7 text-white p-1"
-            />
+            <ArrowUpIcon ref={moveUpRef} onClick={onComponentMoveUp} className="h-7 w-7 text-white p-1" />
           )}
-          <TrashIcon
-            id={'delete'}
-            ref={deleteRef}
-            onClick={onComponentDelete}
-            className="h-7 w-7 text-white p-1"
-          />
+          <TrashIcon id={'delete'} ref={deleteRef} onClick={onComponentDelete} className="h-7 w-7 text-white p-1" />
         </div>
       </div>
       {!isPreview && (
