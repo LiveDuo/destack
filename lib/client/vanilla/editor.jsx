@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import './index.css'
 
+import ArrowPathIcon from '@heroicons/react/24/outline/ArrowPathIcon'
 import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
 import ArrowDownIcon from '@heroicons/react/24/outline/ArrowDownIcon'
 import ArrowUpIcon from '@heroicons/react/24/outline/ArrowUpIcon'
@@ -9,6 +10,9 @@ import ArrowUpIcon from '@heroicons/react/24/outline/ArrowUpIcon'
 import Squares2X2Icon from '@heroicons/react/24/outline/Squares2X2Icon'
 import ArrowSmallUpIcon from '@heroicons/react/24/outline/ArrowSmallUpIcon'
 import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon'
+
+import ComputerDesktopIcon from '@heroicons/react/24/outline/ComputerDesktopIcon'
+import PencilIcon from '@heroicons/react/24/outline/PencilIcon'
 
 import Select from './select'
 
@@ -188,6 +192,7 @@ function Editor({ standaloneServer = false }) {
         if (!c.isEqualNode(hoveredComponent)) {
           setHoveredComponent(c)
 
+          if (!popoverRef.current) return
           const rect = getElementPosition(c)
           popoverRef.current.style.top = `${rect.top}px`
           popoverRef.current.style.left = `${rect.left}px`
@@ -277,21 +282,23 @@ function Editor({ standaloneServer = false }) {
 
   return (
     <div className="flex flex-row bg-white">
-      <div
-        ref={popoverRef}
-        className="absolute z-10 pointer-events-none bg-gray-500"
-        style={{ display: hoveredComponent ? 'block' : 'none' }}
-      >
-        <div className="flex flex-row p-1">
-          {getComponents().indexOf(hoveredComponent) < getComponents().length - 1 && (
-            <ArrowDownIcon ref={moveDownRef} onClick={onComponentMoveDown} className="h-7 w-7 text-white p-1" />
-          )}
-          {getComponents().indexOf(hoveredComponent) > 0 && (
-            <ArrowUpIcon ref={moveUpRef} onClick={onComponentMoveUp} className="h-7 w-7 text-white p-1" />
-          )}
-          <TrashIcon id={'delete'} ref={deleteRef} onClick={onComponentDelete} className="h-7 w-7 text-white p-1" />
+      {!isPreview && (
+        <div
+          ref={popoverRef}
+          className="absolute z-10 pointer-events-none bg-gray-500"
+          style={{ display: hoveredComponent ? 'block' : 'none' }}
+        >
+          <div className="flex flex-row p-1">
+            {getComponents().indexOf(hoveredComponent) < getComponents().length - 1 && (
+              <ArrowDownIcon ref={moveDownRef} onClick={onComponentMoveDown} className="h-7 w-7 text-white p-1" />
+            )}
+            {getComponents().indexOf(hoveredComponent) > 0 && (
+              <ArrowUpIcon ref={moveUpRef} onClick={onComponentMoveUp} className="h-7 w-7 text-white p-1" />
+            )}
+            <TrashIcon id={'delete'} ref={deleteRef} onClick={onComponentDelete} className="h-7 w-7 text-white p-1" />
+          </div>
         </div>
-      </div>
+      )}
       {!isPreview && (
         <div className="w-56 p-2" style={{ height: '100vh', overflowY: 'scroll', flexShrink: 0 }}>
           {Object.keys(components).map((c, i) => (
@@ -307,35 +314,53 @@ function Editor({ standaloneServer = false }) {
       )}
       <div className="w-full" style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
         <div className="flex items-center m-2">
-          <TrashIcon className="h-6 w-6 mx-2 cursor-pointer" onClick={clearComponents} />
-
-          <div className="mr-auto ml-auto">
-            <div
-              className="flex rounded py-2 px-4 transition cursor-pointer items-center justify-center mr-auto ml-auto"
-              onClick={() => setSelectOpen(true)}
-            >
-              {themes[themeIndex].name}
-              <ChevronDownIcon className="h-4 w-4 ml-2" />
+          {!isPreview && (
+            <div>
+              <ArrowPathIcon className="h-6 w-6 mx-2 cursor-pointer" onClick={clearComponents} />
             </div>
-            <Select
-              defaultValue={themes[themeIndex].name}
-              values={themes.map((c) => c.name)}
-              open={selectOpen}
-              setOpen={setSelectOpen}
-              onChange={(e) => {
-                const index = themes.findIndex((r) => r.name === e)
-                loadTheme(index)
-                setThemeIndex(index)
-              }}
-            />
-          </div>
+          )}
 
-          <button
-            className="bg-green-500 hover:bg-green-700 text-white px-4 py-2 ml-6 mr-6 rounded-md"
-            onClick={() => setIsPreview((s) => !s)}
-          >
-            {!isPreview ? 'Preview' : 'Editor'}
-          </button>
+          {!isPreview && (
+            <div className="mr-auto ml-auto">
+              <div
+                className="flex rounded py-2 px-4 transition cursor-pointer items-center justify-center mr-auto ml-auto"
+                onClick={() => setSelectOpen(true)}
+              >
+                {themes[themeIndex].name}
+                <ChevronDownIcon className="h-4 w-4 ml-2" />
+              </div>
+              <Select
+                defaultValue={themes[themeIndex].name}
+                values={themes.map((c) => c.name)}
+                open={selectOpen}
+                setOpen={setSelectOpen}
+                onChange={(e) => {
+                  const index = themes.findIndex((r) => r.name === e)
+                  loadTheme(index)
+                  setThemeIndex(index)
+                }}
+              />
+            </div>
+          )}
+
+          {!isPreview ? (
+            <button
+              className="bg-green-500 hover:bg-green-700 text-white px-4 py-2 ml-6 mr-6 rounded-md flex items-center"
+              onClick={() => setIsPreview((s) => !s)}
+            >
+              <ComputerDesktopIcon className="h-4 w-4 mr-2" />
+              Preview
+            </button>
+          ) : (
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 ml-6 mr-6 rounded-md flex items-center"
+              style={{ marginLeft: isPreview ? 'auto' : '' }}
+              onClick={() => setIsPreview((s) => !s)}
+            >
+              <PencilIcon className="h-4 w-4 mr-2" />
+              Editor
+            </button>
+          )}
         </div>
         <div className="flex justify-center bg-gray-200" style={{ overflowY: 'scroll' }}>
           <div
