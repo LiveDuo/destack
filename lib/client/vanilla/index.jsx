@@ -80,7 +80,7 @@ const Category = ({ themeIndex, category, components, standaloneServer }) => {
   )
 }
 
-function ContentProvider({ standaloneServer = false }) {
+function Editor({ standaloneServer = false }) {
   const canvasRef = useRef(null)
 
   const popoverRef = useRef(null)
@@ -185,7 +185,7 @@ function ContentProvider({ standaloneServer = false }) {
     return { top: box.top + scrollTop - clientTop, left: box.left + scrollLeft - clientLeft }
   }
 
-  const onCanvasMouseOver = (e) => {
+  const onCanvasMouseOver = () => {
     const components = getComponents()
     components.forEach((c) => {
       if (c.matches(':hover')) {
@@ -348,7 +348,18 @@ function ContentProvider({ standaloneServer = false }) {
   )
 }
 
+// TODO fix path check
+const ContentProvider = ({ data, standaloneServer }) => {
+  const templateData = data?.find(({ name }) => name === '/')
+  if (templateData) return <div dangerouslySetInnerHTML={{ __html: templateData.content }} />
+  else return <Editor standaloneServer={standaloneServer} />
+}
 export { ContentProvider }
 
-const ContentProviderReact = () => <ContentProvider standaloneServer={true} />
+// TODO fix path check
+const ContentProviderReact = ({ data }) => {
+  const templateData = data?.find(({ name }) => name === '/')
+  if (templateData) return <div dangerouslySetInnerHTML={{ __html: templateData.content }} />
+  else return <Editor standaloneServer={true} />
+}
 export { ContentProviderReact }
