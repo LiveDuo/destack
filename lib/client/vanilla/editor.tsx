@@ -16,6 +16,9 @@ import PencilIcon from '@heroicons/react/24/outline/PencilIcon'
 
 import Select from './select'
 import ImageDialog from './image'
+import ButtonDialog from './button'
+import LinkDialog from './link'
+import SvgDialog from './svg'
 
 const standaloneServerPort = 12785
 
@@ -386,6 +389,9 @@ function Editor({ standaloneServer = false }) {
           )}
         </div>
         <ImageDialog open={openImage} setOpen={setOpenImage} standaloneServer={standaloneServer} />
+        <SvgDialog open={false} setOpen={() => {}} />
+        <LinkDialog open={false} setOpen={() => {}} />
+        <ButtonDialog open={false} setOpen={() => {}} />
         <div className="flex justify-center bg-gray-200" style={{ overflowY: 'scroll' }}>
           <div
             id="editor"
