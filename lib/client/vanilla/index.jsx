@@ -351,30 +351,25 @@ function Editor({ standaloneServer = false }) {
   )
 }
 
-// TODO fix path check
 const ContentProvider = ({ data, standaloneServer }) => {
-  const templateData = data?.find(({ name }) => name === '/')
-  if (templateData)
+  const [templateData, setTemplateData] = useState()
+
+  useEffect(() => {
+    const _templateData = data?.find(({ name }) => name === location.pathname)
+    setTemplateData(_templateData.content)
+  }, [])
+
+  if (data)
     return (
       <>
-        <div id="page" dangerouslySetInnerHTML={{ __html: templateData.content }} />
+        <div id="page" dangerouslySetInnerHTML={{ __html: templateData }} />
         <PoweredBy />
       </>
     )
   else return <Editor standaloneServer={standaloneServer} />
 }
+
 export { ContentProvider }
 
-// TODO fix path check
-const ContentProviderReact = ({ data }) => {
-  const templateData = data?.find(({ name }) => name === '/')
-  if (templateData)
-    return (
-      <>
-        <div id="page" dangerouslySetInnerHTML={{ __html: templateData.content }} />
-        <PoweredBy />
-      </>
-    )
-  else return <Editor standaloneServer={true} />
-}
+const ContentProviderReact = (props) => <ContentProvider {...props} standaloneServer={true} />
 export { ContentProviderReact }
