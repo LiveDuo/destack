@@ -15,6 +15,7 @@ import ComputerDesktopIcon from '@heroicons/react/24/outline/ComputerDesktopIcon
 import PencilIcon from '@heroicons/react/24/outline/PencilIcon'
 
 import Select from './select'
+import ImageDialog from './image'
 
 const standaloneServerPort = 12785
 
@@ -108,6 +109,8 @@ function Editor({ standaloneServer = false }) {
   const [selectOpen, setSelectOpen] = useState(false)
 
   const [themeIndex, setThemeIndex] = useState(0)
+
+  const [openImage, setOpenImage] = useState(false)
 
   const loadTheme = async (index: number) => {
     const baseUrl = getBaseUrl(standaloneServer)
@@ -228,6 +231,11 @@ function Editor({ standaloneServer = false }) {
   }
 
   const onCanvasClick = (e: React.MouseEvent<HTMLElement>) => {
+    const target = e.target as HTMLElement
+    if (target.tagName === 'IMG') {
+      setOpenImage(true)
+    }
+
     if (isEventOnElement(deleteRef.current! as unknown as HTMLElement, e)) {
       const clickEvent = new MouseEvent('click', { bubbles: true })
       deleteRef.current!.dispatchEvent(clickEvent)
@@ -377,6 +385,7 @@ function Editor({ standaloneServer = false }) {
             </button>
           )}
         </div>
+        <ImageDialog open={openImage} setOpen={setOpenImage} standaloneServer={standaloneServer} />
         <div className="flex justify-center bg-gray-200" style={{ overflowY: 'scroll' }}>
           <div
             id="editor"
