@@ -11,6 +11,7 @@ import ArrowSmallUpIcon from '@heroicons/react/24/outline/ArrowSmallUpIcon'
 import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon'
 
 import Select from './select'
+import PoweredBy from './powered'
 
 const standaloneServerPort = 12785
 
@@ -281,17 +282,19 @@ function Editor({ standaloneServer = false }) {
           <TrashIcon ref={deleteRef} className="h-7 w-7 text-white p-1" />
         </div>
       </div>
-      <div className="w-56 p-2" style={{ height: '100vh', overflowY: 'scroll', flexShrink: 0 }}>
-        {Object.keys(components).map((c, i) => (
-          <Category
-            key={i}
-            category={c}
-            themeIndex={themeIndex}
-            components={components[c]}
-            standaloneServer={standaloneServer}
-          />
-        ))}
-      </div>
+      {!isPreview && (
+        <div className="w-56 p-2" style={{ height: '100vh', overflowY: 'scroll', flexShrink: 0 }}>
+          {Object.keys(components).map((c, i) => (
+            <Category
+              key={i}
+              category={c}
+              themeIndex={themeIndex}
+              components={components[c]}
+              standaloneServer={standaloneServer}
+            />
+          ))}
+        </div>
+      )}
       <div className="w-full" style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
         <div className="flex items-center m-2">
           <TrashIcon className="h-6 w-6 mx-2 cursor-pointer" onClick={clearComponents} />
@@ -351,7 +354,13 @@ function Editor({ standaloneServer = false }) {
 // TODO fix path check
 const ContentProvider = ({ data, standaloneServer }) => {
   const templateData = data?.find(({ name }) => name === '/')
-  if (templateData) return <div dangerouslySetInnerHTML={{ __html: templateData.content }} />
+  if (templateData)
+    return (
+      <>
+        <div id="page" dangerouslySetInnerHTML={{ __html: templateData.content }} />
+        <PoweredBy />
+      </>
+    )
   else return <Editor standaloneServer={standaloneServer} />
 }
 export { ContentProvider }
@@ -359,7 +368,13 @@ export { ContentProvider }
 // TODO fix path check
 const ContentProviderReact = ({ data }) => {
   const templateData = data?.find(({ name }) => name === '/')
-  if (templateData) return <div dangerouslySetInnerHTML={{ __html: templateData.content }} />
+  if (templateData)
+    return (
+      <>
+        <div id="page" dangerouslySetInnerHTML={{ __html: templateData.content }} />
+        <PoweredBy />
+      </>
+    )
   else return <Editor standaloneServer={true} />
 }
 export { ContentProviderReact }
