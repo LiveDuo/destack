@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "http-server ./build -p 3000 --proxy http://localhost:3000/?",
-    "dev": "destack -d \"react-scripts start\"",
-    "build": "destack -b \"react-scripts build\""
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider destack -d \"react-scripts start\"",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider destack -b \"react-scripts build\""
   },
   "dependencies": {
     "destack": "file:../../lib/",
