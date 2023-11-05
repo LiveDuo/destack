@@ -20,6 +20,7 @@ const standaloneServerPort = 12785
 
 interface Component {
   source: string
+  folder: string
 }
 
 const themes = [
@@ -52,7 +53,7 @@ const getImageUrl = (standaloneServer: boolean, imageSrc: string) => {
 interface CategoryProps {
   themeIndex: number
   category: string
-  components: any
+  components: Component[]
   standaloneServer: boolean
 }
 const Category: React.FC<CategoryProps> = ({ themeIndex, category, components, standaloneServer }) => {
@@ -75,7 +76,7 @@ const Category: React.FC<CategoryProps> = ({ themeIndex, category, components, s
       </div>
       {show && (
         <div>
-          {components.map((c: any, i: number) => (
+          {components.map((c: Component, i: number) => (
             <img
               key={i}
               className="cursor-grab mb-2"
@@ -90,6 +91,8 @@ const Category: React.FC<CategoryProps> = ({ themeIndex, category, components, s
   )
 }
 
+type ComponentWithCategories = { [key: string]: Component[] }
+
 function Editor({ standaloneServer = false }) {
   const canvasRef = useRef<HTMLDivElement>(null)
 
@@ -99,8 +102,8 @@ function Editor({ standaloneServer = false }) {
   const deleteRef = useRef<SVGSVGElement>(null)
 
   const [isPreview, setIsPreview] = useState(false)
-  const [hoveredComponent, setHoveredComponent] = useState<HTMLElement | null>(null)
-  const [components, setComponents] = useState([])
+  const [hoveredComponent, setHoveredComponent] = useState<HTMLDivElement | null>(null)
+  const [components, setComponents] = useState<ComponentWithCategories>({})
 
   const [selectOpen, setSelectOpen] = useState(false)
 
@@ -111,7 +114,7 @@ function Editor({ standaloneServer = false }) {
     const url = `${baseUrl}/api/builder/handle?type=theme&name=${themes[index].folder}`
     const _componentsList = await fetch(url).then((r) => r.json())
 
-    const _components = _componentsList.reduce((r: any, c: any) => {
+    const _components = _componentsList.reduce((r: ComponentWithCategories, c: Component) => {
       const category = c.folder.replace(/[0-9]/g, '')
       if (!r[category]) r[category] = []
       r[category].push(c)
@@ -162,11 +165,11 @@ function Editor({ standaloneServer = false }) {
     canvasRef.current!.innerHTML = ''
   }
 
-  const onCanvasDrop = async (e: any) => {
+  const onCanvasDrop = async (e: React.DragEvent<HTMLElement>) => {
     e.preventDefault()
 
     const [categoryId, componentId] = e.dataTransfer!.getData('component').split('-')
-    const component: Component = components[categoryId as unknown as number][componentId]
+    const component: Component = components[categoryId as unknown as string][componentId as unknown as number]
     const html = component.source
 
     const _components = getComponents()
@@ -198,7 +201,7 @@ function Editor({ standaloneServer = false }) {
 
   const onCanvasMouseOver = () => {
     const components = getComponents()
-    components.forEach((c: any) => {
+    components.forEach((c) => {
       if (c.matches(':hover')) {
         if (!c.isEqualNode(hoveredComponent)) {
           setHoveredComponent(c)
@@ -216,7 +219,7 @@ function Editor({ standaloneServer = false }) {
     setHoveredComponent(null)
   }
 
-  const isEventOnElement = (element: HTMLElement, event: MouseEvent) => {
+  const isEventOnElement = (element: HTMLElement, event: React.MouseEvent<HTMLElement>) => {
     if (!element) return
     const rect = element.getBoundingClientRect()
     const isX = rect.top < event.clientY && rect.bottom > event.clientY
@@ -224,7 +227,7 @@ function Editor({ standaloneServer = false }) {
     return isX && isY
   }
 
-  const onCanvasClick = (e: any) => {
+  const onCanvasClick = (e: React.MouseEvent<HTMLElement>) => {
     if (isEventOnElement(deleteRef.current! as unknown as HTMLElement, e)) {
       const clickEvent = new MouseEvent('click', { bubbles: true })
       deleteRef.current!.dispatchEvent(clickEvent)
@@ -250,12 +253,12 @@ function Editor({ standaloneServer = false }) {
     canvasRef.current!.insertBefore(hoveredComponent!.nextElementSibling!, hoveredComponent)
   }
 
-  const isElementTopHalf = (element: HTMLElement, event: MouseEvent) => {
+  const isElementTopHalf = (element: HTMLElement, event: React.MouseEvent<HTMLElement>) => {
     const rect = element.getBoundingClientRect()
     return rect.top + (rect.bottom - rect.top) / 2 > event.clientY
   }
 
-  const onCanvasDragOver = (e: any) => {
+  const onCanvasDragOver = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
 
     const components = getComponents()
@@ -287,8 +290,8 @@ function Editor({ standaloneServer = false }) {
     cleanCanvas()
   }
 
-  const getComponents = (): any => {
-    return Array.from(canvasRef.current?.children ?? []).filter((c) => c.nodeName !== 'SCRIPT')
+  const getComponents = (): HTMLDivElement[] => {
+    return Array.from(canvasRef.current?.children ?? []).filter((c) => c.nodeName !== 'SCRIPT') as HTMLDivElement[]
   }
 
   return (
@@ -312,12 +315,12 @@ function Editor({ standaloneServer = false }) {
       )}
       {!isPreview && (
         <div className="w-56 p-2" style={{ height: '100vh', overflowY: 'scroll', flexShrink: 0 }}>
-          {Object.keys(components).map((c: any, i) => (
+          {Object.keys(components).map((c: string, i) => (
             <Category
               key={i}
               category={c}
               themeIndex={themeIndex}
-              components={components[c]}
+              components={components[c as string]}
               standaloneServer={standaloneServer}
             />
           ))}
