@@ -46,7 +46,7 @@ const Category = ({ themeIndex, category, components, standaloneServer }) => {
   const [show, setShow] = useState(false)
 
   return (
-    <div>
+    <div id={category.toLowerCase()}>
       <div
         onClick={() => setShow((i) => !i)}
         className={`h-12 cursor-pointer bg-white border-b last:border-b-0 flex items-center px-2 ${
@@ -215,13 +215,28 @@ function Editor({ standaloneServer = false }) {
 
   const onCanvasClick = (e) => {
     if (isEventOnElement(deleteRef.current, e)) {
-      canvasRef.current.removeChild(hoveredComponent)
-      setHoveredComponent()
+      const clickEvent = new MouseEvent('click', { bubbles: true })
+      deleteRef.current.dispatchEvent(clickEvent)
     } else if (isEventOnElement(moveUpRef.current, e)) {
-      canvasRef.current.insertBefore(hoveredComponent, hoveredComponent.previousElementSibling)
+      const clickEvent = new MouseEvent('click', { bubbles: true })
+      moveUpRef.current.dispatchEvent(clickEvent)
     } else if (isEventOnElement(moveDownRef.current, e)) {
-      canvasRef.current.insertBefore(hoveredComponent.nextElementSibling, hoveredComponent)
+      const clickEvent = new MouseEvent('click', { bubbles: true })
+      moveDownRef.current.dispatchEvent(clickEvent)
     }
+  }
+
+  const onComponentDelete = () => {
+    canvasRef.current.removeChild(hoveredComponent)
+    setHoveredComponent()
+  }
+
+  const onComponentMoveUp = () => {
+    canvasRef.current.insertBefore(hoveredComponent, hoveredComponent.previousElementSibling)
+  }
+
+  const onComponentMoveDown = () => {
+    canvasRef.current.insertBefore(hoveredComponent.nextElementSibling, hoveredComponent)
   }
 
   const isElementTopHalf = (element, event) => {
@@ -274,12 +289,25 @@ function Editor({ standaloneServer = false }) {
       >
         <div className="flex flex-row p-1">
           {getComponents().indexOf(hoveredComponent) < getComponents().length - 1 && (
-            <ArrowDownIcon ref={moveDownRef} className="h-7 w-7 text-white p-1" />
+            <ArrowDownIcon
+              ref={moveDownRef}
+              onClick={onComponentMoveDown}
+              className="h-7 w-7 text-white p-1"
+            />
           )}
           {getComponents().indexOf(hoveredComponent) > 0 && (
-            <ArrowUpIcon ref={moveUpRef} className="h-7 w-7 text-white p-1" />
+            <ArrowUpIcon
+              ref={moveUpRef}
+              onClick={onComponentMoveUp}
+              className="h-7 w-7 text-white p-1"
+            />
           )}
-          <TrashIcon ref={deleteRef} className="h-7 w-7 text-white p-1" />
+          <TrashIcon
+            id={'delete'}
+            ref={deleteRef}
+            onClick={onComponentDelete}
+            className="h-7 w-7 text-white p-1"
+          />
         </div>
       </div>
       {!isPreview && (
