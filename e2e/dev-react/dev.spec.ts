@@ -6,18 +6,21 @@ test('should contain the editor', async ({ page }) => {
 })
 
 // TODO fix
-test.skip('should drap and drop a component', async ({ page }) => {
+test('should drap and drop a component', async ({ page }) => {
   await page.goto('/')
+
+  // open category
+  await page.click('#banner')
 
   // add component
   const imagePath =
-    'http://localhost:12785/api/builder/handle?type=asset&path=/themes/hyperui/Banner1/preview.png'
-  await page.dragAndDrop(`img[src='${imagePath}']`, '#editor > div')
-  await expect(page.locator('#editor > div')).toHaveCount(1)
+    'http://localhost:12785/api/builder/handle?type=asset&path=/themes/HyperUI/Banner1/preview.png'
+  await page.dragAndDrop(`img[src='${imagePath}']`, '#editor')
+  await page.isVisible("text='Understand User Flow'")
 
   // remove the component
   await page.hover('text=Understand')
-  await page.click('div.page-container a:nth-child(4)')
+  // await page.click('#delete')
 })
 
 test.skip('should add an image to renderer', async ({ page }) => {

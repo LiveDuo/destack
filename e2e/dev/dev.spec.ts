@@ -6,7 +6,7 @@ test('should contain the editor', async ({ page }) => {
 })
 
 // TODO fix
-test.skip('should drap and drop a component', async ({ page }) => {
+test('should drap and drop a component', async ({ page }) => {
   await page.goto('/')
 
   // open category
