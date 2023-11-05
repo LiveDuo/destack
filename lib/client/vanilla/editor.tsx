@@ -262,11 +262,11 @@ function Editor({ standaloneServer = false }) {
     e.preventDefault()
 
     const components = getComponents()
-    components.forEach((c: any) => {
+    components.forEach((c: HTMLDivElement) => {
       if (isEventOnElement(c, e)) {
         const isTopHalf = isElementTopHalf(c, e)
-        c.style[`border-${isTopHalf ? 'top' : 'bottom'}`] = '4px solid cornflowerblue'
-        c.style[`border-${!isTopHalf ? 'top' : 'bottom'}`] = ''
+        c.setAttribute(`border-${isTopHalf ? 'top' : 'bottom'}`, '4px solid cornflowerblue')
+        c.setAttribute(`border-${!isTopHalf ? 'top' : 'bottom'}`, '')
 
         if (!c.isEqualNode(hoveredComponent)) {
           setHoveredComponent(c)
@@ -279,9 +279,9 @@ function Editor({ standaloneServer = false }) {
     setHoveredComponent(null)
 
     const components = getComponents()
-    components.forEach((c: any) => {
-      c.style['border-top'] = ''
-      c.style['border-bottom'] = ''
+    components.forEach((c: HTMLDivElement) => {
+      c.setAttribute('border-top', '')
+      c.setAttribute('border-bottom', '')
     })
   }
 
