@@ -404,6 +404,7 @@ function Editor({ standaloneServer = false }) {
               minHeight: '1024px',
               height: 'fit-content',
             }}
+            contentEditable={!isPreview}
           ></div>
         </div>
       </div>
