@@ -114,6 +114,9 @@ function Editor({ standaloneServer = false }) {
   const [themeIndex, setThemeIndex] = useState(0)
 
   const [openImage, setOpenImage] = useState(false)
+  const [openButton, setOpenButton] = useState(false)
+  const [openLink, setOpenLink] = useState(false)
+  const [openSvg, setOpenSvg] = useState(false)
 
   const loadTheme = async (index: number) => {
     const baseUrl = getBaseUrl(standaloneServer)
@@ -237,6 +240,12 @@ function Editor({ standaloneServer = false }) {
     const target = e.target as HTMLElement
     if (target.tagName === 'IMG') {
       setOpenImage(true)
+    } else if (target.tagName === 'BUTTON') {
+      setOpenButton(true)
+    } else if (target.tagName === 'A') {
+      setOpenLink(true)
+    } else if (target.tagName === 'path') {
+      setOpenSvg(true)
     }
 
     if (isEventOnElement(deleteRef.current! as unknown as HTMLElement, e)) {
@@ -389,9 +398,9 @@ function Editor({ standaloneServer = false }) {
           )}
         </div>
         <ImageDialog open={openImage} setOpen={setOpenImage} standaloneServer={standaloneServer} />
-        <SvgDialog open={false} setOpen={() => {}} />
-        <LinkDialog open={false} setOpen={() => {}} />
-        <ButtonDialog open={false} setOpen={() => {}} />
+        <ButtonDialog open={openButton} setOpen={setOpenButton} />
+        <LinkDialog open={openLink} setOpen={setOpenLink} />
+        <SvgDialog open={openSvg} setOpen={setOpenSvg} />
         <div className="flex justify-center bg-gray-200" style={{ overflowY: 'scroll' }}>
           <div
             id="editor"
