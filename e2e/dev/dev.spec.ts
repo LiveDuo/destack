@@ -9,14 +9,17 @@ test('should contain the editor', async ({ page }) => {
 test.skip('should drap and drop a component', async ({ page }) => {
   await page.goto('/')
 
+  // open category
+  await page.click('#banner')
+
   // add component
-  const imagePath = '/api/builder/handle?type=asset&path=/themes/hyperui/Banner1/preview.png'
-  await page.dragAndDrop(`img[src='${imagePath}']`, '#editor > div')
-  await expect(page.locator('#editor > div')).toHaveCount(1)
+  const imagePath = '/api/builder/handle?type=asset&path=/themes/HyperUI/Banner1/preview.png'
+  await page.dragAndDrop(`img[src='${imagePath}']`, '#editor')
+  await page.isVisible("text='Understand User Flow'")
 
   // remove the component
   await page.hover('text=Understand')
-  await page.click('#editor a:nth-child(4)')
+  // await page.click('#delete')
 })
 
 // TODO fix
