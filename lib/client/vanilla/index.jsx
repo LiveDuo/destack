@@ -329,6 +329,7 @@ function Editor({ standaloneServer = false }) {
         </div>
         <div className="flex justify-center bg-gray-200" style={{ overflowY: 'scroll' }}>
           <div
+            id="editor"
             ref={canvasRef}
             className="bg-white ease-animation"
             onClick={onCanvasClick}
@@ -355,8 +356,10 @@ const ContentProvider = ({ data, standaloneServer }) => {
   const [templateData, setTemplateData] = useState()
 
   useEffect(() => {
-    const _templateData = data?.find(({ name }) => name === location.pathname)
-    setTemplateData(_templateData.content)
+    if (data) {
+      const _templateData = data?.find(({ name }) => name === location.pathname)
+      setTemplateData(_templateData.content)
+    }
   }, [])
 
   if (data)
