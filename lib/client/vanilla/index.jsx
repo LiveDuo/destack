@@ -402,5 +402,34 @@ const ContentProvider = ({ data, standaloneServer }) => {
 
 export { ContentProvider }
 
-const ContentProviderReact = (props) => <ContentProvider {...props} standaloneServer={true} />
+const isDev = '_self' in React.createElement('div')
+
+const ContentProviderReact = () => {
+  const mounted = useRef(false)
+  const [loaded, setLoaded] = useState(false)
+  const [data, setData] = useState()
+
+  const loadData = async () => {
+    if (isDev) {
+      setData(undefined)
+      setLoaded(true)
+      return
+    }
+
+    const url = `/default.html` // TODO fix
+    const _data = await fetch(url).then((r) => r.text())
+    setData(_data)
+    setLoaded(true)
+  }
+
+  useEffect(() => {
+    if (mounted.current) return
+
+    loadData()
+
+    mounted.current = true
+  }, [])
+
+  return loaded && <ContentProvider data={data} standaloneServer={true} />
+}
 export { ContentProviderReact }
