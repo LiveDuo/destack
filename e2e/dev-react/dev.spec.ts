@@ -5,7 +5,6 @@ test('should contain the editor', async ({ page }) => {
   await expect(page.locator('#editor')).toHaveCount(1)
 })
 
-// TODO fix
 test('should drap and drop a component', async ({ page }) => {
   await page.goto('/')
 
@@ -19,7 +18,8 @@ test('should drap and drop a component', async ({ page }) => {
 
   // remove the component
   await page.hover('text=Understand')
-  // await page.click('#delete')
+  const deleteElement = await page.locator('#delete').boundingBox()
+  await page.mouse.move(deleteElement?.x as number, deleteElement?.y as number)
 })
 
 test.skip('should add an image to renderer', async ({ page }) => {
