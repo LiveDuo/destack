@@ -18,6 +18,10 @@ import Select from './select'
 
 const standaloneServerPort = 12785
 
+interface Component {
+  source: string
+}
+
 const themes = [
   { name: 'Hyper UI', folder: 'hyperui' },
   { name: 'Tailblocks', folder: 'tailblocks' },
@@ -27,25 +31,31 @@ const themes = [
   { name: 'Flowbite', folder: 'flowbite' },
 ]
 
-function debounce(callback, timeout = 1000) {
-  let timeoutFn
-  return (...args) => {
+function debounce(this: any, callback: Function, timeout = 1000) {
+  let timeoutFn: any
+  return (...args: any) => {
     const context = this
     clearTimeout(timeoutFn)
     timeoutFn = setTimeout(() => callback.apply(context, args), timeout)
   }
 }
 
-const getBaseUrl = (standaloneServer) => {
+const getBaseUrl = (standaloneServer: boolean) => {
   return standaloneServer ? `http://localhost:${standaloneServerPort}` : ''
 }
 
-const getImageUrl = (standaloneServer, imageSrc) => {
+const getImageUrl = (standaloneServer: boolean, imageSrc: string) => {
   const baseUrl = getBaseUrl(standaloneServer)
   return `${baseUrl}/api/builder/handle?type=asset&path=${imageSrc}`
 }
 
-const Category = ({ themeIndex, category, components, standaloneServer }) => {
+interface CategoryProps {
+  themeIndex: number
+  category: string
+  components: any
+  standaloneServer: boolean
+}
+const Category: React.FC<CategoryProps> = ({ themeIndex, category, components, standaloneServer }) => {
   const [show, setShow] = useState(false)
 
   return (
@@ -65,7 +75,7 @@ const Category = ({ themeIndex, category, components, standaloneServer }) => {
       </div>
       {show && (
         <div>
-          {components.map((c, i) => (
+          {components.map((c: any, i: number) => (
             <img
               key={i}
               className="cursor-grab mb-2"
@@ -81,27 +91,27 @@ const Category = ({ themeIndex, category, components, standaloneServer }) => {
 }
 
 function Editor({ standaloneServer = false }) {
-  const canvasRef = useRef(null)
+  const canvasRef = useRef<HTMLDivElement>(null)
 
-  const popoverRef = useRef(null)
-  const moveUpRef = useRef(null)
-  const moveDownRef = useRef(null)
-  const deleteRef = useRef(null)
+  const popoverRef = useRef<HTMLDivElement>(null)
+  const moveUpRef = useRef<SVGSVGElement>(null)
+  const moveDownRef = useRef<SVGSVGElement>(null)
+  const deleteRef = useRef<SVGSVGElement>(null)
 
   const [isPreview, setIsPreview] = useState(false)
-  const [hoveredComponent, setHoveredComponent] = useState()
+  const [hoveredComponent, setHoveredComponent] = useState<HTMLElement | null>(null)
   const [components, setComponents] = useState([])
 
   const [selectOpen, setSelectOpen] = useState(false)
 
   const [themeIndex, setThemeIndex] = useState(0)
 
-  const loadTheme = async (index) => {
+  const loadTheme = async (index: number) => {
     const baseUrl = getBaseUrl(standaloneServer)
     const url = `${baseUrl}/api/builder/handle?type=theme&name=${themes[index].folder}`
     const _componentsList = await fetch(url).then((r) => r.json())
 
-    const _components = _componentsList.reduce((r, c) => {
+    const _components = _componentsList.reduce((r: any, c: any) => {
       const category = c.folder.replace(/[0-9]/g, '')
       if (!r[category]) r[category] = []
       r[category].push(c)
@@ -115,7 +125,7 @@ function Editor({ standaloneServer = false }) {
     const baseUrl = getBaseUrl(standaloneServer)
     const url2 = `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}`
     const data = await fetch(url2).then((r) => r.text())
-    canvasRef.current.innerHTML = data
+    canvasRef.current!.innerHTML = data
   }
 
   const savePage = async () => {
@@ -124,7 +134,7 @@ function Editor({ standaloneServer = false }) {
     const baseUrl = getBaseUrl(standaloneServer)
     const url = `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}`
 
-    await fetch(url, { method: 'post', body: canvasRef.current.innerHTML })
+    await fetch(url, { method: 'post', body: canvasRef.current!.innerHTML })
   }
 
   const onDomChange = () => {
@@ -135,7 +145,7 @@ function Editor({ standaloneServer = false }) {
         savePage()
       }),
     )
-    observer.observe(canvasRef.current, config)
+    observer.observe(canvasRef.current!, config)
     return observer
   }
 
@@ -149,28 +159,29 @@ function Editor({ standaloneServer = false }) {
   }, [])
 
   const clearComponents = async () => {
-    canvasRef.current.innerHTML = ''
+    canvasRef.current!.innerHTML = ''
   }
 
-  const onCanvasDrop = async (e) => {
+  const onCanvasDrop = async (e: any) => {
     e.preventDefault()
 
-    const [categoryId, componentId] = e.dataTransfer.getData('component').split('-')
-    const html = components[categoryId][componentId].source
+    const [categoryId, componentId] = e.dataTransfer!.getData('component').split('-')
+    const component: Component = components[categoryId as unknown as number][componentId]
+    const html = component.source
 
     const _components = getComponents()
     if (_components.length === 0) {
-      canvasRef.current.innerHTML = html
-    } else if (isElementTopHalf(hoveredComponent, e)) {
-      hoveredComponent.insertAdjacentHTML('beforebegin', html)
-    } else if (!isElementTopHalf(hoveredComponent, e)) {
-      hoveredComponent.insertAdjacentHTML('afterend', html)
+      canvasRef.current!.innerHTML = html
+    } else if (isElementTopHalf(hoveredComponent!, e)) {
+      hoveredComponent!.insertAdjacentHTML('beforebegin', html)
+    } else if (!isElementTopHalf(hoveredComponent!, e)) {
+      hoveredComponent!.insertAdjacentHTML('afterend', html)
     }
 
     cleanCanvas()
   }
 
-  const getElementPosition = (element) => {
+  const getElementPosition = (element: HTMLElement) => {
     const box = element.getBoundingClientRect()
 
     const body = document.body
@@ -187,7 +198,7 @@ function Editor({ standaloneServer = false }) {
 
   const onCanvasMouseOver = () => {
     const components = getComponents()
-    components.forEach((c) => {
+    components.forEach((c: any) => {
       if (c.matches(':hover')) {
         if (!c.isEqualNode(hoveredComponent)) {
           setHoveredComponent(c)
@@ -202,10 +213,10 @@ function Editor({ standaloneServer = false }) {
   }
 
   const onCanvasMouseLeave = () => {
-    setHoveredComponent()
+    setHoveredComponent(null)
   }
 
-  const isEventOnElement = (element, event) => {
+  const isEventOnElement = (element: HTMLElement, event: MouseEvent) => {
     if (!element) return
     const rect = element.getBoundingClientRect()
     const isX = rect.top < event.clientY && rect.bottom > event.clientY
@@ -213,42 +224,42 @@ function Editor({ standaloneServer = false }) {
     return isX && isY
   }
 
-  const onCanvasClick = (e) => {
-    if (isEventOnElement(deleteRef.current, e)) {
+  const onCanvasClick = (e: any) => {
+    if (isEventOnElement(deleteRef.current! as unknown as HTMLElement, e)) {
       const clickEvent = new MouseEvent('click', { bubbles: true })
-      deleteRef.current.dispatchEvent(clickEvent)
-    } else if (isEventOnElement(moveUpRef.current, e)) {
+      deleteRef.current!.dispatchEvent(clickEvent)
+    } else if (isEventOnElement(moveUpRef.current! as unknown as HTMLElement, e)) {
       const clickEvent = new MouseEvent('click', { bubbles: true })
-      moveUpRef.current.dispatchEvent(clickEvent)
-    } else if (isEventOnElement(moveDownRef.current, e)) {
+      moveUpRef.current!.dispatchEvent(clickEvent)
+    } else if (isEventOnElement(moveDownRef.current! as unknown as HTMLElement, e)) {
       const clickEvent = new MouseEvent('click', { bubbles: true })
-      moveDownRef.current.dispatchEvent(clickEvent)
+      moveDownRef.current!.dispatchEvent(clickEvent)
     }
   }
 
   const onComponentDelete = () => {
-    canvasRef.current.removeChild(hoveredComponent)
-    setHoveredComponent()
+    canvasRef.current!.removeChild(hoveredComponent!)
+    setHoveredComponent(null)
   }
 
   const onComponentMoveUp = () => {
-    canvasRef.current.insertBefore(hoveredComponent, hoveredComponent.previousElementSibling)
+    canvasRef.current!.insertBefore(hoveredComponent!, hoveredComponent!.previousElementSibling)
   }
 
   const onComponentMoveDown = () => {
-    canvasRef.current.insertBefore(hoveredComponent.nextElementSibling, hoveredComponent)
+    canvasRef.current!.insertBefore(hoveredComponent!.nextElementSibling!, hoveredComponent)
   }
 
-  const isElementTopHalf = (element, event) => {
+  const isElementTopHalf = (element: HTMLElement, event: MouseEvent) => {
     const rect = element.getBoundingClientRect()
     return rect.top + (rect.bottom - rect.top) / 2 > event.clientY
   }
 
-  const onCanvasDragOver = (e) => {
+  const onCanvasDragOver = (e: any) => {
     e.preventDefault()
 
     const components = getComponents()
-    components.forEach((c) => {
+    components.forEach((c: any) => {
       if (isEventOnElement(c, e)) {
         const isTopHalf = isElementTopHalf(c, e)
         c.style[`border-${isTopHalf ? 'top' : 'bottom'}`] = '4px solid cornflowerblue'
@@ -262,10 +273,10 @@ function Editor({ standaloneServer = false }) {
   }
 
   const cleanCanvas = () => {
-    setHoveredComponent()
+    setHoveredComponent(null)
 
     const components = getComponents()
-    components.forEach((c) => {
+    components.forEach((c: any) => {
       c.style['border-top'] = ''
       c.style['border-bottom'] = ''
     })
@@ -276,7 +287,7 @@ function Editor({ standaloneServer = false }) {
     cleanCanvas()
   }
 
-  const getComponents = () => {
+  const getComponents = (): any => {
     return Array.from(canvasRef.current?.children ?? []).filter((c) => c.nodeName !== 'SCRIPT')
   }
 
@@ -289,10 +300,10 @@ function Editor({ standaloneServer = false }) {
           style={{ display: hoveredComponent ? 'block' : 'none' }}
         >
           <div className="flex flex-row p-1">
-            {getComponents().indexOf(hoveredComponent) < getComponents().length - 1 && (
+            {getComponents().indexOf(hoveredComponent!) < getComponents().length - 1 && (
               <ArrowDownIcon ref={moveDownRef} onClick={onComponentMoveDown} className="h-7 w-7 text-white p-1" />
             )}
-            {getComponents().indexOf(hoveredComponent) > 0 && (
+            {getComponents().indexOf(hoveredComponent!) > 0 && (
               <ArrowUpIcon ref={moveUpRef} onClick={onComponentMoveUp} className="h-7 w-7 text-white p-1" />
             )}
             <TrashIcon id={'delete'} ref={deleteRef} onClick={onComponentDelete} className="h-7 w-7 text-white p-1" />
@@ -301,7 +312,7 @@ function Editor({ standaloneServer = false }) {
       )}
       {!isPreview && (
         <div className="w-56 p-2" style={{ height: '100vh', overflowY: 'scroll', flexShrink: 0 }}>
-          {Object.keys(components).map((c, i) => (
+          {Object.keys(components).map((c: any, i) => (
             <Category
               key={i}
               category={c}
