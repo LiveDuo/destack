@@ -9,7 +9,7 @@ test('should drap and drop a component', async ({ page }) => {
   await page.goto('/')
 
   // open category
-  await page.click('#banner')
+  await page.click('text=BANNER')
 
   // add component
   const imagePath = 'http://localhost:12785/api/builder/handle?type=asset&path=/themes/hyperui/Banner1/preview.png'
@@ -22,27 +22,28 @@ test('should drap and drop a component', async ({ page }) => {
   await page.mouse.move(deleteElement?.x as number, deleteElement?.y as number)
 })
 
-test.skip('should add an image to renderer', async ({ page }) => {
+test('should add an image to renderer', async ({ page }) => {
   await page.goto('/')
 
   // NOTE: skip for now as upload image in not working in react
   // react-scripts reloads after uploading in the public folder
   return
 
+  // open category
+  await page.click('text=CTA')
+
   // add component with image
-  await page.click('div.toolbox > div > div:nth-child(1)')
-  await page.click('div.toolbox > div > div:nth-child(2)')
   const imagePath = 'http://localhost:12785/api/builder/handle?type=asset&path=/themes/hyperui/Cta1/preview.png'
-  await page.dragAndDrop(`img[src='${imagePath}']`, '#editor > div')
-  await expect(page.locator('#editor > div')).toHaveCount(1)
+  await page.dragAndDrop(`img[src='${imagePath}']`, '#editor')
 
   // open image dialog
-  await page.hover('#editor img')
-  await page.click('div.page-container a:nth-child(3)')
+  await page.hover('text=Lorem')
+  const imageElement = await page.getByRole('img', { name: 'Student' }).first()
+  await imageElement.click()
 
   // click replace image
   await page.click('text=Replace')
-  await page.setInputFiles("input[type='file']", ['e2e/dev-react/pattern.jpg'])
+  await page.setInputFiles("input[type='file']", ['e2e/dev/pattern.jpg'])
   await page.click('text=Upload')
   await page.click('text=Save')
 
@@ -51,9 +52,10 @@ test.skip('should add an image to renderer', async ({ page }) => {
 
   // remove the component
   await page.hover('text=Lorem')
-  await page.click('div.page-container a:nth-child(4)')
+  const deleteElement = await page.locator('#delete').boundingBox()
+  await page.mouse.move(deleteElement?.x as number, deleteElement?.y as number)
 
   // remove the uploaded image
   // @ts-ignore
-  await require('fs/promises').rm('dev/react-project/public/uploaded/pattern.jpg')
+  await require('fs/promises').rm('dev/nextjs-project/public/uploaded/pattern.jpg')
 })

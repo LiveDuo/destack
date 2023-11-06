@@ -33,7 +33,7 @@ test('should add an image to renderer', async ({ page }) => {
   await page.dragAndDrop(`img[src='${imagePath}']`, '#editor')
 
   // open image dialog
-  await page.hover('text= Lorem')
+  await page.hover('text=Lorem')
   const imageElement = await page.getByRole('img', { name: 'Student' }).first()
   await imageElement.click()
 
