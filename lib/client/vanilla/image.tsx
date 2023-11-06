@@ -1,4 +1,4 @@
-import React, { useState, useRef, ChangeEvent } from 'react'
+import React, { useState, useRef, ChangeEvent, useEffect } from 'react'
 
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 
@@ -18,6 +18,10 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement, standal
   const [url, setUrl] = useState<string>('')
   const [urlText, setUrlText] = useState<string>('')
   const input = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    setUrl(selectedElement?.getAttribute('src') ?? '')
+  }, [open])
 
   const onUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
