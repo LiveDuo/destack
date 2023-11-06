@@ -401,7 +401,7 @@ function Editor({ standaloneServer = false }) {
         <ImageDialog
           open={openImage}
           setOpen={setOpenImage}
-          selectedElement={selectedElement!}
+          selectedElement={selectedElement as unknown as HTMLImageElement}
           standaloneServer={standaloneServer}
         />
         <ButtonDialog

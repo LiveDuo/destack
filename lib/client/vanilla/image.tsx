@@ -11,12 +11,12 @@ interface DialogProps {
   open: boolean
   setOpen: (open: boolean) => void
   standaloneServer: boolean
-  selectedElement: HTMLDivElement
+  selectedElement: HTMLImageElement
 }
 
 const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement, standaloneServer }) => {
-  const [url, setUrl] = useState<string | null>('')
-  const [urlText, setUrlText] = useState('')
+  const [url, setUrl] = useState<string>('')
+  const [urlText, setUrlText] = useState<string>('')
   const input = useRef<HTMLInputElement>(null)
 
   const onUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +29,12 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement, standal
   }
 
   const onSave = async () => {
-    // TODO update dom element
+    if (url === urlText) {
+      selectedElement.src = url
+    } else {
+      // TODO upload image
+      // selectedElement.src = {uploaded_url}
+    }
 
     setOpen(false)
   }
@@ -99,7 +104,7 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement, standal
                   'text-blue-500 hover:opacity-50 border border-transparent',
                 )}
                 onClick={() => {
-                  setUrl(null)
+                  setUrl('')
                   setUrlText('')
                 }}
               >
