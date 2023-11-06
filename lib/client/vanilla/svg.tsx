@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
@@ -9,16 +9,20 @@ import cx from 'classnames'
 type DialogProps = {
   open: boolean
   setOpen: any
-  selectedElement: SVGElement
+  selectedElement: SVGTextPathElement
 }
 
 const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
   const [path, setPath] = useState('')
 
+  useEffect(() => {
+    setPath(selectedElement?.getAttribute('d') ?? '')
+  }, [open])
+
   const onSave = () => {
     setOpen(false)
 
-    // TODO update dom element
+    selectedElement.setAttribute('d', path)
   }
 
   return (

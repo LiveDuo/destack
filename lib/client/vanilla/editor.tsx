@@ -414,7 +414,11 @@ function Editor({ standaloneServer = false }) {
           setOpen={setOpenLink}
           selectedElement={selectedElement as unknown as HTMLAnchorElement}
         />
-        <SvgDialog open={openSvg} setOpen={setOpenSvg} selectedElement={selectedElement as unknown as SVGElement} />
+        <SvgDialog
+          open={openSvg}
+          setOpen={setOpenSvg}
+          selectedElement={selectedElement as unknown as SVGTextPathElement}
+        />
         <div className="flex justify-center bg-gray-200" style={{ overflowY: 'scroll' }}>
           <div
             id="editor"
