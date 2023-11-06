@@ -33,8 +33,14 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen }) => {
   const [newTab, setNewTab] = useState(true)
   const [type, setType] = useState('url')
 
-  const onChange = (e: string) => {
+  const onSelectType = (e: string) => {
     setType(e.toLowerCase())
+  }
+
+  const onSave = () => {
+    setOpen(false)
+
+    // TODO update dom element
   }
 
   return (
@@ -66,7 +72,7 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen }) => {
                     values={options.map((o) => capitalize(o))}
                     open={openSelect}
                     setOpen={setOpenSelect}
-                    onChange={onChange}
+                    onChange={onSelectType}
                   />
 
                   <div>
@@ -147,7 +153,7 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen }) => {
             <div className="mt-4 flex justify-end">
               <DialogPrimitive.Close
                 onClick={() => {
-                  setOpen(false)
+                  onSave()
                 }}
                 className={cx(
                   'inline-flex select-none justify-center rounded-md px-4 py-2 text-sm font-medium',

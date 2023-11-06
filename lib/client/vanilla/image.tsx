@@ -32,7 +32,7 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement, standal
   }
 
   const onSave = async () => {
-    // TODO dom element
+    // TODO update dom element
 
     setOpen(false)
   }

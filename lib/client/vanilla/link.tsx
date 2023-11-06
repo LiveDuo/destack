@@ -16,6 +16,12 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
   const [link, setLink] = useState(selectedElement?.href ?? '')
   const [newTab, setNewTab] = useState(true)
 
+  const onSave = () => {
+    setOpen(false)
+
+    // TODO update dom element
+  }
+
   return (
     <DialogPrimitive.Root open={open} onOpenChange={setOpen}>
       <DialogPrimitive.Portal>
@@ -59,7 +65,7 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
             <div className="mt-4 flex justify-end">
               <DialogPrimitive.Close
                 onClick={() => {
-                  setOpen(false)
+                  onSave()
                 }}
                 className={cx(
                   'inline-flex select-none justify-center rounded-md px-4 py-2 text-sm font-medium',
