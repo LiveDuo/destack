@@ -7,63 +7,6 @@ import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
 // @ts-ignore
 import cx from 'classnames'
 
-interface ContentProps {
-  url: string
-  text: string
-  setText: Function
-  onUpload: (event: ChangeEvent<HTMLInputElement>) => void
-  onChange: Function
-  selectedElement: HTMLDivElement
-}
-
-const Content: React.FC<ContentProps> = ({ url, text, setText, onUpload, onChange }) => {
-  const input = useRef<HTMLInputElement>(null)
-
-  return (
-    <div className="mt-4 mb-4">
-      {!url ? (
-        <div>
-          <div className="flex justify-center mt-8 mb-4">
-            <input ref={input} type="file" onChange={onUpload} style={{ display: 'none' }} />
-            <button
-              className={
-                'rounded-md px-4 py-2 text-sm font-medium bg-transparent border-blue-500 text-blue-500 hover:bg-blue-700 hover:text-white border border-transparent'
-              }
-              onClick={() => {
-                input.current?.click()
-              }}
-            >
-              Upload
-            </button>
-          </div>
-          <div className="flex justify-center mb-4">OR</div>
-          <div className="flex justify-center mb-4">
-            <input
-              type="text"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-              placeholder="Eg. https://www.w3schools.com/html/pic_trulli.jpg"
-              onChange={(e) => setText(e.target.value)}
-            />
-            <button
-              onClick={() => onChange()}
-              className={cx(
-                'rounded-md px-4 py-2 text-sm font-medium bg-transparent border',
-                'text-blue-500 hover:opacity-50 border border-transparent',
-                `${text !== '' ? 'hover:opacity-50' : 'opacity-50 cursor-not-allowed'}`,
-              )}
-              disabled={text === ''}
-            >
-              Set
-            </button>
-          </div>
-        </div>
-      ) : (
-        <img src={url} />
-      )}
-    </div>
-  )
-}
-
 interface DialogProps {
   open: boolean
   setOpen: (open: boolean) => void
@@ -74,15 +17,24 @@ interface DialogProps {
 const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement, standaloneServer }) => {
   const [url, setUrl] = useState<string | null>('')
   const [text, setText] = useState('')
+  const input = useRef<HTMLInputElement>(null)
 
   const onUpload = async (e: any) => {
     e.preventDefault()
 
-    console.log('upload')
+    // TODO update preview
   }
 
-  const onChange = async () => {
+  const onChangeUrl = async () => {
+    // TODO update preview
+
     setUrl(text)
+  }
+
+  const onSave = async () => {
+    // TODO dom element
+
+    setOpen(false)
   }
 
   return (
@@ -100,14 +52,47 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement, standal
               Upload Image
             </DialogPrimitive.Title>
 
-            <Content
-              url={url as string}
-              text={text}
-              setText={setText}
-              onUpload={onUpload}
-              onChange={onChange}
-              selectedElement={selectedElement}
-            />
+            <div className="mt-4 mb-4">
+              {!url ? (
+                <div>
+                  <div className="flex justify-center mt-8 mb-4">
+                    <input ref={input} type="file" onChange={onUpload} style={{ display: 'none' }} />
+                    <button
+                      className={
+                        'rounded-md px-4 py-2 text-sm font-medium bg-transparent border-blue-500 text-blue-500 hover:bg-blue-700 hover:text-white border border-transparent'
+                      }
+                      onClick={() => {
+                        input.current?.click()
+                      }}
+                    >
+                      Upload
+                    </button>
+                  </div>
+                  <div className="flex justify-center mb-4">OR</div>
+                  <div className="flex justify-center mb-4">
+                    <input
+                      type="text"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                      placeholder="Eg. https://www.w3schools.com/html/pic_trulli.jpg"
+                      onChange={(e) => setText(e.target.value)}
+                    />
+                    <button
+                      onClick={() => onChangeUrl()}
+                      className={cx(
+                        'rounded-md px-4 py-2 text-sm font-medium bg-transparent border',
+                        'text-blue-500 hover:opacity-50 border border-transparent',
+                        `${text !== '' ? 'hover:opacity-50' : 'opacity-50 cursor-not-allowed'}`,
+                      )}
+                      disabled={text === ''}
+                    >
+                      Set
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <img src={url} />
+              )}
+            </div>
 
             <div className="mt-4 flex justify-end">
               <button
@@ -126,7 +111,7 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement, standal
 
               <DialogPrimitive.Close
                 onClick={() => {
-                  setOpen(false)
+                  onSave()
                 }}
                 className={cx(
                   'inline-flex select-none justify-center rounded-md px-4 py-2 text-sm font-medium',

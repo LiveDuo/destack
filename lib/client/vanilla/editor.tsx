@@ -151,7 +151,6 @@ function Editor({ standaloneServer = false }) {
   }
 
   const onDomChange = () => {
-    canvasRef.current
     const config = { attributes: true, childList: true, subtree: true }
     const observer = new MutationObserver(
       debounce(() => {
