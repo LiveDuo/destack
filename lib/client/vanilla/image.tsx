@@ -19,10 +19,10 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement, standal
   const [urlText, setUrlText] = useState('')
   const input = useRef<HTMLInputElement>(null)
 
-  const onUpload = async (e: any) => {
+  const onUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
 
-    const file = e.target.files[0]
+    const file = e.target.files![0]
     const reader = new FileReader()
     reader.onload = (e) => setUrl(e.target!.result as string)
     reader.readAsDataURL(file)
