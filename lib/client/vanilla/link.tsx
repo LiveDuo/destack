@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon'
@@ -13,13 +13,18 @@ interface DialogProps {
 }
 
 const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
-  const [link, setLink] = useState(selectedElement?.href ?? '')
+  const [link, setLink] = useState('')
   const [newTab, setNewTab] = useState(true)
+
+  useEffect(() => {
+    setLink(selectedElement?.href ?? '')
+  }, [open])
 
   const onSave = () => {
     setOpen(false)
 
-    // TODO update dom element
+    selectedElement.href = link
+    selectedElement.target = newTab ? '_blank' : '_self'
   }
 
   return (
