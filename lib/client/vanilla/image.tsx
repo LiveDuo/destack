@@ -16,19 +16,16 @@ interface DialogProps {
 
 const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement, standaloneServer }) => {
   const [url, setUrl] = useState<string | null>('')
-  const [text, setText] = useState('')
+  const [urlText, setUrlText] = useState('')
   const input = useRef<HTMLInputElement>(null)
 
   const onUpload = async (e: any) => {
     e.preventDefault()
 
-    // TODO update preview
-  }
-
-  const onChangeUrl = async () => {
-    // TODO update preview
-
-    setUrl(text)
+    const file = e.target.files[0]
+    const reader = new FileReader()
+    reader.onload = (e) => setUrl(e.target!.result as string)
+    reader.readAsDataURL(file)
   }
 
   const onSave = async () => {
@@ -74,16 +71,16 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement, standal
                       type="text"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                       placeholder="Eg. https://www.w3schools.com/html/pic_trulli.jpg"
-                      onChange={(e) => setText(e.target.value)}
+                      onChange={(e) => setUrlText(e.target.value)}
                     />
                     <button
-                      onClick={() => onChangeUrl()}
+                      onClick={() => setUrl(urlText)}
                       className={cx(
                         'rounded-md px-4 py-2 text-sm font-medium bg-transparent border',
                         'text-blue-500 hover:opacity-50 border border-transparent',
-                        `${text !== '' ? 'hover:opacity-50' : 'opacity-50 cursor-not-allowed'}`,
+                        `${urlText !== '' ? 'hover:opacity-50' : 'opacity-50 cursor-not-allowed'}`,
                       )}
-                      disabled={text === ''}
+                      disabled={urlText === ''}
                     >
                       Set
                     </button>
@@ -103,7 +100,7 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement, standal
                 )}
                 onClick={() => {
                   setUrl(null)
-                  setText('')
+                  setUrlText('')
                 }}
               >
                 Replace

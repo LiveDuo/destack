@@ -33,10 +33,6 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen }) => {
   const [newTab, setNewTab] = useState(true)
   const [type, setType] = useState('url')
 
-  const onSelectType = (e: string) => {
-    setType(e.toLowerCase())
-  }
-
   const onSave = () => {
     setOpen(false)
 
@@ -72,7 +68,7 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen }) => {
                     values={options.map((o) => capitalize(o))}
                     open={openSelect}
                     setOpen={setOpenSelect}
-                    onChange={onSelectType}
+                    onChange={(e) => setType(e.toLowerCase())}
                   />
 
                   <div>
