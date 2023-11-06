@@ -402,7 +402,7 @@ function Editor({ standaloneServer = false }) {
           open={openImage}
           setOpen={setOpenImage}
           selectedElement={selectedElement as unknown as HTMLImageElement}
-          standaloneServer={standaloneServer}
+          baseUrl={getBaseUrl(standaloneServer)}
         />
         <ButtonDialog
           open={openButton}

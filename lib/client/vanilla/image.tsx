@@ -10,13 +10,14 @@ import cx from 'classnames'
 interface DialogProps {
   open: boolean
   setOpen: (open: boolean) => void
-  standaloneServer: boolean
   selectedElement: HTMLImageElement
+  baseUrl: string
 }
 
-const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement, standaloneServer }) => {
+const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement, baseUrl }) => {
   const [url, setUrl] = useState<string>('')
   const [urlText, setUrlText] = useState<string>('')
+  const [file, setFile] = useState<File | null>(null)
   const input = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -27,6 +28,8 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement, standal
     e.preventDefault()
 
     const file = e.target.files![0]
+    setFile(file)
+
     const reader = new FileReader()
     reader.onload = (e) => setUrl(e.target!.result as string)
     reader.readAsDataURL(file)
@@ -36,8 +39,12 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement, standal
     if (url === urlText) {
       selectedElement.src = url
     } else {
-      // TODO upload image
-      // selectedElement.src = {uploaded_url}
+      const formData = new FormData()
+      formData.append('file-0', file!)
+      const uploadOptions = { method: 'POST', body: formData }
+      const res = await fetch(`${baseUrl}/api/builder/handle?type=data`, uploadOptions)
+      const urls = await res.json()
+      selectedElement.src = urls[0]
     }
 
     setOpen(false)
