@@ -12,7 +12,7 @@ test('should drap and drop a component', async ({ page }) => {
   await page.click('text=BANNER')
 
   // add component
-  const imagePath = 'http://localhost:12785/api/builder/handle?type=asset&path=/themes/hyperui/Banner1/preview.png'
+  const imagePath = '/api/builder/handle?type=asset&path=/themes/hyperui/Banner1/preview.png'
   await page.dragAndDrop(`img[src='${imagePath}']`, '#editor')
   await page.isVisible("text='Understand User Flow'")
 
@@ -33,7 +33,7 @@ test('should add an image to renderer', async ({ page }) => {
   await page.click('text=CTA')
 
   // add component with image
-  const imagePath = 'http://localhost:12785/api/builder/handle?type=asset&path=/themes/hyperui/Cta1/preview.png'
+  const imagePath = '/api/builder/handle?type=asset&path=/themes/hyperui/Cta1/preview.png'
   await page.dragAndDrop(`img[src='${imagePath}']`, '#editor')
 
   // open image dialog
