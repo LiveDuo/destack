@@ -237,6 +237,8 @@ function Editor({ standaloneServer = false }) {
   }
 
   const onCanvasClick = (e: React.MouseEvent<HTMLElement>) => {
+    if (isPreview) return
+
     const target = e.target as HTMLDivElement
     if (target.tagName === 'IMG') {
       setOpenImage(true)
