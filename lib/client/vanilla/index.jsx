@@ -26,7 +26,6 @@ const ContentProvider = ({ data, standaloneServer }) => {
     )
   else return <Editor standaloneServer={standaloneServer} />
 }
-
 export { ContentProvider }
 
 const ContentProviderReact = () => {
