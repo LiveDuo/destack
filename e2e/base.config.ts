@@ -13,7 +13,7 @@ const config = {
   webServer: {
     url: baseURL,
     timeout: 2 * 60 * 1000, // 2 mins
-    reuseExistingServer: true,
+    reuseExistingServer: false,
   },
   use: { baseURL, trace: 'retry-with-trace', headless: CI },
   projects: [
