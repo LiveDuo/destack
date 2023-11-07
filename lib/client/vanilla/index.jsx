@@ -41,7 +41,6 @@ const ContentProviderReact = () => {
       return
     }
 
-    // TODO support non-default routes
     const url = location.pathname === '/' ? '/default.html' : `${location.pathname}.html`
     const _data = await fetch(url).then((r) => r.text())
     setData([{ content: _data, name: location.pathname }])
