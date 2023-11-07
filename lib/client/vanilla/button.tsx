@@ -12,8 +12,8 @@ import cx from 'classnames'
 
 const capitalize = (text: string) => text[0].toUpperCase() + text.substring(1, text.length)
 
-const options = ['url', 'email', 'submit']
-const methods = ['GET', 'POST']
+const typeOptions = ['url', 'email', 'submit']
+const methodOptions = ['GET', 'POST']
 
 interface DialogProps {
   open: boolean
@@ -21,7 +21,7 @@ interface DialogProps {
   selectedElement: HTMLButtonElement
 }
 
-const Dialog: React.FC<DialogProps> = ({ open, setOpen }) => {
+const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
   const [openSelect, setOpenSelect] = useState(false)
 
   const [url, setUrl] = useState('')
@@ -36,7 +36,21 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen }) => {
   const onSave = () => {
     setOpen(false)
 
-    // TODO update dom element
+    if (type === 'url') {
+      if (newTab) {
+        const source = `window.open(${url},'_blank')`
+        selectedElement.setAttribute('onclick', source)
+      } else {
+        const source = `window.location.href = '${url}'`
+        selectedElement.setAttribute('onclick', source)
+      }
+    } else if (type === 'email') {
+      const source = `window.location.href = "mailto:${email}"`
+      selectedElement.setAttribute('onclick', source)
+    } else if (type === 'submit') {
+      // TODO update dom element
+      // selectedElement.setAttribute('onclick', "alert('submit')")
+    }
   }
 
   return (
@@ -65,7 +79,7 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen }) => {
                   </div>
                   <Select
                     defaultValue={type}
-                    values={options.map((o) => capitalize(o))}
+                    values={typeOptions.map((o) => capitalize(o))}
                     open={openSelect}
                     setOpen={setOpenSelect}
                     onChange={(e) => setType(e.toLowerCase())}
@@ -124,7 +138,7 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen }) => {
                           </div>
                           <Select
                             defaultValue={submitMethod}
-                            values={methods}
+                            values={methodOptions}
                             open={methodSelect}
                             setOpen={setMethodSelect}
                             onChange={(e) => setSubmitMethod(e)}
