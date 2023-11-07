@@ -38,5 +38,6 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
       - run: DEBUG=pw:webserver CI=true npm run test:e2e
       - uses: actions/upload-artifact@v3
+        if: always()
         with:
           path: test-results
