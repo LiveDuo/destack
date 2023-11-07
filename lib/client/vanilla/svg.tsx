@@ -16,7 +16,7 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
   const [path, setPath] = useState('')
 
   useEffect(() => {
-    setPath(selectedElement?.getAttribute('d') ?? '')
+    if (open) setPath(selectedElement?.getAttribute('d') ?? '')
   }, [open])
 
   const onSave = () => {
