@@ -41,9 +41,10 @@ const ContentProviderReact = () => {
       return
     }
 
-    const url = `/default.html` // TODO fix
+    // TODO support non-default routes
+    const url = `/default.html`
     const _data = await fetch(url).then((r) => r.text())
-    setData(_data)
+    setData([{ content: _data, name: '/' }])
     setLoaded(true)
   }
 
