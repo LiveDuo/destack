@@ -41,7 +41,7 @@ const ContentProviderReact = () => {
     }
 
     const url = location.pathname === '/' ? '/default.html' : `${location.pathname}.html`
-    const _data = await fetch(url).then((r) => r.text())
+    const _data = await fetch(`/data/${url}`).then((r) => r.text())
     setData([{ content: _data, name: location.pathname }])
     setLoaded(true)
   }

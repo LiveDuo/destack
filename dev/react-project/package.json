@@ -17,6 +17,7 @@
     "concurrently": "^6.4.0",
     "css-loader": "^6.8.1",
     "esbuild-loader": "^4.0.2",
+    "copy-webpack-plugin": "^11.0.0",
     "html-webpack-plugin": "^5.5.3",
     "http-server": "^14.0.0",
     "style-loader": "^3.3.3",

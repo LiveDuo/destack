@@ -1,6 +1,7 @@
 const path = require('path')
 
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlPlugin = require('html-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   mode: process.env.NODE_ENV ?? 'development',
@@ -27,11 +28,7 @@ module.exports = {
   resolve: {
     fallback: { crypto: false },
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-    }),
-  ],
+  plugins: [new HtmlPlugin({ template: './public/index.html' }), new CopyPlugin({ patterns: ['data/*.html'] })],
   devServer: {
     compress: true,
     port: 3000,
