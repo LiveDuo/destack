@@ -5,8 +5,6 @@ import './index.css'
 import PoweredBy from './powered'
 import Editor from './editor'
 
-const isDev = '_self' in React.createElement('div')
-
 const ContentProvider = ({ data, standaloneServer }) => {
   const [templateData, setTemplateData] = useState()
 
@@ -34,6 +32,7 @@ const ContentProviderReact = () => {
   const [data, setData] = useState()
 
   const loadData = async () => {
+    const isDev = '_self' in React.createElement('div')
     if (isDev) {
       setData(undefined)
       setLoaded(true)
