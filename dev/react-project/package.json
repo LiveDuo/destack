@@ -5,7 +5,7 @@
   "scripts": {
     "start": "http-server ./build -p 3000 --proxy http://localhost:3000/?",
     "dev": "destack -d \"webpack-dev-server\"",
-    "build": "destack -b \"webpack\""
+    "build": "destack -b \"webpack --node-env=production\""
   },
   "dependencies": {
     "crypto-browserify": "^3.12.0",
