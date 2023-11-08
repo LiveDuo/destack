@@ -136,25 +136,26 @@ function Editor({ standaloneServer = false }) {
 
   const loadPage = async () => {
     const baseUrl = getBaseUrl(standaloneServer)
-    const url2 = `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}`
-    const data = await fetch(url2).then((r) => r.text())
-    canvasRef.current!.innerHTML = data
+    const url = `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}`
+    const data = await fetch(url).then((r) => r.text())
+    return data
   }
 
-  const savePage = async () => {
+  const savePage = async (html: string) => {
     console.log('dom changed')
 
     const baseUrl = getBaseUrl(standaloneServer)
     const url = `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}`
 
-    await fetch(url, { method: 'post', body: canvasRef.current!.innerHTML })
+    await fetch(url, { method: 'post', body: html })
   }
 
   const onDomChange = () => {
     const config = { attributes: true, childList: true, subtree: true }
     const observer = new MutationObserver(
       debounce(() => {
-        savePage()
+        const html = canvasRef.current!.innerHTML
+        savePage(html)
       }),
     )
     observer.observe(canvasRef.current!, config)
@@ -162,7 +163,7 @@ function Editor({ standaloneServer = false }) {
   }
 
   useEffect(() => {
-    loadPage()
+    loadPage().then((html) => (canvasRef.current!.innerHTML = html))
     loadTheme(themeIndex)
 
     const observer = onDomChange()
