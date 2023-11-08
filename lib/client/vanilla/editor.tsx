@@ -344,7 +344,7 @@ function Editor({ standaloneServer = false }) {
             {getComponents().indexOf(hoveredComponent!) > 0 && (
               <ArrowUpIcon ref={moveUpRef} onClick={onComponentMoveUp} className="h-7 w-7 text-white p-1" />
             )}
-            <TrashIcon id={'delete'} ref={deleteRef} onClick={onComponentDelete} className="h-7 w-7 text-white p-1" />
+            <TrashIcon id="delete" ref={deleteRef} onClick={onComponentDelete} className="h-7 w-7 text-white p-1" />
           </div>
         </div>
       )}
@@ -411,28 +411,28 @@ function Editor({ standaloneServer = false }) {
             </button>
           )}
         </div>
-        <ImageDialog
-          open={openImage}
-          setOpen={setOpenImage}
-          selectedElement={selectedElement as unknown as HTMLImageElement}
-          baseUrl={getBaseUrl(standaloneServer)}
-        />
-        <ButtonDialog
-          open={openButton}
-          setOpen={setOpenButton}
-          selectedElement={selectedElement as unknown as HTMLButtonElement}
-        />
-        <LinkDialog
-          open={openLink}
-          setOpen={setOpenLink}
-          selectedElement={selectedElement as unknown as HTMLAnchorElement}
-        />
-        <SvgDialog
-          open={openSvg}
-          setOpen={setOpenSvg}
-          selectedElement={selectedElement as unknown as SVGTextPathElement}
-        />
         <div className="flex justify-center h-fit bg-gray-200 overflow-y-scroll">
+          <ImageDialog
+            open={openImage}
+            setOpen={setOpenImage}
+            selectedElement={selectedElement as unknown as HTMLImageElement}
+            baseUrl={getBaseUrl(standaloneServer)}
+          />
+          <ButtonDialog
+            open={openButton}
+            setOpen={setOpenButton}
+            selectedElement={selectedElement as unknown as HTMLButtonElement}
+          />
+          <LinkDialog
+            open={openLink}
+            setOpen={setOpenLink}
+            selectedElement={selectedElement as unknown as HTMLAnchorElement}
+          />
+          <SvgDialog
+            open={openSvg}
+            setOpen={setOpenSvg}
+            selectedElement={selectedElement as unknown as SVGTextPathElement}
+          />
           <div
             id="editor"
             ref={canvasRef}
@@ -449,7 +449,7 @@ function Editor({ standaloneServer = false }) {
               minHeight: '1024px', // no tailwind class
             }}
             contentEditable={!isPreview}
-          ></div>
+          />
         </div>
       </div>
     </div>
