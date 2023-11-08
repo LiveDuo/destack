@@ -102,7 +102,7 @@ const Category: React.FC<CategoryProps> = ({ themeIndex, category, components, s
         <div className="flex-1 flex items-center">
           <Squares2X2Icon className="h-4 w-4 ml-2 mr-4" /> <h2 className="text-xs uppercase">{category}</h2>
         </div>
-        <a style={{ transform: `rotate(${show ? 180 : 0}deg)` }}>
+        <a className="rotate-animation" style={{ transform: `rotate(${show ? 180 : 0}deg)` }}>
           <ArrowSmallUpIcon className="h-4 w-4" />
         </a>
       </div>
