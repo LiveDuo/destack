@@ -7,7 +7,7 @@ import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
 import ArrowDownIcon from '@heroicons/react/24/outline/ArrowDownIcon'
 import ArrowUpIcon from '@heroicons/react/24/outline/ArrowUpIcon'
 
-// import CursorArrowRippleIcon from '@heroicons/react/24/outline/CursorArrowRippleIcon'
+import CursorArrowRippleIcon from '@heroicons/react/24/outline/CursorArrowRippleIcon'
 
 import Squares2X2Icon from '@heroicons/react/24/outline/Squares2X2Icon'
 import ArrowSmallUpIcon from '@heroicons/react/24/outline/ArrowSmallUpIcon'
@@ -120,11 +120,12 @@ function Editor({ standaloneServer = false }) {
   const moveDownRef = useRef<SVGSVGElement>(null)
   const deleteRef = useRef<SVGSVGElement>(null)
 
-  // const popoverElementRef = useRef<HTMLDivElement>(null)
-  // const optionsRef = useRef<SVGSVGElement>(null)
+  const popoverElementRef = useRef<HTMLDivElement>(null)
+  const optionsRef = useRef<SVGSVGElement>(null)
 
   const [isPreview, setIsPreview] = useState(false)
   const [hoveredComponent, setHoveredComponent] = useState<HTMLDivElement | null>(null)
+  const [hoveredElement, setHoveredElement] = useState<HTMLElement | null>(null)
   const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(null)
   const [components, setComponents] = useState<ComponentWithCategories>({})
 
@@ -216,8 +217,20 @@ function Editor({ standaloneServer = false }) {
     setHoveredComponent(null)
   }
 
-  const onCanvasMouseOver = () => {
+  const onCanvasMouseOver = (e: React.MouseEvent<HTMLElement>) => {
     if (!popoverRef.current) return
+
+    const target = e.target as HTMLElement
+    if (target.tagName === 'A') {
+      setHoveredElement(target)
+      popoverElementRef.current!.style.top = `${target.offsetTop}px`
+      popoverElementRef.current!.style.left = `${target.offsetLeft}px`
+    } else if (target.tagName === 'BUTTON') {
+      setHoveredElement(target)
+      popoverElementRef.current!.style.top = `${target.offsetTop}px`
+      popoverElementRef.current!.style.left = `${target.offsetLeft}px`
+    }
+    console.log('onCanvasMouseOver', target.tagName)
 
     // get hovered component
     const components = getComponents()
@@ -248,10 +261,6 @@ function Editor({ standaloneServer = false }) {
     // handle elements clicks
     if (target.tagName === 'IMG') {
       setOpenImage(true)
-    } else if (target.tagName === 'BUTTON') {
-      setOpenButton(true)
-    } else if (target.tagName === 'A') {
-      setOpenLink(true)
     } else if (target.tagName === 'path') {
       setOpenSvg(true)
     } else if (target.tagName === 'svg') {
@@ -317,7 +326,7 @@ function Editor({ standaloneServer = false }) {
   }
 
   const getComponents = (): HTMLDivElement[] => {
-    return Array.from(canvasRef.current?.children ?? []).filter((c) => c.nodeName !== 'SCRIPT') as HTMLDivElement[]
+    return Array.from(canvasRef.current?.children ?? []).filter((c) => c.tagName !== 'SCRIPT') as HTMLDivElement[]
   }
 
   return (
@@ -407,20 +416,28 @@ function Editor({ standaloneServer = false }) {
             setOpen={setOpenSvg}
             selectedElement={selectedElement as unknown as SVGTextPathElement}
           />
-          {/* {!isPreview && (
+          {!isPreview && (
             <div
               ref={popoverElementRef}
               className="absolute z-10-none bg-gray-500"
-              style={{ display: hoveredComponent ? 'block' : 'none' }}
+              style={{ display: hoveredElement ? 'block' : 'none' }}
             >
               <div className="flex flex-row p-1">
                 <CursorArrowRippleIcon
                   ref={optionsRef}
+                  onClick={() => {
+                    // handle elements clicks
+                    if (hoveredElement?.tagName === 'BUTTON') {
+                      setOpenButton(true)
+                    } else if (hoveredElement?.tagName === 'A') {
+                      setOpenLink(true)
+                    }
+                  }}
                   className="h-7 w-7 text-white p-1 cursor-pointer"
                 />
               </div>
             </div>
-          )} */}
+          )}
           {!isPreview && (
             <div
               ref={popoverRef}
