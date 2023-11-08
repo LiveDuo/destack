@@ -52,13 +52,32 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
       selectedElement.setAttribute('type', 'button')
     } else if (type === 'submit') {
       if (submitAsync) {
-        // TODO submit with fetch
-        // selectedElement.setAttribute('onclick', `alert('submit async')`)
-        // selectedElement.setAttribute('type', 'submit')
+        const source = `
+          const form = e.target.closest('form')
+
+          const formData = new FormData()
+          for (let e of form.elements) {
+            if (e.type !== 'submit') {
+              formData.append(e.id, e.type === 'radio' ? e.checked : e.value)
+            }
+          }
+
+          const options = { method: '${submitMethod}', ...('${submitMethod}' !== 'GET' ? { body: formData } : {}), }
+          fetch('${submitUrl}', options)
+            .then((e) => e.text().then((d) => ({ ok: e.ok, text: d })))
+            .then(({ ok, text }) => {
+              alert(ok ? text ?? 'Success' : 'Something went wrong')
+          })
+        `
+        selectedElement.setAttribute('onclick', source)
+        selectedElement.setAttribute('type', 'button')
       } else {
-        // TODO form submit
-        // selectedElement.setAttribute('onclick', `alert('submit')`)
-        // selectedElement.setAttribute('type', 'submit')
+        const source = `
+          const form = e.target.closest('form')
+          form.submit()
+        `
+        selectedElement.setAttribute('onclick', source)
+        selectedElement.setAttribute('type', 'button')
       }
     }
   }
