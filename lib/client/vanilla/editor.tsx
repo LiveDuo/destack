@@ -236,12 +236,16 @@ function Editor({ standaloneServer = false }) {
     return isX && isY
   }
 
-  const onCanvasClick = (e: React.MouseEvent<HTMLElement>) => {
+  const onCanvasClickCapture = (e: React.MouseEvent<HTMLElement>) => {
     if (isPreview) return
 
     e.preventDefault()
+    e.stopPropagation()
 
     const target = e.target as HTMLDivElement
+
+    setSelectedElement(target)
+
     if (target.tagName === 'IMG') {
       setOpenImage(true)
     } else if (target.tagName === 'BUTTON') {
@@ -251,7 +255,6 @@ function Editor({ standaloneServer = false }) {
     } else if (target.tagName === 'path') {
       setOpenSvg(true)
     }
-    setSelectedElement(target)
 
     if (isEventOnElement(deleteRef.current! as unknown as HTMLElement, e)) {
       const clickEvent = new MouseEvent('click', { bubbles: true })
@@ -428,12 +431,12 @@ function Editor({ standaloneServer = false }) {
             id="editor"
             ref={canvasRef}
             className="bg-white ease-animation"
-            onClick={onCanvasClick}
             onMouseOver={onCanvasMouseOver}
             onMouseLeave={onCanvasMouseLeave}
             onDrop={onCanvasDrop}
             onDragOver={onCanvasDragOver}
             onDragLeave={onCanvasDragLeave}
+            onClickCapture={onCanvasClickCapture}
             style={{
               flex: 1,
               margin: isPreview ? '0px' : '20px',
