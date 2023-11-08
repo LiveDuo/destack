@@ -230,7 +230,6 @@ function Editor({ standaloneServer = false }) {
       popoverElementRef.current!.style.top = `${target.offsetTop}px`
       popoverElementRef.current!.style.left = `${target.offsetLeft}px`
     }
-    console.log('onCanvasMouseOver', target.tagName)
 
     // get hovered component
     const components = getComponents()
@@ -246,6 +245,12 @@ function Editor({ standaloneServer = false }) {
   const onCanvasMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
     if (!isEventOnElement(popoverRef.current!, e)) {
       setHoveredComponent(null)
+    }
+  }
+
+  const onCanvasMouseOut = (e: React.MouseEvent<HTMLElement>) => {
+    if (!isEventOnElement(popoverElementRef.current!, e)) {
+      setHoveredElement(null)
     }
   }
 
@@ -427,6 +432,7 @@ function Editor({ standaloneServer = false }) {
                   ref={optionsRef}
                   onClick={() => {
                     // handle elements clicks
+                    setSelectedElement(hoveredElement)
                     if (hoveredElement?.tagName === 'BUTTON') {
                       setOpenButton(true)
                     } else if (hoveredElement?.tagName === 'A') {
@@ -479,6 +485,7 @@ function Editor({ standaloneServer = false }) {
             className="bg-white flex-1 ease-animation"
             onMouseOver={onCanvasMouseOver}
             onMouseLeave={onCanvasMouseLeave}
+            onMouseOut={onCanvasMouseOut}
             onDrop={onCanvasDrop}
             onDragOver={onCanvasDragOver}
             onDragLeave={onCanvasDragLeave}
