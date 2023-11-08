@@ -337,7 +337,6 @@ function Editor({ standaloneServer = false }) {
         <div
           ref={popoverRef}
           onMouseLeave={(e: any) => {
-            console.log('leave popover')
             if (!canvasRef.current?.isSameNode(e.target)) {
               setHoveredComponent(null)
             }
