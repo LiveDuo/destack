@@ -209,19 +209,18 @@ function Editor({ standaloneServer = false }) {
   }
 
   const onCanvasMouseOver = () => {
-    const components = getComponents()
-    components.forEach((c) => {
-      if (c.matches(':hover')) {
-        if (!c.isEqualNode(hoveredComponent)) {
-          setHoveredComponent(c)
+    if (!popoverRef.current) return
 
-          if (!popoverRef.current) return
-          const rect = getElementPosition(c)
-          popoverRef.current.style.top = `${rect.top}px`
-          popoverRef.current.style.left = `${rect.left}px`
-        }
-      }
-    })
+    // get hovered component
+    const components = getComponents()
+    const component = components.find((c) => c.matches(':hover'))!
+    if (!component) return
+
+    // update hovered component
+    setHoveredComponent(component)
+    const rect = getElementPosition(component)
+    popoverRef.current.style.top = `${rect.top}px`
+    popoverRef.current.style.left = `${rect.left}px`
   }
 
   const onCanvasMouseLeave = () => {
