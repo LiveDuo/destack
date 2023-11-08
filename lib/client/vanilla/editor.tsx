@@ -243,9 +243,9 @@ function Editor({ standaloneServer = false }) {
     e.stopPropagation()
 
     const target = e.target as HTMLDivElement
-
     setSelectedElement(target)
 
+    // handle elements clicks
     if (target.tagName === 'IMG') {
       setOpenImage(true)
     } else if (target.tagName === 'BUTTON') {
@@ -256,6 +256,7 @@ function Editor({ standaloneServer = false }) {
       setOpenSvg(true)
     }
 
+    // handle popover clicks
     if (isEventOnElement(deleteRef.current! as unknown as HTMLElement, e)) {
       const clickEvent = new MouseEvent('click', { bubbles: true })
       deleteRef.current!.dispatchEvent(clickEvent)
