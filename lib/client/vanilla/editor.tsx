@@ -54,6 +54,29 @@ const getImageUrl = (standaloneServer: boolean, imageSrc: string) => {
   return `${baseUrl}/api/builder/handle?type=asset&path=${imageSrc}`
 }
 
+const getElementPosition = (element: HTMLElement) => {
+  const rect = element.getBoundingClientRect()
+
+  const body = document.body
+  const documentElement = document.documentElement
+
+  const scrollTop = window.scrollY ?? documentElement.scrollTop ?? body.scrollTop
+  const scrollLeft = window.scrollX ?? documentElement.scrollLeft ?? body.scrollLeft
+
+  const clientTop = documentElement.clientTop ?? body.clientTop ?? 0
+  const clientLeft = documentElement.clientLeft ?? body.clientLeft ?? 0
+
+  return { top: rect.top + scrollTop - clientTop, left: rect.left + scrollLeft - clientLeft }
+}
+
+const isEventOnElement = (element: HTMLElement, event: React.MouseEvent<HTMLElement>) => {
+  if (!element) return
+  const rect = element.getBoundingClientRect()
+  const isX = rect.top < event.clientY && rect.bottom > event.clientY
+  const isY = rect.left < event.clientX && rect.right > event.clientX
+  return isX && isY
+}
+
 interface CategoryProps {
   themeIndex: number
   category: string
@@ -122,9 +145,13 @@ function Editor({ standaloneServer = false }) {
   const loadTheme = async (index: number) => {
     const baseUrl = getBaseUrl(standaloneServer)
     const url = `${baseUrl}/api/builder/handle?type=theme&name=${themes[index].folder}`
-    const _componentsList = await fetch(url).then((r) => r.json())
+    const componentsList = await fetch(url).then((r) => r.json())
+    return componentsList
+  }
 
-    const _components = _componentsList.reduce((r: ComponentWithCategories, c: Component) => {
+  const loadThemeComponents = async (index: number) => {
+    const componentsList = await loadTheme(index)
+    const _components = componentsList.reduce((r: ComponentWithCategories, c: Component) => {
       const category = c.folder.replace(/[0-9]/g, '')
       if (!r[category]) r[category] = []
       r[category].push(c)
@@ -142,8 +169,6 @@ function Editor({ standaloneServer = false }) {
   }
 
   const savePage = async (html: string) => {
-    console.log('dom changed')
-
     const baseUrl = getBaseUrl(standaloneServer)
     const url = `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}`
 
@@ -154,6 +179,8 @@ function Editor({ standaloneServer = false }) {
     const config = { attributes: true, childList: true, subtree: true }
     const observer = new MutationObserver(
       debounce(() => {
+        console.log('dom changed')
+
         const html = canvasRef.current!.innerHTML
         savePage(html)
       }),
@@ -164,10 +191,9 @@ function Editor({ standaloneServer = false }) {
 
   useEffect(() => {
     loadPage().then((html) => (canvasRef.current!.innerHTML = html))
-    loadTheme(themeIndex)
+    loadThemeComponents(themeIndex)
 
     const observer = onDomChange()
-
     return () => observer.disconnect()
   }, [])
 
@@ -194,21 +220,6 @@ function Editor({ standaloneServer = false }) {
     cleanCanvas()
   }
 
-  const getElementPosition = (element: HTMLElement) => {
-    const box = element.getBoundingClientRect()
-
-    const body = document.body
-    const documentElement = document.documentElement
-
-    const scrollTop = window.scrollY || documentElement.scrollTop || body.scrollTop
-    const scrollLeft = window.scrollX || documentElement.scrollLeft || body.scrollLeft
-
-    const clientTop = documentElement.clientTop || body.clientTop || 0
-    const clientLeft = documentElement.clientLeft || body.clientLeft || 0
-
-    return { top: box.top + scrollTop - clientTop, left: box.left + scrollLeft - clientLeft }
-  }
-
   const onCanvasMouseOver = () => {
     if (!popoverRef.current) return
 
@@ -226,14 +237,6 @@ function Editor({ standaloneServer = false }) {
 
   const onCanvasMouseLeave = () => {
     setHoveredComponent(null)
-  }
-
-  const isEventOnElement = (element: HTMLElement, event: React.MouseEvent<HTMLElement>) => {
-    if (!element) return
-    const rect = element.getBoundingClientRect()
-    const isX = rect.top < event.clientY && rect.bottom > event.clientY
-    const isY = rect.left < event.clientX && rect.right > event.clientX
-    return isX && isY
   }
 
   const onCanvasClickCapture = (e: React.MouseEvent<HTMLElement>) => {
@@ -382,7 +385,7 @@ function Editor({ standaloneServer = false }) {
                 setOpen={setSelectOpen}
                 onChange={(e) => {
                   const index = themes.findIndex((r) => r.name === e)
-                  loadTheme(index)
+                  loadThemeComponents(index)
                   setThemeIndex(index)
                 }}
               />
