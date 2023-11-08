@@ -38,18 +38,22 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
 
     if (type === 'url') {
       if (newTab) {
-        const source = `window.open(${url},'_blank')`
+        const source = `window.open('${url}', '_blank')`
         selectedElement.setAttribute('onclick', source)
+        selectedElement.setAttribute('type', 'button')
       } else {
         const source = `window.location.href = '${url}'`
         selectedElement.setAttribute('onclick', source)
+        selectedElement.setAttribute('type', 'button')
       }
     } else if (type === 'email') {
-      const source = `window.location.href = "mailto:${email}"`
+      const source = `window.location.href = 'mailto:${email}'`
       selectedElement.setAttribute('onclick', source)
+      selectedElement.setAttribute('type', 'button')
     } else if (type === 'submit') {
       // TODO update dom element
-      // selectedElement.setAttribute('onclick', "alert('submit')")
+      // selectedElement.setAttribute('onclick', `alert('submit')`)
+      // selectedElement.setAttribute('type', 'submit')
     }
   }
 
