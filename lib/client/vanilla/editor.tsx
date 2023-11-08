@@ -291,19 +291,19 @@ function Editor({ standaloneServer = false }) {
   const onCanvasDragOver = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
 
+    // get hovered component
     const components = getComponents()
-    components.forEach((c: HTMLDivElement) => {
-      if (isEventOnElement(c, e)) {
-        const isTopHalf = isElementTopHalf(c, e)
+    const component = components.find((c) => isEventOnElement(c, e))!
+    if (!component) return
 
-        c.style.setProperty(`border-${isTopHalf ? 'top' : 'bottom'}`, '4px solid cornflowerblue')
-        c.style.setProperty(`border-${!isTopHalf ? 'top' : 'bottom'}`, '')
+    // update border
+    const isTopHalf = isElementTopHalf(component, e)
+    component.style.setProperty(`border-${isTopHalf ? 'top' : 'bottom'}`, '4px solid cornflowerblue')
+    component.style.setProperty(`border-${!isTopHalf ? 'top' : 'bottom'}`, '')
 
-        if (!c.isEqualNode(hoveredComponent)) {
-          setHoveredComponent(c)
-        }
-      }
-    })
+    // update hovered component
+    if (component.isEqualNode(hoveredComponent)) return
+    setHoveredComponent(component)
   }
 
   const cleanCanvas = () => {
