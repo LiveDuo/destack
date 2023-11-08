@@ -9,20 +9,36 @@ import cx from 'classnames'
 type DialogProps = {
   open: boolean
   setOpen: any
-  selectedElement: SVGTextPathElement
+  selectedElement: SVGTextPathElement | SVGElement
 }
 
 const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
   const [path, setPath] = useState('')
 
   useEffect(() => {
-    if (open) setPath(selectedElement?.getAttribute('d') ?? '')
+    if (open) {
+      if (selectedElement.tagName === 'path') {
+        setPath(selectedElement?.getAttribute('d') ?? '')
+      } else if (selectedElement.tagName === 'svg') {
+        const pathElement = selectedElement.querySelector('path')
+        setPath(pathElement?.getAttribute('d') ?? '')
+      } else {
+        setPath('')
+      }
+    } else {
+      setPath('')
+    }
   }, [open])
 
   const onSave = () => {
     setOpen(false)
 
-    selectedElement.setAttribute('d', path)
+    if (selectedElement.tagName === 'path') {
+      selectedElement.setAttribute('d', path)
+    } else if (selectedElement.tagName === 'svg') {
+      const pathElement = selectedElement.querySelector('path')
+      pathElement!.setAttribute('d', path)
+    }
   }
 
   return (

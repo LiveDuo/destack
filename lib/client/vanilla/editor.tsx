@@ -254,6 +254,8 @@ function Editor({ standaloneServer = false }) {
       setOpenLink(true)
     } else if (target.tagName === 'path') {
       setOpenSvg(true)
+    } else if (target.tagName === 'svg') {
+      setOpenSvg(true)
     }
 
     // handle popover clicks
