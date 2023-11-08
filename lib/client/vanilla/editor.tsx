@@ -468,6 +468,7 @@ function Editor({ standaloneServer = false }) {
               margin: isPreview ? '0px' : '20px',
               maxWidth: isPreview ? '100%' : '868px',
               minHeight: '1024px', // no tailwind class
+              outline: 'none', // prevent focus
             }}
             contentEditable={!isPreview}
           />
