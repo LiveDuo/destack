@@ -107,7 +107,7 @@ function Editor({ standaloneServer = false }) {
 
   const [isPreview, setIsPreview] = useState(false)
   const [hoveredComponent, setHoveredComponent] = useState<HTMLDivElement | null>(null)
-  const [selectedElement, setSelectedElement] = useState<HTMLDivElement | null>(null)
+  const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(null)
   const [components, setComponents] = useState<ComponentWithCategories>({})
 
   const [selectOpen, setSelectOpen] = useState(false)
@@ -242,7 +242,7 @@ function Editor({ standaloneServer = false }) {
     e.preventDefault()
     e.stopPropagation()
 
-    const target = e.target as HTMLDivElement
+    const target = e.target as HTMLElement
     setSelectedElement(target)
 
     // handle elements clicks
