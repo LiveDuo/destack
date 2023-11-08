@@ -77,6 +77,11 @@ const isEventOnElement = (element: HTMLElement, event: React.MouseEvent<HTMLElem
   return isX && isY
 }
 
+const isElementTopHalf = (element: HTMLElement, event: React.MouseEvent<HTMLElement>) => {
+  const rect = element.getBoundingClientRect()
+  return rect.top + (rect.bottom - rect.top) / 2 > event.clientY
+}
+
 interface CategoryProps {
   themeIndex: number
   category: string
@@ -285,11 +290,6 @@ function Editor({ standaloneServer = false }) {
 
   const onComponentMoveDown = () => {
     canvasRef.current!.insertBefore(hoveredComponent!.nextElementSibling!, hoveredComponent)
-  }
-
-  const isElementTopHalf = (element: HTMLElement, event: React.MouseEvent<HTMLElement>) => {
-    const rect = element.getBoundingClientRect()
-    return rect.top + (rect.bottom - rect.top) / 2 > event.clientY
   }
 
   const onCanvasDragOver = (e: React.MouseEvent<HTMLElement>) => {
