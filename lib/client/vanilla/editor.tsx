@@ -222,7 +222,8 @@ function Editor({ standaloneServer = false }) {
       hoveredComponent!.insertAdjacentHTML('afterend', html)
     }
 
-    cleanCanvas()
+    removeBorders()
+    setHoveredComponent(null)
   }
 
   const onCanvasMouseOver = () => {
@@ -310,9 +311,7 @@ function Editor({ standaloneServer = false }) {
     setHoveredComponent(component)
   }
 
-  const cleanCanvas = () => {
-    setHoveredComponent(null)
-
+  const removeBorders = () => {
     const components = getComponents()
     components.forEach((c: HTMLDivElement) => {
       c.style.setProperty('border-top', '')
@@ -322,7 +321,8 @@ function Editor({ standaloneServer = false }) {
 
   // NOTE this trigger more times than it should
   const onCanvasDragLeave = () => {
-    cleanCanvas()
+    setHoveredComponent(null)
+    removeBorders()
   }
 
   const getComponents = (): HTMLDivElement[] => {
@@ -334,7 +334,7 @@ function Editor({ standaloneServer = false }) {
       {!isPreview && (
         <div
           ref={popoverRef}
-          className="absolute z-10 pointer-events-none bg-gray-500"
+          className="absolute z-10-none bg-gray-500"
           style={{ display: hoveredComponent ? 'block' : 'none' }}
         >
           <div className="flex flex-row p-1">
