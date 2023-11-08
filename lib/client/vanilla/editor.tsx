@@ -7,6 +7,8 @@ import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
 import ArrowDownIcon from '@heroicons/react/24/outline/ArrowDownIcon'
 import ArrowUpIcon from '@heroicons/react/24/outline/ArrowUpIcon'
 
+// import CursorArrowRippleIcon from '@heroicons/react/24/outline/CursorArrowRippleIcon'
+
 import Squares2X2Icon from '@heroicons/react/24/outline/Squares2X2Icon'
 import ArrowSmallUpIcon from '@heroicons/react/24/outline/ArrowSmallUpIcon'
 import ChevronDownIcon from '@heroicons/react/24/outline/ChevronDownIcon'
@@ -52,21 +54,6 @@ const getBaseUrl = (standaloneServer: boolean) => {
 const getImageUrl = (standaloneServer: boolean, imageSrc: string) => {
   const baseUrl = getBaseUrl(standaloneServer)
   return `${baseUrl}/api/builder/handle?type=asset&path=${imageSrc}`
-}
-
-const getElementPosition = (element: HTMLElement) => {
-  const rect = element.getBoundingClientRect()
-
-  const body = document.body
-  const documentElement = document.documentElement
-
-  const scrollTop = window.scrollY ?? documentElement.scrollTop ?? body.scrollTop
-  const scrollLeft = window.scrollX ?? documentElement.scrollLeft ?? body.scrollLeft
-
-  const clientTop = documentElement.clientTop ?? body.clientTop ?? 0
-  const clientLeft = documentElement.clientLeft ?? body.clientLeft ?? 0
-
-  return { top: rect.top + scrollTop - clientTop, left: rect.left + scrollLeft - clientLeft }
 }
 
 const isEventOnElement = (element: HTMLElement, event: React.MouseEvent<HTMLElement>) => {
@@ -132,6 +119,9 @@ function Editor({ standaloneServer = false }) {
   const moveUpRef = useRef<SVGSVGElement>(null)
   const moveDownRef = useRef<SVGSVGElement>(null)
   const deleteRef = useRef<SVGSVGElement>(null)
+
+  // const popoverElementRef = useRef<HTMLDivElement>(null)
+  // const optionsRef = useRef<SVGSVGElement>(null)
 
   const [isPreview, setIsPreview] = useState(false)
   const [hoveredComponent, setHoveredComponent] = useState<HTMLDivElement | null>(null)
@@ -236,9 +226,8 @@ function Editor({ standaloneServer = false }) {
 
     // update hovered component
     setHoveredComponent(component)
-    const rect = getElementPosition(component)
-    popoverRef.current.style.top = `${rect.top}px`
-    popoverRef.current.style.left = `${rect.left}px`
+    popoverRef.current.style.top = `${component.offsetTop}px`
+    popoverRef.current.style.left = `${component.offsetLeft}px`
   }
 
   const onCanvasMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
@@ -334,41 +323,6 @@ function Editor({ standaloneServer = false }) {
   return (
     <div className="flex flex-row bg-white">
       {!isPreview && (
-        <div
-          ref={popoverRef}
-          onMouseLeave={(e: any) => {
-            if (!canvasRef.current?.isSameNode(e.target)) {
-              setHoveredComponent(null)
-            }
-          }}
-          className="absolute z-10-none bg-gray-500"
-          style={{ display: hoveredComponent ? 'block' : 'none' }}
-        >
-          <div className="flex flex-row p-1">
-            {getComponents().indexOf(hoveredComponent!) < getComponents().length - 1 && (
-              <ArrowDownIcon
-                ref={moveDownRef}
-                onClick={onComponentMoveDown}
-                className="h-7 w-7 text-white p-1 cursor-pointer"
-              />
-            )}
-            {getComponents().indexOf(hoveredComponent!) > 0 && (
-              <ArrowUpIcon
-                ref={moveUpRef}
-                onClick={onComponentMoveUp}
-                className="h-7 w-7 text-white p-1 cursor-pointer"
-              />
-            )}
-            <TrashIcon
-              id="delete"
-              ref={deleteRef}
-              onClick={onComponentDelete}
-              className="h-7 w-7 text-white p-1 cursor-pointer"
-            />
-          </div>
-        </div>
-      )}
-      {!isPreview && (
         <div className="w-56 p-2 shrink-0 overflow-y-scroll h-screen">
           {Object.keys(components).map((c: string, i) => (
             <Category
@@ -431,7 +385,7 @@ function Editor({ standaloneServer = false }) {
             </button>
           )}
         </div>
-        <div className="flex justify-center h-fit bg-gray-200 overflow-y-scroll">
+        <div className="flex justify-center h-fit bg-gray-200 overflow-y-scroll" style={{ position: 'relative' }}>
           <ImageDialog
             open={openImage}
             setOpen={setOpenImage}
@@ -453,6 +407,55 @@ function Editor({ standaloneServer = false }) {
             setOpen={setOpenSvg}
             selectedElement={selectedElement as unknown as SVGTextPathElement}
           />
+          {/* {!isPreview && (
+            <div
+              ref={popoverElementRef}
+              className="absolute z-10-none bg-gray-500"
+              style={{ display: hoveredComponent ? 'block' : 'none' }}
+            >
+              <div className="flex flex-row p-1">
+                <CursorArrowRippleIcon
+                  ref={optionsRef}
+                  className="h-7 w-7 text-white p-1 cursor-pointer"
+                />
+              </div>
+            </div>
+          )} */}
+          {!isPreview && (
+            <div
+              ref={popoverRef}
+              onMouseLeave={(e: any) => {
+                if (!canvasRef.current?.isSameNode(e.target)) {
+                  setHoveredComponent(null)
+                }
+              }}
+              className="absolute z-10-none bg-gray-500"
+              style={{ display: hoveredComponent ? 'block' : 'none' }}
+            >
+              <div className="flex flex-row p-1">
+                {getComponents().indexOf(hoveredComponent!) < getComponents().length - 1 && (
+                  <ArrowDownIcon
+                    ref={moveDownRef}
+                    onClick={onComponentMoveDown}
+                    className="h-7 w-7 text-white p-1 cursor-pointer"
+                  />
+                )}
+                {getComponents().indexOf(hoveredComponent!) > 0 && (
+                  <ArrowUpIcon
+                    ref={moveUpRef}
+                    onClick={onComponentMoveUp}
+                    className="h-7 w-7 text-white p-1 cursor-pointer"
+                  />
+                )}
+                <TrashIcon
+                  id="delete"
+                  ref={deleteRef}
+                  onClick={onComponentDelete}
+                  className="h-7 w-7 text-white p-1 cursor-pointer"
+                />
+              </div>
+            </div>
+          )}
           <div
             id="editor"
             ref={canvasRef}
