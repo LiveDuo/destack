@@ -334,7 +334,7 @@ function Editor({ standaloneServer = false }) {
       {!isPreview && (
         <div
           ref={popoverRef}
-          className="absolute z-10-none bg-gray-500"
+          className="absolute z-10-none pointer-events-none bg-gray-500"
           style={{ display: hoveredComponent ? 'block' : 'none' }}
         >
           <div className="flex flex-row p-1">
