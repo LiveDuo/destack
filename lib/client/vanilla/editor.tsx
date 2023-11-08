@@ -241,8 +241,10 @@ function Editor({ standaloneServer = false }) {
     popoverRef.current.style.left = `${rect.left}px`
   }
 
-  const onCanvasMouseLeave = () => {
-    setHoveredComponent(null)
+  const onCanvasMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
+    if (!isEventOnElement(popoverRef.current!, e)) {
+      setHoveredComponent(null)
+    }
   }
 
   const onCanvasClickCapture = (e: React.MouseEvent<HTMLElement>) => {
@@ -334,17 +336,36 @@ function Editor({ standaloneServer = false }) {
       {!isPreview && (
         <div
           ref={popoverRef}
-          className="absolute z-10-none pointer-events-none bg-gray-500"
+          onMouseLeave={(e: any) => {
+            console.log('leave popover')
+            if (!canvasRef.current?.isSameNode(e.target)) {
+              setHoveredComponent(null)
+            }
+          }}
+          className="absolute z-10-none bg-gray-500"
           style={{ display: hoveredComponent ? 'block' : 'none' }}
         >
           <div className="flex flex-row p-1">
             {getComponents().indexOf(hoveredComponent!) < getComponents().length - 1 && (
-              <ArrowDownIcon ref={moveDownRef} onClick={onComponentMoveDown} className="h-7 w-7 text-white p-1" />
+              <ArrowDownIcon
+                ref={moveDownRef}
+                onClick={onComponentMoveDown}
+                className="h-7 w-7 text-white p-1 cursor-pointer"
+              />
             )}
             {getComponents().indexOf(hoveredComponent!) > 0 && (
-              <ArrowUpIcon ref={moveUpRef} onClick={onComponentMoveUp} className="h-7 w-7 text-white p-1" />
+              <ArrowUpIcon
+                ref={moveUpRef}
+                onClick={onComponentMoveUp}
+                className="h-7 w-7 text-white p-1 cursor-pointer"
+              />
             )}
-            <TrashIcon id="delete" ref={deleteRef} onClick={onComponentDelete} className="h-7 w-7 text-white p-1" />
+            <TrashIcon
+              id="delete"
+              ref={deleteRef}
+              onClick={onComponentDelete}
+              className="h-7 w-7 text-white p-1 cursor-pointer"
+            />
           </div>
         </div>
       )}
