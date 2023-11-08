@@ -51,9 +51,15 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
       selectedElement.setAttribute('onclick', source)
       selectedElement.setAttribute('type', 'button')
     } else if (type === 'submit') {
-      // TODO update dom element
-      // selectedElement.setAttribute('onclick', `alert('submit')`)
-      // selectedElement.setAttribute('type', 'submit')
+      if (submitAsync) {
+        // TODO submit with fetch
+        // selectedElement.setAttribute('onclick', `alert('submit async')`)
+        // selectedElement.setAttribute('type', 'submit')
+      } else {
+        // TODO form submit
+        // selectedElement.setAttribute('onclick', `alert('submit')`)
+        // selectedElement.setAttribute('type', 'submit')
+      }
     }
   }
 
