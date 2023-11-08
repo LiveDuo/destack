@@ -349,7 +349,7 @@ function Editor({ standaloneServer = false }) {
         </div>
       )}
       {!isPreview && (
-        <div className="w-56 p-2" style={{ height: '100vh', overflowY: 'scroll', flexShrink: 0 }}>
+        <div className="w-56 p-2 shrink-0 overflow-y-scroll h-screen">
           {Object.keys(components).map((c: string, i) => (
             <Category
               key={i}
@@ -361,7 +361,7 @@ function Editor({ standaloneServer = false }) {
           ))}
         </div>
       )}
-      <div className="w-full" style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <div className="w-full h-screen flex flex-col">
         <div className="flex items-center m-2">
           {!isPreview && (
             <div>
@@ -432,11 +432,11 @@ function Editor({ standaloneServer = false }) {
           setOpen={setOpenSvg}
           selectedElement={selectedElement as unknown as SVGTextPathElement}
         />
-        <div className="flex justify-center bg-gray-200" style={{ overflowY: 'scroll' }}>
+        <div className="flex justify-center h-fit bg-gray-200 overflow-y-scroll">
           <div
             id="editor"
             ref={canvasRef}
-            className="bg-white ease-animation"
+            className="bg-white flex-1 ease-animation"
             onMouseOver={onCanvasMouseOver}
             onMouseLeave={onCanvasMouseLeave}
             onDrop={onCanvasDrop}
@@ -444,11 +444,9 @@ function Editor({ standaloneServer = false }) {
             onDragLeave={onCanvasDragLeave}
             onClickCapture={onCanvasClickCapture}
             style={{
-              flex: 1,
               margin: isPreview ? '0px' : '20px',
               maxWidth: isPreview ? '100%' : '868px',
-              minHeight: '1024px',
-              height: 'fit-content',
+              minHeight: '1024px', // no tailwind class
             }}
             contentEditable={!isPreview}
           ></div>
