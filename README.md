@@ -6,6 +6,8 @@ Build landing pages visually right in your React or Next.js projects. Deploy the
 
 # Announcements
 
+📣 [10/10/2023] Destack v3 is in beta. This release is an rewrite of the editor from scratch. Check it out at [destack-starter-beta](https://github.com/LiveDuo/destack-starter-beta). More at [pull/103](https://github.com/LiveDuo/destack/pull/103) and [issues/104](https://github.com/LiveDuo/destack/issues/104).
+
 📣 [13/06/2023] Three more themes have been added [Preline](https://preline.co/), [Flow Bite](https://flowbite.com/) and [Flow Rift](https://flowrift.com/).
 
 📣 [04/02/2023] Version 2 has just been released on NPM. Try it out with destack@2 or destack@latest.
