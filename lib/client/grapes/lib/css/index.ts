@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { tailwindCssUrl } from '../../../../server/config'
+import { tailwindCssUrl } from '../../editor'
 import { elementExists } from '../../utils'
 
 const appendTailwindCss = (newEditor: any): void => {
@@ -30,9 +30,7 @@ const appendCustomCss = () => {
   document.querySelector('body')!.style.height = '100%'
 
   const nextRoot = document.querySelector('#__next')
-  const element: HTMLElement = document.querySelector(
-    elementExists(nextRoot) ? '#__next' : '#root',
-  )!
+  const element: HTMLElement = document.querySelector(elementExists(nextRoot) ? '#__next' : '#root')!
   element.style.height = '100%'
 }
 
