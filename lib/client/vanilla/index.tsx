@@ -5,12 +5,22 @@ import './index.css'
 import PoweredBy from './powered'
 import Editor from './editor'
 
-const ContentProvider = ({ data, standaloneServer }) => {
-  const [templateData, setTemplateData] = useState()
+interface ContentProviderBaseProps {
+  data: any
+  standaloneServer: boolean
+}
+
+interface dataType {
+  content: string
+  name?: string
+}
+
+const ContentProvider: React.FC<ContentProviderBaseProps> = ({ data, standaloneServer }) => {
+  const [templateData, setTemplateData] = useState<string | undefined>()
 
   useEffect(() => {
     if (data) {
-      const _templateData = data?.find(({ name }) => name === location.pathname)
+      const _templateData = data?.find(({ name }: dataType) => name === location.pathname)
       setTemplateData(_templateData.content)
     }
   }, [])
@@ -18,7 +28,7 @@ const ContentProvider = ({ data, standaloneServer }) => {
   if (data)
     return (
       <>
-        <div id="page" dangerouslySetInnerHTML={{ __html: templateData }} />
+        <div id="page" dangerouslySetInnerHTML={{ __html: templateData! }} />
         <PoweredBy />
       </>
     )
@@ -26,10 +36,10 @@ const ContentProvider = ({ data, standaloneServer }) => {
 }
 export { ContentProvider }
 
-const ContentProviderReact = () => {
+const ContentProviderReact: React.FC<ContentProviderBaseProps> = () => {
   const mounted = useRef(false)
   const [loaded, setLoaded] = useState(false)
-  const [data, setData] = useState()
+  const [data, setData] = useState<dataType[]>()
 
   const loadData = async () => {
     const isDev = '_self' in React.createElement('div')

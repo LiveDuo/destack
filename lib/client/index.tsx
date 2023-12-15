@@ -1,6 +1,4 @@
-// @ts-ignore
 export { ContentProvider } from './vanilla'
-// @ts-ignore
 export { ContentProviderReact } from './vanilla'
 
 export { ContentProvider as ContentProviderCraft } from './craft'
