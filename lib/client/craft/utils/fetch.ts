@@ -2,7 +2,7 @@ import { standaloneServerPort } from '../../../server/config'
 
 type fetchJSONArgs = {
   method: RequestInit['method']
-  data?: Record<string, unknown>
+  data?: any
   url: string
 }
 type templateData = {
@@ -25,13 +25,13 @@ const getImageUrl = (standaloneServer: boolean, imageSrc: string) => {
 }
 export { getImageUrl }
 
-const fetchJSON = async ({ method, url, data }: fetchJSONArgs): Promise<templateData> => {
+const fetchJSON = async ({ method, url, data }: fetchJSONArgs): Promise<string> => {
   const res = await fetch(url, {
     method,
     headers: { 'Content-Type': 'text/plain' },
-    body: data ? JSON.stringify(data) : undefined,
+    body: data,
   })
-  return await res.json()
+  return res.text()
 }
 export { fetchJSON }
 
@@ -62,18 +62,17 @@ const loadTemplate = async (standaloneServer: boolean) => {
     method: 'get',
     url: `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}&ext=json`,
   })
-  return data?.content
+  return data
 }
 export { loadTemplate }
 
 const saveTemplate = async (state: any, standaloneServer: boolean) => {
   const baseUrl = getBaseUrl(standaloneServer)
-  const body = { data: JSON.parse(state.serialize()) }
 
   await fetchJSON({
     method: 'post',
     url: `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}&ext=json`,
-    data: body,
+    data: state.serialize(),
   })
 }
 
