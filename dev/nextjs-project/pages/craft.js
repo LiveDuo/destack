@@ -1,10 +1,10 @@
 export { getStaticProps } from 'destack/build/server'
 import { ContentProvider } from 'destack/build/browser/craft'
 
-const Index = () => {
+const Index = (props) => {
   return (
     <div style={{ height: '100%' }}>
-      <ContentProvider />
+      <ContentProvider {...props} />
     </div>
   )
 }
