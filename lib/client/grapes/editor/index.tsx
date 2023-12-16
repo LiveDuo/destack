@@ -27,7 +27,7 @@ const ContentProvider: FC<ContentProviderProps> = ({ data, showEditorInProd = fa
     if (showEditor) {
       import('./initEditor').then((c) => c.initEditor(startServer, standaloneServer))
     } else {
-      const templateData = data?.find(({ name }) => name === location.pathname)
+      const templateData = data?.find(({ name }) => name === `${location.pathname}.json`)
       if (!templateData) return
 
       const content = JSON.parse(templateData.content)
