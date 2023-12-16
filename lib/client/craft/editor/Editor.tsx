@@ -32,7 +32,7 @@ const FrameEditor: React.FC<FrameProps> = ({ data, standaloneServer }) => {
 
   const loadData = async () => {
     if (data) {
-      const templateData = data.find(({ name }: any) => name === location.pathname)
+      const templateData = data.find(({ name }: any) => name === `${location.pathname}.json`)
       const content = JSON.parse(templateData.content)
       actions.deserialize(content)
     } else {
