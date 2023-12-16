@@ -4,13 +4,9 @@ import { ToastContainer } from '../toast'
 
 import cssOverrides from '../styles/overrides'
 
-import { tailwindCssUrl } from '../../../server/config'
+export const tailwindCssUrl = 'https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css'
 
-const ContentProvider: FC<ContentProviderProps> = ({
-  data,
-  showEditorInProd = false,
-  standaloneServer = false,
-}) => {
+const ContentProvider: FC<ContentProviderProps> = ({ data, showEditorInProd = false, standaloneServer = false }) => {
   const mounted = useRef<boolean>(false)
   const [css, setCss] = useState<string | undefined>()
   const [html, setHtml] = useState<string | undefined>()
@@ -31,7 +27,7 @@ const ContentProvider: FC<ContentProviderProps> = ({
     if (showEditor) {
       import('./initEditor').then((c) => c.initEditor(startServer, standaloneServer))
     } else {
-      const templateData = data?.find(({ name }) => name === location.pathname)
+      const templateData = data?.find(({ name }) => name === `${location.pathname}.json`)
       if (!templateData) return
 
       const content = JSON.parse(templateData.content)
@@ -53,9 +49,7 @@ const ContentProvider: FC<ContentProviderProps> = ({
       <>
         <link rel="stylesheet" onLoad={() => setTailwindLoaded(true)} href={tailwindCssUrl} />
         <style> {css}</style>
-        {(!standaloneServer || tailwindLoaded) && (
-          <div dangerouslySetInnerHTML={{ __html: html ?? '' }}></div>
-        )}
+        {(!standaloneServer || tailwindLoaded) && <div dangerouslySetInnerHTML={{ __html: html ?? '' }}></div>}
         <ToastContainer />
       </>
     )

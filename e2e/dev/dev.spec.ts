@@ -1,36 +1,42 @@
 import { test, expect } from '@playwright/test'
 
-test('should contain craftjs renderer', async ({ page }) => {
+test('should contain the editor', async ({ page }) => {
   await page.goto('/')
-  await expect(page.locator('div.craftjs-renderer')).toHaveCount(1)
+  await expect(page.locator('#editor')).toHaveCount(1)
 })
 
 test('should drap and drop a component', async ({ page }) => {
   await page.goto('/')
 
+  // open category
+  await page.click('text=BANNER')
+
   // add component
-  const imagePath = '/api/builder/handle?type=asset&path=/themes/hyperui/Banner1/preview.png'
-  await page.dragAndDrop(`img[src='${imagePath}']`, 'div.craftjs-renderer > div > div')
-  await expect(page.locator('div.craftjs-renderer > div > div')).toHaveCount(1)
+  const image = await page.locator('#banner img').first()
+  await image.dragTo(await page.locator('#editor'))
+  await page.isVisible("text='Understand User Flow'")
 
   // remove the component
   await page.hover('text=Understand')
-  await page.click('div.page-container a:nth-child(4)')
+  const deleteRect = await page.locator('#delete').first().boundingBox()
+  await page.mouse.move(deleteRect?.x as number, deleteRect?.y as number)
+  await page.mouse.down()
 })
 
 test('should add an image to renderer', async ({ page }) => {
   await page.goto('/')
 
+  // open category
+  await page.click('text=CTA')
+
   // add component with image
-  await page.click('div.toolbox > div > div:nth-child(1)')
-  await page.click('div.toolbox > div > div:nth-child(2)')
-  const imagePath = '/api/builder/handle?type=asset&path=/themes/hyperui/Cta1/preview.png'
-  await page.dragAndDrop(`img[src='${imagePath}']`, 'div.craftjs-renderer > div > div')
-  await expect(page.locator('div.craftjs-renderer > div > div')).toHaveCount(1)
+  const image = await page.locator('#cta img').first()
+  await image.dragTo(await page.locator('#editor'))
 
   // open image dialog
-  await page.hover('div.craftjs-renderer img')
-  await page.click('div.page-container a:nth-child(3)')
+  await page.hover('text=Lorem')
+  const imageElement = await page.getByRole('img', { name: 'Student' }).first()
+  await imageElement.click()
 
   // click replace image
   await page.click('text=Replace')
@@ -43,8 +49,11 @@ test('should add an image to renderer', async ({ page }) => {
 
   // remove the component
   await page.hover('text=Lorem')
-  await page.click('div.page-container a:nth-child(4)')
+  const deleteRect = await page.locator('#delete').first().boundingBox()
+  await page.mouse.move(deleteRect?.x as number, deleteRect?.y as number)
+  await page.mouse.down()
 
   // remove the uploaded image
+  // @ts-ignore
   await require('fs/promises').rm('dev/nextjs-project/public/uploaded/pattern.jpg')
 })

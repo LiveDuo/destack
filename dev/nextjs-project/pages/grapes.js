@@ -1,11 +1,12 @@
-require('./styles/index.module.css')
+import '../../../lib/node_modules/grapesjs/dist/css/grapes.min.css'
+
 export { getStaticProps } from 'destack/build/server'
-import { ContentProviderGrapes } from 'destack'
+import { ContentProvider } from 'destack/build/browser/grapes'
 
 const Index = (props) => {
   return (
     <div style={{ height: '100%' }}>
-      <ContentProviderGrapes {...props} />
+      <ContentProvider {...props} />
     </div>
   )
 }

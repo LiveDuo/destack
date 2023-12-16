@@ -4,30 +4,25 @@
   "private": true,
   "scripts": {
     "start": "http-server ./build -p 3000 --proxy http://localhost:3000/?",
-    "dev": "destack -d \"react-scripts start\"",
-    "build": "destack -b \"react-scripts build\""
+    "dev": "destack -d \"webpack-dev-server\"",
+    "build": "destack -b \"webpack --node-env=production\""
   },
   "dependencies": {
+    "crypto-browserify": "^3.12.0",
     "destack": "file:../../lib/",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "4.0.3"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "concurrently": "^6.4.0",
+    "css-loader": "^6.8.1",
+    "esbuild-loader": "^4.0.2",
+    "copy-webpack-plugin": "^11.0.0",
+    "html-webpack-plugin": "^5.5.3",
     "http-server": "^14.0.0",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "style-loader": "^3.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
   }
 }

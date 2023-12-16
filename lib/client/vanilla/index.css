@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ease-animation {
+  transition-timing-function: ease-in;
+  transition: 0.2s cubic-bezier(0.2, 1, 0.2, 1);
+}
+
+.rotate-animation {
+  transition-timing-function: linear;
+  transition: 0.2s;
+}

@@ -11,7 +11,7 @@ interface ContentProviderBaseProps {
 
 const ContentProviderBase: React.FC<ContentProviderBaseProps> = ({ data, standaloneServer }) => {
   return (
-    <div className="h-full h-screen">
+    <div className="h-full">
       <Editor data={data} standaloneServer={standaloneServer} />
     </div>
   )

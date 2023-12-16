@@ -1,3 +1,4 @@
+import React from 'react'
 import { ContentProviderReact } from 'destack'
 
 const App = () => {

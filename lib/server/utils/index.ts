@@ -14,20 +14,21 @@ const formParse = (form: FormidableForm, req: NextApiRequest): Promise<formidabl
   })
 export { formParse }
 
-const getJson = (req: NextApiRequest): Promise<Record<string, string>> =>
-  new Promise<Record<string, string>>((resolve) => {
+const getPage = (req: NextApiRequest): Promise<string> =>
+  new Promise<string>((resolve) => {
     if (!req.body) {
       let buffer = ''
       req.on('data', (chunk) => {
         buffer += chunk
       })
       req.on('end', () => {
-        const str = Buffer.from(buffer).toString()
-        if (str && str.indexOf('{') > -1) resolve(JSON.parse(str))
+        resolve(buffer)
       })
+    } else {
+      resolve(req.body)
     }
   })
-export { getJson }
+export { getPage }
 
 const exists = (s: fs.PathLike): Promise<boolean> =>
   fs.promises

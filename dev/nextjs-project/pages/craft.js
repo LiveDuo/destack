@@ -1,5 +1,5 @@
 export { getStaticProps } from 'destack/build/server'
-import { ContentProvider } from 'destack'
+import { ContentProvider } from 'destack/build/browser/craft'
 
 const Index = (props) => {
   return (

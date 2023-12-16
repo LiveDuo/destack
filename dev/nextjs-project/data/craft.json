@@ -1,0 +1,333 @@
+{
+  "ROOT": {
+    "type": { "resolvedName": "Container" },
+    "isCanvas": true,
+    "props": { "width": "100%", "height": "800px" },
+    "displayName": "Container",
+    "custom": { "displayName": "App" },
+    "hidden": false,
+    "nodes": ["3dgeY13Kt4"],
+    "linkedNodes": {}
+  },
+  "3dgeY13Kt4": {
+    "type": { "resolvedName": "Component" },
+    "isCanvas": false,
+    "props": {
+      "root": {
+        "childNodes": [
+          {
+            "childNodes": [],
+            "attrs": {},
+            "classNames": "",
+            "nodeType": 3,
+            "innerText": "\n",
+            "constructor": "TextNode"
+          },
+          {
+            "childNodes": [
+              {
+                "childNodes": [],
+                "attrs": {},
+                "classNames": "",
+                "nodeType": 3,
+                "innerText": "\n  ",
+                "constructor": "TextNode"
+              },
+              {
+                "childNodes": [
+                  {
+                    "childNodes": [],
+                    "attrs": {},
+                    "classNames": "",
+                    "nodeType": 3,
+                    "innerText": "\n    ",
+                    "constructor": "TextNode"
+                  },
+                  {
+                    "childNodes": [
+                      {
+                        "childNodes": [],
+                        "attrs": {},
+                        "classNames": "",
+                        "nodeType": 3,
+                        "innerText": "\n      ",
+                        "constructor": "TextNode"
+                      },
+                      {
+                        "childNodes": [
+                          {
+                            "childNodes": [],
+                            "attrs": {},
+                            "classNames": "",
+                            "nodeType": 3,
+                            "innerText": "\n        Understand User Flow.\n        ",
+                            "constructor": "TextNode"
+                          },
+                          {
+                            "childNodes": [],
+                            "attrs": {},
+                            "tagName": "BR",
+                            "classNames": "",
+                            "nodeType": 1,
+                            "innerText": "",
+                            "constructor": "HTMLElement"
+                          },
+                          {
+                            "childNodes": [],
+                            "attrs": {},
+                            "classNames": "",
+                            "nodeType": 3,
+                            "innerText": "\n        Increase Conversion.\n      ",
+                            "constructor": "TextNode"
+                          }
+                        ],
+                        "attrs": {},
+                        "tagName": "H1",
+                        "classNames": "bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl caret-white",
+                        "nodeType": 1,
+                        "innerText": "\n        Understand User Flow.\n        \n        Increase Conversion.\n      ",
+                        "constructor": "HTMLElement"
+                      },
+                      {
+                        "childNodes": [],
+                        "attrs": {},
+                        "classNames": "",
+                        "nodeType": 3,
+                        "innerText": "\n\n      ",
+                        "constructor": "TextNode"
+                      },
+                      {
+                        "childNodes": [
+                          {
+                            "childNodes": [],
+                            "attrs": {},
+                            "classNames": "",
+                            "nodeType": 3,
+                            "innerText": "\n        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo\n        tenetur fuga ducimus numquam ea!\n      ",
+                            "constructor": "TextNode"
+                          }
+                        ],
+                        "attrs": {},
+                        "tagName": "P",
+                        "classNames": "mx-auto mt-4 max-w-xl sm:text-xl sm:leading-relaxed",
+                        "nodeType": 1,
+                        "innerText": "\n        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo\n        tenetur fuga ducimus numquam ea!\n      ",
+                        "constructor": "HTMLElement"
+                      },
+                      {
+                        "childNodes": [],
+                        "attrs": {},
+                        "classNames": "",
+                        "nodeType": 3,
+                        "innerText": "\n\n      ",
+                        "constructor": "TextNode"
+                      },
+                      {
+                        "childNodes": [
+                          {
+                            "childNodes": [],
+                            "attrs": {},
+                            "classNames": "",
+                            "nodeType": 3,
+                            "innerText": "\n        ",
+                            "constructor": "TextNode"
+                          },
+                          {
+                            "childNodes": [
+                              {
+                                "childNodes": [],
+                                "attrs": {},
+                                "classNames": "",
+                                "nodeType": 3,
+                                "innerText": "\n          Get Started\n        ",
+                                "constructor": "TextNode"
+                              }
+                            ],
+                            "attrs": { "href": "/get-started" },
+                            "tagName": "A",
+                            "classNames": "block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto cursor-pointer",
+                            "nodeType": 1,
+                            "innerText": "\n          Get Started\n        ",
+                            "constructor": "HTMLElement"
+                          },
+                          {
+                            "childNodes": [],
+                            "attrs": {},
+                            "classNames": "",
+                            "nodeType": 3,
+                            "innerText": "\n\n        ",
+                            "constructor": "TextNode"
+                          },
+                          {
+                            "childNodes": [
+                              {
+                                "childNodes": [],
+                                "attrs": {},
+                                "classNames": "",
+                                "nodeType": 3,
+                                "innerText": "\n          Learn More\n        ",
+                                "constructor": "TextNode"
+                              }
+                            ],
+                            "attrs": { "href": "/about" },
+                            "tagName": "A",
+                            "classNames": "block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto cursor-pointer",
+                            "nodeType": 1,
+                            "innerText": "\n          Learn More\n        ",
+                            "constructor": "HTMLElement"
+                          },
+                          {
+                            "childNodes": [],
+                            "attrs": {},
+                            "classNames": "",
+                            "nodeType": 3,
+                            "innerText": "\n      ",
+                            "constructor": "TextNode"
+                          }
+                        ],
+                        "attrs": {},
+                        "tagName": "DIV",
+                        "classNames": "mt-8 flex flex-wrap justify-center gap-4",
+                        "nodeType": 1,
+                        "innerText": "\n        \n          Get Started\n        \n\n        \n          Learn More\n        \n      ",
+                        "constructor": "HTMLElement"
+                      },
+                      {
+                        "childNodes": [],
+                        "attrs": {},
+                        "classNames": "",
+                        "nodeType": 3,
+                        "innerText": "\n    ",
+                        "constructor": "TextNode"
+                      }
+                    ],
+                    "attrs": {},
+                    "tagName": "DIV",
+                    "classNames": "mx-auto max-w-3xl text-center",
+                    "nodeType": 1,
+                    "innerText": "\n      \n        Understand User Flow.\n        \n        Increase Conversion.\n      \n\n      \n        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo\n        tenetur fuga ducimus numquam ea!\n      \n\n      \n        \n          Get Started\n        \n\n        \n          Learn More\n        \n      \n    ",
+                    "constructor": "HTMLElement"
+                  },
+                  {
+                    "childNodes": [],
+                    "attrs": {},
+                    "classNames": "",
+                    "nodeType": 3,
+                    "innerText": "\n  ",
+                    "constructor": "TextNode"
+                  }
+                ],
+                "attrs": { "style": "caret-color: white" },
+                "tagName": "DIV",
+                "classNames": "mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center",
+                "nodeType": 1,
+                "innerText": "\n    \n      \n        Understand User Flow.\n        \n        Increase Conversion.\n      \n\n      \n        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo\n        tenetur fuga ducimus numquam ea!\n      \n\n      \n        \n          Get Started\n        \n\n        \n          Learn More\n        \n      \n    \n  ",
+                "constructor": "HTMLElement"
+              },
+              {
+                "childNodes": [],
+                "attrs": {},
+                "classNames": "",
+                "nodeType": 3,
+                "innerText": "\n",
+                "constructor": "TextNode"
+              }
+            ],
+            "attrs": {},
+            "tagName": "SECTION",
+            "classNames": "bg-gray-900 text-white",
+            "nodeType": 1,
+            "innerText": "\n  \n    \n      \n        Understand User Flow.\n        \n        Increase Conversion.\n      \n\n      \n        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo\n        tenetur fuga ducimus numquam ea!\n      \n\n      \n        \n          Get Started\n        \n\n        \n          Learn More\n        \n      \n    \n  \n",
+            "constructor": "HTMLElement"
+          },
+          {
+            "childNodes": [],
+            "attrs": {},
+            "classNames": "",
+            "nodeType": 3,
+            "innerText": "\n",
+            "constructor": "TextNode"
+          }
+        ],
+        "attrs": {},
+        "tagName": null,
+        "classNames": "",
+        "nodeType": 1,
+        "innerText": "\n\n  \n    \n      \n        Understand User Flow.\n        \n        Increase Conversion.\n      \n\n      \n        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo\n        tenetur fuga ducimus numquam ea!\n      \n\n      \n        \n          Get Started\n        \n\n        \n          Learn More\n        \n      \n    \n  \n\n",
+        "constructor": "HTMLElement"
+      }
+    },
+    "displayName": "Component",
+    "custom": {},
+    "parent": "ROOT",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": { "011151": "JPUyrf73EB", "011153": "hzPqN4IGpt" }
+  },
+  "JPUyrf73EB": {
+    "type": { "resolvedName": "Link" },
+    "isCanvas": false,
+    "props": {
+      "r": {
+        "childNodes": [
+          {
+            "childNodes": [],
+            "attrs": {},
+            "classNames": "",
+            "nodeType": 3,
+            "innerText": "\n          Get Started\n        ",
+            "constructor": "TextNode"
+          }
+        ],
+        "attrs": { "href": "/get-started" },
+        "tagName": "A",
+        "classNames": "block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto cursor-pointer",
+        "nodeType": 1,
+        "innerText": "\n          Get Started\n        ",
+        "constructor": "HTMLElement"
+      },
+      "d": [0, 1, 1, 1, 5],
+      "i": 1,
+      "propId": "011151"
+    },
+    "displayName": "Link",
+    "custom": {},
+    "parent": "3dgeY13Kt4",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "hzPqN4IGpt": {
+    "type": { "resolvedName": "Link" },
+    "isCanvas": false,
+    "props": {
+      "r": {
+        "childNodes": [
+          {
+            "childNodes": [],
+            "attrs": {},
+            "classNames": "",
+            "nodeType": 3,
+            "innerText": "\n          Learn More\n        ",
+            "constructor": "TextNode"
+          }
+        ],
+        "attrs": { "href": "/about" },
+        "tagName": "A",
+        "classNames": "block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto cursor-pointer",
+        "nodeType": 1,
+        "innerText": "\n          Learn More\n        ",
+        "constructor": "HTMLElement"
+      },
+      "d": [0, 1, 1, 1, 5],
+      "i": 3,
+      "propId": "011153"
+    },
+    "displayName": "Link",
+    "custom": {},
+    "parent": "3dgeY13Kt4",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  }
+}
