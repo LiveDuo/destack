@@ -28,7 +28,7 @@ export { getImageUrl }
 const fetchJSON = async ({ method, url, data }: fetchJSONArgs): Promise<templateData> => {
   const res = await fetch(url, {
     method,
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'text/plain' },
     body: data ? JSON.stringify(data) : undefined,
   })
   return await res.json()
@@ -60,7 +60,7 @@ const loadTemplate = async (standaloneServer: boolean) => {
   const baseUrl = getBaseUrl(standaloneServer)
   const data = await fetchJSON({
     method: 'get',
-    url: `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}`,
+    url: `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}&ext=json`,
   })
   return data?.content
 }
@@ -72,7 +72,7 @@ const saveTemplate = async (state: any, standaloneServer: boolean) => {
 
   await fetchJSON({
     method: 'post',
-    url: `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}`,
+    url: `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}&ext=json`,
     data: body,
   })
 }

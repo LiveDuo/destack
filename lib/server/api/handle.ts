@@ -27,23 +27,21 @@ const uploadFiles = async (req: NextApiRequest): Promise<string[]> => {
   form.on('fileBegin', (_, file) => (file.path = path.join('public', uploadFolder, file.name!)))
   const files = await formParse(form, req)
 
-  const urls = Object.values(files).map((f) =>
-    path.join(path.sep, uploadFolder, (<FormidableFile>f).name ?? ''),
-  )
+  const urls = Object.values(files).map((f) => path.join(path.sep, uploadFolder, (<FormidableFile>f).name ?? ''))
   return urls
 }
 export { uploadFiles }
 
-const getFileNameFromRoute = (route: string) => (route === '/' ? 'default.html' : `${route}.html`) // browser paths are always "/"
+const getFileNameFromRoute = (route: string) => (route === '/' ? 'default' : route) // browser paths are always "/"
 const getRouteFromFilename = (filename: string) =>
-  filename === path.sep + 'default.html' ? path.sep : `${filename.slice(0, -5)}` // file paths are OS-specific
+  filename.slice(0, -5) === path.sep + 'default' ? path.sep : filename // file paths are OS-specific
 
-const loadData = async (route: string): Promise<string> => {
+const loadData = async (route: string, ext: string): Promise<string> => {
   const fileName = getFileNameFromRoute(route)
-  const dataPath = path.join(rootPath, dataFolder, fileName)
+  const dataPath = path.join(rootPath, dataFolder, `${fileName}.${ext}`)
   const dataExists = await exists(dataPath)
   if (!dataExists) {
-    return '<div>hello</div>'
+    return ext === 'json' ? '{}' : '<div>Not found</div>'
   } else {
     const content = fs.readFileSync(dataPath, 'utf8')
     return content
@@ -73,7 +71,7 @@ const loadAllData = async (): Promise<dataType[]> => {
 }
 export { loadAllData }
 
-const updateData = async (route: string, data: string): Promise<void> => {
+const updateData = async (route: string, ext: string, data: string): Promise<void> => {
   const fileName = getFileNameFromRoute(route)
 
   const updatePath = path.join(rootPath, dataFolder)
@@ -82,7 +80,7 @@ const updateData = async (route: string, data: string): Promise<void> => {
     await fs.promises.mkdir(updatePath)
   }
 
-  await fs.promises.writeFile(path.join(updatePath, fileName), data)
+  await fs.promises.writeFile(path.join(updatePath, `${fileName}.${ext}`), data)
 }
 export { updateData }
 
@@ -94,15 +92,15 @@ const handleData = async (req: NextApiRequest, res: NextApiResponse): Promise<vo
 
   // handle request
   if (req.method === 'GET') {
-    const data = await loadData(req.query.path as string)
+    const data = await loadData(req.query.path as string, (req.query.ext as string) ?? 'html')
     return res.status(200).send(data)
   } else if (req.method === 'POST') {
     const contentType = req.headers['content-type']!
     const isMultiPart = contentType.startsWith('multipart/form-data')
     if (!isMultiPart) {
       const body = await getPage(req)
-      await updateData(req.query.path as string, body)
-      return res.status(200).json({})
+      await updateData(req.query.path as string, (req.query.ext as string) ?? 'html', body)
+      return res.status(200).send('')
     } else {
       const urls = await uploadFiles(req)
       return res.status(200).json(urls)
@@ -142,9 +140,7 @@ const handleTheme = async (req: NextApiRequest, res: NextApiResponse): Promise<v
   // handle request
   const themeName = req.query.name as string
   const folderPath = path.join(getPackagePath() as string, 'themes', themeName)
-  const componentNames = await fs.promises
-    .readdir(folderPath)
-    .then((f) => f.filter((c) => c !== 'index.ts'))
+  const componentNames = await fs.promises.readdir(folderPath).then((f) => f.filter((c) => c !== 'index.ts'))
   const componentsP = componentNames.map(async (c) => {
     const assetPath = path.join(folderPath, c, 'index.html')
     const source = await fs.promises.readFile(assetPath, 'utf-8')

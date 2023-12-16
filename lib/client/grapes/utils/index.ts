@@ -9,13 +9,13 @@ type fetchJSONArgs = {
 const elementExists = (el: any) => typeof el !== 'undefined' && el !== null
 export { elementExists }
 
-const fetchJSON = async ({ method, url, data }: fetchJSONArgs): Promise<JSON> => {
+const fetchJSON = async ({ method, url, data }: fetchJSONArgs): Promise<string> => {
   const res = await fetch(url, {
     method,
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'text/plain' },
     body: data ? JSON.stringify(data) : undefined,
   })
-  return await res.json()
+  return res.text()
 }
 
 export { fetchJSON }
@@ -58,14 +58,13 @@ const getBaseUrl = (standaloneServer: boolean) => {
   return standaloneServer ? `http://localhost:${standaloneServerPort}` : ''
 }
 
-const saveTemplate = async (state: any, standaloneServer: boolean) => {
+const saveTemplate = async (data: any, standaloneServer: boolean) => {
   const baseUrl = getBaseUrl(standaloneServer)
-  const body = { data: state }
 
   await fetchJSON({
     method: 'post',
-    url: `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}`,
-    data: body,
+    url: `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}&ext=json`,
+    data: data,
   })
 }
 export { saveTemplate }
@@ -74,9 +73,10 @@ const loadTemplate = async (standaloneServer: boolean) => {
   const baseUrl = getBaseUrl(standaloneServer)
   const data = (await fetchJSON({
     method: 'get',
-    url: `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}`,
+    url: `${baseUrl}/api/builder/handle?type=data&path=${location.pathname}&ext=json`,
   })) as any
-  return data?.content
+  console.log(data)
+  return data
 }
 export { loadTemplate }
 
