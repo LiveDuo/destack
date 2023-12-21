@@ -140,7 +140,9 @@ const handleTheme = async (req: NextApiRequest, res: NextApiResponse): Promise<v
   // handle request
   const themeName = req.query.name as string
   const folderPath = path.join(getPackagePath() as string, 'themes', themeName)
-  const componentNames = await fs.promises.readdir(folderPath).then((f) => f.filter((c) => c !== 'index.ts'))
+  const componentNames = await fs.promises
+    .readdir(folderPath)
+    .then((f) => f.filter((c) => c !== 'index.ts' && !c.startsWith('.')))
   const componentsP = componentNames.map(async (c) => {
     const assetPath = path.join(folderPath, c, 'index.html')
     const source = await fs.promises.readFile(assetPath, 'utf-8')

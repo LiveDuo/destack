@@ -65,6 +65,7 @@ const isEventOnElement = (element: HTMLElement, event: React.MouseEvent<HTMLElem
 }
 
 const isElementTopHalf = (element: HTMLElement, event: React.MouseEvent<HTMLElement>) => {
+  if (!element) return
   const rect = element.getBoundingClientRect()
   return rect.top + (rect.bottom - rect.top) / 2 > event.clientY
 }
