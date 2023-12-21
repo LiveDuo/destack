@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import './index.css'
 
-import ArrowPathIcon from '@heroicons/react/24/outline/ArrowPathIcon'
+// import ArrowPathIcon from '@heroicons/react/24/outline/ArrowPathIcon'
 import TrashIcon from '@heroicons/react/24/outline/TrashIcon'
 import ArrowDownIcon from '@heroicons/react/24/outline/ArrowDownIcon'
 import ArrowUpIcon from '@heroicons/react/24/outline/ArrowUpIcon'
@@ -351,11 +351,11 @@ function Editor({ standaloneServer = false }) {
       )}
       <div className="w-full h-screen flex flex-col">
         <div className="flex items-center m-2">
-          {!isPreview && (
+          {/* {!isPreview && (
             <div>
               <ArrowPathIcon className="h-6 w-6 mx-2 cursor-pointer" onClick={clearComponents} />
             </div>
-          )}
+          )} */}
 
           {!isPreview && (
             <div className="mr-auto ml-auto">
