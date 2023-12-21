@@ -72,11 +72,11 @@ import Product5 from './Product5'
 import Heading1 from './Heading1'
 import Heading2 from './Heading2'
 import Heading3 from './Heading3'
-import PageNotFound1 from './Page_ not_found1'
-import PageNotFound2 from './Page_ not_found2'
-import PageNotFound3 from './Page_ not_found3'
-import PageNotFound4 from './Page_ not_found4'
-import PageNotFound5 from './Page_ not_found5'
+import PageNotFound1 from './NotFound1'
+import PageNotFound2 from './NotFound2'
+import PageNotFound3 from './NotFound3'
+import PageNotFound4 from './NotFound4'
+import PageNotFound5 from './NotFound5'
 
 const components = {
   Banner1,
