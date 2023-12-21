@@ -1,8 +1,4 @@
 
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-<link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet" />
-
 <section>
   <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
     <div class="swiper-container !overflow-hidden">
@@ -124,28 +120,3 @@
     </div>
   </div>
 </section>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    new Swiper('.swiper-container', {
-      loop: true,
-      slidesPerView: 1,
-      spaceBetween: 8,
-      autoplay: {
-        delay: 8000,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      breakpoints: {
-        640: {
-          slidesPerView: 1.5,
-        },
-        1024: {
-          slidesPerView: 3,
-        },
-      },
-    })
-  })
-</script>
