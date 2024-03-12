@@ -309,8 +309,10 @@ function Editor({ standaloneServer = false }) {
 
     // update border
     const isTopHalf = isElementTopHalf(component, e)
-    component.style.setProperty(`border-${isTopHalf ? 'top' : 'bottom'}`, '4px solid cornflowerblue')
-    component.style.setProperty(`border-${!isTopHalf ? 'top' : 'bottom'}`, '')
+    component.style.setProperty(
+      'box-shadow',
+      isTopHalf ? ' 0px 6px 0px -2px cornflowerblue inset' : '0px -6px 0px -2px cornflowerblue inset',
+    )
 
     // update hovered component
     if (component.isEqualNode(hoveredComponent)) return
@@ -320,15 +322,15 @@ function Editor({ standaloneServer = false }) {
   const removeBorders = () => {
     const components = getComponents()
     components.forEach((c: HTMLDivElement) => {
-      c.style.setProperty('border-top', '')
-      c.style.setProperty('border-bottom', '')
+      c.style.setProperty('box-shadow', '')
     })
   }
 
-  // NOTE this trigger more times than it should
-  const onCanvasDragLeave = () => {
-    setHoveredComponent(null)
-    removeBorders()
+  const onCanvasDragLeave = (e: React.DragEvent<HTMLElement>) => {
+    if (!canvasRef.current?.contains(e.target as HTMLElement)) {
+      setHoveredComponent(null)
+      removeBorders()
+    }
   }
 
   const getComponents = (): HTMLDivElement[] => {
