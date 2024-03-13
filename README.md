@@ -6,6 +6,8 @@ Build landing pages visually right in your React or Next.js projects. Deploy the
 
 # Announcements
 
+📣 [13/03/2024] Destack v3 has just been released on NPM. Learn more at [pull/103](https://github.com/LiveDuo/destack/pull/103) and [issues/104](https://github.com/LiveDuo/destack/issues/104). Note that pages created with v2 have to be recreated with v3 to function smoothly.
+
 📣 [10/10/2023] Destack v3 is in beta. This release is an rewrite of the editor from scratch. Check it out at [destack-starter-beta](https://github.com/LiveDuo/destack-starter-beta). More at [pull/103](https://github.com/LiveDuo/destack/pull/103) and [issues/104](https://github.com/LiveDuo/destack/issues/104).
 
 📣 [13/06/2023] Three more themes have been added [Preline](https://preline.co/), [Flow Bite](https://flowbite.com/) and [Flow Rift](https://flowrift.com/).
@@ -63,7 +65,7 @@ There are hundreds of well designed and heavily functional blocks from [Tailbloc
 
 #### 🃏 Delightful Builder
 
-Powered by [Craft.js](https://craft.js.org/), a minimal page-builder framework. The builder was created with simplicity in mind and aims to be quickest way to build a landing page for a side-project.
+Powered by a custom-made minimal page-builder that was created with simplicity in mind. It supports altering tailwind CSS classes and CSS properties with the inspector in browser DevTools.
 
 #### 🕹 Data Ownership
 
@@ -229,9 +231,9 @@ Install a routing library such as `react-router-dom` or `router-tutorial` in the
 
 # How this project came to existence
 
-This project was nothing that was planned and design in depth in advance. Instead it was evolved out of the need and enjoyment of using some amazing tools and prototype quickly. These projects heavily improved my developer life and a few of my friends'.
+This project evolved out of the need to prototype quickly, maintain ownership of the generated pages and be compatible with serverless JAM-stack frameworks.
 
-> Next.js 🅧 ➕ Tailwind CSS 🍃 ➕ Craft.js 🧶 = 💣💣
+> Next.js 🅧 ➕ Tailwind CSS 🍃 = 💣💣
 
 Please go and show these projects some love (⭐️). 
 
