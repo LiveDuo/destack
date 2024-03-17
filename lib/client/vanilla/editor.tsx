@@ -173,7 +173,7 @@ function Editor({ standaloneServer = false }) {
   }
 
   const onDomChange = () => {
-    const config = { attributes: true, childList: true, subtree: true }
+    const config = { attributes: true, childList: true, subtree: true, characterData: true }
     const observer = new MutationObserver(
       debounce(() => {
         console.log('dom changed')
