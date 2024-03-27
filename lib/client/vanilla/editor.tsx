@@ -129,6 +129,7 @@ function Editor({ standaloneServer = false }) {
   const [hoveredElement, setHoveredElement] = useState<HTMLElement | null>(null)
   const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(null)
   const [components, setComponents] = useState<ComponentWithCategories>({})
+  const [isEmptyCanvas, setIsEmptyCanvas] = useState<boolean>(false)
 
   const [selectOpen, setSelectOpen] = useState(false)
 
@@ -216,6 +217,7 @@ function Editor({ standaloneServer = false }) {
 
     removeBorders()
     setHoveredComponent(null)
+    setIsEmptyCanvas(false)
   }
 
   const onCanvasMouseOver = (e: React.MouseEvent<HTMLElement>) => {
@@ -305,6 +307,10 @@ function Editor({ standaloneServer = false }) {
     // get hovered component
     const components = getComponents()
     const component = components.find((c) => isEventOnElement(c, e))!
+
+    // update empty flag
+    const isEmpty = components.length === 0
+    if (isEmpty !== isEmptyCanvas) setIsEmptyCanvas(isEmpty)
     if (!component) return
 
     // update border
@@ -315,8 +321,9 @@ function Editor({ standaloneServer = false }) {
     )
 
     // update hovered component
-    if (component.isEqualNode(hoveredComponent)) return
-    setHoveredComponent(component)
+    if (!component.isEqualNode(hoveredComponent)) {
+      setHoveredComponent(component)
+    }
   }
 
   const removeBorders = () => {
@@ -331,6 +338,7 @@ function Editor({ standaloneServer = false }) {
       setHoveredComponent(null)
       removeBorders()
     }
+    setIsEmptyCanvas(false)
   }
 
   const getComponents = (): HTMLDivElement[] => {
@@ -494,6 +502,7 @@ function Editor({ standaloneServer = false }) {
             onDragLeave={onCanvasDragLeave}
             onClickCapture={onCanvasClickCapture}
             style={{
+              boxShadow: isEmptyCanvas ? '0px 0px 0px 6px cornflowerblue inset' : 'none',
               margin: isPreview ? '0px' : '20px',
               maxWidth: isPreview ? '100%' : '868px',
               minHeight: '1024px', // no tailwind class
