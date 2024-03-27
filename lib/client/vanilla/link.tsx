@@ -17,7 +17,8 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
   const [newTab, setNewTab] = useState(true)
 
   useEffect(() => {
-    if (selectedElement) {
+    if (selectedElement && selectedElement.href) {
+      // console.log(selectedElement.href)
       const url = new URL(selectedElement.href)
       const linkNew = url.hostname === 'localhost' ? url.pathname.replace('/', '') + url.hash : selectedElement.href
       setLink(linkNew)
