@@ -57,7 +57,7 @@ const getImageUrl = (standaloneServer: boolean, imageSrc: string) => {
 }
 
 const isEventOnElement = (element: HTMLElement, event: React.MouseEvent<HTMLElement>) => {
-  if (!element) return
+  if (!element) return false
   const rect = element.getBoundingClientRect()
   const isX = rect.top < event.clientY && rect.bottom > event.clientY
   const isY = rect.left < event.clientX && rect.right > event.clientX
@@ -65,7 +65,7 @@ const isEventOnElement = (element: HTMLElement, event: React.MouseEvent<HTMLElem
 }
 
 const isElementTopHalf = (element: HTMLElement, event: React.MouseEvent<HTMLElement>) => {
-  if (!element) return
+  if (!element) return false
   const rect = element.getBoundingClientRect()
   return rect.top + (rect.bottom - rect.top) / 2 > event.clientY
 }
