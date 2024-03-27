@@ -61,9 +61,7 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement, baseUrl
               'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2',
             )}
           >
-            <DialogPrimitive.Title className="text-sm font-medium text-gray-900 dark:text-gray-100">
-              Upload Image
-            </DialogPrimitive.Title>
+            <DialogPrimitive.Title className="text-sm font-medium text-gray-900">Upload Image</DialogPrimitive.Title>
 
             <div className="mt-4 mb-4">
               {!url ? (

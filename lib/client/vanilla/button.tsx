@@ -93,11 +93,9 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
               'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2',
             )}
           >
-            <DialogPrimitive.Title className="text-sm font-medium text-gray-900 dark:text-gray-100">
-              Update Button
-            </DialogPrimitive.Title>
+            <DialogPrimitive.Title className="text-sm font-medium text-gray-900">Update Button</DialogPrimitive.Title>
 
-            <DialogPrimitive.Description className="mt-2 text-sm font-normal text-gray-700 dark:text-gray-400">
+            <DialogPrimitive.Description className="mt-2 text-sm font-normal text-gray-700">
               <div className="mt-4 mb-4">
                 <div>
                   <div
