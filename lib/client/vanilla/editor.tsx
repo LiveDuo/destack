@@ -304,14 +304,15 @@ function Editor({ standaloneServer = false }) {
   const onCanvasDragOver = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
 
-    // get hovered component
-    const components = getComponents()
-    const component = components.find((c) => isEventOnElement(c, e))!
-
     // update empty flag
+    const components = getComponents()
     const isEmpty = components.length === 0
     if (isEmpty !== isEmptyCanvas) setIsEmptyCanvas(isEmpty)
-    if (!component) return
+
+    // get hovered component
+    if (components.length === 0) return
+    const componentWithEvent = components.find((c) => isEventOnElement(c, e))!
+    const component = componentWithEvent ?? components[components.length - 1]
 
     // update border
     const isTopHalf = isElementTopHalf(component, e)
@@ -334,7 +335,7 @@ function Editor({ standaloneServer = false }) {
   }
 
   const onCanvasDragLeave = (e: React.DragEvent<HTMLElement>) => {
-    if (!canvasRef.current?.contains(e.target as HTMLElement)) {
+    if (!canvasRef.current?.contains(e.relatedTarget as HTMLElement)) {
       setHoveredComponent(null)
       removeBorders()
     }
