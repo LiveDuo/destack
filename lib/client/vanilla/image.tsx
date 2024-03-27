@@ -22,7 +22,7 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement, baseUrl
 
   useEffect(() => {
     setUrl(selectedElement?.getAttribute('src') ?? '')
-  }, [open])
+  }, [selectedElement])
 
   const onUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()

@@ -16,7 +16,7 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
   const [path, setPath] = useState('')
 
   useEffect(() => {
-    if (open) {
+    if (selectedElement) {
       if (selectedElement.tagName === 'path') {
         setPath(selectedElement?.getAttribute('d') ?? '')
       } else if (selectedElement.tagName === 'svg') {
@@ -28,7 +28,7 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
     } else {
       setPath('')
     }
-  }, [open])
+  }, [selectedElement])
 
   const onSave = () => {
     setOpen(false)

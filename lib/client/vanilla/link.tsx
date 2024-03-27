@@ -17,11 +17,21 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
   const [newTab, setNewTab] = useState(true)
 
   useEffect(() => {
-    setLink(selectedElement?.href ?? '')
-  }, [open])
+    if (selectedElement) {
+      const url = new URL(selectedElement.href)
+      const linkNew = url.hostname === 'localhost' ? url.pathname.replace('/', '') + url.hash : selectedElement.href
+      setLink(linkNew)
+      console.log('changed', linkNew)
+    } else {
+      console.log('changed', null)
+
+      setLink('')
+    }
+  }, [selectedElement])
 
   const onSave = () => {
     setOpen(false)
+    setLink('')
 
     selectedElement.href = link
     selectedElement.target = newTab ? '_blank' : '_self'
@@ -48,7 +58,7 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
                       type="text"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-4"
                       placeholder="Eg. https://github.com/LiveDuo/destack"
-                      defaultValue={link as string}
+                      value={link as string}
                       onChange={(e) => setLink(e.target.value)}
                     />
                     <div className="flex items-center ml-4">
