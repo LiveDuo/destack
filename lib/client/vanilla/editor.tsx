@@ -180,7 +180,7 @@ function Editor({ standaloneServer = false }) {
         console.log('dom changed')
 
         const html = canvasRef.current!.innerHTML
-        savePage(html)
+        if (html) savePage(html)
       }),
     )
     observer.observe(canvasRef.current!, config)
