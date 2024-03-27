@@ -502,7 +502,7 @@ function Editor({ standaloneServer = false }) {
             onDragLeave={onCanvasDragLeave}
             onClickCapture={onCanvasClickCapture}
             style={{
-              boxShadow: isEmptyCanvas ? '0px 0px 0px 6px cornflowerblue inset' : 'none',
+              boxShadow: isEmptyCanvas ? '0px 6px 0px -2px cornflowerblue inset' : 'none',
               margin: isPreview ? '0px' : '20px',
               maxWidth: isPreview ? '100%' : '868px',
               minHeight: '1024px', // no tailwind class
