@@ -18,14 +18,10 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
 
   useEffect(() => {
     if (selectedElement && selectedElement.href) {
-      // console.log(selectedElement.href)
       const url = new URL(selectedElement.href)
       const linkNew = url.hostname === 'localhost' ? url.pathname.replace('/', '') + url.hash : selectedElement.href
       setLink(linkNew)
-      console.log('changed', linkNew)
     } else {
-      console.log('changed', null)
-
       setLink('')
     }
   }, [selectedElement])
