@@ -53,6 +53,7 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
     } else if (type === 'submit') {
       if (submitAsync) {
         const source = `
+          const e = arguments[0]
           const form = e.target.closest('form')
 
           const formData = new FormData()
@@ -62,7 +63,7 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
             }
           }
 
-          const options = { method: '${submitMethod}', ...('${submitMethod}' !== 'GET' ? { body: formData } : {}), }
+          const options = { method: '${submitMethod}', body: ${submitMethod !== 'GET' ? 'formData' : 'null'} }
           fetch('${submitUrl}', options)
             .then((e) => e.text().then((d) => ({ ok: e.ok, text: d })))
             .then(({ ok, text }) => {
@@ -73,6 +74,7 @@ const Dialog: React.FC<DialogProps> = ({ open, setOpen, selectedElement }) => {
         selectedElement.setAttribute('type', 'button')
       } else {
         const source = `
+          const e = arguments[0]
           const form = e.target.closest('form')
           form.submit()
         `
