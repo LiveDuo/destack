@@ -20,7 +20,8 @@ const ContentProvider: React.FC<ContentProviderBaseProps> = ({ data, standaloneS
 
   useEffect(() => {
     if (data) {
-      const _templateData = data?.find(({ name }: dataType) => name === location.pathname)
+      const url = location.pathname === '/' ? '/' : `${location.pathname}.html`
+      const _templateData = data?.find(({ name }: dataType) => name === url)
       setTemplateData(_templateData.content)
     }
   }, [])
