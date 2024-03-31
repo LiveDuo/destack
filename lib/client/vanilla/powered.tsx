@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 
 const getElementProperty = (element: HTMLElement, property: string, defaultValue: string): string => {
-  const value = window.getComputedStyle(element)[property as any]
-  if (value !== defaultValue) return value
+  const value = element ? window.getComputedStyle(element)[property as any] : null
+  if (!!value) return value
   else if (!element || element.childNodes.length === 0) return defaultValue
-  else return getElementProperty(element?.childNodes[0] as HTMLElement, property, defaultValue)
+  else {
+    const firstElementNode = [...element?.childNodes].find((e) => e.nodeType === Node.ELEMENT_NODE)
+    return getElementProperty(firstElementNode as HTMLElement, property, defaultValue)
+  }
 }
 
 const waitForElement = (target: HTMLElement, selector: string): Promise<HTMLElement> => {
@@ -26,12 +29,12 @@ const waitForElement = (target: HTMLElement, selector: string): Promise<HTMLElem
 }
 
 const isDarkBackground = (bgColor: string) => {
-  const [r, g, b] = bgColor
+  const [r, g, b, a] = bgColor
     .match(/\(([^()]+)\)/)![1]
     .split(',')
     .map((v) => parseInt(v))
   const hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b))
-  return hsp < 127.5
+  return a === 0 ? false : hsp < 127.5
 }
 
 const PoweredBy = () => {
