@@ -112,26 +112,6 @@ export { getStaticProps } from 'destack/build/server'
 export { ContentProvider as default } from 'destack'
 ```
 
-<details>
-<summary>How to use the legacy page-builder (Grapesjs)</summary>
-<br>
-
-```js
-import { ContentProviderGrapes } from 'destack'
-import 'grapesjs/dist/css/grapes.min.css'
-
-export { getStaticProps } from 'destack/build/server'
-
-export default function Page(props) { 
-    return (
-        <div style={{height: '100%'}}>
-            <span>Hello world</span>
-            <ContentProviderGrapes {...props}/>
-        </div>)
-}
-```
-</details>
-
 ### With a new React.js project:
 
 - Fork the [destack-react-starter](https://github.com/LiveDuo/destack-react-starter) project
@@ -161,27 +141,6 @@ In any React.js component you want to setup Destack:
 export { ContentProviderReact as default } from 'destack'
 
 ```
-
-<details>
-<summary>How to use the legacy page-builder (Grapesjs)</summary>
-<br>
-
-```js
-import 'grapesjs/dist/css/grapes.min.css'
-
-import { ContentProviderReact } from 'destack'
-
-const App = () => {
-  return (
-    <div style={{ height: '100%' }}>
-      <span>Hello world</span>
-      <ContentProviderReact />
-    </div>
-  )
-}
-export default App
-```
-</details>
 
 # How it works
 
@@ -214,6 +173,13 @@ More on the project's architecture [here](assets/design/overview.md).
 - Click on an image to open the upload modal
 - Select the image you want to update and click on it to add it to the page
 - Note: Images are uploaded to `public/uploaded` with their original filenames
+
+### Create a blog
+
+- Create the blog related [pages](https://github.com/LiveDuo/destack-landing/tree/master/pages/blog).
+- Reuse the [header and footer](https://github.com/LiveDuo/destack-landing/blob/master/pages/_app.js) components. Note that this requires setting up tailwind CSS.
+
+**Example:** https://github.com/LiveDuo/destack-landing
 
 # Multi-page Support
 
