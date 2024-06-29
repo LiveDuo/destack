@@ -385,8 +385,7 @@ function Editor({ standaloneServer = false }) {
                 setOpen={setSelectOpen}
                 onChange={(e) => {
                   const index = themes.findIndex((r) => r.name === e)
-                  loadThemeComponents(index)
-                  setThemeIndex(index)
+                  loadThemeComponents(index).then(() => setThemeIndex(index))
                 }}
               />
             </div>
