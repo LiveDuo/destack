@@ -209,9 +209,9 @@ function Editor({ standaloneServer = false }) {
     const _components = getComponents()
     if (_components.length === 0) {
       canvasRef.current!.innerHTML = html
-    } else if (isElementTopHalf(hoveredComponent!, e)) {
+    } else if (hoveredComponent && isElementTopHalf(hoveredComponent!, e)) {
       hoveredComponent!.insertAdjacentHTML('beforebegin', html)
-    } else if (!isElementTopHalf(hoveredComponent!, e)) {
+    } else if (hoveredComponent && !isElementTopHalf(hoveredComponent!, e)) {
       hoveredComponent!.insertAdjacentHTML('afterend', html)
     }
 
